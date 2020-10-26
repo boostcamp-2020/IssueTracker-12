@@ -14,7 +14,6 @@
 		46ED2B9225469877004B6D50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46ED2B9125469877004B6D50 /* Assets.xcassets */; };
 		46ED2B9525469877004B6D50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46ED2B9325469877004B6D50 /* LaunchScreen.storyboard */; };
 		46ED2B9F25469A94004B6D50 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 46ED2B9E25469A94004B6D50 /* .swiftlint.yml */; };
-		46ED2BAE2546A517004B6D50 /* IssueListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2BAD2546A517004B6D50 /* IssueListHeaderView.swift */; };
 		46ED2BB62546AA00004B6D50 /* IssueListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2BB42546AA00004B6D50 /* IssueListCollectionViewCell.swift */; };
 		46ED2BB72546AA00004B6D50 /* IssueListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46ED2BB52546AA00004B6D50 /* IssueListCollectionViewCell.xib */; };
 		46ED2BC72546B096004B6D50 /* IssueListEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2BC62546B096004B6D50 /* IssueListEditViewController.swift */; };
@@ -30,7 +29,6 @@
 		46ED2B9425469877004B6D50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46ED2B9625469877004B6D50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46ED2B9E25469A94004B6D50 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		46ED2BAD2546A517004B6D50 /* IssueListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListHeaderView.swift; sourceTree = "<group>"; };
 		46ED2BB42546AA00004B6D50 /* IssueListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewCell.swift; sourceTree = "<group>"; };
 		46ED2BB52546AA00004B6D50 /* IssueListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueListCollectionViewCell.xib; sourceTree = "<group>"; };
 		46ED2BC62546B096004B6D50 /* IssueListEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListEditViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 		46ED2BA62546A39C004B6D50 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				46ED2BAD2546A517004B6D50 /* IssueListHeaderView.swift */,
 				46ED2BB42546AA00004B6D50 /* IssueListCollectionViewCell.swift */,
 				46ED2BB52546AA00004B6D50 /* IssueListCollectionViewCell.xib */,
 			);
@@ -254,7 +251,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				46ED2B8D25469876004B6D50 /* IssueListViewController.swift in Sources */,
-				46ED2BAE2546A517004B6D50 /* IssueListHeaderView.swift in Sources */,
 				46ED2BC72546B096004B6D50 /* IssueListEditViewController.swift in Sources */,
 				46ED2BB62546AA00004B6D50 /* IssueListCollectionViewCell.swift in Sources */,
 				46ED2B8925469876004B6D50 /* AppDelegate.swift in Sources */,

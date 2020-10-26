@@ -11,15 +11,8 @@ class IssueListEditViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+   
+    }
+    
 
-       
-    }
-    
-    @IBAction func selectAllButtonDidTouch(_ sender: Any) {
-    
-    }
-    
-    @IBAction func cancelButtonDidTouch(_ sender: Any) {
-        
-    }
 }
