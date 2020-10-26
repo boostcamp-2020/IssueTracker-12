@@ -93,7 +93,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="fpY-Zj-Czi">
                         <barButtonItem key="leftBarButtonItem" title="SelectAll" id="cj1-yW-631"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="opZ-5T-NEk"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="opZ-5T-NEk">
+                            <connections>
+                                <action selector="cancelButtonDidTouch:" destination="FiQ-sB-i1G" id="3Pq-JE-Q5V"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RAQ-P2-lCq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
