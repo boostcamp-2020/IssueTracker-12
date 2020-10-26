@@ -15,7 +15,8 @@
 		46ED2B9525469877004B6D50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46ED2B9325469877004B6D50 /* LaunchScreen.storyboard */; };
 		46ED2B9F25469A94004B6D50 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 46ED2B9E25469A94004B6D50 /* .swiftlint.yml */; };
 		46ED2BAE2546A517004B6D50 /* IssueListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2BAD2546A517004B6D50 /* IssueListHeaderView.swift */; };
-		46ED2BB12546A66C004B6D50 /* IssueListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2BB02546A66C004B6D50 /* IssueListCollectionViewCell.swift */; };
+		46ED2BB62546AA00004B6D50 /* IssueListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2BB42546AA00004B6D50 /* IssueListCollectionViewCell.swift */; };
+		46ED2BB72546AA00004B6D50 /* IssueListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46ED2BB52546AA00004B6D50 /* IssueListCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +30,8 @@
 		46ED2B9625469877004B6D50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46ED2B9E25469A94004B6D50 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		46ED2BAD2546A517004B6D50 /* IssueListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListHeaderView.swift; sourceTree = "<group>"; };
-		46ED2BB02546A66C004B6D50 /* IssueListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewCell.swift; sourceTree = "<group>"; };
+		46ED2BB42546AA00004B6D50 /* IssueListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewCell.swift; sourceTree = "<group>"; };
+		46ED2BB52546AA00004B6D50 /* IssueListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueListCollectionViewCell.xib; sourceTree = "<group>"; };
 		AE41F75C5FFBB028C86B1865 /* Pods-IssueTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTracker.release.xcconfig"; path = "Target Support Files/Pods-IssueTracker/Pods-IssueTracker.release.xcconfig"; sourceTree = "<group>"; };
 		B36067DFCDF29C2AFAC3E008 /* Pods-IssueTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTracker.debug.xcconfig"; path = "Target Support Files/Pods-IssueTracker/Pods-IssueTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		ED37D695EF110669C99D514E /* Pods_IssueTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IssueTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,7 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				46ED2BAD2546A517004B6D50 /* IssueListHeaderView.swift */,
-				46ED2BB02546A66C004B6D50 /* IssueListCollectionViewCell.swift */,
+				46ED2BB42546AA00004B6D50 /* IssueListCollectionViewCell.swift */,
+				46ED2BB52546AA00004B6D50 /* IssueListCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			files = (
 				46ED2B9F25469A94004B6D50 /* .swiftlint.yml in Resources */,
 				46ED2B9525469877004B6D50 /* LaunchScreen.storyboard in Resources */,
+				46ED2BB72546AA00004B6D50 /* IssueListCollectionViewCell.xib in Resources */,
 				46ED2B9225469877004B6D50 /* Assets.xcassets in Resources */,
 				46ED2B9025469876004B6D50 /* Main.storyboard in Resources */,
 			);
@@ -240,7 +244,7 @@
 			files = (
 				46ED2B8D25469876004B6D50 /* ViewController.swift in Sources */,
 				46ED2BAE2546A517004B6D50 /* IssueListHeaderView.swift in Sources */,
-				46ED2BB12546A66C004B6D50 /* IssueListCollectionViewCell.swift in Sources */,
+				46ED2BB62546AA00004B6D50 /* IssueListCollectionViewCell.swift in Sources */,
 				46ED2B8925469876004B6D50 /* AppDelegate.swift in Sources */,
 				46ED2B8B25469876004B6D50 /* SceneDelegate.swift in Sources */,
 			);

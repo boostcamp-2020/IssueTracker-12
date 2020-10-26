@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="V1D-J5-tBx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ePX-8y-dOD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
@@ -17,16 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xvl-dW-PLu">
-                                <rect key="frame" x="0.0" y="779" width="414" height="83"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <tabBarItem systemItem="favorites" id="78o-9U-BIc"/>
-                                    <tabBarItem systemItem="more" id="XtF-Hk-Uqj"/>
-                                </items>
-                            </tabBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1PC-Ya-fIy">
-                                <rect key="frame" x="0.0" y="208" width="414" height="571"/>
+                                <rect key="frame" x="0.0" y="208" width="414" height="605"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PTw-TZ-mdc">
                                     <size key="itemSize" width="385" height="125"/>
@@ -83,12 +75,6 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="385" height="125"/>
-                                        <connections>
-                                            <outlet property="contentLabel" destination="2cl-H0-4yG" id="ThZ-AQ-Z79"/>
-                                            <outlet property="labelLabel" destination="XMr-Jo-gIn" id="kM7-T6-mlH"/>
-                                            <outlet property="mileStoneLabel" destination="Sw5-bH-Exi" id="uCA-8T-b7f"/>
-                                            <outlet property="titleLabel" destination="nmp-o2-cuH" id="Y83-f5-ctF"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -122,12 +108,9 @@
                         <constraints>
                             <constraint firstItem="fM6-hk-p1P" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="8fP-8w-3cX"/>
                             <constraint firstItem="1PC-Ya-fIy" firstAttribute="top" secondItem="fM6-hk-p1P" secondAttribute="bottom" id="DJK-IK-ieH"/>
-                            <constraint firstItem="Xvl-dW-PLu" firstAttribute="top" secondItem="1PC-Ya-fIy" secondAttribute="bottom" id="DaC-te-rCX"/>
                             <constraint firstItem="1PC-Ya-fIy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JDz-bh-aXe"/>
-                            <constraint firstItem="Xvl-dW-PLu" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Ond-QH-ulJ"/>
-                            <constraint firstItem="Xvl-dW-PLu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="P6w-2S-irN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1PC-Ya-fIy" secondAttribute="bottom" id="Q4m-Ny-bFz"/>
                             <constraint firstItem="1PC-Ya-fIy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Vpk-fN-CG4"/>
-                            <constraint firstItem="Xvl-dW-PLu" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="k5f-eg-dor"/>
                             <constraint firstItem="fM6-hk-p1P" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tY3-3J-Hpq"/>
                             <constraint firstItem="fM6-hk-p1P" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="wOa-JI-G40"/>
                         </constraints>
@@ -151,12 +134,30 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="82.608695652173921" y="10.714285714285714"/>
+            <point key="canvasLocation" x="691" y="-234"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="fLp-6g-9kX">
+            <objects>
+                <tabBarController id="ePX-8y-dOD" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DTa-1F-hLo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="V1D-J5-tBx" kind="relationship" relationship="viewControllers" id="CMa-0n-fhV"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ijA-5L-XLq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1023" y="-225"/>
+        </scene>
+        <!--Item-->
         <scene sceneID="fRL-OT-IWa">
             <objects>
                 <navigationController id="V1D-J5-tBx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="JPv-vp-Mvu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bqj-aY-sUV">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -167,7 +168,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXV-pb-YdY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1000" y="12"/>
+            <point key="canvasLocation" x="-167" y="-234"/>
         </scene>
     </scenes>
     <resources>

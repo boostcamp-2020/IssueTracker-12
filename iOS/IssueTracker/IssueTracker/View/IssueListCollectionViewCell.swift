@@ -8,16 +8,10 @@
 import UIKit
 
 class IssueListCollectionViewCell: UICollectionViewCell {
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
-    @IBOutlet weak var mileStoneLabel: UIButton!
-    @IBOutlet weak var labelLabel: UIButton!
-    
-}
 
-extension UICollectionViewCell {
-    static var reuseIdentifier: String {
-        return String(describing: self)
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
     }
+
 }
