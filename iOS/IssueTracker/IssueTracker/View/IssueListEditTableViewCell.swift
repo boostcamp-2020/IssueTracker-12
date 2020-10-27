@@ -23,9 +23,12 @@ class IssueListEditTableViewCell: UITableViewCell {
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        checkbox.toggleCheckState()
+        if selected {
+            checkbox.checkState = .checked
+        } else {
+            checkbox.checkState = .unchecked
+        }
     }
-    
     
 
 }

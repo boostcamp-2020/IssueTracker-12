@@ -47,7 +47,6 @@ extension IssueListViewController: SwipeCollectionViewCellDelegate {
     }
 }
 
-
 extension IssueListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
