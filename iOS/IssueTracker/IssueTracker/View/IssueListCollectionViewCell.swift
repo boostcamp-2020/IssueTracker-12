@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class IssueListCollectionViewCell: UICollectionViewCell {
+class IssueListCollectionViewCell: SwipeCollectionViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!

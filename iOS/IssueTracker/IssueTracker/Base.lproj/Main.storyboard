@@ -51,6 +51,9 @@
                                     <constraint firstItem="n0a-cZ-tMf" firstAttribute="leading" secondItem="fM6-hk-p1P" secondAttribute="leading" constant="5" id="y10-Gb-N6z"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0d-P1-ZHC">
+                                <rect key="frame" x="329" y="729" width="25" height="24"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -58,6 +61,8 @@
                             <constraint firstItem="fM6-hk-p1P" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="8fP-8w-3cX"/>
                             <constraint firstItem="1PC-Ya-fIy" firstAttribute="top" secondItem="fM6-hk-p1P" secondAttribute="bottom" id="DJK-IK-ieH"/>
                             <constraint firstItem="1PC-Ya-fIy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JDz-bh-aXe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="g0d-P1-ZHC" secondAttribute="bottom" constant="60" id="Liq-St-CLy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="g0d-P1-ZHC" secondAttribute="trailing" constant="60" id="MLc-wQ-IMU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1PC-Ya-fIy" secondAttribute="bottom" id="Q4m-Ny-bFz"/>
                             <constraint firstItem="1PC-Ya-fIy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Vpk-fN-CG4"/>
                             <constraint firstItem="fM6-hk-p1P" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tY3-3J-Hpq"/>
