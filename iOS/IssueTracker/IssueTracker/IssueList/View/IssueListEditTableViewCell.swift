@@ -13,8 +13,8 @@ class IssueListEditTableViewCell: UITableViewCell {
     @IBOutlet weak var checkbox: M13Checkbox!
     @IBOutlet weak var titleLabel: UIView!
     @IBOutlet weak var contentLabel: UIView!
-    @IBOutlet weak var milestoneLabel: UIView!
-    @IBOutlet weak var labelLabel: UIView!
+    @IBOutlet weak var milestoneLabel: PaddedLabel!
+    @IBOutlet weak var labelLabel: PaddedLabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,7 +29,6 @@ class IssueListEditTableViewCell: UITableViewCell {
             checkbox.checkState = .unchecked
         }
     }
-    
 
 }
 extension UITableViewCell {
