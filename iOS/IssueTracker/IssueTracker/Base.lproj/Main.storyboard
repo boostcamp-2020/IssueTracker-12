@@ -27,7 +27,7 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fM6-hk-p1P" userLabel="IssueHeaderView" customClass="IssueListHeaderView" customModule="IssueTracker" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fM6-hk-p1P" userLabel="IssueHeaderView">
                                 <rect key="frame" x="0.0" y="88" width="414" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이슈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yhv-vf-I0v">
@@ -73,6 +73,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="issueListCollectionView" destination="1PC-Ya-fIy" id="2hf-5V-ama"/>
                         <outlet property="issueListSearchBar" destination="n0a-cZ-tMf" id="9XN-lF-Y2h"/>
                     </connections>
                 </viewController>
@@ -92,7 +93,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="fpY-Zj-Czi">
                         <barButtonItem key="leftBarButtonItem" title="SelectAll" id="cj1-yW-631"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="opZ-5T-NEk"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="opZ-5T-NEk">
+                            <connections>
+                                <action selector="cancelButtonDidTouch:" destination="FiQ-sB-i1G" id="3Pq-JE-Q5V"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RAQ-P2-lCq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

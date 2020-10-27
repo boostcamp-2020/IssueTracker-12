@@ -14,5 +14,7 @@ class IssueListEditViewController: UIViewController {
    
     }
     
-
+    @IBAction func cancelButtonDidTouch(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
 }
