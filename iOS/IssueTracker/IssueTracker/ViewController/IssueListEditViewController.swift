@@ -20,10 +20,7 @@ class IssueListEditViewController: UIViewController {
     private func configure() {
         issueListTableView.dataSource = self
         issueListTableView.delegate = self
-        let nibName = UINib(nibName: IssueListEditTableViewCell.reuseIdentifier, bundle: nil)
-        self.issueListTableView.register(nibName, forCellReuseIdentifier: IssueListEditTableViewCell.reuseIdentifier)
-        let nibName2 = UINib(nibName: IssueListCollectionViewCell.reuseIdentifier, bundle: nil)
-        self.issueListTableView.register(nibName2, forCellReuseIdentifier: IssueListCollectionViewCell.reuseIdentifier)
+        issueListTableView.allowsMultipleSelection = true
     }
     
     @IBAction func cancelButtonDidTouch(_ sender: Any) {
@@ -48,5 +45,8 @@ extension IssueListEditViewController: UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
 }
+

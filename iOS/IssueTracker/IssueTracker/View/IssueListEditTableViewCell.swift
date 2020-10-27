@@ -10,21 +10,25 @@ import M13Checkbox
 
 class IssueListEditTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var issueListCell: IssueListCollectionViewCell!
     @IBOutlet weak var checkbox: M13Checkbox!
+    @IBOutlet weak var titleLabel: UIView!
+    @IBOutlet weak var contentLabel: UIView!
+    @IBOutlet weak var milestoneLabel: UIView!
+    @IBOutlet weak var labelLabel: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-       
+        // Initialization code
+        
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        checkbox.toggleCheckState()
     }
     
-}
+    
 
+}
 extension UITableViewCell {
     static var reuseIdentifier: String {
         return String(describing: self)

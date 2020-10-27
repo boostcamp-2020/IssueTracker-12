@@ -18,9 +18,8 @@ class IssueListCollectionViewCell: SwipeCollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
-
 }
 
 extension UICollectionViewCell {

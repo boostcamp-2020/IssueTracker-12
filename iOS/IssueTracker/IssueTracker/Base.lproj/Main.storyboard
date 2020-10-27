@@ -97,6 +97,64 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xnT-Sb-EFk">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="IssueListEditTableViewCell" rowHeight="72" id="5ML-OQ-d7d" customClass="IssueListEditTableViewCell" customModule="IssueTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5ML-OQ-d7d" id="HHT-Ig-0Zk">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7K-Rx-7NO" customClass="M13Checkbox" customModule="M13Checkbox">
+                                                    <rect key="frame" x="10" y="21" width="30" height="30"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="5pJ-AV-ETB"/>
+                                                        <constraint firstAttribute="height" constant="30" id="HN1-Kt-ZNr"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titleLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMY-9w-Gex">
+                                                    <rect key="frame" x="40" y="11" width="70" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="contentLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nk-cs-Wo0">
+                                                    <rect key="frame" x="40" y="30" width="100" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMi-ic-8MV">
+                                                    <rect key="frame" x="300" y="0.0" width="104" height="30"/>
+                                                    <state key="normal" title="milestoneLabel"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7T-RU-93D">
+                                                    <rect key="frame" x="334" y="30" width="70" height="30"/>
+                                                    <state key="normal" title="labelLabel"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="eMi-ic-8MV" secondAttribute="trailing" constant="10" id="4Pz-ZU-opq"/>
+                                                <constraint firstItem="x7K-Rx-7NO" firstAttribute="centerY" secondItem="HHT-Ig-0Zk" secondAttribute="centerY" id="FTd-oD-i6w"/>
+                                                <constraint firstItem="S7T-RU-93D" firstAttribute="top" secondItem="eMi-ic-8MV" secondAttribute="bottom" id="K85-OF-4B6"/>
+                                                <constraint firstItem="iMY-9w-Gex" firstAttribute="leading" secondItem="x7K-Rx-7NO" secondAttribute="trailing" id="Kv3-VS-etK"/>
+                                                <constraint firstAttribute="trailing" secondItem="S7T-RU-93D" secondAttribute="trailing" constant="10" id="SnW-2l-jBg"/>
+                                                <constraint firstItem="iMY-9w-Gex" firstAttribute="top" secondItem="HHT-Ig-0Zk" secondAttribute="topMargin" id="Z4f-RD-9Zh"/>
+                                                <constraint firstItem="eMi-ic-8MV" firstAttribute="top" secondItem="HHT-Ig-0Zk" secondAttribute="top" id="pSs-E6-wlv"/>
+                                                <constraint firstItem="x7K-Rx-7NO" firstAttribute="leading" secondItem="HHT-Ig-0Zk" secondAttribute="leading" constant="10" id="ryP-hQ-vL5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkbox" destination="x7K-Rx-7NO" id="WYn-78-cfS"/>
+                                            <outlet property="contentLabel" destination="HHT-Ig-0Zk" id="6F0-UO-oUm"/>
+                                            <outlet property="labelLabel" destination="HHT-Ig-0Zk" id="Lmz-Ia-OEz"/>
+                                            <outlet property="milestoneLabel" destination="HHT-Ig-0Zk" id="ret-gO-mNX"/>
+                                            <outlet property="titleLabel" destination="HHT-Ig-0Zk" id="pXm-vE-XxP"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Vkq-12-BLe"/>
@@ -162,6 +220,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
