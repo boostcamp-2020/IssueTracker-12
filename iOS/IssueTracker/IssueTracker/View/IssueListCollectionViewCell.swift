@@ -8,6 +8,7 @@
 import UIKit
 import SwipeCellKit
 
+@IBDesignable
 class IssueListCollectionViewCell: SwipeCollectionViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!

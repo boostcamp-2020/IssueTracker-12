@@ -8,5 +8,6 @@ target 'IssueTracker' do
   # Pods for IssueTracker
   pod 'SwiftLint'
   pod 'SwipeCellKit'
+  pod 'M13Checkbox'
 
 end
