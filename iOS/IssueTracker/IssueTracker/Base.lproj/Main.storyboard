@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -51,8 +52,15 @@
                                     <constraint firstItem="n0a-cZ-tMf" firstAttribute="leading" secondItem="fM6-hk-p1P" secondAttribute="leading" constant="5" id="y10-Gb-N6z"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0d-P1-ZHC">
-                                <rect key="frame" x="329" y="729" width="25" height="24"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0d-P1-ZHC">
+                                <rect key="frame" x="334" y="733" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="7Ox-e2-0pO"/>
+                                    <constraint firstAttribute="height" constant="40" id="CoI-Rk-Ezs"/>
+                                </constraints>
+                                <state key="normal">
+                                    <imageReference key="image" image="plus.rectangle.on.rectangle.fill" catalog="system" symbolScale="large"/>
+                                </state>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -61,8 +69,8 @@
                             <constraint firstItem="fM6-hk-p1P" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="8fP-8w-3cX"/>
                             <constraint firstItem="1PC-Ya-fIy" firstAttribute="top" secondItem="fM6-hk-p1P" secondAttribute="bottom" id="DJK-IK-ieH"/>
                             <constraint firstItem="1PC-Ya-fIy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JDz-bh-aXe"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="g0d-P1-ZHC" secondAttribute="bottom" constant="60" id="Liq-St-CLy"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="g0d-P1-ZHC" secondAttribute="trailing" constant="60" id="MLc-wQ-IMU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="g0d-P1-ZHC" secondAttribute="bottom" constant="40" id="Liq-St-CLy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="g0d-P1-ZHC" secondAttribute="trailing" constant="40" id="MLc-wQ-IMU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1PC-Ya-fIy" secondAttribute="bottom" id="Q4m-Ny-bFz"/>
                             <constraint firstItem="1PC-Ya-fIy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Vpk-fN-CG4"/>
                             <constraint firstItem="fM6-hk-p1P" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tY3-3J-Hpq"/>
@@ -277,6 +285,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="plus.rectangle.on.rectangle.fill" catalog="system" width="128" height="96"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

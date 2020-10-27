@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		46E668BA2547F64A00A41CC0 /* IssueListEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668B92547F64A00A41CC0 /* IssueListEditTableViewCell.swift */; };
+		46E668CC25482FF700A41CC0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668CB25482FF700A41CC0 /* UIView+Extension.swift */; };
 		46ED2B8925469876004B6D50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2B8825469876004B6D50 /* AppDelegate.swift */; };
 		46ED2B8B25469876004B6D50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2B8A25469876004B6D50 /* SceneDelegate.swift */; };
 		46ED2B8D25469876004B6D50 /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2B8C25469876004B6D50 /* IssueListViewController.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		46E668B92547F64A00A41CC0 /* IssueListEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListEditTableViewCell.swift; sourceTree = "<group>"; };
+		46E668CB25482FF700A41CC0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		46ED2B8525469876004B6D50 /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46ED2B8825469876004B6D50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46ED2B8A25469876004B6D50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,7 +84,7 @@
 		46ED2B8725469876004B6D50 /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
-				46ED2BC02546ADD1004B6D50 /* Utilities */,
+				46ED2BC02546ADD1004B6D50 /* Extensions */,
 				46ED2BA72546A3A4004B6D50 /* ViewController */,
 				46ED2BA62546A39C004B6D50 /* View */,
 				46ED2BA52546A323004B6D50 /* Model */,
@@ -122,11 +124,12 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		46ED2BC02546ADD1004B6D50 /* Utilities */ = {
+		46ED2BC02546ADD1004B6D50 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				46E668CB25482FF700A41CC0 /* UIView+Extension.swift */,
 			);
-			path = Utilities;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		AEA996A021E92D0437245BBB /* Pods */ = {
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46ED2B8D25469876004B6D50 /* IssueListViewController.swift in Sources */,
+				46E668CC25482FF700A41CC0 /* UIView+Extension.swift in Sources */,
 				46ED2BC72546B096004B6D50 /* IssueListEditViewController.swift in Sources */,
 				46E668BA2547F64A00A41CC0 /* IssueListEditTableViewCell.swift in Sources */,
 				46ED2BB62546AA00004B6D50 /* IssueListCollectionViewCell.swift in Sources */,
