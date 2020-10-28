@@ -18,10 +18,16 @@ class IssueDetailViewController: UIViewController {
     }
     
     private func configure() {
-        
         commentTableView.delegate = self
         commentTableView.dataSource = self
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonDidTouch))
+        
     }
+    
+    @objc func editButtonDidTouch() {
+        
+    }
+    
 }
 
 extension IssueDetailViewController: UITableViewDataSource {

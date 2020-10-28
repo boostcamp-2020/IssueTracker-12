@@ -39,7 +39,3 @@ class IssueDetailTableViewCell: UITableViewCell {
     }
 
 }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
