@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import SwipeCellKit
 
 class IssueListViewController: UIViewController {
-
+    
     @IBOutlet weak var issueListSearchBar: UISearchBar!
     @IBOutlet weak var issueListCollectionView: UICollectionView!
     
@@ -27,15 +28,36 @@ class IssueListViewController: UIViewController {
     
 }
 
-extension IssueListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+// Cell Swipe image & action 처리
+extension IssueListViewController: SwipeCollectionViewCellDelegate {
+    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            // handle action by updating model with deletion
+        }
+        
+        let closeAction = SwipeAction(style: .default, title: "Close") { (action, indexPath) in
+            
+        }
+        closeAction.image = UIImage(named: "closed")?.withTintColor(UIColor.white)
+        closeAction.backgroundColor = UIColor(named: "closeGreen")
+        deleteAction.image = UIImage(named: "delete")?.withTintColor(UIColor.white)
+        return [closeAction, deleteAction]
+    }
+}
+
+extension IssueListViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = issueListCollectionView.dequeueReusableCell(withReuseIdentifier: IssueListCollectionViewCell.reuseIdentifier, for: indexPath) as? IssueListCollectionViewCell else {
             return UICollectionViewCell()
         }
+        cell.delegate = self
         //To Do : cell 설정
         return cell
     }
@@ -44,7 +66,7 @@ extension IssueListViewController: UICollectionViewDataSource, UICollectionViewD
 extension IssueListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.view.bounds.width - (5 * 2)
-        let height = CGFloat(120)
+        let height = CGFloat(80)
         
         return CGSize(width: width, height: height)
     }
