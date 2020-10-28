@@ -36,6 +36,7 @@ extension IssueDetailViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: IssueDetailTableViewCell.reuseIdentifier, for: indexPath) as? IssueDetailTableViewCell else {
                     return UITableViewCell()
                 }
+        
         cell.setupView()
         return cell
     }
