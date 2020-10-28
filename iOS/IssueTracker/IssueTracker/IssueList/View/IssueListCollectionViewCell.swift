@@ -6,19 +6,20 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class IssueListCollectionViewCell: UICollectionViewCell {
+@IBDesignable
+class IssueListCollectionViewCell: SwipeCollectionViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
-    @IBOutlet weak var mileStoneLabel: UIButton!
-    @IBOutlet weak var labelLabel: UIButton!
+    @IBOutlet weak var milestoneLabel: PaddedLabel!
+    @IBOutlet weak var labelLabel: PaddedLabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
-
 }
 
 extension UICollectionViewCell {
