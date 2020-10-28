@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4616CDC72549491400421368 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616CDC62549491400421368 /* UIViewController+Extension.swift */; };
+		4616CDD32549573200421368 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616CDD22549573200421368 /* Issue.swift */; };
+		4616CDD72549583600421368 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616CDD62549583600421368 /* Milestone.swift */; };
+		4616CDDA254958B100421368 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616CDD9254958B100421368 /* Label.swift */; };
+		4616CDDD25495A1D00421368 /* IssueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616CDDC25495A1D00421368 /* IssueList.swift */; };
 		46E668BA2547F64A00A41CC0 /* IssueListEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668B92547F64A00A41CC0 /* IssueListEditTableViewCell.swift */; };
 		46E668CC25482FF700A41CC0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668CB25482FF700A41CC0 /* UIView+Extension.swift */; };
 		46E668D32548557800A41CC0 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668D22548557800A41CC0 /* PaddedLabel.swift */; };
@@ -29,6 +33,10 @@
 
 /* Begin PBXFileReference section */
 		4616CDC62549491400421368 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		4616CDD22549573200421368 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
+		4616CDD62549583600421368 /* Milestone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
+		4616CDD9254958B100421368 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		4616CDDC25495A1D00421368 /* IssueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueList.swift; sourceTree = "<group>"; };
 		46E668B92547F64A00A41CC0 /* IssueListEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListEditTableViewCell.swift; sourceTree = "<group>"; };
 		46E668CB25482FF700A41CC0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		46E668D22548557800A41CC0 /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
@@ -83,7 +91,6 @@
 		46E668D1254854DE00A41CC0 /* IssueList */ = {
 			isa = PBXGroup;
 			children = (
-				46ED2BA52546A323004B6D50 /* Model */,
 				46ED2BA62546A39C004B6D50 /* View */,
 				46ED2BA72546A3A4004B6D50 /* ViewController */,
 			);
@@ -115,8 +122,9 @@
 				46E668D1254854DE00A41CC0 /* IssueList */,
 				46E668CE254854AD00A41CC0 /* CustomView */,
 				46ED2BC02546ADD1004B6D50 /* Extension */,
-				46ED2B8A25469876004B6D50 /* SceneDelegate.swift */,
+				46ED2BA52546A323004B6D50 /* Model */,
 				46ED2B8825469876004B6D50 /* AppDelegate.swift */,
+				46ED2B8A25469876004B6D50 /* SceneDelegate.swift */,
 				46ED2B8E25469876004B6D50 /* Main.storyboard */,
 				46ED2B9125469877004B6D50 /* Assets.xcassets */,
 				46ED2B9325469877004B6D50 /* LaunchScreen.storyboard */,
@@ -128,6 +136,10 @@
 		46ED2BA52546A323004B6D50 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4616CDD22549573200421368 /* Issue.swift */,
+				4616CDD62549583600421368 /* Milestone.swift */,
+				4616CDD9254958B100421368 /* Label.swift */,
+				4616CDDC25495A1D00421368 /* IssueList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -310,15 +322,19 @@
 				4616CDC72549491400421368 /* UIViewController+Extension.swift in Sources */,
 				46ED2B8D25469876004B6D50 /* IssueListViewController.swift in Sources */,
 				46E668CC25482FF700A41CC0 /* UIView+Extension.swift in Sources */,
+				4616CDD32549573200421368 /* Issue.swift in Sources */,
 				46ED2BC72546B096004B6D50 /* IssueListEditViewController.swift in Sources */,
 				A927391825490BCB00F22997 /* IssueDetailTableViewCell.swift in Sources */,
+				4616CDD72549583600421368 /* Milestone.swift in Sources */,
 				46E668BA2547F64A00A41CC0 /* IssueListEditTableViewCell.swift in Sources */,
+				4616CDDA254958B100421368 /* Label.swift in Sources */,
 				46ED2BB62546AA00004B6D50 /* IssueListCollectionViewCell.swift in Sources */,
 				A927392125493B8100F22997 /* UITableViewCell+Extension.swift in Sources */,
 				46ED2B8925469876004B6D50 /* AppDelegate.swift in Sources */,
 				46E668D32548557800A41CC0 /* PaddedLabel.swift in Sources */,
 				46ED2B8B25469876004B6D50 /* SceneDelegate.swift in Sources */,
 				A927391525490BBD00F22997 /* IssueDetailViewController.swift in Sources */,
+				4616CDDD25495A1D00421368 /* IssueList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
