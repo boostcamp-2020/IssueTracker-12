@@ -20,6 +20,8 @@
 		46ED2BB62546AA00004B6D50 /* IssueListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2BB42546AA00004B6D50 /* IssueListCollectionViewCell.swift */; };
 		46ED2BB72546AA00004B6D50 /* IssueListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46ED2BB52546AA00004B6D50 /* IssueListCollectionViewCell.xib */; };
 		46ED2BC72546B096004B6D50 /* IssueListEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2BC62546B096004B6D50 /* IssueListEditViewController.swift */; };
+		A927391525490BBD00F22997 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927391425490BBD00F22997 /* IssueDetailViewController.swift */; };
+		A927391825490BCB00F22997 /* IssueDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */; };
 		607361FCC58508C264F99698 /* Pods_IssueTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED37D695EF110669C99D514E /* Pods_IssueTracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,8 @@
 		46ED2BB42546AA00004B6D50 /* IssueListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewCell.swift; sourceTree = "<group>"; };
 		46ED2BB52546AA00004B6D50 /* IssueListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueListCollectionViewCell.xib; sourceTree = "<group>"; };
 		46ED2BC62546B096004B6D50 /* IssueListEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListEditViewController.swift; sourceTree = "<group>"; };
+		A927391425490BBD00F22997 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
+		A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailTableViewCell.swift; sourceTree = "<group>"; };
 		AE41F75C5FFBB028C86B1865 /* Pods-IssueTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTracker.release.xcconfig"; path = "Target Support Files/Pods-IssueTracker/Pods-IssueTracker.release.xcconfig"; sourceTree = "<group>"; };
 		B36067DFCDF29C2AFAC3E008 /* Pods-IssueTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTracker.debug.xcconfig"; path = "Target Support Files/Pods-IssueTracker/Pods-IssueTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		ED37D695EF110669C99D514E /* Pods_IssueTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IssueTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +133,7 @@
 			children = (
 				46ED2BB42546AA00004B6D50 /* IssueListCollectionViewCell.swift */,
 				46ED2BB52546AA00004B6D50 /* IssueListCollectionViewCell.xib */,
+				A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */,
 				46E668B92547F64A00A41CC0 /* IssueListEditTableViewCell.swift */,
 			);
 			path = View;
@@ -139,6 +144,7 @@
 			children = (
 				46ED2B8C25469876004B6D50 /* IssueListViewController.swift */,
 				46ED2BC62546B096004B6D50 /* IssueListEditViewController.swift */,
+				A927391425490BBD00F22997 /* IssueDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -298,11 +304,13 @@
 				46ED2B8D25469876004B6D50 /* IssueListViewController.swift in Sources */,
 				46E668CC25482FF700A41CC0 /* UIView+Extension.swift in Sources */,
 				46ED2BC72546B096004B6D50 /* IssueListEditViewController.swift in Sources */,
+				A927391825490BCB00F22997 /* IssueDetailTableViewCell.swift in Sources */,
 				46E668BA2547F64A00A41CC0 /* IssueListEditTableViewCell.swift in Sources */,
 				46ED2BB62546AA00004B6D50 /* IssueListCollectionViewCell.swift in Sources */,
 				46ED2B8925469876004B6D50 /* AppDelegate.swift in Sources */,
 				46E668D32548557800A41CC0 /* PaddedLabel.swift in Sources */,
 				46ED2B8B25469876004B6D50 /* SceneDelegate.swift in Sources */,
+				A927391525490BBD00F22997 /* IssueDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
