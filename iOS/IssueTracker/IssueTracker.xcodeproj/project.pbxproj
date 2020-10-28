@@ -80,13 +80,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4616CDD1254954CA00421368 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
 		46E668CE254854AD00A41CC0 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,7 +119,6 @@
 		46ED2B8725469876004B6D50 /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
-				4616CDD1254954CA00421368 /* Network */,
 				46E668D1254854DE00A41CC0 /* IssueList */,
 				46E668CE254854AD00A41CC0 /* CustomView */,
 				46ED2BC02546ADD1004B6D50 /* Extension */,
