@@ -30,7 +30,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="milestoneLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yq1-Dl-Fcp" customClass="PaddedLabel" customModule="IssueTracker" customModuleProvider="target">
-                        <rect key="frame" x="329" y="10" width="98" height="17"/>
+                        <rect key="frame" x="324" y="10" width="103" height="22"/>
                         <color key="backgroundColor" red="0.1995830536" green="0.73729622360000002" blue="0.70579069849999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
@@ -48,7 +48,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="labelLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uM7-Ox-u6J" customClass="PaddedLabel" customModule="IssueTracker" customModuleProvider="target">
-                        <rect key="frame" x="361" y="41" width="66" height="17"/>
+                        <rect key="frame" x="356" y="41" width="71" height="22"/>
                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
@@ -90,10 +90,10 @@
     </objects>
     <designables>
         <designable name="uM7-Ox-u6J">
-            <size key="intrinsicContentSize" width="66" height="17"/>
+            <size key="intrinsicContentSize" width="71" height="22"/>
         </designable>
         <designable name="yq1-Dl-Fcp">
-            <size key="intrinsicContentSize" width="98" height="17"/>
+            <size key="intrinsicContentSize" width="103" height="22"/>
         </designable>
     </designables>
     <resources>
