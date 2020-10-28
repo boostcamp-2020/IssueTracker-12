@@ -39,9 +39,3 @@ class IssueDetailTableViewCell: UITableViewCell {
     }
 
 }
-
-extension UITableViewCell {
-    static var reuseIdentifier: String {
-        return String(describing: self)
-    }
-}
