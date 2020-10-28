@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import UIKit
+
+extension UIViewController {
+    static var reuseIdentifier: String {
+        return String(describing: self)
+    }
+}
