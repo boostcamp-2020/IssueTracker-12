@@ -24,6 +24,7 @@
 		A927391525490BBD00F22997 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927391425490BBD00F22997 /* IssueDetailViewController.swift */; };
 		A927391825490BCB00F22997 /* IssueDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */; };
 		A927392125493B8100F22997 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927392025493B8100F22997 /* UITableViewCell+Extension.swift */; };
+		A927393F2549635D00F22997 /* IssueAttributeFloatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927393E2549635D00F22997 /* IssueAttributeFloatingViewController.swift */; };
 		E14AFB06879FC4E23BE9EFAD /* Pods_IssueTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE547134138C37BC8A239159 /* Pods_IssueTracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		A927391425490BBD00F22997 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
 		A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A927392025493B8100F22997 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
+		A927393E2549635D00F22997 /* IssueAttributeFloatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAttributeFloatingViewController.swift; sourceTree = "<group>"; };
 		CE547134138C37BC8A239159 /* Pods_IssueTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IssueTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0821587E5F839215D79D4EE /* Pods-IssueTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTracker.release.xcconfig"; path = "Target Support Files/Pods-IssueTracker/Pods-IssueTracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +151,7 @@
 				46ED2B8C25469876004B6D50 /* IssueListViewController.swift */,
 				46ED2BC62546B096004B6D50 /* IssueListEditViewController.swift */,
 				A927391425490BBD00F22997 /* IssueDetailViewController.swift */,
+				A927393E2549635D00F22997 /* IssueAttributeFloatingViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				46ED2BB62546AA00004B6D50 /* IssueListCollectionViewCell.swift in Sources */,
 				A927392125493B8100F22997 /* UITableViewCell+Extension.swift in Sources */,
 				46ED2B8925469876004B6D50 /* AppDelegate.swift in Sources */,
+				A927393F2549635D00F22997 /* IssueAttributeFloatingViewController.swift in Sources */,
 				46E668D32548557800A41CC0 /* PaddedLabel.swift in Sources */,
 				46ED2B8B25469876004B6D50 /* SceneDelegate.swift in Sources */,
 				A927391525490BBD00F22997 /* IssueDetailViewController.swift in Sources */,

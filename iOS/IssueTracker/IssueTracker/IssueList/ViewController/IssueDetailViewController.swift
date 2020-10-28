@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import FloatingPanel
 
-class IssueDetailViewController: UIViewController {
+class IssueDetailViewController: UIViewController, FloatingPanelControllerDelegate {
     
     @IBOutlet weak var commentTableView: UITableView!
     
@@ -18,6 +19,15 @@ class IssueDetailViewController: UIViewController {
     }
     
     private func configure() {
+        
+        let attributeFloatingPanel = FloatingPanelController()
+        attributeFloatingPanel.delegate = self
+        
+        guard let attributeVC = storyboard?.instantiateViewController(identifier: IssueAttributeFloatingViewController.reuseIdentifier) as? IssueAttributeFloatingViewController
+        else { return }
+        attributeFloatingPanel.set(contentViewController: attributeVC)
+        attributeFloatingPanel.addPanel(toParent: self)
+        
         commentTableView.delegate = self
         commentTableView.dataSource = self
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonDidTouch))
