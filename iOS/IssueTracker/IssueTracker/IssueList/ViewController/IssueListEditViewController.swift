@@ -27,6 +27,7 @@ class IssueListEditViewController: UIViewController {
     }
     
     @IBAction func cancelButtonDidTouch(_ sender: Any) {
+        tabBarController?.tabBar.isHidden = false
         navigationController?.popViewController(animated: true)
     }
     
