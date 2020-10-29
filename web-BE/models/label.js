@@ -1,11 +1,11 @@
 const connection = require('../config/db_connection');
-const query = require('../util/query');
+const sql = require('../config/query');
 const jsonToArr = require('../util/jsonToArr');
 
 const labelModel = {
   insert: async(reqBodyJson) => {
     const paramArr = jsonToArr(reqBodyJson)
-    try {connection.promise().query(sql.insertLabel. paramArr)}
+    try {connection.promise().query(sql.insertLabel, paramArr)}
     catch (err) {console.error(err)}
   },
   select: async(labelid) => {

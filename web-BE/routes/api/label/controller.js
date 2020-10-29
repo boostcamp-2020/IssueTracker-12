@@ -7,7 +7,7 @@ const labelController = {
   },
   read: async (req, res) => {
     const labelArr = await labelModel.select();
-    res.json({ labelArr = labelArr })
+    res.json({ labelArray : labelArr })
   },
   update: (req, res) => {
     labelModel.update(req.body);
