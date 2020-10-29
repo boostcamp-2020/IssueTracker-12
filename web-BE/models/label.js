@@ -2,16 +2,8 @@
 // const query = require('../util/query');
 
 const labelModel = {
-    insert : ()=>{
-        return true
-    },
-    select : ()=>{
-        return true
-    },
-    update : ()=>{
-        return true
-    },
-    delete : ()=>{
-        return true
-    }
-}
+  insert: () => true,
+  select: () => true,
+  update: () => true,
+  delete: () => true,
+};
