@@ -13,7 +13,7 @@ class LabelViewController: UIViewController {
     @IBOutlet weak var labelCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configure()
         // Do any additional setup after loading the view.
     }
     
@@ -30,7 +30,7 @@ extension LabelViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let editVC = self.storyboard?.instantiateViewController(identifier: MilestoneEditViewController.reuseIdentifier) as? MilestoneEditViewController {
+        if let editVC = self.storyboard?.instantiateViewController(identifier: LabelEditViewController.reuseIdentifier) as? LabelEditViewController {
             editVC.modalPresentationStyle = .overFullScreen
             editVC.modalTransitionStyle = .crossDissolve
             self.present(editVC, animated: true, completion: nil)
@@ -46,8 +46,6 @@ extension LabelViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
         return cell
     }
-    
-    
 }
 
 extension LabelViewController: UICollectionViewDelegateFlowLayout {
