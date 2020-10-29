@@ -6,8 +6,8 @@ const labelController = {
     res.json({message:"create a label successfully"})
   },
   read: async (req, res) => {
-    const laberArr = await labelModel.select();
-    res.json({ lableArr = lableArr })
+    const labelArr = await labelModel.select();
+    res.json({ labelArr = labelArr })
   },
   update: (req, res) => {
     labelModel.update(req.body);
