@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (5.3.0)
+  - M13Checkbox (3.4.0)
+  - SwiftLint (0.40.1)
+  - SwipeCellKit (2.7.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - M13Checkbox
+  - SwiftLint
+  - SwipeCellKit
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - M13Checkbox
+    - SwiftLint
+    - SwipeCellKit
+
+SPEC CHECKSUMS:
+  Alamofire: 2c792affbdc2f18016e08fdbcacd60aebe1ba593
+  M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
+  SwiftLint: bbfed21bf4451dcbd0f5cdbee44a18e06cf91b12
+  SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
+
+PODFILE CHECKSUM: e63356b3da3e9d583c92af4cf7999d3551db4722
+
+COCOAPODS: 1.9.3
