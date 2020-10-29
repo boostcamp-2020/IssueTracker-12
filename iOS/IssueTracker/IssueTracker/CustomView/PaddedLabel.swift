@@ -9,7 +9,7 @@ import UIKit
 
 class PaddedLabel: UILabel {
     // MARK: - Properties
-    override var intrinsicContentSize : CGSize {
+    override var intrinsicContentSize: CGSize {
         let superContentSize = super.intrinsicContentSize
         let width = superContentSize.width + padding.width
         let heigth = superContentSize.height + padding.height
