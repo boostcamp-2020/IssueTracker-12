@@ -4,7 +4,9 @@
 </p>
 
 <br>
---- 
+
+<hr>
+
 <p align="middle">
 <!-- tag -->
   <a href="https://github.com/boostcamp-2020/IssueTracker-12/releases" target="_blank">
