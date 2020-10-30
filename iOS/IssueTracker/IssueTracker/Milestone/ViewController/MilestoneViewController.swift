@@ -22,6 +22,13 @@ class MilestoneViewController: UIViewController {
         milestoneCollectionView.dataSource = self
     }
     
+    @IBAction func addButtonDidTouch(_ sender: Any) {
+        if let editVC = self.storyboard?.instantiateViewController(identifier: MilestoneEditViewController.reuseIdentifier) as? MilestoneEditViewController {
+            editVC.modalPresentationStyle = .overFullScreen
+            editVC.modalTransitionStyle = .crossDissolve
+            self.present(editVC, animated: true, completion: nil)
+        }
+    }
 }
 
 extension MilestoneViewController: UICollectionViewDataSource {
