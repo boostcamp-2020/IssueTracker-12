@@ -875,6 +875,9 @@
                                         <state key="normal">
                                             <imageReference key="image" image="plus.app.fill" catalog="system" symbolScale="large"/>
                                         </state>
+                                        <connections>
+                                            <action selector="addButtonDidTouch:" destination="zmw-gG-ecc" eventType="touchUpInside" id="Cye-jA-LWF"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레이블" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daW-wL-kux">
                                         <rect key="frame" x="20" y="20" width="65" height="30"/>
@@ -925,7 +928,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xlb-je-POt" customClass="PaddedLabel" customModule="IssueTracker" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="10" width="41.5" height="20.5"/>
+                                                    <rect key="frame" x="20" y="10" width="46.5" height="25.5"/>
                                                     <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1174,6 +1177,11 @@
                                     <constraint firstItem="Bfg-WZ-3hI" firstAttribute="leading" secondItem="Kom-xc-a3i" secondAttribute="trailing" constant="10" id="vCP-1b-25v"/>
                                     <constraint firstItem="R2S-uP-pJN" firstAttribute="leading" secondItem="tFB-VW-lW9" secondAttribute="leading" constant="20" id="yOE-7V-UUU"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yRz-mF-Gue"/>
@@ -1217,6 +1225,9 @@
                                         <state key="normal">
                                             <imageReference key="image" image="plus.app.fill" catalog="system" symbolScale="large"/>
                                         </state>
+                                        <connections>
+                                            <action selector="addButtonDidTouch:" destination="NoH-DS-0tR" eventType="touchUpInside" id="VL9-AB-3aL"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마일스톤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i44-ac-znE">
                                         <rect key="frame" x="20" y="20" width="86.5" height="30"/>
@@ -1267,7 +1278,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마일스톤" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86J-Hv-DQh" customClass="PaddedLabel" customModule="IssueTracker" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="10" width="48.5" height="17"/>
+                                                    <rect key="frame" x="20" y="10" width="58.5" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1290,7 +1301,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020년 10월 28일까지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKP-uQ-X3Q">
-                                                    <rect key="frame" x="88.5" y="12.5" width="135" height="17"/>
+                                                    <rect key="frame" x="98.5" y="12.5" width="135" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1302,19 +1313,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마일스톤 설명!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsb-dU-Q9w">
-                                                    <rect key="frame" x="20" y="42" width="108" height="21"/>
+                                                    <rect key="frame" x="20" y="47" width="108" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LpD-bR-O4X">
-                                                    <rect key="frame" x="351" y="42" width="43" height="17"/>
+                                                    <rect key="frame" x="351" y="47" width="43" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19 closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBJ-5n-O2T">
-                                                    <rect key="frame" x="332" y="62" width="62" height="17"/>
+                                                    <rect key="frame" x="332" y="67" width="62" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -1536,6 +1547,11 @@
                                     <constraint firstItem="l18-8g-mv7" firstAttribute="top" secondItem="rtb-YI-n1M" secondAttribute="bottom" constant="10" id="wQC-YO-6TT"/>
                                     <constraint firstItem="noO-ti-kwo" firstAttribute="top" secondItem="NIb-pB-m1r" secondAttribute="bottom" constant="10" id="zMT-RM-BEQ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ntk-6J-fpz"/>
@@ -1564,13 +1580,13 @@
     </scenes>
     <designables>
         <designable name="86J-Hv-DQh">
-            <size key="intrinsicContentSize" width="48.5" height="17"/>
+            <size key="intrinsicContentSize" width="58.5" height="22"/>
         </designable>
         <designable name="Vv9-qf-zsC">
             <size key="intrinsicContentSize" width="98" height="17"/>
         </designable>
         <designable name="Xlb-je-POt">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+            <size key="intrinsicContentSize" width="46.5" height="25.5"/>
         </designable>
         <designable name="g0Z-SK-H5B">
             <size key="intrinsicContentSize" width="66" height="17"/>

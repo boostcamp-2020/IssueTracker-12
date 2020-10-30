@@ -22,6 +22,13 @@ class LabelViewController: UIViewController {
         labelCollectionView.dataSource = self
     }
     
+    @IBAction func addButtonDidTouch(_ sender: Any) {
+        if let editVC = self.storyboard?.instantiateViewController(identifier: LabelEditViewController.reuseIdentifier) as? LabelEditViewController {
+            editVC.modalPresentationStyle = .overFullScreen
+            editVC.modalTransitionStyle = .crossDissolve
+            self.present(editVC, animated: true, completion: nil)
+        }
+    }
 }
 
 extension LabelViewController: UICollectionViewDelegate, UICollectionViewDataSource {

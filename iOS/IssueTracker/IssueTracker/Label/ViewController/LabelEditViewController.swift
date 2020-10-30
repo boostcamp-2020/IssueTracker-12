@@ -8,7 +8,6 @@
 import UIKit
 
 class LabelEditViewController: UIViewController {
-    let colorPicker = UIColorPickerViewController()
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
@@ -17,12 +16,18 @@ class LabelEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        colorPicker.delegate = self
+       
     }
 
     @IBAction func colorPickerButtonDidTouch(_ sender: Any) {
+        presentColorPicker()
+    }
+    
+    private func presentColorPicker() {
+        let colorPicker = UIColorPickerViewController()
+        colorPicker.delegate = self
         colorPicker.selectedColor = colorPickerButton.backgroundColor ?? UIColor.systemTeal
-        colorPicker.supportsAlpha = false
+        colorPicker.title = "Color Picker"
         self.present(colorPicker, animated: true, completion: nil)
     }
     
@@ -52,6 +57,5 @@ extension LabelEditViewController: UIColorPickerViewControllerDelegate {
             self?.colorTextField.text = viewController.selectedColor.toHexString()
             self?.colorPickerButton.backgroundColor = viewController.selectedColor
         }
-        viewController.dismiss(animated: true, completion: nil)
     }
 }
