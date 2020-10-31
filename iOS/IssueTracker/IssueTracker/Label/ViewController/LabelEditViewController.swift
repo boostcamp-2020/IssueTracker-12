@@ -28,7 +28,7 @@ class LabelEditViewController: UIViewController {
         if isNew {
             setLabelColor(color: nil)
         }
-        //guard let labelObject = label else { return }
+        // guard let labelObject = label else { return }
         // label정보를 받아와서 세팅
     }
     

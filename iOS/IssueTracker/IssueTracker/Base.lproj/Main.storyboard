@@ -1438,7 +1438,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rtb-YI-n1M">
-                                        <rect key="frame" x="70" y="69" width="236" height="34"/>
+                                        <rect key="frame" x="70" y="71" width="236" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -1481,7 +1481,7 @@
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7dZ-0C-N2l">
-                                        <rect key="frame" x="70" y="185" width="236" height="34"/>
+                                        <rect key="frame" x="70" y="187" width="236" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -1539,7 +1539,7 @@
                                     <constraint firstItem="h6u-If-mha" firstAttribute="top" secondItem="ZDk-iH-86O" secondAttribute="bottom" constant="15" id="X6K-5s-b8v"/>
                                     <constraint firstItem="Wrf-t6-uus" firstAttribute="leading" secondItem="NIb-pB-m1r" secondAttribute="trailing" constant="15" id="aNS-EW-d1M"/>
                                     <constraint firstAttribute="trailing" secondItem="Wrf-t6-uus" secondAttribute="trailing" constant="25" id="dQp-4f-CdE"/>
-                                    <constraint firstItem="1LF-e8-YbL" firstAttribute="top" secondItem="7dZ-0C-N2l" secondAttribute="bottom" constant="10" id="ehm-MM-SqU"/>
+                                    <constraint firstItem="1LF-e8-YbL" firstAttribute="top" secondItem="7dZ-0C-N2l" secondAttribute="bottom" constant="8" id="ehm-MM-SqU"/>
                                     <constraint firstAttribute="trailing" secondItem="1LF-e8-YbL" secondAttribute="trailing" constant="20" id="gXi-zi-BIj"/>
                                     <constraint firstItem="l18-8g-mv7" firstAttribute="top" secondItem="Abo-Nd-oSK" secondAttribute="bottom" constant="15" id="gyo-hz-GXH"/>
                                     <constraint firstItem="NIb-pB-m1r" firstAttribute="leading" secondItem="Ly3-pw-1kU" secondAttribute="leading" constant="25" id="jjU-es-fV6"/>
@@ -1548,7 +1548,7 @@
                                     <constraint firstItem="rtb-YI-n1M" firstAttribute="leading" secondItem="Abo-Nd-oSK" secondAttribute="trailing" constant="15" id="p8s-Fv-QnL"/>
                                     <constraint firstItem="noO-ti-kwo" firstAttribute="top" secondItem="Wrf-t6-uus" secondAttribute="bottom" constant="10" id="pQ5-KJ-cfi"/>
                                     <constraint firstItem="0IS-7r-oHS" firstAttribute="leading" secondItem="Ly3-pw-1kU" secondAttribute="leading" constant="25" id="vUt-iW-9WZ"/>
-                                    <constraint firstItem="l18-8g-mv7" firstAttribute="top" secondItem="rtb-YI-n1M" secondAttribute="bottom" constant="10" id="wQC-YO-6TT"/>
+                                    <constraint firstItem="l18-8g-mv7" firstAttribute="top" secondItem="rtb-YI-n1M" secondAttribute="bottom" constant="8" id="wQC-YO-6TT"/>
                                     <constraint firstItem="noO-ti-kwo" firstAttribute="top" secondItem="NIb-pB-m1r" secondAttribute="bottom" constant="10" id="zMT-RM-BEQ"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
