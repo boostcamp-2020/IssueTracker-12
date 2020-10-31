@@ -14,7 +14,7 @@ class LabelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        // Do any additional setup after loading the view.
+        
     }
     
     private func configure() {
@@ -26,6 +26,7 @@ class LabelViewController: UIViewController {
         if let editVC = self.storyboard?.instantiateViewController(identifier: LabelEditViewController.reuseIdentifier) as? LabelEditViewController {
             editVC.modalPresentationStyle = .overFullScreen
             editVC.modalTransitionStyle = .crossDissolve
+            editVC.initEditView(isNew: true, label: nil)
             self.present(editVC, animated: true, completion: nil)
         }
     }
