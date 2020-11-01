@@ -1,10 +1,9 @@
-const connection = require('../config/db_connection');
-const sql = require('../config/query');
+const connection = require("../config/db_connection");
+const sql = require("../config/query");
 
 const milestoneModel = {
-  insert: async (title, dueDate, content) => {
+  insert: async (insertInfo) => {
     try {
-      const insertInfo = [title, dueDate, content];
       connection.query(sql.insertMilestone, insertInfo);
     } catch (err) {
       console.error(err);
@@ -18,9 +17,8 @@ const milestoneModel = {
       console.error(err);
     }
   },
-  update: async (milestoneid, title, dueDate, content) => {
+  update: async (updateInfo) => {
     try {
-      const updateInfo = [title, dueDate, content, milestoneid];
       connection.query(sql.updateMilestone, updateInfo);
     } catch (err) {
       console.error(err);
