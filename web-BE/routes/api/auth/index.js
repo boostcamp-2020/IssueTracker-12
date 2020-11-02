@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const authController = require('./controller');
 
-router.post('/:social', authController.login);
+router.get('/:social/:username', authController.checkUser);
 
 module.exports = router;

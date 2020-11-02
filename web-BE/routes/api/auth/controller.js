@@ -1,15 +1,11 @@
-const passport = require('passport');
-const jwt = require('jsonwebtoken');
+const authModel = require('../../../models/auth');
 
 const authController = {
-  login: (req, res, next) => {
-    const { social } = req.params;
-    passport.authenticate(`${social}Local`, { session: false }, (passportError, user) => {
-      if (!user) return res.sendStatus(401);
-      if (passportError) return res.sendStatus(400);
-      const token = jwt.sign({ ...user }, process.env.JWT_SECRET);
-      return res.status(200).json(token);
-    })(req, res);
+  checkUser: async (req, res) => {
+    const { social, username } = req.params;
+    const user = await authModel.select(username, social);
+    if (!user) return res.sendStatus(401);
+    return res.sendStatus(200);
   },
 };
 
