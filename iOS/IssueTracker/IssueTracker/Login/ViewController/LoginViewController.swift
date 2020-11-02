@@ -21,11 +21,7 @@ class LoginViewController: UIViewController {
     
     func setupProviderLoginView() {
         
-//        let githubIDButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-//        githubIDButton.setTitle("Github", for: .normal)
-//
         githubIDButton.addTarget(self, action: #selector(handleAuthorizationGithubIDButtonPress), for: .touchUpInside)
-//        self.oAuthStackView.addArrangedSubview(githubIDButton)
         
         let appleIDButton = ASAuthorizationAppleIDButton()
         appleIDButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
