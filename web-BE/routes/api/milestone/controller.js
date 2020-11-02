@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 const milestoneModel = require('../../../models/milestone');
 
 const milestoneController = {
@@ -45,3 +46,5 @@ const milestoneController = {
 };
 
 module.exports = milestoneController;
+=======
+>>>>>>> Stashed changes

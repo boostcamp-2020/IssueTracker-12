@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 const connection = require('../config/db_connection');
 const sql = require('../config/query');
 
@@ -35,3 +36,5 @@ const milestoneModel = {
 };
 
 module.exports = milestoneModel;
+=======
+>>>>>>> Stashed changes

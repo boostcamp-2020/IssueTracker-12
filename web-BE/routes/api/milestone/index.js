@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 const router = require('express').Router();
 const milestoneController = require('./controller');
 
@@ -7,3 +8,5 @@ router.put('/:milestoneid', milestoneController.update);
 router.delete('/:milestoneid', milestoneController.delete);
 
 module.exports = router;
+=======
+>>>>>>> Stashed changes
