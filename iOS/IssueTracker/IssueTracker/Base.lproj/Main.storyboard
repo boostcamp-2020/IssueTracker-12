@@ -812,7 +812,7 @@
                                     <constraint firstAttribute="height" constant="45" id="Uim-sF-wiu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="Sign with in Github">
+                                <state key="normal" title="Sign in with Github">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
