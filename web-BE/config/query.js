@@ -12,4 +12,6 @@ module.exports = {
   updateMilestone:
     'UPDATE Milestone SET title=?, due_date=?, content=? WHERE milestone_id=?;',
   deleteMilestone: 'DELETE FROM Milestone WHERE milestone_id=?;',
+  // user
+  selectUser: 'SELECT user_id, username, password, social FROM User WHERE username=? and social=?',
 };
