@@ -12,50 +12,64 @@ class LabelEditViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var colorTextField: UITextField!
-    @IBOutlet weak var colorPickerButton: UIButton!
+    @IBOutlet weak var labelPreviewLabel: PaddedLabel!
+    @IBOutlet weak var randomColorButton: UIButton!
+    
+    private var isNew: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-    }
-
-    @IBAction func colorPickerButtonDidTouch(_ sender: Any) {
-        presentColorPicker()
+        colorTextField.addTarget(self, action: #selector(setColorFromTextField), for: .editingChanged)
     }
     
-    private func presentColorPicker() {
-        let colorPicker = UIColorPickerViewController()
-        colorPicker.delegate = self
-        colorPicker.selectedColor = colorPickerButton.backgroundColor ?? UIColor.systemTeal
-        colorPicker.title = "Color Picker"
-        self.present(colorPicker, animated: true, completion: nil)
+    // 여기에 label 정보를 받아오면 좋을 것같음 label: Label?
+    func initEditView(isNew: Bool, label: String?) {
+        self.isNew = isNew
+        if isNew {
+            setLabelColor(color: nil)
+        }
+        // guard let labelObject = label else { return }
+        // label정보를 받아와서 세팅
+    }
+    
+    @objc func setColorFromTextField() {
+        if let color = UIColor(hex: colorTextField.text ?? "") {
+            setLabelColor(color: color)
+        }
+    }
+    
+    private func setLabelColor(color: UIColor?) {
+        var labelColor: UIColor
+        
+        if let color = color {
+            labelColor = color
+        } else {
+            labelColor = UIColor.getRandomColor()
+        }
+        DispatchQueue.main.async { [weak self] in
+            self?.labelPreviewLabel.backgroundColor = labelColor
+            self?.randomColorButton.backgroundColor = labelColor
+            self?.colorTextField.text = labelColor.toHexString()
+        }
     }
     
     @IBAction func resetButtonDidTouch(_ sender: Any) {
-        titleTextField.text = ""
-        descriptionTextField.text = ""
-        colorTextField.text = ""
+        if isNew {
+            titleTextField.text = ""
+            descriptionTextField.text = ""
+        } else {
+            // 처음 받았던 label 정보대로 초기화
+        }
     }
-    @IBAction func randomColorButtonDidTouch(_ sender: Any) {
     
+    @IBAction func randomColorButtonDidTouch(_ sender: Any) {
+        setLabelColor(color: nil)
     }
+    
     @IBAction func saveButtonDidTouch(_ sender: Any) {
     }
     
     @IBAction func closeButtonDidTouch(_ sender: Any) {
         dismiss(animated: true)
-    }
-}
-
-extension LabelEditViewController: UIColorPickerViewControllerDelegate {
-    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
-        
-    }
-    
-    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-        DispatchQueue.main.async { [weak self] in
-            self?.colorTextField.text = viewController.selectedColor.toHexString()
-            self?.colorPickerButton.backgroundColor = viewController.selectedColor
-        }
     }
 }
