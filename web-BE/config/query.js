@@ -1,9 +1,9 @@
 module.exports = {
   // label
   insertLabel: 'INSERT INTO Label (name,description,color) VALUE(?,?,?);',
-  selectLabel: 'SELECT * FROM Label',
+  selectLabel: 'SELECT label_id, name, description, color FROM Label;',
   updateLabel:
-    'UPDATE Label SET name=?, description=?, color=?, WHERE label_id=?;',
+    'UPDATE Label SET name=?, description=?, color=? WHERE label_id=?;',
   deleteLabel: 'DELETE FROM Label WHERE label_id=?;',
   // milestone
   insertMilestone:
