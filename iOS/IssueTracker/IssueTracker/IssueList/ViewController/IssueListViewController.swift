@@ -29,6 +29,7 @@ class IssueListViewController: UIViewController {
     @IBAction func newIssueButtonDidTouch(_ sender: Any) {
         if let newVC = self.storyboard?.instantiateViewController(identifier: NewIssueViewController.reuseIdentifier) as? NewIssueViewController {
             self.present(newVC, animated: true, completion: nil)
+            newVC.initNewIssueView(isNew: true, issue: nil)
         }
     }
     
