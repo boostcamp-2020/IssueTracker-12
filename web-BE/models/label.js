@@ -12,8 +12,7 @@ const labelModel = {
       return res[0];
     } catch (err) { console.error(err); }
   },
-  update: async (reqBodyJson) => {
-    const paramArr = jsonToArr(reqBodyJson);
+  update: async (paramArr) => {
     try { connection.query(sql.updateLabel, paramArr); } catch (err) { console.error(err); }
   },
   delete: async (labelid) => {
