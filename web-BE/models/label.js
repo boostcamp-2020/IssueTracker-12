@@ -4,9 +4,9 @@ const jsonToArr = require('../util/jsonToArr');
 
 const labelModel = {
   insert: async (paramArr) => {
-    try { 
-      const res = await connection.query(sql.insertLabel, paramArr); 
-      return res[0].insertId
+    try {
+      const res = await connection.query(sql.insertLabel, paramArr);
+      return res[0].insertId;
     } catch (err) { console.error(err); }
   },
   select: async () => {
