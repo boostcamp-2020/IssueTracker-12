@@ -22,10 +22,9 @@ const milestoneController = {
     }
   },
   update: (req, res) => {
-    const {
-      milestoneid, title, dueDate, content,
-    } = req.body;
+    const { title, dueDate, content } = req.body;
     try {
+      const milestoneid = parseInt(req.params.milestoneid);
       const updateInfo = [title, dueDate, content, milestoneid];
       milestoneModel.update(updateInfo);
       res.status(200).json({ message: '마일스톤 업데이트 완료' });
