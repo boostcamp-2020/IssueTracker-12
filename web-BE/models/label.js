@@ -4,7 +4,10 @@ const jsonToArr = require('../util/jsonToArr');
 
 const labelModel = {
   insert: async (paramArr) => {
-    try { connection.query(sql.insertLabel, paramArr); } catch (err) { console.error(err); }
+    try { 
+      const res = await connection.query(sql.insertLabel, paramArr); 
+      return res[0].insertId
+    } catch (err) { console.error(err); }
   },
   select: async () => {
     try {
