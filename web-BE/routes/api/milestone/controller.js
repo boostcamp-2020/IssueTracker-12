@@ -2,7 +2,7 @@ const milestoneModel = require('../../../models/milestone');
 
 const milestoneController = {
   create: async (req, res) => {
-    const { title, dueDate, content } = req.body;
+    const { title, due_date: dueDate, content } = req.body;
     try {
       const insertInfo = [title, dueDate, content];
       const insertId = await milestoneModel.insert(insertInfo);
@@ -24,7 +24,7 @@ const milestoneController = {
     }
   },
   update: (req, res) => {
-    const { title, dueDate, content } = req.body;
+    const { title, due_date: dueDate, content } = req.body;
     try {
       const milestoneid = parseInt(req.params.milestoneid);
       const updateInfo = [title, dueDate, content, milestoneid];
