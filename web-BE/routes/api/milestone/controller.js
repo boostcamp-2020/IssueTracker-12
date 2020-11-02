@@ -26,7 +26,7 @@ const milestoneController = {
       milestoneid, title, dueDate, content,
     } = req.body;
     try {
-      const updateInfo = [milstoneid, title, dueDate, content];
+      const updateInfo = [milestoneid, title, dueDate, content];
       milestoneModel.update(updateInfo);
       res.status(200).json({ message: '마일스톤 업데이트 완료' });
     } catch (err) {
