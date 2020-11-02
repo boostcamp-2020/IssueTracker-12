@@ -62,6 +62,9 @@
                                 <state key="normal">
                                     <imageReference key="image" image="plus.rectangle.on.rectangle.fill" catalog="system" symbolScale="large"/>
                                 </state>
+                                <connections>
+                                    <action selector="newIssueButtonDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pee-Km-6wd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -98,7 +101,7 @@
         <!--New Issue View Controller-->
         <scene sceneID="gc2-hx-Glm">
             <objects>
-                <viewController id="cdV-7m-8aX" customClass="NewIssueViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="NewIssueViewController" storyboardIdentifier="NewIssueViewController" id="cdV-7m-8aX" customClass="NewIssueViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v1r-3s-t4r">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
