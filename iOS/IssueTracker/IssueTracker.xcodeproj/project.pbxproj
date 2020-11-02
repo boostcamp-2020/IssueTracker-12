@@ -37,6 +37,9 @@
 		A927391825490BCB00F22997 /* IssueDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */; };
 		A927392125493B8100F22997 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927392025493B8100F22997 /* UITableViewCell+Extension.swift */; };
 		A927393F2549635D00F22997 /* IssueAttributeFloatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927393E2549635D00F22997 /* IssueAttributeFloatingViewController.swift */; };
+		A97882C0254FE19F001633FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882BF254FE19F001633FF /* LoginViewController.swift */; };
+		A97882C7254FED68001633FF /* GithubConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882C6254FED68001633FF /* GithubConstants.swift */; };
+		A97882CB254FEFA6001633FF /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882CA254FEFA6001633FF /* LoginManager.swift */; };
 		E14AFB06879FC4E23BE9EFAD /* Pods_IssueTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE547134138C37BC8A239159 /* Pods_IssueTracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +77,10 @@
 		A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A927392025493B8100F22997 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		A927393E2549635D00F22997 /* IssueAttributeFloatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAttributeFloatingViewController.swift; sourceTree = "<group>"; };
+		A97882BF254FE19F001633FF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A97882C3254FE2D4001633FF /* IssueTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IssueTracker.entitlements; sourceTree = "<group>"; };
+		A97882C6254FED68001633FF /* GithubConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubConstants.swift; sourceTree = "<group>"; };
+		A97882CA254FEFA6001633FF /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		CE547134138C37BC8A239159 /* Pods_IssueTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IssueTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0821587E5F839215D79D4EE /* Pods-IssueTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTracker.release.xcconfig"; path = "Target Support Files/Pods-IssueTracker/Pods-IssueTracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +170,9 @@
 		46ED2B8725469876004B6D50 /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
+				A97882C9254FEF97001633FF /* Network */,
+				A97882C3254FE2D4001633FF /* IssueTracker.entitlements */,
+				A97882BD254FE183001633FF /* Login */,
 				46FC2CBC254A7460004E9288 /* Label */,
 				4616CDE325496FD400421368 /* Milestone */,
 				46E668D1254854DE00A41CC0 /* IssueList */,
@@ -248,6 +258,31 @@
 				46FC2CC7254A8DC8004E9288 /* LabelEditViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A97882BD254FE183001633FF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A97882BE254FE18C001633FF /* ViewController */,
+				A97882C6254FED68001633FF /* GithubConstants.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		A97882BE254FE18C001633FF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A97882BF254FE19F001633FF /* LoginViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A97882C9254FEF97001633FF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A97882CA254FEFA6001633FF /* LoginManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		AEA996A021E92D0437245BBB /* Pods */ = {
@@ -400,8 +435,10 @@
 				4616CDD32549573200421368 /* Issue.swift in Sources */,
 				46ED2BC72546B096004B6D50 /* IssueListEditViewController.swift in Sources */,
 				A927391825490BCB00F22997 /* IssueDetailTableViewCell.swift in Sources */,
+				A97882C7254FED68001633FF /* GithubConstants.swift in Sources */,
 				4616CDD72549583600421368 /* Milestone.swift in Sources */,
 				46FC2CC8254A8DC8004E9288 /* LabelEditViewController.swift in Sources */,
+				A97882CB254FEFA6001633FF /* LoginManager.swift in Sources */,
 				46323BD8254D5B3200C1AAD7 /* String+Extension.swift in Sources */,
 				46FC2CB6254A58B4004E9288 /* MilestoneEditViewController.swift in Sources */,
 				46E668BA2547F64A00A41CC0 /* IssueListEditTableViewCell.swift in Sources */,
@@ -418,6 +455,7 @@
 				46ED2B8B25469876004B6D50 /* SceneDelegate.swift in Sources */,
 				4616CDEB2549977D00421368 /* MilestoneCollectionViewCell.swift in Sources */,
 				A927391525490BBD00F22997 /* IssueDetailViewController.swift in Sources */,
+				A97882C0254FE19F001633FF /* LoginViewController.swift in Sources */,
 				4616CDDD25495A1D00421368 /* IssueList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,6 +604,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = IssueTracker/IssueTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				INFOPLIST_FILE = IssueTracker/Info.plist;
@@ -586,6 +625,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = IssueTracker/IssueTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				INFOPLIST_FILE = IssueTracker/Info.plist;
