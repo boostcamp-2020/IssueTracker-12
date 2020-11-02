@@ -10,6 +10,8 @@ import AuthenticationServices
 
 class LoginViewController: UIViewController {
     
+    
+    @IBOutlet weak var githubIDButton: UIButton!
     @IBOutlet weak var oAuthStackView: UIStackView!
     
     override func viewDidLoad() {
@@ -19,10 +21,23 @@ class LoginViewController: UIViewController {
     }
     
     func setupProviderLoginView() {
-        let authorizationButton = ASAuthorizationAppleIDButton()
-        authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
-        self.oAuthStackView.addArrangedSubview(authorizationButton)
+        
+//        let githubIDButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+//        githubIDButton.setTitle("Github", for: .normal)
+//
+        githubIDButton.addTarget(self, action: #selector(handleAuthorizationGithubIDButtonPress), for: .touchUpInside)
+//        self.oAuthStackView.addArrangedSubview(githubIDButton)
+        
+        let appleIDButton = ASAuthorizationAppleIDButton()
+        appleIDButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+        self.oAuthStackView.addArrangedSubview(appleIDButton)
       }
+    
+    @objc
+    func handleAuthorizationGithubIDButtonPress() {
+      
+        LoginManager.shared.requestCode()
+    }
     
     @objc
     func handleAuthorizationAppleIDButtonPress() {

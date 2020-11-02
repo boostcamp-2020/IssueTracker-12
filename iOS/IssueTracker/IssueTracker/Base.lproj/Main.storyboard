@@ -792,6 +792,11 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jJA-vF-AVw">
                                 <rect key="frame" x="20" y="463" width="374" height="199"/>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjD-TO-5rz">
+                                <rect key="frame" x="147" y="744" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Github login"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lgd-un-OBI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -815,6 +820,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="githubIDButton" destination="bjD-TO-5rz" id="Oft-41-raE"/>
                         <outlet property="oAuthStackView" destination="jJA-vF-AVw" id="fnd-qC-xxx"/>
                     </connections>
                 </viewController>
