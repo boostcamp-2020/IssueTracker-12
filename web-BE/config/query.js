@@ -8,7 +8,8 @@ module.exports = {
   // milestone
   insertMilestone:
     'INSERT INTO Milestone (title,due_date,content) VALUES (?,?,?);',
-  selectMilestone: 'SELECT milestone_id,title,due_date,content FROM Milestone;',
+  selectMilestone:
+    'SELECT milestone_id,title,date_format(due_date,"%Y-%m-%d") AS due_date,content FROM Milestone;',
   updateMilestone:
     'UPDATE Milestone SET title=?, due_date=?, content=? WHERE milestone_id=?;',
   deleteMilestone: 'DELETE FROM Milestone WHERE milestone_id=?;',

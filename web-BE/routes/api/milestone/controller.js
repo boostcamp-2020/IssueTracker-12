@@ -1,12 +1,15 @@
+<<<<<<< Updated upstream
 const milestoneModel = require('../../../models/milestone');
 
 const milestoneController = {
-  create: (req, res) => {
+  create: async (req, res) => {
     const { title, dueDate, content } = req.body;
     try {
       const insertInfo = [title, dueDate, content];
-      milestoneModel.insert(insertInfo);
-      res.status(200).json({ message: '마일스톤 생성 완료' });
+      const insertId = await milestoneModel.insert(insertInfo);
+      res
+        .status(200)
+        .json({ message: '마일스톤 생성 완료', insertId });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -22,11 +25,10 @@ const milestoneController = {
     }
   },
   update: (req, res) => {
-    const {
-      milestoneid, title, dueDate, content,
-    } = req.body;
+    const { title, dueDate, content } = req.body;
     try {
-      const updateInfo = [milstoneid, title, dueDate, content];
+      const milestoneid = parseInt(req.params.milestoneid);
+      const updateInfo = [title, dueDate, content, milestoneid];
       milestoneModel.update(updateInfo);
       res.status(200).json({ message: '마일스톤 업데이트 완료' });
     } catch (err) {
@@ -35,7 +37,7 @@ const milestoneController = {
   },
   delete: (req, res) => {
     try {
-      milestoneModel.delete(parseInt(req.query.milestoneid));
+      milestoneModel.delete(parseInt(req.params.milestoneid));
       res.status(200).json({ message: '마일스톤 삭제 완료' });
     } catch (err) {
       res.status(500).json(err);
@@ -44,3 +46,5 @@ const milestoneController = {
 };
 
 module.exports = milestoneController;
+=======
+>>>>>>> Stashed changes

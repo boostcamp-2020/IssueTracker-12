@@ -1,10 +1,12 @@
+<<<<<<< Updated upstream
 const connection = require('../config/db_connection');
 const sql = require('../config/query');
 
 const milestoneModel = {
   insert: async (insertInfo) => {
     try {
-      connection.query(sql.insertMilestone, insertInfo);
+      const result = await connection.query(sql.insertMilestone, insertInfo);
+      return result[0].insertId;
     } catch (err) {
       console.error(err);
     }
@@ -34,3 +36,5 @@ const milestoneModel = {
 };
 
 module.exports = milestoneModel;
+=======
+>>>>>>> Stashed changes
