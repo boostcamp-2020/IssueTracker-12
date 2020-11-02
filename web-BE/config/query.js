@@ -4,7 +4,6 @@ module.exports = {
   selectLabel: 'SELECT * FROM Label',
   updateLabel: 'UPDATE Label SET name=?, description=?, color=?, WHERE label_id=?;',
   deleteLabel: 'DELETE FROM Label WHERE label_id=?;',
-<<<<<<< Updated upstream
   // milestone
   insertMilestone:
     'INSERT INTO Milestone (title,due_date,content) VALUES (?,?,?);',
@@ -15,6 +14,4 @@ module.exports = {
   deleteMilestone: 'DELETE FROM Milestone WHERE milestone_id=?;',
   // user
   selectUser: 'SELECT user_id, username, password, social FROM User WHERE username=? and social=?',
-=======
->>>>>>> Stashed changes
 };
