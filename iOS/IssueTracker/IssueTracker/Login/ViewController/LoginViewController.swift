@@ -10,7 +10,6 @@ import AuthenticationServices
 
 class LoginViewController: UIViewController {
     
-    
     @IBOutlet weak var githubIDButton: UIButton!
     @IBOutlet weak var oAuthStackView: UIStackView!
     
