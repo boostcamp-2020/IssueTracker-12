@@ -26,7 +26,7 @@ const milestoneController = {
       milestoneid, title, dueDate, content,
     } = req.body;
     try {
-      const updateInfo = [milestoneid, title, dueDate, content];
+      const updateInfo = [title, dueDate, content, milestoneid];
       milestoneModel.update(updateInfo);
       res.status(200).json({ message: '마일스톤 업데이트 완료' });
     } catch (err) {
@@ -35,7 +35,7 @@ const milestoneController = {
   },
   delete: (req, res) => {
     try {
-      milestoneModel.delete(parseInt(req.query.milestoneid));
+      milestoneModel.delete(parseInt(req.params.milestoneid));
       res.status(200).json({ message: '마일스톤 삭제 완료' });
     } catch (err) {
       res.status(500).json(err);
