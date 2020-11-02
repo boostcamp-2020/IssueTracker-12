@@ -1,12 +1,14 @@
 const milestoneModel = require('../../../models/milestone');
 
 const milestoneController = {
-  create: (req, res) => {
+  create: async (req, res) => {
     const { title, dueDate, content } = req.body;
     try {
       const insertInfo = [title, dueDate, content];
-      milestoneModel.insert(insertInfo);
-      res.status(200).json({ message: '마일스톤 생성 완료' });
+      const insertId = await milestoneModel.insert(insertInfo);
+      res
+        .status(200)
+        .json({ message: '마일스톤 생성 완료', insertId });
     } catch (err) {
       res.status(500).json(err);
     }
