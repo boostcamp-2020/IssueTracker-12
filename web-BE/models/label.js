@@ -3,13 +3,12 @@ const sql = require('../config/query');
 const jsonToArr = require('../util/jsonToArr');
 
 const labelModel = {
-  insert: async (reqBodyJson) => {
-    const paramArr = jsonToArr(reqBodyJson);
+  insert: async (paramArr) => {
     try { connection.query(sql.insertLabel, paramArr); } catch (err) { console.error(err); }
   },
-  select: async (labelid) => {
+  select: async () => {
     try {
-      const res = await connection.query(sql.selectLabel, labelid);
+      const res = await connection.query(sql.selectLabel);
       return res[0];
     } catch (err) { console.error(err); }
   },
