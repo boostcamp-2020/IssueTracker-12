@@ -43,4 +43,7 @@ module.exports = {
   selectIssueLabel:
     'select Label.label_id, Label.`name` as label_name, Label.description, Label.color from Issue_Label '
     + 'join Label on Issue_Label.label_id = Label.label_id WHERE Issue_Label.issue_id = ?',
+  // Assignee
+  insertAssignee: 'INSERT INTO Assignee(issue_id, user_id) VALUES (?, ?)',
+  deleteAssignee: 'DELETE FROM Assignee WHERE issue_id=? and user_id=?',
 };

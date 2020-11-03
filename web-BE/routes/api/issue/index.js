@@ -9,6 +9,6 @@ router.delete('/:issueId/milestone/', issueController.deleteMilestone);
 router.post('/:issueId/label/:labelId', issueController.addLabel);
 router.delete('/:issueId/label/:labelId', issueController.deleteLabel);
 router.patch('/:issueId/isopen', issueController.updateIsOpen);
-// router.delete('/:labelid', issueController.delete);
-
+router.post('/:issueId/assignee/:userId', issueController.addAssignee);
+router.delete('/:issueId/assignee/:userId', issueController.deleteAssignee);
 module.exports = router;

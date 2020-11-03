@@ -1,5 +1,6 @@
 const issueModel = require('../../../models/issue');
 const issueLabelModel = require('../../../models/issue_label');
+const assigneeModel = require('../../../models/assignee');
 
 const issueController = {
   create: async (req, res, next) => {
@@ -78,6 +79,24 @@ const issueController = {
     const { isopen: isOpen } = req.body;
     try {
       await issueModel.updateIsOpen(issueId, isOpen);
+      res.sendStatus(200);
+    } catch (error) {
+      next(error);
+    }
+  },
+  addAssignee: async (req, res, next) => {
+    const { issueId, userId } = req.params;
+    try {
+      await assigneeModel.insert(issueId, userId);
+      res.sendStatus(200);
+    } catch (error) {
+      next(error);
+    }
+  },
+  deleteAssignee: async (req, res, next) => {
+    const { issueId, userId } = req.params;
+    try {
+      await assigneeModel.delete(issueId, userId);
       res.sendStatus(200);
     } catch (error) {
       next(error);
