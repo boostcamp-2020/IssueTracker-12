@@ -35,6 +35,14 @@ const issueModel = {
       throw createError(500);
     }
   },
+  updateTitle: async (issueId, title) => {
+    try {
+      await connection.query(sql.updateIssueTitle, [title, issueId]);
+    } catch (err) {
+      console.error(err);
+      throw createError(500);
+    }
+  }
 };
 
 module.exports = issueModel;
