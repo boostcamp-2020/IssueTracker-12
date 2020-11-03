@@ -15,6 +15,7 @@ class IssueListCollectionViewCell: SwipeCollectionViewCell {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var openLabel: PaddedLabel!
     @IBOutlet weak var milestoneLabel: PaddedLabel!
+    @IBOutlet weak var labelScrollView: UIScrollView!
     @IBOutlet weak var labelLabel: PaddedLabel!
     
     override func awakeFromNib() {
@@ -27,6 +28,7 @@ class IssueListCollectionViewCell: SwipeCollectionViewCell {
     func configure() {
         
         openLabelConfigure()
+        labelLabelConfigure()
         
     }
     
@@ -35,6 +37,7 @@ class IssueListCollectionViewCell: SwipeCollectionViewCell {
         // - TO-DO :
         // - open, close 여부 인자로 받아 분기/변수 처리
         // - label 크기 따로 변수 선언
+        // - 다른 화면에서도 사용할 수 있도록 Extension 빼기
         guard let iconImage = UIImage(named: "openMark") else { return }
         guard let issueFont = openLabel.font else { return }
         
@@ -46,6 +49,30 @@ class IssueListCollectionViewCell: SwipeCollectionViewCell {
         attributedString.append(NSAttributedString(attachment: imageAttachment))
         attributedString.append(NSAttributedString(string: " Open"))
         openLabel.attributedText = attributedString
+    }
+    
+    private func labelLabelConfigure() {
+        
+        // - TEST
+        let labels = ["ios", "test", "web", "dhdhdhdh", "dkkdslk", "fjk", "dkdkfjdl", "dlskjfkel"]
+        
+        var xPosition: CGFloat = 0
+        labels.forEach { label in
+            let newLabel = PaddedLabel()
+            newLabel.text = label
+            newLabel.backgroundColor = UIColor.green
+            newLabel.textAlignment = .center
+            newLabel.paddingWidth = 12
+            newLabel.paddingHeight = 10
+            newLabel.cornerRadius = 10
+            let labelWidth = newLabel.intrinsicContentSize.width
+            
+            newLabel.frame = CGRect(x: xPosition, y: 0, width: labelWidth, height: 20)
+            
+            xPosition += (labelWidth + 10)
+            labelScrollView.addSubview(newLabel)
+            labelScrollView.contentSize = CGSize(width: xPosition, height: 20)
+        }
     }
 }
 
