@@ -20,6 +20,22 @@ module.exports = {
     'INSERT INTO Issue '
     + '(writer_id, write_time, title, is_open, milestone_id) '
     + 'VALUES((SELECT user_id from User WHERE username=?), ?, ?, 1, ?)',
+  selectIssue:
+    `SELECT
+      Issue.issue_id,
+      Issue.title,
+      Milestone.milestone_id,
+      Milestone.title as milestone_title,
+      Issue.write_time,
+      Issue.is_open,
+      \`User\`.user_id as writer_id,
+      \`User\`.username as writer
+    FROM Issue
+      LEFT JOIN Milestone ON Milestone.milestone_id = Issue.milestone_id
+      JOIN \`User\` ON Issue.writer_id = \`User\`.user_id`,
   // issue_label
   insertIssueLabel: 'INSERT INTO Issue_Label (issue_id, label_id) VALUES ?',
+  selectIssueLabel:
+    'select Label.label_id, Label.`name` as label_name, Label.description, Label.color from Issue_Label '
+    + 'join Label on Issue_Label.label_id = Label.label_id WHERE Issue_Label.issue_id = ?',
 };
