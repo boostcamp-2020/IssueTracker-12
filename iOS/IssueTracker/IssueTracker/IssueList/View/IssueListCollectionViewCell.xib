@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,14 +11,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IssueListCollectionViewCell" id="gTV-IL-0wX" customClass="IssueListCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="447" height="108"/>
+            <rect key="frame" x="0.0" y="0.0" width="447" height="123"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="447" height="108"/>
+                <rect key="frame" x="0.0" y="0.0" width="447" height="123"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titleLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVa-u9-QOe">
-                        <rect key="frame" x="20" y="10" width="70" height="21"/>
+                        <rect key="frame" x="20" y="15" width="70" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -30,7 +30,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="milestoneLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yq1-Dl-Fcp" customClass="PaddedLabel" customModule="IssueTracker" customModuleProvider="target">
-                        <rect key="frame" x="324" y="10" width="103" height="22"/>
+                        <rect key="frame" x="94.5" y="72" width="98" height="17"/>
                         <color key="backgroundColor" red="0.1995830536" green="0.73729622360000002" blue="0.70579069849999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
@@ -47,8 +47,9 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="labelLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uM7-Ox-u6J" customClass="PaddedLabel" customModule="IssueTracker" customModuleProvider="target">
-                        <rect key="frame" x="356" y="41" width="71" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="labelLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uM7-Ox-u6J" customClass="PaddedLabel" customModule="IssueTracker" customModuleProvider="target">
+                        <rect key="frame" x="361" y="41" width="66" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
@@ -65,38 +66,69 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="openLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5a-b0-LSE" customClass="PaddedLabel" customModule="IssueTracker" customModuleProvider="target">
+                        <rect key="frame" x="20" y="72" width="67.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" systemColor="systemGreenColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xr-su-SeU">
+                        <rect key="frame" x="20" y="94" width="407" height="20"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rrg-pV-2ks">
+                                <rect key="frame" x="0.0" y="-1" width="407" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="OKH-c5-VZ2"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="uM7-Ox-u6J" firstAttribute="top" secondItem="jwc-uP-djh" secondAttribute="top" id="8qn-vb-cLu"/>
-                <constraint firstItem="ZVa-u9-QOe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="Bdv-4G-zYi"/>
-                <constraint firstAttribute="trailing" secondItem="uM7-Ox-u6J" secondAttribute="trailing" constant="20" id="c6C-0p-v3E"/>
-                <constraint firstItem="yq1-Dl-Fcp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="cel-0k-QWD"/>
-                <constraint firstItem="jwc-uP-djh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="pGM-aK-i8u"/>
-                <constraint firstAttribute="trailing" secondItem="yq1-Dl-Fcp" secondAttribute="trailing" constant="20" id="wDk-uj-K9g"/>
-                <constraint firstItem="jwc-uP-djh" firstAttribute="top" secondItem="ZVa-u9-QOe" secondAttribute="bottom" constant="10" id="x9E-aT-Ftx"/>
-                <constraint firstItem="ZVa-u9-QOe" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="zf6-0M-0Hf"/>
+                <constraint firstItem="6xr-su-SeU" firstAttribute="top" secondItem="n5a-b0-LSE" secondAttribute="bottom" constant="5" id="Ef3-Ng-bUl"/>
+                <constraint firstItem="6xr-su-SeU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="HIx-Ot-45F"/>
+                <constraint firstItem="n5a-b0-LSE" firstAttribute="leading" secondItem="ZVa-u9-QOe" secondAttribute="leading" id="Phq-Wx-Om1"/>
+                <constraint firstItem="jwc-uP-djh" firstAttribute="leading" secondItem="ZVa-u9-QOe" secondAttribute="leading" id="ZAb-Je-ziU"/>
+                <constraint firstItem="ZVa-u9-QOe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="ZWu-kv-Z2Q"/>
+                <constraint firstAttribute="trailing" secondItem="6xr-su-SeU" secondAttribute="trailing" constant="20" id="aUW-2q-KeX"/>
+                <constraint firstItem="jwc-uP-djh" firstAttribute="top" secondItem="ZVa-u9-QOe" secondAttribute="bottom" constant="5" id="bMf-i6-LiM"/>
+                <constraint firstItem="yq1-Dl-Fcp" firstAttribute="leading" secondItem="n5a-b0-LSE" secondAttribute="trailing" constant="7" id="cKJ-y2-d1S"/>
+                <constraint firstItem="ZVa-u9-QOe" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="cij-7p-4Hs"/>
+                <constraint firstItem="n5a-b0-LSE" firstAttribute="top" secondItem="jwc-uP-djh" secondAttribute="bottom" constant="10" id="hmR-Qn-vdQ"/>
+                <constraint firstItem="yq1-Dl-Fcp" firstAttribute="centerY" secondItem="n5a-b0-LSE" secondAttribute="centerY" id="wXX-5Y-Yxv"/>
             </constraints>
-            <size key="customSize" width="447" height="108"/>
+            <size key="customSize" width="447" height="123"/>
             <connections>
                 <outlet property="contentLabel" destination="jwc-uP-djh" id="KXU-tb-8ei"/>
                 <outlet property="labelLabel" destination="uM7-Ox-u6J" id="rF5-Z4-YfY"/>
                 <outlet property="milestoneLabel" destination="yq1-Dl-Fcp" id="lgx-KR-8pf"/>
                 <outlet property="titleLabel" destination="ZVa-u9-QOe" id="Lvx-iZ-xQM"/>
             </connections>
-            <point key="canvasLocation" x="190.57971014492756" y="31.473214285714285"/>
+            <point key="canvasLocation" x="192.0289855072464" y="30.46875"/>
         </collectionViewCell>
     </objects>
     <designables>
+        <designable name="n5a-b0-LSE">
+            <size key="intrinsicContentSize" width="67.5" height="17"/>
+        </designable>
         <designable name="uM7-Ox-u6J">
-            <size key="intrinsicContentSize" width="71" height="22"/>
+            <size key="intrinsicContentSize" width="66" height="17"/>
         </designable>
         <designable name="yq1-Dl-Fcp">
-            <size key="intrinsicContentSize" width="103" height="22"/>
+            <size key="intrinsicContentSize" width="98" height="17"/>
         </designable>
     </designables>
     <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
