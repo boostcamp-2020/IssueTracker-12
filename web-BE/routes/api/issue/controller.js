@@ -27,8 +27,15 @@ const issueController = {
       next(error);
     }
   },
-  update: (req, res) => {
-
+  updateTitle: async (req, res, next) => {
+    const { issueId } = req.params;
+    const { title } = req.body;
+    try {
+      await issueModel.updateTitle(issueId, title);
+      res.sendStatus(200);
+    } catch (error) {
+      next(error);
+    }
   },
   delete: (req, res) => {
 
