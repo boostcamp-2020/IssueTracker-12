@@ -26,6 +26,13 @@ class IssueListViewController: UIViewController {
         self.issueListCollectionView.register(cellNibName, forCellWithReuseIdentifier: IssueListCollectionViewCell.reuseIdentifier)
     }
     
+    @IBAction func newIssueButtonDidTouch(_ sender: Any) {
+        if let newVC = self.storyboard?.instantiateViewController(identifier: NewIssueViewController.reuseIdentifier) as? NewIssueViewController {
+            self.present(newVC, animated: true, completion: nil)
+            newVC.initNewIssueView(isNew: true, issue: nil)
+        }
+    }
+    
 }
 
 // Cell Swipe image & action 처리

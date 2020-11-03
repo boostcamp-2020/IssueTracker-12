@@ -35,7 +35,11 @@ class IssueDetailViewController: UIViewController, FloatingPanelControllerDelega
     }
     
     @objc func editButtonDidTouch() {
-        
+        if let newVC = self.storyboard?.instantiateViewController(identifier: NewIssueViewController.reuseIdentifier) as? NewIssueViewController {
+            self.present(newVC, animated: true, completion: nil)
+            //issue 내용을 넘겨줘야함
+            newVC.initNewIssueView(isNew: false, issue: nil)
+        }
     }
     
 }
