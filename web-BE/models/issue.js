@@ -51,6 +51,14 @@ const issueModel = {
       throw createError(500);
     }
   },
+  deleteMilestone: async (issueId) => {
+    try {
+      await connection.query(sql.deleteIssueMilestone, [issueId]);
+    } catch (err) {
+      console.error(err);
+      throw createError(500);
+    }
+  },
 };
 
 module.exports = issueModel;

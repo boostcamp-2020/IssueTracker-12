@@ -46,6 +46,15 @@ const issueController = {
       next(error);
     }
   },
+  deleteMilestone: async (req, res, next) => {
+    const { issueId } = req.params;
+    try {
+      await issueModel.deleteMilestone(issueId);
+      res.sendStatus(200);
+    } catch (error) {
+      next(error);
+    }
+  },
   delete: (req, res) => {
 
   },
