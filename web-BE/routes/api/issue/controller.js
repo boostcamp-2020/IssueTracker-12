@@ -64,6 +64,16 @@ const issueController = {
       next(error);
     }
   },
+  deleteLabel: async (req, res, next) => {
+    const { issueId, labelId } = req.params;
+    try {
+      await issueLabelModel.delete(issueId, labelId);
+      res.sendStatus(200);
+    } catch (error) {
+      next(error);
+    }
+  },
+  
 };
 
 module.exports = issueController;

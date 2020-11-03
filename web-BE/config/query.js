@@ -38,6 +38,7 @@ module.exports = {
   deleteIssueMilestone: 'UPDATE Issue SET milestone_id=NULL WHERE issue_id=?',
   // issue_label
   insertIssueLabel: 'INSERT INTO Issue_Label (issue_id, label_id) VALUES ?',
+  deleteIssueLabel: 'DELETE FROM Issue_Label WHERE issue_id=? and label_id=?',
   selectIssueLabel:
     'select Label.label_id, Label.`name` as label_name, Label.description, Label.color from Issue_Label '
     + 'join Label on Issue_Label.label_id = Label.label_id WHERE Issue_Label.issue_id = ?',

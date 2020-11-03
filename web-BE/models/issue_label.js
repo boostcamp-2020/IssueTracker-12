@@ -11,6 +11,9 @@ const issueLabelModel = {
     const convertedResult = res.map((row) => ({ ...row }));
     return convertedResult;
   },
+  delete: async (issueId, labelId) => {
+    await connection.query(sql.deleteIssueLabel, [issueId, labelId]);
+  },
 };
 
 module.exports = issueLabelModel;
