@@ -22,6 +22,19 @@ const issueModel = {
       throw createError(500);
     }
   },
+  select: async () => {
+    try {
+      const [issueArr] = await connection.query(sql.selectIssue);
+      const labelsOfIssue = await Promise.all(
+        issueArr.map((issue) => issueLabelModel.select(issue.issue_id)),
+      );
+      const issueWithLabels = issueArr.map((issue, i) => ({ ...issue, labels: labelsOfIssue[i] }));
+      return issueWithLabels;
+    } catch (err) {
+      console.error(err);
+      throw createError(500);
+    }
+  },
 };
 
 module.exports = issueModel;
