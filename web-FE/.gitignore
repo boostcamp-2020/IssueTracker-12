@@ -7,3 +7,10 @@ build
 # misc
 .DS_Store
 npm-debug.log
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
