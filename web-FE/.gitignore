@@ -14,3 +14,4 @@ npm-debug.log
 # Optional eslint cache
 .eslintcache
 
+.env
