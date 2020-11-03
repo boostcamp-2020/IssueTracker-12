@@ -8,6 +8,10 @@ const assigneeModel = {
   delete: async (issueId, userId) => {
     await connection.query(sql.deleteAssignee, [issueId, userId]);
   },
+  select: async (issueId) => {
+    const [res] = await connection.query(sql.selectAssignee, [issueId]);
+    return res;
+  },
 };
 
 module.exports = assigneeModel;

@@ -46,4 +46,7 @@ module.exports = {
   // Assignee
   insertAssignee: 'INSERT INTO Assignee(issue_id, user_id) VALUES (?, ?)',
   deleteAssignee: 'DELETE FROM Assignee WHERE issue_id=? and user_id=?',
+  selectAssignee:
+    'SELECT `User`.user_id, `User`.username, `User`.social from Assignee '
+    + 'JOIN `User` ON Assignee.user_id = `User`.user_id WHERE Assignee.issue_id=?',
 };

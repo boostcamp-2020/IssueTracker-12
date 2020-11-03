@@ -102,6 +102,15 @@ const issueController = {
       next(error);
     }
   },
+  readAssignee: async (req, res, next) => {
+    const { issueId } = req.params;
+    try {
+      const assignee = await assigneeModel.select(issueId);
+      res.status(200).json(assignee);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 module.exports = issueController;

@@ -11,4 +11,5 @@ router.delete('/:issueId/label/:labelId', issueController.deleteLabel);
 router.patch('/:issueId/isopen', issueController.updateIsOpen);
 router.post('/:issueId/assignee/:userId', issueController.addAssignee);
 router.delete('/:issueId/assignee/:userId', issueController.deleteAssignee);
+router.get('/:issueId/assignee', issueController.readAssignee);
 module.exports = router;
