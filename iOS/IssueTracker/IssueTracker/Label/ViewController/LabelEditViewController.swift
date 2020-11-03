@@ -16,6 +16,7 @@ class LabelEditViewController: UIViewController {
     @IBOutlet weak var randomColorButton: UIButton!
     
     private var isNew: Bool = true
+    private var label: Label?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +24,19 @@ class LabelEditViewController: UIViewController {
     }
     
     // 여기에 label 정보를 받아오면 좋을 것같음 label: Label?
-    func initEditView(isNew: Bool, label: String?) {
+    func initEditView(isNew: Bool, label: Label?) {
         self.isNew = isNew
         if isNew {
             setLabelColor(color: nil)
+        } else {
+            self.label = label
+            DispatchQueue.main.async { [weak self] in
+                self?.titleTextField.text = label?.name
+                self?.descriptionTextField.text = label?.description
+                self?.setLabelColor(color: UIColor(hex: label?.color ?? "#000000"))
+            }
         }
-        // guard let labelObject = label else { return }
-        // label정보를 받아와서 세팅
+        
     }
     
     @objc func setColorFromTextField() {
@@ -55,10 +62,16 @@ class LabelEditViewController: UIViewController {
     
     @IBAction func resetButtonDidTouch(_ sender: Any) {
         if isNew {
-            titleTextField.text = ""
-            descriptionTextField.text = ""
+            DispatchQueue.main.async { [weak self] in
+                self?.titleTextField.text = ""
+                self?.descriptionTextField.text = ""
+            }
         } else {
-            // 처음 받았던 label 정보대로 초기화
+            DispatchQueue.main.async { [weak self] in
+                self?.titleTextField.text = self?.label?.name
+                self?.descriptionTextField.text = self?.label?.description
+                self?.setLabelColor(color: UIColor(hex: self?.label?.color ?? "#000000"))
+            }
         }
     }
     
@@ -67,6 +80,7 @@ class LabelEditViewController: UIViewController {
     }
     
     @IBAction func saveButtonDidTouch(_ sender: Any) {
+    
     }
     
     @IBAction func closeButtonDidTouch(_ sender: Any) {

@@ -11,13 +11,21 @@ import SwipeCellKit
 class LabelViewController: UIViewController {
     
     @IBOutlet weak var labelCollectionView: UICollectionView!
+    
+    private var labels = [Label]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         NetworkManager.shared.getJSON(url: .label, type: LabelArray.self) { result in
-            print(result)
+            guard let labelArray = result else { return }
+            self.labels = labelArray.labelArray
+            self.labelCollectionView.reloadData()
         }
-        
     }
     
     private func configure() {
@@ -37,7 +45,7 @@ class LabelViewController: UIViewController {
 
 extension LabelViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return labels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -45,8 +53,8 @@ extension LabelViewController: UICollectionViewDelegate, UICollectionViewDataSou
             editVC.modalPresentationStyle = .overFullScreen
             editVC.modalTransitionStyle = .crossDissolve
             self.present(editVC, animated: true, completion: nil)
+            editVC.initEditView(isNew: false, label: labels[indexPath.row])
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -54,7 +62,8 @@ extension LabelViewController: UICollectionViewDelegate, UICollectionViewDataSou
             return UICollectionViewCell()
         }
         cell.delegate = self
-        
+        cell.initLabelCell(label: labels[indexPath.row])
+
         return cell
     }
 }

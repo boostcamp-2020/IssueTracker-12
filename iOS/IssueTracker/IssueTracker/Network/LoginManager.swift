@@ -15,7 +15,6 @@ class LoginManager {
     private init() {}
     
     func requestCode() {
-        
         let urlString = "https://github.com/login/oauth/authorize?client_id=\(GithubConstants.clientID)&scope=\(GithubConstants.scope)"
         if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)

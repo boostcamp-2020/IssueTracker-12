@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Label: Decodable, Hashable {
+struct Label: Codable, Hashable {
     let labelId: Int
     let name: String
     let description: String
@@ -21,7 +21,7 @@ struct Label: Decodable, Hashable {
     }
 }
 
-struct LabelArray: Decodable, Hashable {
+struct LabelArray: Codable, Hashable {
     let labelArray: [Label]
     
     enum CodingKeys: String, CodingKey {
