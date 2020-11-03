@@ -36,6 +36,7 @@ module.exports = {
   updateIssueTitle: 'UPDATE Issue SET title=? WHERE issue_id=?',
   insertIssueMilestone: 'UPDATE Issue SET milestone_id=? WHERE issue_id=?',
   deleteIssueMilestone: 'UPDATE Issue SET milestone_id=NULL WHERE issue_id=?',
+  updateIssueIsOpen: 'UPDATE Issue SET is_open=? WHERE issue_id=?',
   // issue_label
   insertIssueLabel: 'INSERT INTO Issue_Label (issue_id, label_id) VALUES ?',
   deleteIssueLabel: 'DELETE FROM Issue_Label WHERE issue_id=? and label_id=?',

@@ -73,7 +73,16 @@ const issueController = {
       next(error);
     }
   },
-  
+  updateIsOpen: async (req, res, next) => {
+    const { issueId } = req.params;
+    const { isopen: isOpen } = req.body;
+    try {
+      await issueModel.updateIsOpen(issueId, isOpen);
+      res.sendStatus(200);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 module.exports = issueController;
