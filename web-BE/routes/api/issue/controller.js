@@ -1,5 +1,5 @@
-const { NotExtended } = require('http-errors');
 const issueModel = require('../../../models/issue');
+const issueLabelModel = require('../../../models/issue_label');
 
 const issueController = {
   create: async (req, res, next) => {
@@ -55,8 +55,14 @@ const issueController = {
       next(error);
     }
   },
-  delete: (req, res) => {
-
+  addLabel: async (req, res, next) => {
+    const { issueId, labelId } = req.params;
+    try {
+      await issueLabelModel.insert(issueId, [labelId]);
+      res.sendStatus(200);
+    } catch (error) {
+      next(error);
+    }
   },
 };
 
