@@ -19,8 +19,13 @@ const issueController = {
       next(error);
     }
   },
-  read: async (req, res) => {
-
+  read: async (req, res, next) => {
+    try {
+      const issueArr = await issueModel.select();
+      res.status(200).json(issueArr);
+    } catch (error) {
+      next(error);
+    }
   },
   update: (req, res) => {
 
