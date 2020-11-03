@@ -37,6 +37,15 @@ const issueController = {
       next(error);
     }
   },
+  addMilestone: async (req, res, next) => {
+    const { issueId, milestoneId } = req.params;
+    try {
+      await issueModel.insertMilestone(issueId, milestoneId);
+      res.sendStatus(200);
+    } catch (error) {
+      next(error);
+    }
+  },
   delete: (req, res) => {
 
   },

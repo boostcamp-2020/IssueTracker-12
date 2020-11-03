@@ -42,7 +42,15 @@ const issueModel = {
       console.error(err);
       throw createError(500);
     }
-  }
+  },
+  insertMilestone: async (issueId, milestoneId) => {
+    try {
+      await connection.query(sql.insertIssueMilestone, [milestoneId, issueId]);
+    } catch (err) {
+      console.error(err);
+      throw createError(500);
+    }
+  },
 };
 
 module.exports = issueModel;

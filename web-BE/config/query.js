@@ -34,6 +34,7 @@ module.exports = {
       LEFT JOIN Milestone ON Milestone.milestone_id = Issue.milestone_id
       JOIN \`User\` ON Issue.writer_id = \`User\`.user_id`,
   updateIssueTitle: 'UPDATE Issue SET title=? WHERE issue_id=?',
+  insertIssueMilestone: 'UPDATE Issue SET milestone_id=? WHERE issue_id=?',
   // issue_label
   insertIssueLabel: 'INSERT INTO Issue_Label (issue_id, label_id) VALUES ?',
   selectIssueLabel:
