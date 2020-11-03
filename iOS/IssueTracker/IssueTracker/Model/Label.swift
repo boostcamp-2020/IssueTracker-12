@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Label {
-    let labelId: String
+struct Label: Decodable, Hashable {
+    let labelId: Int
     let name: String
     let description: String
     let color: String
@@ -18,5 +18,13 @@ struct Label {
         case name
         case description
         case color
+    }
+}
+
+struct LabelArray: Decodable, Hashable {
+    let labelArray: [Label]
+    
+    enum CodingKeys: String, CodingKey {
+        case labelArray
     }
 }

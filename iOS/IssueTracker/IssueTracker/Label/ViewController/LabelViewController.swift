@@ -14,6 +14,9 @@ class LabelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        NetworkManager.shared.getJSON(url: .label, type: LabelArray.self) { result in
+            print(result)
+        }
         
     }
     
