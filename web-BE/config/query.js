@@ -15,4 +15,11 @@ module.exports = {
   deleteMilestone: 'DELETE FROM Milestone WHERE milestone_id=?;',
   // user
   selectUser: 'SELECT user_id, username, social FROM User WHERE username=? and social=?',
+  // issue
+  insertIssue:
+    'INSERT INTO Issue '
+    + '(writer_id, write_time, title, is_open, milestone_id) '
+    + 'VALUES((SELECT user_id from User WHERE username=?), ?, ?, 1, ?)',
+  // issue_label
+  insertIssueLabel: 'INSERT INTO Issue_Label (issue_id, label_id) VALUES ?',
 };
