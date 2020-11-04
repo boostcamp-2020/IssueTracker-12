@@ -15,7 +15,11 @@ const commentModel = {
       return res[0];
     } catch (err) { console.error(err); }
   },
-  
+  update: async ([issueId, commentId]) => {
+    try {
+      connection.query(sql.updateComment, [issueId, commentId]);
+    } catch (err) { console.error(err); }
+  },
 };
 
 module.exports = commentModel;
