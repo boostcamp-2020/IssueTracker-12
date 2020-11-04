@@ -79,8 +79,8 @@ extension IssueListViewController: UICollectionViewDataSource {
 
 extension IssueListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = self.view.bounds.width - (5 * 2)
-        let height = CGFloat(125)
+        let width = self.view.bounds.width
+        let height = CGFloat(130)
         
         return CGSize(width: width, height: height)
     }
