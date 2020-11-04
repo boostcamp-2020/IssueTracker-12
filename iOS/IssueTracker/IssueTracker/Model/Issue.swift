@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Issue {
+struct Issue: Codable, Hashable {
     let issueId: String
     let writer: String
     let title: String
