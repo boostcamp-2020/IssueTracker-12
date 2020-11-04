@@ -19,6 +19,16 @@ const commentController = {
       next(createError(500));
     }
   },
+  read: async (req, res, next) => {
+    try {
+      const { issueId } = req.params;
+      const commentArr = await commentModel.select(issueId);
+      res.status(200).json(commentArr);
+    } catch (err) {
+      console.error(err);
+      next(createError(500));
+    }
+  },
   
 };
 
