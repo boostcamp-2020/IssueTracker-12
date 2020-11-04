@@ -15,4 +15,38 @@ module.exports = {
   deleteMilestone: 'DELETE FROM Milestone WHERE milestone_id=?;',
   // user
   selectUser: 'SELECT user_id, username, social FROM User WHERE username=? and social=?',
+  // issue
+  insertIssue:
+    'INSERT INTO Issue '
+    + '(writer_id, write_time, title, milestone_id) '
+    + 'VALUES((SELECT user_id from User WHERE username=?), ?, ?, ?)',
+  selectIssue:
+    `SELECT
+      Issue.issue_id,
+      Issue.title,
+      Milestone.milestone_id,
+      Milestone.title as milestone_title,
+      Issue.write_time,
+      Issue.is_open,
+      User.user_id as writer_id,
+      User.username as writer
+    FROM Issue
+      LEFT JOIN Milestone ON Milestone.milestone_id = Issue.milestone_id
+      JOIN User ON Issue.writer_id = User.user_id`,
+  updateIssueTitle: 'UPDATE Issue SET title=? WHERE issue_id=?',
+  insertIssueMilestone: 'UPDATE Issue SET milestone_id=? WHERE issue_id=?',
+  deleteIssueMilestone: 'UPDATE Issue SET milestone_id=NULL WHERE issue_id=?',
+  updateIssueIsOpen: 'UPDATE Issue SET is_open=? WHERE issue_id=?',
+  // issue_label
+  insertIssueLabel: 'INSERT INTO Issue_Label (issue_id, label_id) VALUES ?',
+  deleteIssueLabel: 'DELETE FROM Issue_Label WHERE issue_id=? and label_id=?',
+  selectIssueLabel:
+    'select Label.label_id, Label.name as label_name, Label.description, Label.color from Issue_Label '
+    + 'join Label on Issue_Label.label_id = Label.label_id WHERE Issue_Label.issue_id = ?',
+  // Assignee
+  insertAssignee: 'INSERT INTO Assignee(issue_id, user_id) VALUES (?, ?)',
+  deleteAssignee: 'DELETE FROM Assignee WHERE issue_id=? and user_id=?',
+  selectAssignee:
+    'SELECT User.user_id, User.username, User.social from Assignee '
+    + 'JOIN User ON Assignee.user_id = User.user_id WHERE Assignee.issue_id=?',
 };
