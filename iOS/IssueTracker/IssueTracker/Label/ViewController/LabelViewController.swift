@@ -17,14 +17,11 @@ class LabelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        NetworkManager.shared.getJSON(url: .label, type: LabelArray.self) { result in
+        NetworkManager.shared.getRequest(url: .label, type: LabelArray.self) { result in
             guard let labelArray = result else { return }
             self.labels = labelArray.labelArray
             self.labelCollectionView.reloadData()
+            // notificationCenter로 리로드를 하자
         }
     }
     
@@ -82,10 +79,15 @@ extension LabelViewController: SwipeCollectionViewCellDelegate {
         guard orientation == .right else { return nil }
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { (action, indexPath) in
-            // handle action by updating model with deletion
+            
+            NetworkManager.shared.deleteRequest(url: .label, deleteID: self.labels[indexPath.row].labelId) { nsDictionary in
+                print(nsDictionary)
+            }
             
         }
         deleteAction.image = UIImage(named: "delete")?.withTintColor(UIColor.white)
         return [deleteAction]
     }
 }
+
+

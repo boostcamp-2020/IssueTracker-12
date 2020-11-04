@@ -1326,8 +1326,8 @@
                         <outlet property="colorTextField" destination="5AI-Hs-B6b" id="334-wh-HaE"/>
                         <outlet property="descriptionTextField" destination="YzO-03-Taz" id="Jvi-kn-NAO"/>
                         <outlet property="labelPreviewLabel" destination="1Uz-L4-Vqi" id="jbD-My-fc6"/>
+                        <outlet property="nameTextField" destination="hdK-Cl-gN9" id="0gk-Qh-3Sl"/>
                         <outlet property="randomColorButton" destination="Bfg-WZ-3hI" id="yJn-f2-Dek"/>
-                        <outlet property="titleTextField" destination="hdK-Cl-gN9" id="0gk-Qh-3Sl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ReG-1e-goj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

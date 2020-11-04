@@ -9,7 +9,7 @@ import UIKit
 
 class LabelEditViewController: UIViewController {
     
-    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var colorTextField: UITextField!
     @IBOutlet weak var labelPreviewLabel: PaddedLabel!
@@ -31,7 +31,7 @@ class LabelEditViewController: UIViewController {
         } else {
             self.label = label
             DispatchQueue.main.async { [weak self] in
-                self?.titleTextField.text = label?.name
+                self?.nameTextField.text = label?.name
                 self?.descriptionTextField.text = label?.description
                 self?.setLabelColor(color: UIColor(hex: label?.color ?? "#000000"))
             }
@@ -63,12 +63,12 @@ class LabelEditViewController: UIViewController {
     @IBAction func resetButtonDidTouch(_ sender: Any) {
         if isNew {
             DispatchQueue.main.async { [weak self] in
-                self?.titleTextField.text = ""
+                self?.nameTextField.text = ""
                 self?.descriptionTextField.text = ""
             }
         } else {
             DispatchQueue.main.async { [weak self] in
-                self?.titleTextField.text = self?.label?.name
+                self?.nameTextField.text = self?.label?.name
                 self?.descriptionTextField.text = self?.label?.description
                 self?.setLabelColor(color: UIColor(hex: self?.label?.color ?? "#000000"))
             }
@@ -80,7 +80,32 @@ class LabelEditViewController: UIViewController {
     }
     
     @IBAction func saveButtonDidTouch(_ sender: Any) {
+        guard let name = nameTextField.text,
+              let description = descriptionTextField.text,
+              let color = colorTextField.text else { return }
+        
+        if isNew {
+            newLabelSave(label: Label(name: name, description: description, color: color))
+        } else {
+            label?.name = name
+            label?.description = description
+            label?.color = color
+            if let label = label {
+                editLabelSave(label: label)
+            }
+        }
+        dismiss(animated: true, completion: nil)
+    }
     
+    func newLabelSave(label: Label) {
+        //post
+        NetworkManager.shared.postRequest(url: .label, object: label, type: Label.self) { result in
+            
+        }
+    }
+    
+    func editLabelSave(label: Label) {
+        //put
     }
     
     @IBAction func closeButtonDidTouch(_ sender: Any) {
