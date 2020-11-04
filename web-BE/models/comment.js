@@ -9,7 +9,13 @@ const commentModel = {
       return res[0].insertId;
     } catch (err) { console.error(err); }
   },
-
+  select: async (commentId) => {
+    try {
+      const res = await connection.query(sql.selectComment, [commentId]);
+      return res[0];
+    } catch (err) { console.error(err); }
+  },
+  
 };
 
 module.exports = commentModel;
