@@ -18,7 +18,7 @@ const milestoneController = {
       const milestoneArr = await milestoneModel.select();
       res
         .status(200)
-        .json({ message: '마일스톤 읽기 성공', MilestoneArray: milestoneArr });
+        .json({ message: '마일스톤 읽기 성공', milestoneArray: milestoneArr });
     } catch (err) {
       res.status(500).json(err);
     }
