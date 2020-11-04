@@ -29,7 +29,17 @@ const commentController = {
       next(createError(500));
     }
   },
-  
+  update: async (req, res) => {
+    try {
+      const { commentId } = req.params;
+      const { content } = req.body;
+      await commentModel.update([content, commentId]);
+      res.sendStatus(200);
+    } catch (err) {
+      console.error(err);
+      next(createError(500));
+    }
+  },
 };
 
 module.exports = commentController;
