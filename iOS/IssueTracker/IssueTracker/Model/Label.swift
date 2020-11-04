@@ -14,7 +14,7 @@ struct Label: Codable, Hashable {
     var color: String
     
     init(name: String, description: String, color: String) {
-        self.labelId = 9999
+        self.labelId = -1
         self.name = name
         self.description = description
         self.color = color

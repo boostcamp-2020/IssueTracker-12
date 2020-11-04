@@ -93,8 +93,8 @@ extension LabelViewController: SwipeCollectionViewCellDelegate {
                 print(nsDictionary)
                 NotificationCenter.default.post(name: .labelDidChange, object: nil)
             }
-            
         }
+        
         deleteAction.image = UIImage(named: "delete")?.withTintColor(UIColor.white)
         return [deleteAction]
     }

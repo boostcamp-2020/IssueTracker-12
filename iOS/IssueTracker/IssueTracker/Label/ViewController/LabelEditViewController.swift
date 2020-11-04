@@ -23,11 +23,14 @@ class LabelEditViewController: UIViewController {
         colorTextField.addTarget(self, action: #selector(setColorFromTextField), for: .editingChanged)
     }
     
-    // 여기에 label 정보를 받아오면 좋을 것같음 label: Label?
     func initEditView(isNew: Bool, label: Label?) {
         self.isNew = isNew
         if isNew {
-            setLabelColor(color: nil)
+            DispatchQueue.main.async { [weak self] in
+                self?.nameTextField.text = ""
+                self?.descriptionTextField.text = ""
+                self?.setLabelColor(color: nil)
+            }
         } else {
             self.label = label
             DispatchQueue.main.async { [weak self] in
@@ -36,7 +39,6 @@ class LabelEditViewController: UIViewController {
                 self?.setLabelColor(color: UIColor(hex: label?.color ?? "#000000"))
             }
         }
-        
     }
     
     @objc func setColorFromTextField() {
@@ -61,18 +63,7 @@ class LabelEditViewController: UIViewController {
     }
     
     @IBAction func resetButtonDidTouch(_ sender: Any) {
-        if isNew {
-            DispatchQueue.main.async { [weak self] in
-                self?.nameTextField.text = ""
-                self?.descriptionTextField.text = ""
-            }
-        } else {
-            DispatchQueue.main.async { [weak self] in
-                self?.nameTextField.text = self?.label?.name
-                self?.descriptionTextField.text = self?.label?.description
-                self?.setLabelColor(color: UIColor(hex: self?.label?.color ?? "#000000"))
-            }
-        }
+        initEditView(isNew: isNew, label: self.label)
     }
     
     @IBAction func randomColorButtonDidTouch(_ sender: Any) {
@@ -97,7 +88,7 @@ class LabelEditViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func newLabelSave(label: Label) {
+    private func newLabelSave(label: Label) {
         //post
         NetworkManager.shared.postRequest(url: .label, object: label, type: Label.self) { nsDictionary in
             print(nsDictionary)
@@ -105,11 +96,10 @@ class LabelEditViewController: UIViewController {
         }
     }
     
-    func editLabelSave(label: Label) {
+    private func editLabelSave(label: Label) {
         //put
-        guard let label = self.label else { return }
-        NetworkManager.shared.putRequest(url: .label, updateID:  label.labelId, object: label, type: Label.self) { NSDictionary in
-            print(NSDictionary)
+        NetworkManager.shared.putRequest(url: .label, updateID: label.labelId, object: label, type: Label.self) { nsDictionary in
+            print(nsDictionary)
             NotificationCenter.default.post(name: .labelDidChange, object: nil)
         }
     }

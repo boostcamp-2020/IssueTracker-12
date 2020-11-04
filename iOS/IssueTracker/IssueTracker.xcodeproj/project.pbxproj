@@ -286,8 +286,8 @@
 		46FC2CBC254A7460004E9288 /* Label */ = {
 			isa = PBXGroup;
 			children = (
-				46FC2CC2254A77BA004E9288 /* ViewController */,
 				46FC2CC1254A77B2004E9288 /* View */,
+				46FC2CC2254A77BA004E9288 /* ViewController */,
 			);
 			path = Label;
 			sourceTree = "<group>";

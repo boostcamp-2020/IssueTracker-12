@@ -1475,10 +1475,10 @@
                                         <size key="customSize" width="414" height="100"/>
                                         <connections>
                                             <outlet property="closedLabel" destination="HBJ-5n-O2T" id="baF-qT-Rrn"/>
-                                            <outlet property="descriptionLabel" destination="hsb-dU-Q9w" id="8ug-bX-mNv"/>
+                                            <outlet property="contentLabel" destination="hsb-dU-Q9w" id="8ug-bX-mNv"/>
+                                            <outlet property="dueDateLabel" destination="PKP-uQ-X3Q" id="ugz-wV-eTA"/>
                                             <outlet property="openLabel" destination="LpD-bR-O4X" id="wBe-mL-bQB"/>
                                             <outlet property="rateLabel" destination="NIR-NK-Qfu" id="EeR-uC-iyT"/>
-                                            <outlet property="timeLabel" destination="PKP-uQ-X3Q" id="ugz-wV-eTA"/>
                                             <outlet property="titleLabel" destination="86J-Hv-DQh" id="bsO-rV-PvD"/>
                                         </connections>
                                     </collectionViewCell>
@@ -1693,9 +1693,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="completionDateLabel" destination="NIb-pB-m1r" id="wJn-YC-ceS"/>
-                        <outlet property="completionDateTextField" destination="Wrf-t6-uus" id="rx2-J2-TSk"/>
-                        <outlet property="descriptionTextField" destination="7dZ-0C-N2l" id="kBR-zp-1Yn"/>
+                        <outlet property="contentTextField" destination="7dZ-0C-N2l" id="kBR-zp-1Yn"/>
+                        <outlet property="dueDateLabel" destination="NIb-pB-m1r" id="wJn-YC-ceS"/>
+                        <outlet property="dueDateTextField" destination="Wrf-t6-uus" id="rx2-J2-TSk"/>
                         <outlet property="titleTextField" destination="rtb-YI-n1M" id="tHA-1A-gyb"/>
                     </connections>
                 </viewController>
