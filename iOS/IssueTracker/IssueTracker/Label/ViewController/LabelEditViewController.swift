@@ -99,13 +99,19 @@ class LabelEditViewController: UIViewController {
     
     func newLabelSave(label: Label) {
         //post
-        NetworkManager.shared.postRequest(url: .label, object: label, type: Label.self) { result in
-            
+        NetworkManager.shared.postRequest(url: .label, object: label, type: Label.self) { nsDictionary in
+            print(nsDictionary)
+            NotificationCenter.default.post(name: .labelDidChange, object: nil)
         }
     }
     
     func editLabelSave(label: Label) {
         //put
+        guard let label = self.label else { return }
+        NetworkManager.shared.putRequest(url: .label, updateID:  label.labelId, object: label, type: Label.self) { NSDictionary in
+            print(NSDictionary)
+            NotificationCenter.default.post(name: .labelDidChange, object: nil)
+        }
     }
     
     @IBAction func closeButtonDidTouch(_ sender: Any) {

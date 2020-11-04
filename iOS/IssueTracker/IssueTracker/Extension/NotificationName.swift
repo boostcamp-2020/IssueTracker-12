@@ -7,6 +7,6 @@
 
 import Foundation
 extension Notification.Name {
-    static let LabelDidChange = Notification.Name("LabelDidChange")
+    static let labelDidChange = Notification.Name("labelDidChange")
     static let milestoneDidChange = Notification.Name("milestoneDidChange")
 }

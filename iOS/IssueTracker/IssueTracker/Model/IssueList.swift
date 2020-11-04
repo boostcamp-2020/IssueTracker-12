@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct IssueList {
+struct IssueList : Codable {
     let issueList: [Issue]
     
     enum CodingKeys: String, CodingKey {

@@ -17,17 +17,27 @@ class LabelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        NetworkManager.shared.getRequest(url: .label, type: LabelArray.self) { result in
-            guard let labelArray = result else { return }
-            self.labels = labelArray.labelArray
-            self.labelCollectionView.reloadData()
-            // notificationCenter로 리로드를 하자
-        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadLabels()
     }
     
     private func configure() {
         labelCollectionView.delegate = self
         labelCollectionView.dataSource = self
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadLabels), name: .labelDidChange, object: nil)
+    }
+    
+    @objc func reloadLabels() {
+        DispatchQueue.main.async {
+            NetworkManager.shared.getRequest(url: .label, type: LabelArray.self) { result in
+                guard let labelArray = result else { return }
+                self.labels = labelArray.labelArray
+                self.labelCollectionView.reloadData()
+            }
+        }
     }
     
     @IBAction func addButtonDidTouch(_ sender: Any) {
@@ -60,7 +70,7 @@ extension LabelViewController: UICollectionViewDelegate, UICollectionViewDataSou
         }
         cell.delegate = self
         cell.initLabelCell(label: labels[indexPath.row])
-
+        
         return cell
     }
 }
@@ -78,10 +88,10 @@ extension LabelViewController: SwipeCollectionViewCellDelegate {
     func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { (action, indexPath) in
-            
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { (_, indexPath) in
             NetworkManager.shared.deleteRequest(url: .label, deleteID: self.labels[indexPath.row].labelId) { nsDictionary in
                 print(nsDictionary)
+                NotificationCenter.default.post(name: .labelDidChange, object: nil)
             }
             
         }
@@ -89,5 +99,3 @@ extension LabelViewController: SwipeCollectionViewCellDelegate {
         return [deleteAction]
     }
 }
-
-
