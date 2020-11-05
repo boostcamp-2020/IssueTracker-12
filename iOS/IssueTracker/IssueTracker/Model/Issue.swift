@@ -7,7 +7,13 @@
 
 import Foundation
 
+enum IssueOpen: Int {
+    case open = 1
+    case closed = 0
+}
+
 struct Issue: Codable, Hashable {
+    
     let issueId: Int
     var title: String
     var milestoneId: Int?
@@ -21,21 +27,21 @@ struct Issue: Codable, Hashable {
     var labels: [Label]
     var assignee: [User]
     
-//    init(issueId: Int, title: String, milestoneId: Int?, milestoneTitle: String?, writeTime: String, isOpen: Int,
-//         writerId: Int, writer: String, isAssigned: Int, isMentioned: Int, labels: [Label], assignee: [User]) {
-//        self.issueId = issueId
-//        self.title = title
-//        self.milestoneId = milestoneId
-//        self.milestoneTitle = milestoneTitle
-//        self.writeTime = writeTime
-//        self.isOpen = isOpen
-//        self.writerId = writerId
-//        self.writer = writer
-//        self.isAssigned = isAssigned
-//        self.isMentioned = isMentioned
-//        self.labels = labels
-//        self.assignee = assignee
-//    }
+    init(issueId: Int, title: String, milestoneId: Int?, milestoneTitle: String?, writeTime: String, isOpen: Int,
+         writerId: Int, writer: String, isAssigned: Int, isMentioned: Int, labels: [Label], assignee: [User]) {
+        self.issueId = issueId
+        self.title = title
+        self.milestoneId = milestoneId
+        self.milestoneTitle = milestoneTitle
+        self.writeTime = writeTime
+        self.isOpen = isOpen
+        self.writerId = writerId
+        self.writer = writer
+        self.isAssigned = isAssigned
+        self.isMentioned = isMentioned
+        self.labels = labels
+        self.assignee = assignee
+    }
     
     enum CodingKeys: String, CodingKey {
         case issueId = "issue_id"
