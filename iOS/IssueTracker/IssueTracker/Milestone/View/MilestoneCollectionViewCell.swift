@@ -11,8 +11,8 @@ import SwipeCellKit
 class MilestoneCollectionViewCell: SwipeCollectionViewCell {
     
     @IBOutlet weak var titleLabel: PaddedLabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var openLabel: UILabel!
     @IBOutlet weak var closedLabel: UILabel!
@@ -20,5 +20,13 @@ class MilestoneCollectionViewCell: SwipeCollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func initMilestoneCell(milestone: Milestone) {
+        DispatchQueue.main.async { [weak self] in
+            self?.titleLabel.text = milestone.title
+            self?.dueDateLabel.text = milestone.dueDate
+            self?.contentLabel.text = milestone.content
+        }
     }
 }
