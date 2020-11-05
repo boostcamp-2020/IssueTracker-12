@@ -6,7 +6,7 @@ const App = () => {
   const clientSecret = process.env.CLIENT_SECRET
 
   const getUserInfo = async (code) => {
-    const apiurl = "http://localhost:8080/api/oAuth"
+    const apiurl = "http://localhost:8080/api/auth/oauth"
     try{
       const result = await axios.get(
         `${apiurl}?code=${code}&client_id=${clientId}&client_secret=${clientSecret}`
