@@ -79,7 +79,7 @@ extension IssueListViewController: SwipeCollectionViewCellDelegate {
 extension IssueListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return issues.count
+        return 10 // issues.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -94,7 +94,7 @@ extension IssueListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.delegate = self
-        cell.initIssueCell(issue: issues[indexPath.row])
+//        cell.initIssueCell(issue: issues[indexPath.row])
         
         return cell
     }

@@ -18,9 +18,9 @@ struct Issue: Codable, Hashable {
     let writer: String
     let labels: [Label]
     
-    init(title: String, milestoneId: Int?, milestoneTitle: String?, writeTime: String, isOpen: Int,
+    init(issueId: Int, title: String, milestoneId: Int?, milestoneTitle: String?, writeTime: String, isOpen: Int,
          writerId: Int, writer: String, labels: [Label]) {
-        self.issueId = -1
+        self.issueId = issueId
         self.title = title
         self.milestoneId = milestoneId
         self.milestoneTitle = milestoneTitle
