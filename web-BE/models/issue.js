@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 const connection = require('../config/db_connection');
 const sql = require('../config/query');
+const assigneeModel = require('./assignee');
 const issueLabelModel = require('./issue_label');
 
 const issueModel = {
@@ -28,7 +29,14 @@ const issueModel = {
       const labelsOfIssue = await Promise.all(
         issueArr.map((issue) => issueLabelModel.select(issue.issue_id)),
       );
-      const issueWithLabels = issueArr.map((issue, i) => ({ ...issue, labels: labelsOfIssue[i] }));
+      const assigneeOfIssue = await Promise.all(
+        issueArr.map((issue) => assigneeModel.select(issue.issue_id)),
+      );
+      const issueWithLabels = issueArr.map((issue, i) => ({
+        ...issue,
+        labels: labelsOfIssue[i],
+        assignee: assigneeOfIssue[i]
+      }));
       return issueWithLabels;
     } catch (err) {
       console.error(err);
