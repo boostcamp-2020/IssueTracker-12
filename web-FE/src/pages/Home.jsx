@@ -5,6 +5,11 @@ const App = () => {
   const clientId = process.env.CLIENT_ID
   const clientSecret = process.env.CLIENT_SECRET
 
+  const saveUser = async ({username, social})=>{
+    const apiurl = "http://localhost:8080/api/auth"
+    const { insertUserId } = await axios.post( apiurl, { username, social } )
+  }
+
   const getUserInfo = async (code) => {
     const apiurl = "http://localhost:8080/api/auth/oauth"
     try{
