@@ -12,24 +12,29 @@ const App = () => {
         `${apiurl}?code=${code}&client_id=${clientId}&client_secret=${clientSecret}`
         );
       const {userInfo, isExistUser} = result.data
-      console.log(userInfo, isExistUser)
+      return {userInfo, isExistUser}
     } catch(error){
       console.error(error)
     }
   };
 
   const linkTo = async () => {
-    window.location.href =
-      `https://github.com/login/oauth/authorize?client_id=${clientId}`;
+    window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}`;
   };
 
-  useEffect(() => {
+  useEffect( async () => {
     const reg = /.code=(.*)/
     if(reg.test(window.location)){
       const code = reg.exec(window.location)[1]
-      localStorage.setItem("test", code);
-      getUserInfo(code)
+      const {userInfo, isExistUser} = await getUserInfo(code)
+      if(isExistUser){
+        alert('login되었습니다')
+      }else{
+        await saveUser(userInfo)
+        alert('회원가입되었습니다')
+      }
     }
+    
   });
 
   return <button onClick={linkTo}>GITHUB</button>;
