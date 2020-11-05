@@ -2,6 +2,12 @@ const authModel = require('../../../models/auth');
 const axios = require('axios');
 
 const authController = {
+  addUser: async (req,res)=>{
+    const { username, social } = req.body
+    const insertUserId = await authModel.insert(username,social)
+    res.status(200).json({ insertUserId });
+  },
+
   checkUser: async ({username, social, url}) => {
   // checkUser: async (req, res) => {
   //   const { social, username } = req.params;
