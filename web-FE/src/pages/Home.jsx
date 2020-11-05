@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { linkTo, getUserInfo, saveUser } from '../api/auth';
+import { linkToGetCode, getUserInfo, saveUser } from '../api/auth';
 
 const App = () => {
   useEffect( async () => {
@@ -18,7 +18,7 @@ const App = () => {
     
   });
 
-  return <button onClick={linkTo}>GITHUB</button>;
+  return <button onClick={linkToGetCode}>GITHUB</button>;
 };
 
 

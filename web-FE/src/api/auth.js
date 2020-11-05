@@ -20,6 +20,6 @@ export const getUserInfo = async (code) => {
   }
 };
 
-export const linkTo = async () => {
+export const linkToGetCode = async () => {
   window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}`;
 };
