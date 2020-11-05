@@ -24,11 +24,7 @@ const issueController = {
     try {
       const {user_id: userId} = req.user;
       const issueArr = await issueModel.select(userId);
-<<<<<<< HEAD
-      res.status(200).json(issueArr);
-=======
       res.status(200).json({issueArr});
->>>>>>> web-BE
     } catch (error) {
       next(error);
     }

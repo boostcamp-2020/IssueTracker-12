@@ -1,6 +1,5 @@
 const connection = require('../config/db_connection');
 const sql = require('../config/query');
-const jsonToArr = require('../util/jsonToArr');
 
 const labelModel = {
   insert: async (paramArr) => {
