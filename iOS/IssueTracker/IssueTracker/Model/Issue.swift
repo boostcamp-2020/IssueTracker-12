@@ -9,27 +9,33 @@ import Foundation
 
 struct Issue: Codable, Hashable {
     let issueId: Int
-    let title: String
-    let milestoneId: Int?
-    let milestoneTitle: String?
-    let writeTime: String
-    let isOpen: Int
-    let writerId: Int
-    let writer: String
-    let labels: [Label]
+    var title: String
+    var milestoneId: Int?
+    var milestoneTitle: String?
+    var writeTime: String
+    var isOpen: Int
+    var writerId: Int
+    var writer: String
+    var isAssigned: Int
+    var isMentioned: Int
+    var labels: [Label]
+    var assignee: [User]
     
-    init(issueId: Int, title: String, milestoneId: Int?, milestoneTitle: String?, writeTime: String, isOpen: Int,
-         writerId: Int, writer: String, labels: [Label]) {
-        self.issueId = issueId
-        self.title = title
-        self.milestoneId = milestoneId
-        self.milestoneTitle = milestoneTitle
-        self.writeTime = writeTime
-        self.isOpen = isOpen
-        self.writerId = writerId
-        self.writer = writer
-        self.labels = labels
-    }
+//    init(issueId: Int, title: String, milestoneId: Int?, milestoneTitle: String?, writeTime: String, isOpen: Int,
+//         writerId: Int, writer: String, isAssigned: Int, isMentioned: Int, labels: [Label], assignee: [User]) {
+//        self.issueId = issueId
+//        self.title = title
+//        self.milestoneId = milestoneId
+//        self.milestoneTitle = milestoneTitle
+//        self.writeTime = writeTime
+//        self.isOpen = isOpen
+//        self.writerId = writerId
+//        self.writer = writer
+//        self.isAssigned = isAssigned
+//        self.isMentioned = isMentioned
+//        self.labels = labels
+//        self.assignee = assignee
+//    }
     
     enum CodingKeys: String, CodingKey {
         case issueId = "issue_id"
@@ -40,14 +46,17 @@ struct Issue: Codable, Hashable {
         case isOpen = "is_open"
         case writerId = "writer_id"
         case writer
+        case isAssigned = "is_assigned"
+        case isMentioned = "is_mentioned"
         case labels
+        case assignee
     }
 }
 
 struct IssueArray: Codable, Hashable {
     let issueArray: [Issue]
     
-//    enum CodingKeys: String, CodingKey {
-//        case issueArray
-//    }
+    enum CodingKeys: String, CodingKey {
+        case issueArray = "issueArr"
+    }
 }

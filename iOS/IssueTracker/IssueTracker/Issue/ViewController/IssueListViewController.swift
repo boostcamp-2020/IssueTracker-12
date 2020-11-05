@@ -39,10 +39,10 @@ class IssueListViewController: UIViewController {
     @objc func reloadIssues() {
         
         DispatchQueue.main.async {
-            NetworkManager.shared.getRequest(url: .issue, type: [Issue].self) { result in
+            NetworkManager.shared.getRequest(url: .issue, type: IssueArray.self) { result in
                 guard let issueArray = result else { return }
-                self.issues = issueArray//.issueArray
-//                self.issues.append(issue)
+                self.issues = issueArray.issueArray
+                print(self.issues)
                 self.issueListCollectionView.reloadData()
             }
         }
@@ -79,7 +79,7 @@ extension IssueListViewController: SwipeCollectionViewCellDelegate {
 extension IssueListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10 // issues.count
+        return issues.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -94,7 +94,7 @@ extension IssueListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.delegate = self
-//        cell.initIssueCell(issue: issues[indexPath.row])
+        cell.initIssueCell(issue: issues[indexPath.row])
         
         return cell
     }

@@ -20,7 +20,7 @@ class LabelCollectionViewCell: SwipeCollectionViewCell {
     
     func initLabelCell(label: Label) {
         DispatchQueue.main.async { [weak self] in
-            self?.nameLabel.text = label.name
+            self?.nameLabel.text = label.labelName
             self?.nameLabel.backgroundColor = UIColor(hex: label.color)
             self?.descriptionLabel.text = label.description
         }
