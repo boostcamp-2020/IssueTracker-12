@@ -8,25 +8,46 @@
 import Foundation
 
 struct Issue: Codable, Hashable {
-    let issueId: String
-    let writer: String
+    let issueId: Int
     let title: String
-    let milestone: Milestone
-    let label: Label
+    let milestoneId: Int?
+    let milestoneTitle: String?
     let writeTime: String
-    let isOpened: Bool
-    let isAssigned: Bool
-    let isMentioned: Bool
+    let isOpen: Int
+    let writerId: Int
+    let writer: String
+    let labels: [Label]
+    
+    init(title: String, milestoneId: Int?, milestoneTitle: String?, writeTime: String, isOpen: Int,
+         writerId: Int, writer: String, labels: [Label]) {
+        self.issueId = -1
+        self.title = title
+        self.milestoneId = milestoneId
+        self.milestoneTitle = milestoneTitle
+        self.writeTime = writeTime
+        self.isOpen = isOpen
+        self.writerId = writerId
+        self.writer = writer
+        self.labels = labels
+    }
     
     enum CodingKeys: String, CodingKey {
         case issueId = "issue_id"
-        case writer
         case title
-        case milestone
-        case label
+        case milestoneId = "milestone_id"
+        case milestoneTitle = "milestone_title"
         case writeTime = "write_time"
-        case isOpened = "is_opened"
-        case isAssigned = "is_assigned"
-        case isMentioned = "is_mentioned"
+        case isOpen = "is_open"
+        case writerId = "writer_id"
+        case writer
+        case labels
     }
+}
+
+struct IssueArray: Codable, Hashable {
+    let issueArray: [Issue]
+    
+//    enum CodingKeys: String, CodingKey {
+//        case issueArray
+//    }
 }

@@ -25,5 +25,4 @@ class LabelCollectionViewCell: SwipeCollectionViewCell {
             self?.descriptionLabel.text = label.description
         }
     }
-    
 }

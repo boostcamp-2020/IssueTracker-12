@@ -31,6 +31,15 @@ class IssueListCollectionViewCell: SwipeCollectionViewCell {
         
     }
     
+    func initIssueCell(issue: Issue) {
+        print(issue)
+//        DispatchQueue.main.async { [weak self] in
+//            self?.nameLabel.text = label.name
+//            self?.nameLabel.backgroundColor = UIColor(hex: label.color)
+//            self?.descriptionLabel.text = label.description
+//        }
+    }
+    
     private func openLabelConfigure() {
         
         // * TO-DO :

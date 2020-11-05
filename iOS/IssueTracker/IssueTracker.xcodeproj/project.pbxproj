@@ -184,13 +184,13 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
-		46E668D1254854DE00A41CC0 /* IssueList */ = {
+		46E668D1254854DE00A41CC0 /* Issue */ = {
 			isa = PBXGroup;
 			children = (
 				46ED2BA62546A39C004B6D50 /* View */,
 				46ED2BA72546A3A4004B6D50 /* ViewController */,
 			);
-			path = IssueList;
+			path = Issue;
 			sourceTree = "<group>";
 		};
 		46ED2B7C25469876004B6D50 = {
@@ -222,7 +222,7 @@
 				A97882BD254FE183001633FF /* Login */,
 				46FC2CBC254A7460004E9288 /* Label */,
 				4616CDE325496FD400421368 /* Milestone */,
-				46E668D1254854DE00A41CC0 /* IssueList */,
+				46E668D1254854DE00A41CC0 /* Issue */,
 				46E668CE254854AD00A41CC0 /* CustomView */,
 				46ED2BC02546ADD1004B6D50 /* Extension */,
 				46ED2BA52546A323004B6D50 /* Model */,

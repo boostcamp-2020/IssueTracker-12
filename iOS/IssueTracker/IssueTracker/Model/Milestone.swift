@@ -20,7 +20,6 @@ struct Milestone: Codable, Hashable {
         self.content = content
     }
     
-    
     enum CodingKeys: String, CodingKey {
         case milestoneId = "milestone_id"
         case title
