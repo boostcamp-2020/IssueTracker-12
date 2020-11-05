@@ -22,9 +22,9 @@ const issueModel = {
       throw createError(500);
     }
   },
-  select: async () => {
+  select: async (userId) => {
     try {
-      const [issueArr] = await connection.query(sql.selectIssue);
+      const [issueArr] = await connection.query(sql.selectIssue, [userId, userId]);
       const labelsOfIssue = await Promise.all(
         issueArr.map((issue) => issueLabelModel.select(issue.issue_id)),
       );
