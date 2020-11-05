@@ -1,22 +1,23 @@
 const labelModel = require('../../../models/label');
 
 const labelController = {
-  create: (req, res) => {
-    const { name, color } = req.body;
-    labelModel.insert();
-    res.json({ message: 'create a label successfully' });
+  create: async (req, res) => {
+    const { name, description, color } = req.body;
+    const insertId = await labelModel.insert([name, description, color]);
+    res.status(200).json({ insertId });
   },
   read: async (req, res) => {
     const labelArr = await labelModel.select();
-    res.json({ labelArray: labelArr });
+    res.status(200).json({ labelArray: labelArr });
   },
   update: (req, res) => {
-    labelModel.update(req.body);
-    res.json({ message: 'update the label successfully' });
+    const { name, description, color } = req.body;
+    labelModel.update([name, description, color, parseInt(req.params.labelid)]);
+    res.status(200).json({ message: 'update the label successfully' });
   },
   delete: (req, res) => {
-    // TODO : 협의필 : labelid 변수명을 쿼리로 받는 것으로 우선 가정하겠습니다.
-    labelModel.delete(parseInt(req.query.labelid));
+    labelModel.delete(req.params.labelid);
+    res.status(200).json({ message: 'delete the label successfully' });
   },
 };
 
