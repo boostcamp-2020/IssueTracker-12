@@ -34,7 +34,7 @@ class LabelEditViewController: UIViewController {
         } else {
             self.label = label
             DispatchQueue.main.async { [weak self] in
-                self?.nameTextField.text = label?.name
+                self?.nameTextField.text = label?.labelName
                 self?.descriptionTextField.text = label?.description
                 self?.setLabelColor(color: UIColor(hex: label?.color ?? "#000000"))
             }
@@ -71,14 +71,14 @@ class LabelEditViewController: UIViewController {
     }
     
     @IBAction func saveButtonDidTouch(_ sender: Any) {
-        guard let name = nameTextField.text,
+        guard let labelName = nameTextField.text,
               let description = descriptionTextField.text,
               let color = colorTextField.text else { return }
         
         if isNew {
-            newLabelSave(label: Label(name: name, description: description, color: color))
+            newLabelSave(label: Label(labelName: labelName, description: description, color: color))
         } else {
-            label?.name = name
+            label?.labelName = labelName
             label?.description = description
             label?.color = color
             if let label = label {

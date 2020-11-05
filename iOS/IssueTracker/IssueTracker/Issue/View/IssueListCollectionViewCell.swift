@@ -20,24 +20,38 @@ class IssueListCollectionViewCell: SwipeCollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.translatesAutoresizingMaskIntoConstraints = false
-        
-        configure()
     }
     
-    func configure() {
-        
-        openLabelConfigure()
-        labelsConfigure()
-        
+    func initIssueCell(issue: Issue) {
+
+        DispatchQueue.main.async { [weak self] in
+            self?.titleLabel.text = issue.title
+            self?.openLabelConfigure(isOpen: issue.isOpen)
+            self?.labelsConfigure(labels: issue.labels)
+            if let milestone = issue.milestoneTitle {
+                self?.milestoneLabel.text = milestone
+            } else {
+                self?.milestoneLabel.alpha = 0
+            }
+        }
     }
     
-    private func openLabelConfigure() {
+    private func openLabelConfigure(isOpen: Int) {
         
         // * TO-DO :
-        // - open, close 여부 인자로 받아 분기/변수 처리
         // - label 크기 따로 변수 선언
         // - 다른 화면에서도 사용할 수 있도록 Extension 빼기
-        guard let iconImage = UIImage(named: "openMark") else { return }
+        var imageName = "openMark"
+        var text = " Open"
+        var textColor = UIColor(named: "openIssueColor")
+        var backgroundColor = UIColor(named: "openIssue Background Color")
+        if isOpen == IssueOpen.closed.rawValue {
+            imageName = "closeMark"
+            text = " Closed"
+            textColor = UIColor(named: "closeIssueColor")
+            backgroundColor = UIColor(named: "closeIssue Background Color")
+        }
+        guard let iconImage = UIImage(named: imageName) else { return }
         guard let issueFont = openLabel.font else { return }
         
         let attributedString = NSMutableAttributedString(string: "")
@@ -46,20 +60,19 @@ class IssueListCollectionViewCell: SwipeCollectionViewCell {
         
         imageAttachment.bounds = CGRect(x: 0, y: issueFont.descender, width: 15, height: 15)
         attributedString.append(NSAttributedString(attachment: imageAttachment))
-        attributedString.append(NSAttributedString(string: " Open"))
+        attributedString.append(NSAttributedString(string: text))
         openLabel.attributedText = attributedString
+        openLabel.textColor = textColor
+        openLabel.backgroundColor = backgroundColor
     }
     
-    private func labelsConfigure() {
-        
-        // - TEST
-        let labels = ["ios", "test", "web", "dhdhdhdh", "dkkdslk", "fjk", "dkdkfjdl", "dlskjfkel"]
+    private func labelsConfigure(labels: [Label]) {
         
         var xPosition: CGFloat = 0
         labels.forEach { label in
             let newLabel = PaddedLabel()
-            newLabel.text = label
-            newLabel.backgroundColor = UIColor.green
+            newLabel.text = label.labelName
+            newLabel.backgroundColor = UIColor(hex: label.color)
             newLabel.textAlignment = .center
             newLabel.paddingWidth = 14
             newLabel.paddingHeight = 10

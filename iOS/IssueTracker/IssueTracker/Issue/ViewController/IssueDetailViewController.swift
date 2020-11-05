@@ -8,9 +8,21 @@
 import UIKit
 import FloatingPanel
 
+protocol SendIssueDataDelegate {
+    
+    func sendIssueData(issue: Issue)
+}
+
 class IssueDetailViewController: UIViewController, FloatingPanelControllerDelegate {
     
+    @IBOutlet weak var writerLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var openLabel: PaddedLabel!
+    @IBOutlet weak var issueIDLabel: UILabel!
+    
     @IBOutlet weak var commentTableView: UITableView!
+    
+    private var issue: Issue?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +44,17 @@ class IssueDetailViewController: UIViewController, FloatingPanelControllerDelega
         commentTableView.dataSource = self
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonDidTouch))
         
+        setIssueData()
+        
+    }
+    
+    private func setIssueData() {
+        
+        if let issue = issue {
+            writerLabel.text = issue.writer
+            titleLabel.text = issue.title
+            issueIDLabel.text = "#\(issue.issueId)"
+        }
     }
     
     @objc func editButtonDidTouch() {
@@ -64,4 +87,15 @@ extension IssueDetailViewController: UITableViewDataSource {
 
 extension IssueDetailViewController: UITableViewDelegate {
     
+}
+
+extension IssueDetailViewController: SendIssueDataDelegate {
+    
+    func sendIssueData(issue: Issue) {
+        
+        self.issue = issue
+//        writerLabel.text = issue.writer
+//        titleLabel.text = issue.title
+//        issueIDLabel.text = "#\(issue.issueId)"
+    }
 }

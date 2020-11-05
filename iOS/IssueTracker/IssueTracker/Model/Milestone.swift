@@ -32,6 +32,6 @@ struct MilestoneArray: Codable, Hashable {
     let milestoneArray: [Milestone]
     
     enum CodingKeys: String, CodingKey {
-        case milestoneArray = "MilestoneArray" //대소문자 결정되면 변경
+        case milestoneArray //대소문자 결정되면 변경
     }
 }

@@ -13,10 +13,18 @@ class IssueListViewController: UIViewController {
     @IBOutlet weak var issueListSearchBar: UISearchBar!
     @IBOutlet weak var issueListCollectionView: UICollectionView!
     
+    private var issues = [Issue]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
         
+        configure()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        reloadIssues()
     }
     
     func configure() {
@@ -24,6 +32,19 @@ class IssueListViewController: UIViewController {
         issueListCollectionView.dataSource = self
         let cellNibName = UINib(nibName: IssueListCollectionViewCell.reuseIdentifier, bundle: nil)
         self.issueListCollectionView.register(cellNibName, forCellWithReuseIdentifier: IssueListCollectionViewCell.reuseIdentifier)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadIssues), name: .issueDidChange, object: nil)
+    }
+    
+    @objc func reloadIssues() {
+        
+        DispatchQueue.main.async {
+            NetworkManager.shared.getRequest(url: .issue, type: IssueArray.self) { result in
+                guard let issueArray = result else { return }
+                self.issues = issueArray.issueArray
+                self.issueListCollectionView.reloadData()
+            }
+        }
     }
     
     @IBAction func newIssueButtonDidTouch(_ sender: Any) {
@@ -57,14 +78,14 @@ extension IssueListViewController: SwipeCollectionViewCellDelegate {
 extension IssueListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return issues.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let detailVC = self.storyboard?.instantiateViewController(identifier: IssueDetailViewController.reuseIdentifier) as? IssueDetailViewController {
+            detailVC.sendIssueData(issue: issues[indexPath.row])
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -72,7 +93,8 @@ extension IssueListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.delegate = self
-        //To Do : cell 설정
+        cell.initIssueCell(issue: issues[indexPath.row])
+        
         return cell
     }
 }

@@ -7,7 +7,9 @@
 
 import Foundation
 
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdpdGh1YnRlc3QiLCJzb2NpYWwiOiJnaXRodWIiLCJpYXQiOjE2MDQ1NDAwMjN9.6-w6o538wNQ6OLxiB5lqtO-gaSwpQBdgBRdS-YkFgG4
 enum URLs: String {
+    case issue = "http://101.101.217.148:3000/api/issue"
     case label = "http://101.101.217.148:3000/api/label"
     case milestone = "http://101.101.217.148:3000/api/milestone"
 }

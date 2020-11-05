@@ -52,6 +52,7 @@
 		A97882C0254FE19F001633FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882BF254FE19F001633FF /* LoginViewController.swift */; };
 		A97882C7254FED68001633FF /* GithubConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882C6254FED68001633FF /* GithubConstants.swift */; };
 		A97882CB254FEFA6001633FF /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882CA254FEFA6001633FF /* LoginManager.swift */; };
+		A9FE8AB42553D46600A8002F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE8AB32553D46600A8002F /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		A97882C3254FE2D4001633FF /* IssueTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IssueTracker.entitlements; sourceTree = "<group>"; };
 		A97882C6254FED68001633FF /* GithubConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubConstants.swift; sourceTree = "<group>"; };
 		A97882CA254FEFA6001633FF /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		A9FE8AB32553D46600A8002F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DEE8BF2B28874A5779C504EA /* Pods-IssueTrackerNetworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTrackerNetworkTests.debug.xcconfig"; path = "Target Support Files/Pods-IssueTrackerNetworkTests/Pods-IssueTrackerNetworkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E0821587E5F839215D79D4EE /* Pods-IssueTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTracker.release.xcconfig"; path = "Target Support Files/Pods-IssueTracker/Pods-IssueTracker.release.xcconfig"; sourceTree = "<group>"; };
 		E8D404467600466E044014B3 /* libPods-IssueTrackerNetworkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IssueTrackerNetworkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,13 +193,13 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
-		46E668D1254854DE00A41CC0 /* IssueList */ = {
+		46E668D1254854DE00A41CC0 /* Issue */ = {
 			isa = PBXGroup;
 			children = (
 				46ED2BA62546A39C004B6D50 /* View */,
 				46ED2BA72546A3A4004B6D50 /* ViewController */,
 			);
-			path = IssueList;
+			path = Issue;
 			sourceTree = "<group>";
 		};
 		46ED2B7C25469876004B6D50 = {
@@ -229,7 +231,7 @@
 				A97882BD254FE183001633FF /* Login */,
 				46FC2CBC254A7460004E9288 /* Label */,
 				4616CDE325496FD400421368 /* Milestone */,
-				46E668D1254854DE00A41CC0 /* IssueList */,
+				46E668D1254854DE00A41CC0 /* Issue */,
 				46E668CE254854AD00A41CC0 /* CustomView */,
 				46ED2BC02546ADD1004B6D50 /* Extension */,
 				46ED2BA52546A323004B6D50 /* Model */,
@@ -250,6 +252,7 @@
 				4616CDDC25495A1D00421368 /* IssueList.swift */,
 				4616CDD62549583600421368 /* Milestone.swift */,
 				4616CDD9254958B100421368 /* Label.swift */,
+				A9FE8AB32553D46600A8002F /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				A927391525490BBD00F22997 /* IssueDetailViewController.swift in Sources */,
 				A97882C0254FE19F001633FF /* LoginViewController.swift in Sources */,
 				4616CDDD25495A1D00421368 /* IssueList.swift in Sources */,
+				A9FE8AB42553D46600A8002F /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
