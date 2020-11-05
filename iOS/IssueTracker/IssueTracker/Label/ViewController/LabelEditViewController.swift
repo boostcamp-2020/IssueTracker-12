@@ -8,50 +8,103 @@
 import UIKit
 
 class LabelEditViewController: UIViewController {
-    let colorPicker = UIColorPickerViewController()
     
-    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var colorTextField: UITextField!
-    @IBOutlet weak var colorPickerButton: UIButton!
+    @IBOutlet weak var labelPreviewLabel: PaddedLabel!
+    @IBOutlet weak var randomColorButton: UIButton!
+    
+    private var isNew: Bool = true
+    private var label: Label?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        colorPicker.delegate = self
+        colorTextField.addTarget(self, action: #selector(setColorFromTextField), for: .editingChanged)
     }
-
-    @IBAction func colorPickerButtonDidTouch(_ sender: Any) {
-        colorPicker.selectedColor = colorPickerButton.backgroundColor ?? UIColor.systemTeal
-        colorPicker.supportsAlpha = false
-        self.present(colorPicker, animated: true, completion: nil)
+    
+    func initEditView(isNew: Bool, label: Label?) {
+        self.isNew = isNew
+        if isNew {
+            DispatchQueue.main.async { [weak self] in
+                self?.nameTextField.text = ""
+                self?.descriptionTextField.text = ""
+                self?.setLabelColor(color: nil)
+            }
+        } else {
+            self.label = label
+            DispatchQueue.main.async { [weak self] in
+                self?.nameTextField.text = label?.labelName
+                self?.descriptionTextField.text = label?.description
+                self?.setLabelColor(color: UIColor(hex: label?.color ?? "#000000"))
+            }
+        }
+    }
+    
+    @objc func setColorFromTextField() {
+        if let color = UIColor(hex: colorTextField.text ?? "") {
+            setLabelColor(color: color)
+        }
+    }
+    
+    private func setLabelColor(color: UIColor?) {
+        var labelColor: UIColor
+        
+        if let color = color {
+            labelColor = color
+        } else {
+            labelColor = UIColor.getRandomColor()
+        }
+        DispatchQueue.main.async { [weak self] in
+            self?.labelPreviewLabel.backgroundColor = labelColor
+            self?.randomColorButton.backgroundColor = labelColor
+            self?.colorTextField.text = labelColor.toHexString()
+        }
     }
     
     @IBAction func resetButtonDidTouch(_ sender: Any) {
-        titleTextField.text = ""
-        descriptionTextField.text = ""
-        colorTextField.text = ""
+        initEditView(isNew: isNew, label: self.label)
     }
-    @IBAction func randomColorButtonDidTouch(_ sender: Any) {
     
+    @IBAction func randomColorButtonDidTouch(_ sender: Any) {
+        setLabelColor(color: nil)
     }
+    
     @IBAction func saveButtonDidTouch(_ sender: Any) {
+        guard let labelName = nameTextField.text,
+              let description = descriptionTextField.text,
+              let color = colorTextField.text else { return }
+        
+        if isNew {
+            newLabelSave(label: Label(labelName: labelName, description: description, color: color))
+        } else {
+            label?.labelName = labelName
+            label?.description = description
+            label?.color = color
+            if let label = label {
+                editLabelSave(label: label)
+            }
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func newLabelSave(label: Label) {
+        //post
+        NetworkManager.shared.postRequest(url: .label, object: label, type: Label.self) { nsDictionary in
+            print(nsDictionary)
+            NotificationCenter.default.post(name: .labelDidChange, object: nil)
+        }
+    }
+    
+    private func editLabelSave(label: Label) {
+        //put
+        NetworkManager.shared.putRequest(url: .label, updateID: label.labelId, object: label, type: Label.self) { nsDictionary in
+            print(nsDictionary)
+            NotificationCenter.default.post(name: .labelDidChange, object: nil)
+        }
     }
     
     @IBAction func closeButtonDidTouch(_ sender: Any) {
         dismiss(animated: true)
-    }
-}
-
-extension LabelEditViewController: UIColorPickerViewControllerDelegate {
-    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
-        
-    }
-    
-    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-        DispatchQueue.main.async { [weak self] in
-            self?.colorTextField.text = viewController.selectedColor.toHexString()
-            self?.colorPickerButton.backgroundColor = viewController.selectedColor
-        }
-        viewController.dismiss(animated: true, completion: nil)
     }
 }

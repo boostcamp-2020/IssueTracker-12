@@ -3,10 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1848E6A0881BEDED232A12D2 /* libPods-IssueTrackerNetworkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D404467600466E044014B3 /* libPods-IssueTrackerNetworkTests.a */; };
+		461256572550FB0B001051D0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461256562550FB0B001051D0 /* NetworkManager.swift */; };
+		461256602550FF79001051D0 /* IssueTrackerNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612565F2550FF79001051D0 /* IssueTrackerNetworkTests.swift */; };
+		4612566925510086001051D0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461256562550FB0B001051D0 /* NetworkManager.swift */; };
+		461256AD2551318B001051D0 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461256AC2551318B001051D0 /* URLs.swift */; };
 		4616CDC72549491400421368 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616CDC62549491400421368 /* UIViewController+Extension.swift */; };
 		4616CDD32549573200421368 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616CDD22549573200421368 /* Issue.swift */; };
 		4616CDD72549583600421368 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616CDD62549583600421368 /* Milestone.swift */; };
@@ -14,6 +19,13 @@
 		4616CDDD25495A1D00421368 /* IssueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616CDDC25495A1D00421368 /* IssueList.swift */; };
 		4616CDE525496FFF00421368 /* MilestoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616CDE425496FFF00421368 /* MilestoneViewController.swift */; };
 		4616CDEB2549977D00421368 /* MilestoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616CDEA2549977D00421368 /* MilestoneCollectionViewCell.swift */; };
+		4626FFCD254FDF2B00BFE9C0 /* NewIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626FFCC254FDF2B00BFE9C0 /* NewIssueViewController.swift */; };
+		46323BD8254D5B3200C1AAD7 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46323BD7254D5B3200C1AAD7 /* String+Extension.swift */; };
+		464075362553BE090017B131 /* IssueFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464075352553BE090017B131 /* IssueFilterViewController.swift */; };
+		4640753A2553C63A0017B131 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464075392553C63A0017B131 /* FilterTableViewController.swift */; };
+		464075412553D3DB0017B131 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464075402553D3DB0017B131 /* FilterTableViewCell.swift */; };
+		464075442553D9010017B131 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461256AC2551318B001051D0 /* URLs.swift */; };
+		466411DE25526F4000BD2904 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466411DD25526F4000BD2904 /* NotificationName.swift */; };
 		46E668BA2547F64A00A41CC0 /* IssueListEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668B92547F64A00A41CC0 /* IssueListEditTableViewCell.swift */; };
 		46E668CC25482FF700A41CC0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668CB25482FF700A41CC0 /* UIView+Extension.swift */; };
 		46E668D32548557800A41CC0 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668D22548557800A41CC0 /* PaddedLabel.swift */; };
@@ -32,15 +44,34 @@
 		46FC2CC5254A789B004E9288 /* LabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC2CC4254A789B004E9288 /* LabelCollectionViewCell.swift */; };
 		46FC2CC8254A8DC8004E9288 /* LabelEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC2CC7254A8DC8004E9288 /* LabelEditViewController.swift */; };
 		46FC2CCB254A9366004E9288 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC2CCA254A9366004E9288 /* UIColor+Extension.swift */; };
+		7C15563123905849FE176461 /* libPods-IssueTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87564078A88A6523DBD05655 /* libPods-IssueTracker.a */; };
 		A927391525490BBD00F22997 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927391425490BBD00F22997 /* IssueDetailViewController.swift */; };
 		A927391825490BCB00F22997 /* IssueDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */; };
 		A927392125493B8100F22997 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927392025493B8100F22997 /* UITableViewCell+Extension.swift */; };
 		A927393F2549635D00F22997 /* IssueAttributeFloatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927393E2549635D00F22997 /* IssueAttributeFloatingViewController.swift */; };
-		E14AFB06879FC4E23BE9EFAD /* Pods_IssueTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE547134138C37BC8A239159 /* Pods_IssueTracker.framework */; };
+		A97882C0254FE19F001633FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882BF254FE19F001633FF /* LoginViewController.swift */; };
+		A97882C7254FED68001633FF /* GithubConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882C6254FED68001633FF /* GithubConstants.swift */; };
+		A97882CB254FEFA6001633FF /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882CA254FEFA6001633FF /* LoginManager.swift */; };
+		A9FE8AB42553D46600A8002F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE8AB32553D46600A8002F /* User.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		461256622550FF79001051D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46ED2B7D25469876004B6D50 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 46ED2B8425469876004B6D50;
+			remoteInfo = IssueTracker;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		26C590BDF65B6E42731A81FF /* Pods-IssueTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTracker.debug.xcconfig"; path = "Target Support Files/Pods-IssueTracker/Pods-IssueTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		461256562550FB0B001051D0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4612565D2550FF79001051D0 /* IssueTrackerNetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IssueTrackerNetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4612565F2550FF79001051D0 /* IssueTrackerNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTrackerNetworkTests.swift; sourceTree = "<group>"; };
+		461256612550FF79001051D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		461256AC2551318B001051D0 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		4616CDC62549491400421368 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		4616CDD22549573200421368 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		4616CDD62549583600421368 /* Milestone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
@@ -48,6 +79,12 @@
 		4616CDDC25495A1D00421368 /* IssueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueList.swift; sourceTree = "<group>"; };
 		4616CDE425496FFF00421368 /* MilestoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneViewController.swift; sourceTree = "<group>"; };
 		4616CDEA2549977D00421368 /* MilestoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCollectionViewCell.swift; sourceTree = "<group>"; };
+		4626FFCC254FDF2B00BFE9C0 /* NewIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssueViewController.swift; sourceTree = "<group>"; };
+		46323BD7254D5B3200C1AAD7 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		464075352553BE090017B131 /* IssueFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterViewController.swift; sourceTree = "<group>"; };
+		464075392553C63A0017B131 /* FilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
+		464075402553D3DB0017B131 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		466411DD25526F4000BD2904 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		46E668B92547F64A00A41CC0 /* IssueListEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListEditTableViewCell.swift; sourceTree = "<group>"; };
 		46E668CB25482FF700A41CC0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		46E668D22548557800A41CC0 /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
@@ -68,20 +105,36 @@
 		46FC2CC4254A789B004E9288 /* LabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewCell.swift; sourceTree = "<group>"; };
 		46FC2CC7254A8DC8004E9288 /* LabelEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelEditViewController.swift; sourceTree = "<group>"; };
 		46FC2CCA254A9366004E9288 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		87564078A88A6523DBD05655 /* libPods-IssueTracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IssueTracker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F508CC34BF33D72EC0D018A /* Pods-IssueTrackerNetworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTrackerNetworkTests.release.xcconfig"; path = "Target Support Files/Pods-IssueTrackerNetworkTests/Pods-IssueTrackerNetworkTests.release.xcconfig"; sourceTree = "<group>"; };
 		A927391425490BBD00F22997 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
 		A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A927392025493B8100F22997 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		A927393E2549635D00F22997 /* IssueAttributeFloatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAttributeFloatingViewController.swift; sourceTree = "<group>"; };
-		CE547134138C37BC8A239159 /* Pods_IssueTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IssueTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A97882BF254FE19F001633FF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A97882C3254FE2D4001633FF /* IssueTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IssueTracker.entitlements; sourceTree = "<group>"; };
+		A97882C6254FED68001633FF /* GithubConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubConstants.swift; sourceTree = "<group>"; };
+		A97882CA254FEFA6001633FF /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		A9FE8AB32553D46600A8002F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DEE8BF2B28874A5779C504EA /* Pods-IssueTrackerNetworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTrackerNetworkTests.debug.xcconfig"; path = "Target Support Files/Pods-IssueTrackerNetworkTests/Pods-IssueTrackerNetworkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E0821587E5F839215D79D4EE /* Pods-IssueTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTracker.release.xcconfig"; path = "Target Support Files/Pods-IssueTracker/Pods-IssueTracker.release.xcconfig"; sourceTree = "<group>"; };
+		E8D404467600466E044014B3 /* libPods-IssueTrackerNetworkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IssueTrackerNetworkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4612565A2550FF79001051D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1848E6A0881BEDED232A12D2 /* libPods-IssueTrackerNetworkTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46ED2B8225469876004B6D50 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E14AFB06879FC4E23BE9EFAD /* Pods_IssueTracker.framework in Frameworks */,
+				7C15563123905849FE176461 /* libPods-IssueTracker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,9 +144,19 @@
 		0262E07739186A1E127EC98E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CE547134138C37BC8A239159 /* Pods_IssueTracker.framework */,
+				87564078A88A6523DBD05655 /* libPods-IssueTracker.a */,
+				E8D404467600466E044014B3 /* libPods-IssueTrackerNetworkTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4612565E2550FF79001051D0 /* IssueTrackerNetworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				4612565F2550FF79001051D0 /* IssueTrackerNetworkTests.swift */,
+				461256612550FF79001051D0 /* Info.plist */,
+			);
+			path = IssueTrackerNetworkTests;
 			sourceTree = "<group>";
 		};
 		4616CDE325496FD400421368 /* Milestone */ = {
@@ -130,13 +193,13 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
-		46E668D1254854DE00A41CC0 /* IssueList */ = {
+		46E668D1254854DE00A41CC0 /* Issue */ = {
 			isa = PBXGroup;
 			children = (
 				46ED2BA62546A39C004B6D50 /* View */,
 				46ED2BA72546A3A4004B6D50 /* ViewController */,
 			);
-			path = IssueList;
+			path = Issue;
 			sourceTree = "<group>";
 		};
 		46ED2B7C25469876004B6D50 = {
@@ -144,6 +207,7 @@
 			children = (
 				46ED2B9E25469A94004B6D50 /* .swiftlint.yml */,
 				46ED2B8725469876004B6D50 /* IssueTracker */,
+				4612565E2550FF79001051D0 /* IssueTrackerNetworkTests */,
 				46ED2B8625469876004B6D50 /* Products */,
 				AEA996A021E92D0437245BBB /* Pods */,
 				0262E07739186A1E127EC98E /* Frameworks */,
@@ -154,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				46ED2B8525469876004B6D50 /* IssueTracker.app */,
+				4612565D2550FF79001051D0 /* IssueTrackerNetworkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,9 +226,12 @@
 		46ED2B8725469876004B6D50 /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
+				A97882C9254FEF97001633FF /* Network */,
+				A97882C3254FE2D4001633FF /* IssueTracker.entitlements */,
+				A97882BD254FE183001633FF /* Login */,
 				46FC2CBC254A7460004E9288 /* Label */,
 				4616CDE325496FD400421368 /* Milestone */,
-				46E668D1254854DE00A41CC0 /* IssueList */,
+				46E668D1254854DE00A41CC0 /* Issue */,
 				46E668CE254854AD00A41CC0 /* CustomView */,
 				46ED2BC02546ADD1004B6D50 /* Extension */,
 				46ED2BA52546A323004B6D50 /* Model */,
@@ -181,9 +249,10 @@
 			isa = PBXGroup;
 			children = (
 				4616CDD22549573200421368 /* Issue.swift */,
+				4616CDDC25495A1D00421368 /* IssueList.swift */,
 				4616CDD62549583600421368 /* Milestone.swift */,
 				4616CDD9254958B100421368 /* Label.swift */,
-				4616CDDC25495A1D00421368 /* IssueList.swift */,
+				A9FE8AB32553D46600A8002F /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -195,6 +264,7 @@
 				46ED2BB52546AA00004B6D50 /* IssueListCollectionViewCell.xib */,
 				A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */,
 				46E668B92547F64A00A41CC0 /* IssueListEditTableViewCell.swift */,
+				464075402553D3DB0017B131 /* FilterTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -206,6 +276,9 @@
 				46ED2BC62546B096004B6D50 /* IssueListEditViewController.swift */,
 				A927391425490BBD00F22997 /* IssueDetailViewController.swift */,
 				A927393E2549635D00F22997 /* IssueAttributeFloatingViewController.swift */,
+				4626FFCC254FDF2B00BFE9C0 /* NewIssueViewController.swift */,
+				464075352553BE090017B131 /* IssueFilterViewController.swift */,
+				464075392553C63A0017B131 /* FilterTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -217,6 +290,8 @@
 				A927392025493B8100F22997 /* UITableViewCell+Extension.swift */,
 				4616CDC62549491400421368 /* UIViewController+Extension.swift */,
 				46FC2CCA254A9366004E9288 /* UIColor+Extension.swift */,
+				46323BD7254D5B3200C1AAD7 /* String+Extension.swift */,
+				466411DD25526F4000BD2904 /* NotificationName.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -224,8 +299,8 @@
 		46FC2CBC254A7460004E9288 /* Label */ = {
 			isa = PBXGroup;
 			children = (
-				46FC2CC2254A77BA004E9288 /* ViewController */,
 				46FC2CC1254A77B2004E9288 /* View */,
+				46FC2CC2254A77BA004E9288 /* ViewController */,
 			);
 			path = Label;
 			sourceTree = "<group>";
@@ -247,11 +322,40 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		A97882BD254FE183001633FF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A97882BE254FE18C001633FF /* ViewController */,
+				A97882C6254FED68001633FF /* GithubConstants.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		A97882BE254FE18C001633FF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A97882BF254FE19F001633FF /* LoginViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A97882C9254FEF97001633FF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A97882CA254FEFA6001633FF /* LoginManager.swift */,
+				461256562550FB0B001051D0 /* NetworkManager.swift */,
+				461256AC2551318B001051D0 /* URLs.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		AEA996A021E92D0437245BBB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				26C590BDF65B6E42731A81FF /* Pods-IssueTracker.debug.xcconfig */,
 				E0821587E5F839215D79D4EE /* Pods-IssueTracker.release.xcconfig */,
+				DEE8BF2B28874A5779C504EA /* Pods-IssueTrackerNetworkTests.debug.xcconfig */,
+				9F508CC34BF33D72EC0D018A /* Pods-IssueTrackerNetworkTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -259,6 +363,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4612565C2550FF79001051D0 /* IssueTrackerNetworkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 461256642550FF79001051D0 /* Build configuration list for PBXNativeTarget "IssueTrackerNetworkTests" */;
+			buildPhases = (
+				3BE22EF6FD00589A8CBADA8B /* [CP] Check Pods Manifest.lock */,
+				461256592550FF79001051D0 /* Sources */,
+				4612565A2550FF79001051D0 /* Frameworks */,
+				4612565B2550FF79001051D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				461256632550FF79001051D0 /* PBXTargetDependency */,
+			);
+			name = IssueTrackerNetworkTests;
+			productName = IssueTrackerNetworkTests;
+			productReference = 4612565D2550FF79001051D0 /* IssueTrackerNetworkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		46ED2B8425469876004B6D50 /* IssueTracker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46ED2B9925469877004B6D50 /* Build configuration list for PBXNativeTarget "IssueTracker" */;
@@ -268,7 +391,6 @@
 				46ED2B8225469876004B6D50 /* Frameworks */,
 				46ED2B8325469876004B6D50 /* Resources */,
 				46ED2BA225469ABD004B6D50 /* SwiftLint */,
-				05D6916B9668AD4EBCC80465 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -288,6 +410,10 @@
 				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					4612565C2550FF79001051D0 = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = 46ED2B8425469876004B6D50;
+					};
 					46ED2B8425469876004B6D50 = {
 						CreatedOnToolsVersion = 12.0.1;
 					};
@@ -307,11 +433,19 @@
 			projectRoot = "";
 			targets = (
 				46ED2B8425469876004B6D50 /* IssueTracker */,
+				4612565C2550FF79001051D0 /* IssueTrackerNetworkTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4612565B2550FF79001051D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46ED2B8325469876004B6D50 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -327,23 +461,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		05D6916B9668AD4EBCC80465 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-IssueTracker/Pods-IssueTracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-IssueTracker/Pods-IssueTracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IssueTracker/Pods-IssueTracker-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0F5E5E953B5A6577E9281EB7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -360,6 +477,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-IssueTracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3BE22EF6FD00589A8CBADA8B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IssueTrackerNetworkTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -387,6 +526,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		461256592550FF79001051D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				464075442553D9010017B131 /* URLs.swift in Sources */,
+				4612566925510086001051D0 /* NetworkManager.swift in Sources */,
+				461256602550FF79001051D0 /* IssueTrackerNetworkTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46ED2B8125469876004B6D50 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -397,12 +546,20 @@
 				4616CDD32549573200421368 /* Issue.swift in Sources */,
 				46ED2BC72546B096004B6D50 /* IssueListEditViewController.swift in Sources */,
 				A927391825490BCB00F22997 /* IssueDetailTableViewCell.swift in Sources */,
+				A97882C7254FED68001633FF /* GithubConstants.swift in Sources */,
 				4616CDD72549583600421368 /* Milestone.swift in Sources */,
+				4626FFCD254FDF2B00BFE9C0 /* NewIssueViewController.swift in Sources */,
+				461256AD2551318B001051D0 /* URLs.swift in Sources */,
 				46FC2CC8254A8DC8004E9288 /* LabelEditViewController.swift in Sources */,
+				A97882CB254FEFA6001633FF /* LoginManager.swift in Sources */,
+				46323BD8254D5B3200C1AAD7 /* String+Extension.swift in Sources */,
+				4640753A2553C63A0017B131 /* FilterTableViewController.swift in Sources */,
+				461256572550FB0B001051D0 /* NetworkManager.swift in Sources */,
 				46FC2CB6254A58B4004E9288 /* MilestoneEditViewController.swift in Sources */,
 				46E668BA2547F64A00A41CC0 /* IssueListEditTableViewCell.swift in Sources */,
 				46FC2CC5254A789B004E9288 /* LabelCollectionViewCell.swift in Sources */,
 				4616CDDA254958B100421368 /* Label.swift in Sources */,
+				464075412553D3DB0017B131 /* FilterTableViewCell.swift in Sources */,
 				46ED2BB62546AA00004B6D50 /* IssueListCollectionViewCell.swift in Sources */,
 				46FC2CBF254A74EF004E9288 /* LabelViewController.swift in Sources */,
 				A927392125493B8100F22997 /* UITableViewCell+Extension.swift in Sources */,
@@ -410,15 +567,27 @@
 				4616CDE525496FFF00421368 /* MilestoneViewController.swift in Sources */,
 				46FC2CCB254A9366004E9288 /* UIColor+Extension.swift in Sources */,
 				A927393F2549635D00F22997 /* IssueAttributeFloatingViewController.swift in Sources */,
+				464075362553BE090017B131 /* IssueFilterViewController.swift in Sources */,
+				466411DE25526F4000BD2904 /* NotificationName.swift in Sources */,
 				46E668D32548557800A41CC0 /* PaddedLabel.swift in Sources */,
 				46ED2B8B25469876004B6D50 /* SceneDelegate.swift in Sources */,
 				4616CDEB2549977D00421368 /* MilestoneCollectionViewCell.swift in Sources */,
 				A927391525490BBD00F22997 /* IssueDetailViewController.swift in Sources */,
+				A97882C0254FE19F001633FF /* LoginViewController.swift in Sources */,
 				4616CDDD25495A1D00421368 /* IssueList.swift in Sources */,
+				A9FE8AB42553D46600A8002F /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		461256632550FF79001051D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 46ED2B8425469876004B6D50 /* IssueTracker */;
+			targetProxy = 461256622550FF79001051D0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		46ED2B8E25469876004B6D50 /* Main.storyboard */ = {
@@ -440,6 +609,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		461256652550FF79001051D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEE8BF2B28874A5779C504EA /* Pods-IssueTrackerNetworkTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				INFOPLIST_FILE = IssueTrackerNetworkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sungmin.IssueTrackerNetworkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IssueTracker.app/IssueTracker";
+			};
+			name = Debug;
+		};
+		461256662550FF79001051D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F508CC34BF33D72EC0D018A /* Pods-IssueTrackerNetworkTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				INFOPLIST_FILE = IssueTrackerNetworkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sungmin.IssueTrackerNetworkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IssueTracker.app/IssueTracker";
+			};
+			name = Release;
+		};
 		46ED2B9725469877004B6D50 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -562,6 +773,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = IssueTracker/IssueTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				INFOPLIST_FILE = IssueTracker/Info.plist;
@@ -582,6 +794,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = IssueTracker/IssueTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				INFOPLIST_FILE = IssueTracker/Info.plist;
@@ -599,6 +812,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		461256642550FF79001051D0 /* Build configuration list for PBXNativeTarget "IssueTrackerNetworkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				461256652550FF79001051D0 /* Debug */,
+				461256662550FF79001051D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		46ED2B8025469876004B6D50 /* Build configuration list for PBXProject "IssueTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
