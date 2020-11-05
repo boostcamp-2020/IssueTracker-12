@@ -22,7 +22,8 @@ const issueController = {
   },
   read: async (req, res, next) => {
     try {
-      const issueArr = await issueModel.select();
+      const {user_id: userId} = req.user;
+      const issueArr = await issueModel.select(userId);
       res.status(200).json(issueArr);
     } catch (error) {
       next(error);
