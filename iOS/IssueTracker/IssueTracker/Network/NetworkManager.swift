@@ -21,12 +21,8 @@ class NetworkManager {
         
         alamo.responseJSON { response in
             switch response.result {
-            case .success(let value) :
-                if let nsDictionary = value as? NSDictionary {
-                   print(nsDictionary)
-                }
-                guard let data = response.data else {return}
-                print(data)
+            case .success :
+                guard let data = response.data else { return }
                 let result = self.decodeJSON(data: data, type: type)
                 completion(result)
             case .failure(let error) :

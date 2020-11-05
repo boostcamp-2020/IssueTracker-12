@@ -42,7 +42,6 @@ class IssueListViewController: UIViewController {
             NetworkManager.shared.getRequest(url: .issue, type: IssueArray.self) { result in
                 guard let issueArray = result else { return }
                 self.issues = issueArray.issueArray
-                print(self.issues)
                 self.issueListCollectionView.reloadData()
             }
         }
@@ -84,9 +83,9 @@ extension IssueListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let detailVC = self.storyboard?.instantiateViewController(identifier: IssueDetailViewController.reuseIdentifier) as? IssueDetailViewController {
+            detailVC.sendIssueData(issue: issues[indexPath.row])
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
