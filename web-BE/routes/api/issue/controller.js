@@ -24,7 +24,11 @@ const issueController = {
     try {
       const {user_id: userId} = req.user;
       const issueArr = await issueModel.select(userId);
+<<<<<<< HEAD
       res.status(200).json(issueArr);
+=======
+      res.status(200).json({issueArr});
+>>>>>>> web-BE
     } catch (error) {
       next(error);
     }
@@ -107,7 +111,7 @@ const issueController = {
     const { issueId } = req.params;
     try {
       const assignee = await assigneeModel.select(issueId);
-      res.status(200).json(assignee);
+      res.status(200).json({ assgineeArr: assignee });
     } catch (error) {
       next(error);
     }

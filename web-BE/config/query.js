@@ -1,7 +1,7 @@
 module.exports = {
   // label
   insertLabel: 'INSERT INTO Label (name,description,color) VALUE(?,?,?);',
-  selectLabel: 'SELECT label_id, name, description, color FROM Label;',
+  selectLabel: 'SELECT label_id, name as label_name, description, color FROM Label;',
   updateLabel:
     'UPDATE Label SET name=?, description=?, color=? WHERE label_id=?;',
   deleteLabel: 'DELETE FROM Label WHERE label_id=?;',
@@ -31,7 +31,11 @@ module.exports = {
       User.user_id as writer_id,
       User.username as writer,
       ifnull(User_Assign.assign_count, 0) as is_assigned,
+<<<<<<< HEAD
       ifnull(User_Write.comment_count, 0) as is_menthioned
+=======
+      ifnull(User_Write.comment_count, 0) as is_mentioned
+>>>>>>> web-BE
     FROM Issue
       LEFT JOIN Milestone ON Milestone.milestone_id = Issue.milestone_id
       JOIN User ON Issue.writer_id = User.user_id
