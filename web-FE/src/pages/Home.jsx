@@ -11,8 +11,8 @@ const App = () => {
       const result = await axios.get(
         `${apiurl}?code=${code}&client_id=${clientId}&client_secret=${clientSecret}`
         );
-      const {userInfo} = result.data
-      console.log(userInfo)
+      const {userInfo, isExistUser} = result.data
+      console.log(userInfo, isExistUser)
     } catch(error){
       console.error(error)
     }
