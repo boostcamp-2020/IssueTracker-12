@@ -6,12 +6,12 @@
 //
 
 import XCTest
+@testable import IssueTracker
 
 class IssueTrackerNetworkTests: XCTestCase {
 
     func testNet() {
-        let net = NetworkManager()
-        net.getJson()
+        
         print("test")
     }
 
