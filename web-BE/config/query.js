@@ -53,4 +53,12 @@ module.exports = {
   selectAssignee:
     'SELECT User.user_id, User.username, User.social from Assignee '
     + 'JOIN User ON Assignee.user_id = User.user_id WHERE Assignee.issue_id=?',
+  // comment
+  insertComment:
+    'INSERT INTO Comment(writer_id, content, write_time, is_issue_content, issue_id) VALUES (?,?,?,?,?)',
+  selectComment:
+    'SELECT Comment.comment_id, Comment.writer_id, `User`.username, Comment.content, Comment.write_time, Comment.is_issue_content, Comment.issue_id '
+    + 'FROM Comment JOIN `User` ON Comment.writer_id = `User`.user_id WHERE Comment.issue_id = ?',
+  updateComment:
+    'UPDATE Comment set content=? WHERE comment_id=?',
 };
