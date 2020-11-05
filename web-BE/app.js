@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/', router);
 
-const server = app.listen(3000, () => {
+const server = app.listen(8080, () => {
   const { port } = server.address();
 
   console.log('Server is working on port', port);
