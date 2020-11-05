@@ -1,14 +1,16 @@
-const router = require('express').Router();
-// const auth = require("./auth");
-// const comment = require("./comment");
-// const issue = require("./issue");
-const label = require('./label');
-// const milestone = require('./milestone');
+const passport = require('passport');
 
-// router.use("/auth", auth);
-// router.use("/comment", comment);
-// router.use("/issue", issue);
+const router = require('express').Router();
+const auth = require('./auth');
+const issue = require('./issue');
+
+const label = require('./label');
+const milestone = require('./milestone');
+
+router.use('/auth', auth);
+router.use(passport.authenticate('jwt', { session: false }));
+router.use('/issue', issue);
 router.use('/label', label);
-// router.use('/milestone', milestone);
+router.use('/milestone', milestone);
 
 module.exports = router;
