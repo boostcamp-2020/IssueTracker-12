@@ -22,9 +22,9 @@ const issueController = {
   },
   read: async (req, res, next) => {
     try {
-      const {user_id: userId} = req.user;
+      const { user_id: userId } = req.user;
       const issueArr = await issueModel.select(userId);
-      res.status(200).json({issueArr});
+      res.status(200).json({ issueArr });
     } catch (error) {
       next(error);
     }

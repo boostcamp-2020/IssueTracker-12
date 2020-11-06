@@ -35,7 +35,7 @@ const issueModel = {
       const issueWithLabels = issueArr.map((issue, i) => ({
         ...issue,
         labels: labelsOfIssue[i],
-        assignee: assigneeOfIssue[i]
+        assignee: assigneeOfIssue[i],
       }));
       return issueWithLabels;
     } catch (err) {
