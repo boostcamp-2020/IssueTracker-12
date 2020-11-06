@@ -5,9 +5,5 @@ router.post('/', milestoneController.create);
 router.get('/', milestoneController.read);
 router.put('/:milestoneid', milestoneController.update);
 router.delete('/:milestoneid', milestoneController.delete);
-router.get(
-  '/:milestoneid/issues',
-  milestoneController.selectIssuesFromMilestone,
-);
 
 module.exports = router;
