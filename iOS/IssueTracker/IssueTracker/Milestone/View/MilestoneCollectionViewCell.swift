@@ -8,7 +8,7 @@
 import UIKit
 import SwipeCellKit
 
-class MilestoneCollectionViewCell: SwipeCollectionViewCell {
+class MilestoneCollectionViewCell: UICollectionViewListCell {
     
     @IBOutlet weak var titleLabel: PaddedLabel!
     @IBOutlet weak var dueDateLabel: UILabel!
@@ -17,9 +17,8 @@ class MilestoneCollectionViewCell: SwipeCollectionViewCell {
     @IBOutlet weak var openLabel: UILabel!
     @IBOutlet weak var closedLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.translatesAutoresizingMaskIntoConstraints = false
+    override func updateConfiguration(using state: UICellConfigurationState) {
+        layoutIfNeeded()
     }
     
     func initMilestoneCell(milestone: Milestone) {

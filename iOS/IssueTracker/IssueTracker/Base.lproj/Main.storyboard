@@ -1745,11 +1745,11 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MilestoneCollectionViewCell" id="OMy-qx-1In" customClass="MilestoneCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="MilestoneCollectionViewCell" reuseIdentifier="MilestoneCollectionViewCell" id="OMy-qx-1In" customClass="MilestoneCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="P3l-VI-nRk">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마일스톤" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86J-Hv-DQh" customClass="PaddedLabel" customModule="IssueTracker" customModuleProvider="target">
@@ -1800,7 +1800,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19 closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBJ-5n-O2T">
-                                                    <rect key="frame" x="332" y="62" width="62" height="17"/>
+                                                    <rect key="frame" x="332" y="63" width="62" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -1808,10 +1808,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="NIR-NK-Qfu" firstAttribute="top" secondItem="P3l-VI-nRk" secondAttribute="top" constant="10" id="2Ib-OO-Aac"/>
-                                                <constraint firstItem="HBJ-5n-O2T" firstAttribute="top" secondItem="LpD-bR-O4X" secondAttribute="bottom" constant="3" id="AYB-KL-eHB"/>
+                                                <constraint firstItem="HBJ-5n-O2T" firstAttribute="top" secondItem="LpD-bR-O4X" secondAttribute="bottom" constant="4" id="AYB-KL-eHB"/>
                                                 <constraint firstItem="PKP-uQ-X3Q" firstAttribute="top" secondItem="P3l-VI-nRk" secondAttribute="top" constant="12.5" id="MV7-L8-hrj"/>
                                                 <constraint firstAttribute="trailing" secondItem="NIR-NK-Qfu" secondAttribute="trailing" constant="20" id="Ogy-Op-9hZ"/>
                                                 <constraint firstItem="LpD-bR-O4X" firstAttribute="top" secondItem="hsb-dU-Q9w" secondAttribute="top" id="PzZ-am-KqP"/>
+                                                <constraint firstAttribute="bottom" secondItem="HBJ-5n-O2T" secondAttribute="bottom" constant="15" id="SYE-XR-M5G"/>
                                                 <constraint firstItem="hsb-dU-Q9w" firstAttribute="top" secondItem="86J-Hv-DQh" secondAttribute="bottom" constant="15" id="SsN-Vj-Nhb"/>
                                                 <constraint firstItem="hsb-dU-Q9w" firstAttribute="leading" secondItem="P3l-VI-nRk" secondAttribute="leading" constant="20" id="WWx-qb-Nc5"/>
                                                 <constraint firstAttribute="trailing" secondItem="LpD-bR-O4X" secondAttribute="trailing" constant="20" id="hGr-Bq-igs"/>
@@ -1822,7 +1823,7 @@
                                                 <constraint firstItem="86J-Hv-DQh" firstAttribute="top" secondItem="P3l-VI-nRk" secondAttribute="top" constant="10" id="xhI-vs-1Wk"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="414" height="100"/>
+                                        <size key="customSize" width="414" height="95"/>
                                         <connections>
                                             <outlet property="closedLabel" destination="HBJ-5n-O2T" id="baF-qT-Rrn"/>
                                             <outlet property="contentLabel" destination="hsb-dU-Q9w" id="8ug-bX-mNv"/>
