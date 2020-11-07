@@ -18,6 +18,10 @@ class MilestoneCollectionViewCell: UICollectionViewListCell {
     @IBOutlet weak var closedLabel: UILabel!
     
     override func updateConfiguration(using state: UICellConfigurationState) {
+        // 새로운 BackgroundConfiguration
+        var newBackgroundConfiguration = UIBackgroundConfiguration.listPlainCell()
+        newBackgroundConfiguration.backgroundColor = .systemBackground
+        backgroundConfiguration = newBackgroundConfiguration
         layoutIfNeeded()
     }
     

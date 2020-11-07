@@ -40,6 +40,7 @@ class MilestoneViewController: UIViewController {
         let dataSource = MilestoneDataSource(collectionView: milestoneCollectionView, cellProvider: { (collectionView, indexPath, milestone) -> UICollectionViewCell? in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MilestoneCollectionViewCell.reuseIdentifier, for: indexPath) as? MilestoneCollectionViewCell else { return UICollectionViewCell() }
             cell.initMilestoneCell(milestone: milestone)
+            
             return cell
         })
         return dataSource
@@ -57,8 +58,10 @@ class MilestoneViewController: UIViewController {
                 completion(true)
             }
             deleteAction.backgroundColor = .systemPink
+            deleteAction.image = UIImage(named: "delete")?.withTintColor(UIColor.white)
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
+        
         return UICollectionViewCompositionalLayout.list(using: configuration)
     }
     
