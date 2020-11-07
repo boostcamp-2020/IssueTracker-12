@@ -37,8 +37,11 @@ class MilestoneViewController: UIViewController {
     }
     
     private func createDataSource() -> MilestoneDataSource {
-        let dataSource = MilestoneDataSource(collectionView: milestoneCollectionView, cellProvider: { (collectionView, indexPath, milestone) -> UICollectionViewCell? in
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MilestoneCollectionViewCell.reuseIdentifier, for: indexPath) as? MilestoneCollectionViewCell else { return UICollectionViewCell() }
+        let dataSource = MilestoneDataSource(
+            collectionView: milestoneCollectionView,
+            cellProvider: { (collectionView, indexPath, milestone) -> UICollectionViewCell? in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MilestoneCollectionViewCell.reuseIdentifier, for: indexPath)
+                    as? MilestoneCollectionViewCell else { return UICollectionViewCell() }
             cell.initMilestoneCell(milestone: milestone)
             
             return cell
@@ -51,7 +54,9 @@ class MilestoneViewController: UIViewController {
         configuration.trailingSwipeActionsConfigurationProvider = { [unowned self] (indexPath) in
             
             let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {(_, _, completion) in
-                NetworkManager.shared.deleteRequest(url: .milestone, deleteID: self.milestones[indexPath.row].milestoneId) { nsDictionary in
+                NetworkManager.shared.deleteRequest(
+                    url: .milestone,
+                    deleteID: self.milestones[indexPath.row].milestoneId) { (nsDictionary) in
                     print(nsDictionary)
                     NotificationCenter.default.post(name: .milestoneDidChange, object: nil)
                 }
@@ -79,7 +84,8 @@ class MilestoneViewController: UIViewController {
     }
     
     @IBAction func addButtonDidTouch(_ sender: Any) {
-        if let editVC = self.storyboard?.instantiateViewController(identifier: MilestoneEditViewController.reuseIdentifier) as? MilestoneEditViewController {
+        if let editVC = self.storyboard?.instantiateViewController(identifier: MilestoneEditViewController.reuseIdentifier)
+            as? MilestoneEditViewController {
             editVC.modalPresentationStyle = .overFullScreen
             editVC.modalTransitionStyle = .crossDissolve
             self.present(editVC, animated: true, completion: nil)
@@ -89,7 +95,8 @@ class MilestoneViewController: UIViewController {
 
 extension MilestoneViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let editVC = self.storyboard?.instantiateViewController(identifier: MilestoneEditViewController.reuseIdentifier) as? MilestoneEditViewController {
+        if let editVC = self.storyboard?.instantiateViewController(identifier: MilestoneEditViewController.reuseIdentifier)
+            as? MilestoneEditViewController {
             editVC.modalPresentationStyle = .overFullScreen
             editVC.modalTransitionStyle = .crossDissolve
             self.present(editVC, animated: true, completion: nil)
