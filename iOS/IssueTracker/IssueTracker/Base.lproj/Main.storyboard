@@ -1392,10 +1392,10 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="LabelCollectionViewCell" reuseIdentifier="LabelCollectionViewCell" id="PPo-7N-Ssz" customClass="LabelCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SmH-AO-Fll">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xlb-je-POt" customClass="PaddedLabel" customModule="IssueTracker" customModuleProvider="target">
@@ -1416,20 +1416,23 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="descriptionLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXp-xV-Ffy">
-                                                    <rect key="frame" x="20" y="43" width="127" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="descriptionLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXp-xV-Ffy">
+                                                    <rect key="frame" x="20" y="43" width="374" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="cXp-xV-Ffy" firstAttribute="leading" secondItem="SmH-AO-Fll" secondAttribute="leading" constant="20" id="TiS-oY-iFE"/>
+                                                <constraint firstAttribute="bottom" secondItem="cXp-xV-Ffy" secondAttribute="bottom" constant="26" id="dn2-8q-74I"/>
                                                 <constraint firstItem="Xlb-je-POt" firstAttribute="leading" secondItem="SmH-AO-Fll" secondAttribute="leading" constant="20" id="m0u-jr-t59"/>
                                                 <constraint firstItem="Xlb-je-POt" firstAttribute="top" secondItem="SmH-AO-Fll" secondAttribute="top" constant="10" id="mgw-ND-0GD"/>
+                                                <constraint firstItem="cXp-xV-Ffy" firstAttribute="top" secondItem="Xlb-je-POt" secondAttribute="bottom" constant="12.5" id="qnE-1K-oEH"/>
+                                                <constraint firstAttribute="trailing" secondItem="cXp-xV-Ffy" secondAttribute="trailing" constant="20" id="yVy-I8-672"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="414" height="80"/>
+                                        <size key="customSize" width="414" height="90"/>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="cXp-xV-Ffy" id="dfJ-Pu-uFQ"/>
                                             <outlet property="nameLabel" destination="Xlb-je-POt" id="6XJ-gI-Vf4"/>

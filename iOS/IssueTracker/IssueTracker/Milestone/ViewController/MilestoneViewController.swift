@@ -15,10 +15,9 @@ class MilestoneViewController: UIViewController {
     
     @IBOutlet weak var milestoneCollectionView: UICollectionView!
     
-    private lazy var dataSource = createDataSource()
     typealias MilestoneDataSource = UICollectionViewDiffableDataSource<Section, Milestone>
-    
     private var milestones = [Milestone]()
+    private lazy var dataSource = createDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
