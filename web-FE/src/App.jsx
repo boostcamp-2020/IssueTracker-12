@@ -1,10 +1,17 @@
-import React from 'react';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import IssueListPage from "@Pages/Issue";
+import NewIssuePage from "@Pages/NewIssuePage";
 
 const App = () => {
   return (
-    <div>
-      <h1>hello react!</h1>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={IssueListPage} />
+        <Route path="/issue/new" component={NewIssuePage} />
+
+      </Switch>
+    </BrowserRouter>
   )
 }
 
