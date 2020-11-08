@@ -25,10 +25,28 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|svg)$/, // .png, .svg 확장자로 마치는 모든 파일
+        loader: "file-loader", // 파일 로더를 적용한다
+        options: {
+          // publicPath: "./dist/", // prefix를 아웃풋 경로로 지정
+          name: "[name].[ext]", // 파일명 형식
+        },
+      },
     ],
   },
   // resolve: 웹팩이 해석할 확장자를 지정.
-  resolve: { extensions: ['*', '.js', '.jsx'] },
+  resolve: { 
+    extensions: ['*', '.js', '.jsx'],
+    resolve: {
+      alias: {
+        '@Component': path.resolve(__dirname, 'src/component'),
+        '@Pages': path.resolve(__dirname, 'src/pages'),
+        '@Public': path.resolve(__dirname, 'public'),
+        '@Images': path.resolve(__dirname, 'images'),
+      },
+    },
+   },
   // output: 번들링 된 결과물을 어디다 둘 것인지에 대한 설정이 가능.
   output: {
     path: path.resolve(__dirname, 'dist/'),
@@ -42,9 +60,10 @@ module.exports = {
     contentBase: path.join(__dirname, 'public/'),
     port: 3000,
 	  // 번들된 코드가 실제로 어디 있는지 서버에게 알려주는 거임
-    publicPath: 'http://localhost:3000/dist/',
+    publicPath: '/dist/',
 	  // devserver 에서만 핫로딩 가능하게
     hotOnly: true,
+    historyApiFallback: true
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
