@@ -1,13 +1,13 @@
 import React from "react";
-import PageLayout from '@Component/PageLayout';
-import Header from '@Component/Header';
-import Main from '@Component/Main';
+import PageLayout from '@Components/PageLayout';
+import Header from '@Components/Header';
+import IssueMain from './IssueMain';
 
 const IssuePage = () => {
   return (
     <PageLayout
       header = { <Header/> }
-      main = { <Main text="Issue"/> }
+      main = { <IssueMain/> }
     />
   )
 };
