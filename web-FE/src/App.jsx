@@ -1,14 +1,18 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import IssueListPage from "@Pages/Issue";
+import NewIssuePage from "@Pages/NewIssuePage";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <h1>HELL no world</h1>
-      <Route path="/" exact={true} component={Home} />
+      <Switch>
+        <Route exact path="/" component={IssueListPage} />
+        <Route path="/issue/new" component={NewIssuePage} />
+
+      </Switch>
     </BrowserRouter>
-  );
-};
+  )
+}
 
 export default App;
