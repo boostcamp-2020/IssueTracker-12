@@ -1,15 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const IssueMenu = () => {
-
-}
+import IssueMenu from './IssueMenu';
 
 const IssueMain = () => {
   return (
     <IssueMainContainer>
       <IssueMenu/>
-      <IssueListForm/>
+      {/* <IssueListForm/> */}
     </IssueMainContainer>
   )
 };
