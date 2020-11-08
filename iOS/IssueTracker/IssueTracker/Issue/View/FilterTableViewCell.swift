@@ -9,14 +9,26 @@ import UIKit
 
 class FilterTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    private var section = 0
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        if section == 1 {
+            accessoryType = .disclosureIndicator
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        if section == 0 {
         accessoryType = selected ? .checkmark : .none
+        } else {
+            accessoryType = selected ? .detailDisclosureButton : .disclosureIndicator
+        }
     }
-
+    
+    func setSection(section: Int) {
+        self.section = section
+    }
 }

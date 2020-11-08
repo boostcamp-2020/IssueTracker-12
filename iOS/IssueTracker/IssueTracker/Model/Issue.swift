@@ -43,6 +43,18 @@ struct Issue: Codable, Hashable {
         self.assignee = assignee
     }
     
+    static func == (lhs: Issue, rhs: Issue) -> Bool {
+        return lhs.issueId == rhs.issueId
+    }
+    
+    static func > (lhs: Issue, rhs: Issue) -> Bool {
+        return lhs.issueId > rhs.issueId
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(issueId)
+    }
+    
     enum CodingKeys: String, CodingKey {
         case issueId = "issue_id"
         case title

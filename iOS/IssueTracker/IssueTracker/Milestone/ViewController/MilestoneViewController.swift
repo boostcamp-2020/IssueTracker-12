@@ -7,10 +7,6 @@
 
 import UIKit
 
-enum Section: Hashable {
-    case main
-}
-
 class MilestoneViewController: UIViewController {
     
     @IBOutlet weak var milestoneCollectionView: UICollectionView!
@@ -89,6 +85,10 @@ class MilestoneViewController: UIViewController {
             editVC.modalTransitionStyle = .crossDissolve
             self.present(editVC, animated: true, completion: nil)
         }
+    }
+    
+    enum Section: Hashable {
+        case main
     }
 }
 

@@ -86,6 +86,10 @@ class LabelViewController: UIViewController {
             self.present(editVC, animated: true, completion: nil)
         }
     }
+    
+    enum Section: Hashable {
+        case main
+    }
 }
 
 extension LabelViewController: UICollectionViewDelegate {
