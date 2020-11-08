@@ -173,13 +173,23 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ZJ-2z-NWJ">
+                                                    <rect key="frame" x="369" y="9.5" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="395-Av-bbO"/>
+                                                        <constraint firstAttribute="width" constant="25" id="83W-vl-cFl"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="9ZJ-2z-NWJ" secondAttribute="trailing" constant="20" id="Kht-Dq-XrH"/>
                                                 <constraint firstItem="8tD-Cj-XIN" firstAttribute="centerY" secondItem="HMN-RV-c1W" secondAttribute="centerY" id="dHc-bM-Ves"/>
                                                 <constraint firstItem="8tD-Cj-XIN" firstAttribute="leading" secondItem="HMN-RV-c1W" secondAttribute="leadingMargin" constant="20" id="hp4-VJ-MKY"/>
+                                                <constraint firstItem="9ZJ-2z-NWJ" firstAttribute="centerY" secondItem="HMN-RV-c1W" secondAttribute="centerY" id="veS-6I-o1v"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="accessoryImageView" destination="9ZJ-2z-NWJ" id="fgC-ST-w9L"/>
                                             <outlet property="titleLabel" destination="8tD-Cj-XIN" id="7jd-EQ-cus"/>
                                         </connections>
                                     </tableViewCell>
