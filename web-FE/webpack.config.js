@@ -5,9 +5,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   // entry: 웹팩에게 어플리케이션이 어디서 시작하고 어디서부터 파일들을 묶을건지 시작점을 정해준다.
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   // 현재 개발 모드에서 작업 중임을 알려줌.
   mode: 'development',
+  devtool: 'inline-source-map',
   // export한 JS 모듈이 어떻게 변환되는지 정의한다. 방법은 rules에 정의한 대로 이루어진다.
   module: {
     rules: [
@@ -32,7 +33,7 @@ module.exports = {
     ],
   },
   // resolve: 웹팩이 해석할 확장자를 지정.
-  resolve: { 
+  resolve: {
     extensions: ['*', '.js', '.jsx'],
     alias: {
       '@Components': path.resolve(__dirname, 'src/components'),
@@ -40,7 +41,7 @@ module.exports = {
       '@Public': path.resolve(__dirname, 'public'),
       '@Images': path.resolve(__dirname, 'public/images'),
     },
-   },
+  },
   // output: 번들링 된 결과물을 어디다 둘 것인지에 대한 설정이 가능.
   output: {
     path: path.resolve(__dirname, 'dist/'),
@@ -53,11 +54,12 @@ module.exports = {
 	  // 정적 파일 경로 설정
     contentBase: path.join(__dirname, 'public/'),
     port: 3000,
-	  // 번들된 코드가 실제로 어디 있는지 서버에게 알려주는 거임
+    // 번들된 코드가 실제로 어디 있는지 서버에게 알려주는 거임
+    host: '0.0.0.0',
     publicPath: '/dist/',
 	  // devserver 에서만 핫로딩 가능하게
     hotOnly: true,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
