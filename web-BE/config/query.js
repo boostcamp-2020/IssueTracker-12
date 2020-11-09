@@ -1,7 +1,8 @@
 module.exports = {
   // label
   insertLabel: 'INSERT INTO Label (name,description,color) VALUE(?,?,?);',
-  selectLabel: 'SELECT label_id, name as label_name, description, color FROM Label;',
+  selectLabel:
+    'SELECT label_id, name as label_name, description, color FROM Label;',
   updateLabel:
     'UPDATE Label SET name=?, description=?, color=? WHERE label_id=?;',
   deleteLabel: 'DELETE FROM Label WHERE label_id=?;',
@@ -13,15 +14,17 @@ module.exports = {
   updateMilestone:
     'UPDATE Milestone SET title=?, due_date=?, content=? WHERE milestone_id=?;',
   deleteMilestone: 'DELETE FROM Milestone WHERE milestone_id=?;',
+  selectIssuesFromMilestone: `SELECT is_open FROM Issue LEFT JOIN Milestone ON Issue.milestone_id = Milestone.milestone_id 
+    WHERE Issue.milestone_id IN (SELECT Milestone.milestone_id FROM Milestone) and Milestone.milestone_id=?;`,
   // user
-  selectUser: 'SELECT user_id, username, social FROM User WHERE username=? and social=?',
+  selectUser:
+    'SELECT user_id, username, social FROM User WHERE username=? and social=?',
   // issue
   insertIssue:
     'INSERT INTO Issue '
     + '(writer_id, write_time, title, milestone_id) '
     + 'VALUES((SELECT user_id from User WHERE username=?), ?, ?, ?)',
-  selectIssue:
-    `SELECT
+  selectIssue: `SELECT
       Issue.issue_id,
       Issue.title,
       Milestone.milestone_id,
@@ -59,6 +62,5 @@ module.exports = {
   selectComment:
     'SELECT Comment.comment_id, Comment.writer_id, `User`.username, Comment.content, Comment.write_time, Comment.is_issue_content, Comment.issue_id '
     + 'FROM Comment JOIN `User` ON Comment.writer_id = `User`.user_id WHERE Comment.issue_id = ?',
-  updateComment:
-    'UPDATE Comment set content=? WHERE comment_id=?',
+  updateComment: 'UPDATE Comment set content=? WHERE comment_id=?',
 };
