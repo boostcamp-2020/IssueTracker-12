@@ -6,13 +6,14 @@
 //
 
 import UIKit
-import SwipeCellKit
 
 class MilestoneViewController: UIViewController {
     
     @IBOutlet weak var milestoneCollectionView: UICollectionView!
     
+    typealias MilestoneDataSource = UICollectionViewDiffableDataSource<Section, Milestone>
     private var milestones = [Milestone]()
+    private lazy var dataSource = createDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +26,43 @@ class MilestoneViewController: UIViewController {
     }
     
     private func configure() {
+        milestoneCollectionView.collectionViewLayout = createCollectionViewLayout()
         milestoneCollectionView.delegate = self
-        milestoneCollectionView.dataSource = self
         NotificationCenter.default.addObserver(self, selector: #selector(reloadMilestones), name: .milestoneDidChange, object: nil)
+    }
+    
+    private func createDataSource() -> MilestoneDataSource {
+        let dataSource = MilestoneDataSource(
+            collectionView: milestoneCollectionView,
+            cellProvider: { (collectionView, indexPath, milestone) -> UICollectionViewCell? in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MilestoneCollectionViewCell.reuseIdentifier, for: indexPath)
+                    as? MilestoneCollectionViewCell else { return UICollectionViewCell() }
+            cell.initMilestoneCell(milestone: milestone)
+            
+            return cell
+        })
+        return dataSource
+    }
+    
+    private func createCollectionViewLayout() -> UICollectionViewLayout {
+        var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
+        configuration.trailingSwipeActionsConfigurationProvider = { [unowned self] (indexPath) in
+            
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {(_, _, completion) in
+                NetworkManager.shared.deleteRequest(
+                    url: .milestone,
+                    deleteID: self.milestones[indexPath.row].milestoneId) { (nsDictionary) in
+                    print(nsDictionary)
+                    NotificationCenter.default.post(name: .milestoneDidChange, object: nil)
+                }
+                completion(true)
+            }
+            deleteAction.backgroundColor = .systemPink
+            deleteAction.image = UIImage(named: "delete")?.withTintColor(UIColor.white)
+            return UISwipeActionsConfiguration(actions: [deleteAction])
+        }
+        
+        return UICollectionViewCompositionalLayout.list(using: configuration)
     }
     
     @objc func reloadMilestones() {
@@ -35,67 +70,36 @@ class MilestoneViewController: UIViewController {
             NetworkManager.shared.getRequest(url: .milestone, type: MilestoneArray.self) { result in
                 guard let milestoneArray = result else { return }
                 self.milestones = milestoneArray.milestoneArray
-                self.milestoneCollectionView.reloadData()
+                var snapshot = NSDiffableDataSourceSnapshot<Section, Milestone>()
+                snapshot.appendSections([.main])
+                snapshot.appendItems(self.milestones)
+                self.dataSource.apply(snapshot)
             }
         }
     }
     
     @IBAction func addButtonDidTouch(_ sender: Any) {
-        if let editVC = self.storyboard?.instantiateViewController(identifier: MilestoneEditViewController.reuseIdentifier) as? MilestoneEditViewController {
+        if let editVC = self.storyboard?.instantiateViewController(identifier: MilestoneEditViewController.reuseIdentifier)
+            as? MilestoneEditViewController {
             editVC.modalPresentationStyle = .overFullScreen
             editVC.modalTransitionStyle = .crossDissolve
             self.present(editVC, animated: true, completion: nil)
         }
     }
+    
+    enum Section: Hashable {
+        case main
+    }
 }
 
-extension MilestoneViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return milestones.count
-    }
-    
+extension MilestoneViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let editVC = self.storyboard?.instantiateViewController(identifier: MilestoneEditViewController.reuseIdentifier) as? MilestoneEditViewController {
+        if let editVC = self.storyboard?.instantiateViewController(identifier: MilestoneEditViewController.reuseIdentifier)
+            as? MilestoneEditViewController {
             editVC.modalPresentationStyle = .overFullScreen
             editVC.modalTransitionStyle = .crossDissolve
             self.present(editVC, animated: true, completion: nil)
             editVC.initEditView(isNew: false, milestone: milestones[indexPath.row])
         }
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = milestoneCollectionView.dequeueReusableCell(withReuseIdentifier: MilestoneCollectionViewCell.reuseIdentifier, for: indexPath) as? MilestoneCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        cell.delegate = self
-        cell.initMilestoneCell(milestone: milestones[indexPath.row])
-        
-        return cell
-    }
-}
-
-extension MilestoneViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = self.view.bounds.width - (5 * 2)
-        let height = CGFloat(100)
-        
-        return CGSize(width: width, height: height)
-    }
-}
-
-extension MilestoneViewController: SwipeCollectionViewCellDelegate {
-    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-        
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { (_, indexPath) in
-            NetworkManager.shared.deleteRequest(url: .milestone, deleteID: self.milestones[indexPath.row].milestoneId) { nsDictionary in
-                print(nsDictionary)
-                NotificationCenter.default.post(name: .milestoneDidChange, object: nil)
-            }
-        }
-        
-        deleteAction.image = UIImage(named: "delete")?.withTintColor(UIColor.white)
-        return [deleteAction]
     }
 }
