@@ -1,5 +1,5 @@
-const connection = require('../config/db_connection');
-const sql = require('../config/query');
+const connection = require("../config/db_connection");
+const sql = require("../config/query");
 
 const authModel = {
   insert: () => true,
