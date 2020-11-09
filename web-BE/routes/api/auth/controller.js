@@ -9,13 +9,9 @@ const authController = {
   },
 
   checkUser: async ({username, social, url}) => {
-  // checkUser: async (req, res) => {
-  //   const { social, username } = req.params;
     const user = await authModel.select(username, social);
     if (!user) return false
     return true
-    // if (!user) return res.sendStatus(401);
-    // return res.sendStatus(200);
   },
 
   getUserInfo: async (req, res) => {
@@ -41,7 +37,7 @@ const authController = {
       const isExistUser = await authController.checkUser(userInfo)
       res.json({ userInfo, isExistUser });
     } 
-    catch (error) { console.error(error); }
+    catch (error) { next(error); }
  }
 
 };
