@@ -12,7 +12,7 @@ const labelController = {
   },
   update: (req, res) => {
     const { label_name : name, description, color } = req.body;
-    labelModel.update([name, description, color, parseInt(req.params.labelid)]);
+    labelModel.update([name, description, color, +req.params.labelid]);
     res.status(200).json({ message: 'update the label successfully' });
   },
   delete: (req, res) => {
