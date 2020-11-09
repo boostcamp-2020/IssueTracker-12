@@ -1,39 +1,12 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import GithubLogin from "../components/githubLogin"
 
 const App = () => {
-  const clientId = process.env.CLIENT_ID
-  const clientSecret = process.env.CLIENT_SECRET
-
-  const getUserInfo = async (code) => {
-    const apiurl = "http://localhost:8080/api/auth/oauth"
-    try{
-      const result = await axios.get(
-        `${apiurl}?code=${code}&client_id=${clientId}&client_secret=${clientSecret}`
-        );
-      const {userInfo} = result.data
-      console.log(userInfo)
-    } catch(error){
-      console.error(error)
-    }
-  };
-
-  const linkTo = async () => {
-    window.location.href =
-      `https://github.com/login/oauth/authorize?client_id=${clientId}`;
-  };
-
-  useEffect(() => {
-    const reg = /.code=(.*)/
-    if(reg.test(window.location)){
-      const code = reg.exec(window.location)[1]
-      localStorage.setItem("test", code);
-      getUserInfo(code)
-    }
-  });
-
-  return <button onClick={linkTo}>GITHUB</button>;
+  return (
+    <div>
+      <GithubLogin />
+    </div>
+  )
 };
-
 
 export default App;

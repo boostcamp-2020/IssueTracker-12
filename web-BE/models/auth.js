@@ -2,7 +2,12 @@ const connection = require('../config/db_connection');
 const sql = require('../config/query');
 
 const authModel = {
-  insert: () => true,
+  insert: async (username, social) => {
+    try {
+      const res = await connection.query(sql.insertUser, [username, social]);
+      return res[0].insertId;
+    } catch (err) { console.error(err); }
+  },
   select: async (username, social) => {
     try {
       const [res] = await connection.query(sql.selectUser, [username, social]);

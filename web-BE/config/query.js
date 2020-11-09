@@ -14,6 +14,7 @@ module.exports = {
     'UPDATE Milestone SET title=?, due_date=?, content=? WHERE milestone_id=?;',
   deleteMilestone: 'DELETE FROM Milestone WHERE milestone_id=?;',
   // user
+  insertUser: 'INSERT INTO User (username,social) VALUES (?,?)',
   selectUser: 'SELECT user_id, username, social FROM User WHERE username=? and social=?',
   // issue
   insertIssue:
