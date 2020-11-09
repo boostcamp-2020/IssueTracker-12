@@ -73,17 +73,17 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xr-su-SeU">
-                        <rect key="frame" x="20" y="94" width="407" height="20"/>
+                        <rect key="frame" x="20" y="94" width="407" height="25"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrg-pV-2ks">
-                                <rect key="frame" x="0.0" y="0.0" width="407" height="20"/>
+                                <rect key="frame" x="0.0" y="0.0" width="407" height="25"/>
                             </scrollView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="rrg-pV-2ks" secondAttribute="bottom" id="JTF-RL-7zt"/>
                             <constraint firstItem="rrg-pV-2ks" firstAttribute="leading" secondItem="6xr-su-SeU" secondAttribute="leading" id="YI3-OY-XbA"/>
                             <constraint firstItem="rrg-pV-2ks" firstAttribute="top" secondItem="6xr-su-SeU" secondAttribute="top" id="d8o-nz-w6O"/>
-                            <constraint firstAttribute="height" constant="20" id="hiU-Dv-cwm"/>
+                            <constraint firstAttribute="height" constant="25" id="hiU-Dv-cwm"/>
                             <constraint firstAttribute="trailing" secondItem="rrg-pV-2ks" secondAttribute="trailing" id="kMT-gc-bqw"/>
                         </constraints>
                     </view>
@@ -97,6 +97,7 @@
                 <constraint firstItem="ZVa-u9-QOe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="N9c-mb-W4Q"/>
                 <constraint firstItem="yq1-Dl-Fcp" firstAttribute="leading" secondItem="n5a-b0-LSE" secondAttribute="trailing" constant="7" id="S4G-0X-cgS"/>
                 <constraint firstItem="6xr-su-SeU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="UrP-Yr-xAl"/>
+                <constraint firstAttribute="bottom" secondItem="6xr-su-SeU" secondAttribute="bottom" constant="10" id="Zbt-Cf-b7V"/>
                 <constraint firstItem="jwc-uP-djh" firstAttribute="top" secondItem="ZVa-u9-QOe" secondAttribute="bottom" constant="5" id="Zyn-Mq-KTw"/>
                 <constraint firstItem="ZVa-u9-QOe" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="bU9-QI-64z"/>
                 <constraint firstItem="n5a-b0-LSE" firstAttribute="leading" secondItem="ZVa-u9-QOe" secondAttribute="leading" id="dVS-kF-xrK"/>
@@ -125,10 +126,10 @@
     </designables>
     <resources>
         <namedColor name="openIssue Background Color">
-            <color red="0.42745098039215684" green="0.87058823529411766" blue="0.49803921568627452" alpha="0.30276188380000002" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.42699998617172241" green="0.87099999189376831" blue="0.49799999594688416" alpha="0.30300000309944153" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="openIssueColor">
-            <color red="0.32547658680000002" green="0.64634907249999995" blue="0.31758281589999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.32499998807907104" green="0.64600002765655518" blue="0.31799998879432678" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

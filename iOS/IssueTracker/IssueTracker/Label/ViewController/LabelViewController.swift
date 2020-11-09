@@ -59,7 +59,6 @@ class LabelViewController: UIViewController {
                 }
                 completion(true)
             }
-            deleteAction.backgroundColor = .systemPink
             deleteAction.image = UIImage(named: "delete")?.withTintColor(UIColor.white)
             
             return UISwipeActionsConfiguration(actions: [deleteAction])

@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import SwipeCellKit
+//import SwipeCellKit
 
 @IBDesignable
-class IssueListCollectionViewCell: SwipeCollectionViewCell {
+class IssueListCollectionViewCell: UICollectionViewListCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
@@ -17,9 +17,11 @@ class IssueListCollectionViewCell: SwipeCollectionViewCell {
     @IBOutlet weak var milestoneLabel: PaddedLabel!
     @IBOutlet weak var labelScrollView: UIScrollView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.translatesAutoresizingMaskIntoConstraints = false
+    override func updateConfiguration(using state: UICellConfigurationState) {
+        var newBackgroundConfiguration = UIBackgroundConfiguration.listPlainCell()
+        newBackgroundConfiguration.backgroundColor = .systemBackground
+        backgroundConfiguration = newBackgroundConfiguration
+        layoutIfNeeded()
     }
     
     func initIssueCell(issue: Issue) {

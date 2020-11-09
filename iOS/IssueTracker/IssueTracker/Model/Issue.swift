@@ -27,9 +27,9 @@ struct Issue: Codable, Hashable {
     var labels: [Label]
     var assignee: [User]
     
-    init(issueId: Int, title: String, milestoneId: Int?, milestoneTitle: String?, writeTime: String, isOpen: Int,
+    init(title: String, milestoneId: Int?, milestoneTitle: String?, writeTime: String, isOpen: Int,
          writerId: Int, writer: String, isAssigned: Int, isMentioned: Int, labels: [Label], assignee: [User]) {
-        self.issueId = issueId
+        self.issueId = -1
         self.title = title
         self.milestoneId = milestoneId
         self.milestoneTitle = milestoneTitle

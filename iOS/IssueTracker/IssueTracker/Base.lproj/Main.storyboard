@@ -55,7 +55,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0d-P1-ZHC">
-                                <rect key="frame" x="354" y="753" width="40" height="40"/>
+                                <rect key="frame" x="344" y="748" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="7Ox-e2-0pO"/>
                                     <constraint firstAttribute="width" secondItem="g0d-P1-ZHC" secondAttribute="height" id="BR1-xb-EEm"/>
@@ -74,8 +74,8 @@
                             <constraint firstItem="fM6-hk-p1P" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="8fP-8w-3cX"/>
                             <constraint firstItem="1PC-Ya-fIy" firstAttribute="top" secondItem="fM6-hk-p1P" secondAttribute="bottom" id="DJK-IK-ieH"/>
                             <constraint firstItem="1PC-Ya-fIy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JDz-bh-aXe"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="g0d-P1-ZHC" secondAttribute="bottom" constant="20" id="Liq-St-CLy"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="g0d-P1-ZHC" secondAttribute="trailing" constant="20" id="MLc-wQ-IMU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="g0d-P1-ZHC" secondAttribute="bottom" constant="25" id="Liq-St-CLy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="g0d-P1-ZHC" secondAttribute="trailing" constant="30" id="MLc-wQ-IMU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1PC-Ya-fIy" secondAttribute="bottom" id="Q4m-Ny-bFz"/>
                             <constraint firstItem="1PC-Ya-fIy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Vpk-fN-CG4"/>
                             <constraint firstItem="fM6-hk-p1P" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tY3-3J-Hpq"/>
