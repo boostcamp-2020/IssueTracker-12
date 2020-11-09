@@ -8,13 +8,17 @@
 import UIKit
 
 class IssueFilterViewController: UIViewController {
-
+    
     @IBOutlet weak var filterTableView: UITableView!
     
     typealias FilterDataSource = UITableViewDiffableDataSource<Section, Filter>
     private var mainFilterContents = MainFilters().contents
     private var detailFilterContents = DetailFilters().contents
     private lazy var dataSource = createDataSource()
+    private var labelFilters = [Filter]()
+    private var milestonFilters = [Filter]()
+    private var writerFilters = [Filter]()
+    private var assigneeFilters = [Filter]()
     
     enum Section: Int, CustomStringConvertible {
         case main
@@ -31,6 +35,13 @@ class IssueFilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         filterTableView.delegate = self
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadLabelFilters()
+        reloadMilestoneFilters()
         applySnapshot()
     }
     
@@ -45,7 +56,6 @@ class IssueFilterViewController: UIViewController {
     }
     
     func applySnapshot() {
-        
         var snapshot = NSDiffableDataSourceSnapshot<Section, Filter>()
         snapshot.appendSections([.main, .detail])
         snapshot.appendItems(mainFilterContents, toSection: .main)
@@ -53,15 +63,52 @@ class IssueFilterViewController: UIViewController {
         self.dataSource.apply(snapshot)
     }
     
+//    func reloadWriterFilters() {
+//        NetworkManager.shared.getRequest(url: .user, type: User.self) { result in
+//    }
+    
+    func reloadLabelFilters() {
+        NetworkManager.shared.getRequest(url: .label, type: LabelArray.self) { result in
+            guard let labelArray = result else { return }
+            self.labelFilters = labelArray.labelArray.map {
+                Filter(criteria: LabelCriteria(labelId: $0.labelId), description: $0.labelName, isChild: true)
+            }
+        }
+    }
+    
+    func reloadMilestoneFilters() {
+        NetworkManager.shared.getRequest(url: .milestone, type: MilestoneArray.self) { result in
+            guard let milestoneArray = result else { return }
+            self.milestonFilters = milestoneArray.milestoneArray.map {
+                Filter(criteria: MilestoneCriteria(milestoneId: $0.milestoneId), description: $0.title, isChild: true)
+            }
+        }
+    }
+    
     @IBAction func cancelButtonDidTouch(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func doneButtonDidTouch(_ sender: Any) {
-        // 처리
+        var mainFilters = [Filterable]()
+        var detailFilters = [Filterable]()
+        
+        guard let indexPaths = filterTableView.indexPathsForSelectedRows else {
+            NotificationCenter.default.post(name: .issueFilterDidChange, object: nil, userInfo: ["filters": []])
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        indexPaths.forEach { indexPath in
+            guard let filter = dataSource.itemIdentifier(for: indexPath)?.criteria else { return }
+            if indexPath.section == 0 {
+                mainFilters.append(filter)
+            } else {
+                detailFilters.append(filter)
+            }
+        }
+        NotificationCenter.default.post(name: .issueFilterDidChange, object: nil, userInfo: ["mainFilters": mainFilters, "detailFilters": detailFilters])
         dismiss(animated: true, completion: nil)
     }
-    
 }
 
 extension IssueFilterViewController: UITableViewDelegate {
@@ -83,16 +130,33 @@ extension IssueFilterViewController: UITableViewDelegate {
         ])
         return headerView
     }
-
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectedItem = dataSource.itemIdentifier(for: indexPath),
               let cell = tableView.cellForRow(at: indexPath) as? FilterTableViewCell else { return }
-        if selectedItem.childItem.count > 0 {
-            detailFilterContents.insert(contentsOf: selectedItem.childItem, at: indexPath.row + 1)
+        if !selectedItem.isChild {
+            switch selectedItem.criteria {
+            case is WriterCriteria:
+                break
+            case is LabelCriteria:
+                reloadLabelFilters()
+                selectedItem.setChildren(childItems: labelFilters)
+            case is MilestoneCriteria:
+                reloadMilestoneFilters()
+                selectedItem.setChildren(childItems: milestonFilters)
+            case is AssignedCriteria:
+                break
+            default:
+                break
+            }
+        }
+        
+        if selectedItem.childItems.count > 0 {
+            detailFilterContents.insert(contentsOf: selectedItem.childItems, at: indexPath.row + 1)
             applySnapshot()
         }
         cell.initCell(filter: selectedItem, section: indexPath.section)
@@ -101,8 +165,8 @@ extension IssueFilterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard let selectedItem = dataSource.itemIdentifier(for: indexPath),
               let cell = tableView.cellForRow(at: indexPath) as? FilterTableViewCell else { return }
-        if selectedItem.childItem.count > 0 {
-            let range = indexPath.row + 1...indexPath.row + selectedItem.childItem.count
+        if selectedItem.childItems.count > 0 {
+            let range = indexPath.row + 1...indexPath.row + selectedItem.childItems.count
             detailFilterContents.removeSubrange(range)
             applySnapshot()
         }
