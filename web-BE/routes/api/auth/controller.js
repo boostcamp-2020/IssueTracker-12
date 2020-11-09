@@ -1,5 +1,5 @@
 const authModel = require('../../../models/auth');
-
+const axios = require('axios');
 const authController = {
   checkUser: async (req, res) => {
     const { social, username } = req.params;

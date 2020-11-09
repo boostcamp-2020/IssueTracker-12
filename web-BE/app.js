@@ -3,6 +3,7 @@ const express = require('express');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
+const cors = require('cors');
 const passportConfig = require('./config/passport_config');
 
 const router = require('./routes/index');
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(passport.initialize());
+app.use(cors({origin: true, credentials: true}));
 passportConfig();
 
 app.use('/', router);
@@ -32,7 +34,7 @@ app.use((err, req, res, next) => {
   res.json(err.message);
 });
 
-const server = app.listen(3000, () => {
+const server = app.listen(8080, () => {
   const { port } = server.address();
 
   console.log('Server is working on port', port);
