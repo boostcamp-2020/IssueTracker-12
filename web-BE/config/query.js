@@ -17,7 +17,7 @@ module.exports = {
   // user
   selectUser:
     "SELECT user_id, username, social FROM User WHERE username=? and social=?",
-  selectUser: 'SELECT user_id, username, social FROM User WHERE username=? and social=?',
+  selectAllUser: "SELECT user_id, username, social FROM User",
   // issue
   insertIssue:
     "INSERT INTO Issue " +
