@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
+import { getAllIssues } from '@Api/issue';
 
-const IssuesContext = React.createContext();
+export const IssueContext = React.createContext();
 
 const issueReducer = (issueState, {type, data}) => {
   switch (type) {
@@ -18,7 +19,7 @@ const issueReducer = (issueState, {type, data}) => {
 const IssueStore = ({ children }) => {
   const [issueState, dispatch] = useReducer(issueReducer, []);
   const setInitState = async () => {
-    // const initState = await issueAPI.readAll();
+    const initState = await getAllIssues();
     dispatch({ type: 'INIT', data: initState.reverse() });
   };
   useEffect(() => {
@@ -26,9 +27,9 @@ const IssueStore = ({ children }) => {
   }, []);
 
   return (
-    <IssuesContext.Provider value={{ issueState, dispatch }}>
+    <IssueContext.Provider value={{ issueState, dispatch }}>
       {children}
-    </IssuesContext.Provider>
+    </IssueContext.Provider>
   );
 }
 
