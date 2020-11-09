@@ -39,6 +39,7 @@ module.exports = {
   },
   // webpack-dev-server의 옵션을 설정
   devServer: {
+    historyApiFallback: true,
 	  // 정적 파일 경로 설정
     contentBase: path.join(__dirname, 'public/'),
     port: 3000,
@@ -54,6 +55,6 @@ module.exports = {
       template: './public/index.html',
     }),
     new CleanWebpackPlugin(),
-    new Dotenv()  // webpack 환경에서의 dotenv를 사용하기 위함
+    new Dotenv(), // webpack 환경에서의 dotenv를 사용하기 위함
   ],
 };
