@@ -68,5 +68,6 @@ module.exports = {
       template: './public/index.html',
     }),
     new CleanWebpackPlugin(),
+    new Dotenv()  // webpack 환경에서의 dotenv를 사용하기 위함
   ],
 };
