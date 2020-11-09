@@ -20,9 +20,14 @@ class LabelCollectionViewCell: UICollectionViewListCell {
     }
     
     func initLabelCell(label: Label) {
+        
         DispatchQueue.main.async { [weak self] in
+            
+            let backgroundColor = UIColor(hex: label.color)
             self?.nameLabel.text = label.labelName
-            self?.nameLabel.backgroundColor = UIColor(hex: label.color)
+            self?.nameLabel.backgroundColor = backgroundColor
+            self?.nameLabel.textColor = backgroundColor?.textColor
+            
             self?.descriptionLabel.text = label.description
         }
     }

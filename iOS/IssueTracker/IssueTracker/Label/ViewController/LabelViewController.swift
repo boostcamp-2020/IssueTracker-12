@@ -35,6 +35,7 @@ class LabelViewController: UIViewController {
         let dataSource = LabelDataSource(
             collectionView: labelCollectionView,
             cellProvider: { (collectionView, indexPath, label) -> UICollectionViewCell? in
+                
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LabelCollectionViewCell.reuseIdentifier, for: indexPath)
                     as? LabelCollectionViewCell else { return UICollectionViewCell() }
             cell.initLabelCell(label: label)
@@ -45,6 +46,7 @@ class LabelViewController: UIViewController {
     }
     
     private func createCollectionViewLayout() -> UICollectionViewLayout {
+        
         var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
         configuration.trailingSwipeActionsConfigurationProvider = { [unowned self] (indexPath) in
             
@@ -52,13 +54,14 @@ class LabelViewController: UIViewController {
                 NetworkManager.shared.deleteRequest(
                     url: .label,
                     deleteID: self.labels[indexPath.row].labelId) { (nsDictionary) in
-                    print(nsDictionary)
+                    
                     NotificationCenter.default.post(name: .labelDidChange, object: nil)
                 }
                 completion(true)
             }
             deleteAction.backgroundColor = .systemPink
             deleteAction.image = UIImage(named: "delete")?.withTintColor(UIColor.white)
+            
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
         
@@ -66,6 +69,7 @@ class LabelViewController: UIViewController {
     }
     
     @objc func reloadLabels() {
+        
         DispatchQueue.main.async {
             NetworkManager.shared.getRequest(url: .label, type: LabelArray.self) { result in
                 guard let labelArray = result else { return }
@@ -78,8 +82,10 @@ class LabelViewController: UIViewController {
         }
     }
     
-    @IBAction func addButtonDidTouch(_ sender: Any) {
+    @IBAction func addButtonDidTouch(_ sender: UIButton) {
+        
         if let editVC = self.storyboard?.instantiateViewController(identifier: LabelEditViewController.reuseIdentifier) as? LabelEditViewController {
+            
             editVC.modalPresentationStyle = .overFullScreen
             editVC.modalTransitionStyle = .crossDissolve
             editVC.initEditView(isNew: true, label: nil)
@@ -93,9 +99,12 @@ class LabelViewController: UIViewController {
 }
 
 extension LabelViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         if let editVC = self.storyboard?.instantiateViewController(identifier: LabelEditViewController.reuseIdentifier)
             as? LabelEditViewController {
+            
             editVC.modalPresentationStyle = .overFullScreen
             editVC.modalTransitionStyle = .crossDissolve
             self.present(editVC, animated: true, completion: nil)

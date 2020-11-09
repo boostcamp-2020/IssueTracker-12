@@ -81,6 +81,7 @@ class LabelEditViewController: UIViewController {
         }
         DispatchQueue.main.async { [weak self] in
             self?.labelPreviewLabel.backgroundColor = labelColor
+            self?.labelPreviewLabel.textColor = labelColor.textColor
             self?.randomColorButton.backgroundColor = labelColor
             self?.colorTextField.text = labelColor.toHexString()
         }
