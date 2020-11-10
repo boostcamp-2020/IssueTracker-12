@@ -38,11 +38,13 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
     alias: {
       '@Components': path.resolve(__dirname, 'src/components'),
+      '@Common': path.resolve(__dirname, 'src/components/commons'),
       '@Pages': path.resolve(__dirname, 'src/pages'),
       '@Public': path.resolve(__dirname, 'public'),
       '@Images': path.resolve(__dirname, 'public/images'),
       '@Api': path.resolve(__dirname, 'src/api'),
       '@Stores': path.resolve(__dirname, 'src/stores'),
+      '@Services': path.resolve(__dirname, 'src/services'),
     },
   },
   // output: 번들링 된 결과물을 어디다 둘 것인지에 대한 설정이 가능.

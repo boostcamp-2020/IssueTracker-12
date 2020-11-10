@@ -9,7 +9,7 @@ const LabelBadge = (props) => {
 };
 
 const Badge = styled.div`
-  display: inline-block;
+  display: flex;
   color: ${(props) => props.color || '#fff'};
   background-color: ${(props) => props.backgroundColor || '#9a21sf'};
   padding: 3px 10px;
@@ -19,6 +19,8 @@ const Badge = styled.div`
   vertical-align: middle;
   border-radius: 6px;
   -webkit-appearance: none;
+  height:20px;
+  align-items:center;
 `;
 
 export default LabelBadge;

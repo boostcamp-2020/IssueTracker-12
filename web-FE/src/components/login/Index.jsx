@@ -1,7 +1,7 @@
-import React from "react";
-import LoginForm from "./LoginForm";
-import GithubLoginButton from "./GithubLoginButton";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import LoginForm from './LoginForm';
+import GithubLoginButton from './GithubLoginButton';
 
 const App = () => {
   const Div = styled.div`

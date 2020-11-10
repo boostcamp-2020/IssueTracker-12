@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import LabelMilestoneTag from '@Components/commons/LabelMilestoneTag';
-import Button from '@Components/commons/Button';
+import LabelMilestoneTag from '@Common/LabelMilestoneTag';
+import Button from '@Common/Button';
+import { showCreateLabel } from '@Services/labelService';
 
 const LabelMenu = () => (
   <FlexRowDiv>
     <LabelMilestoneTag />
-    <NewLabelButton>New Label</NewLabelButton>
+    <NewLabelButton onClick={showCreateLabel}>New Label</NewLabelButton>
   </FlexRowDiv>
 );
 
@@ -15,6 +16,7 @@ const FlexRowDiv = styled.div`
   justify-content:space-between;
   flex-direction: row;
   width: 100%;
+  margin-top: 30px;
 `;
 
 const NewLabelButton = styled(Button)`

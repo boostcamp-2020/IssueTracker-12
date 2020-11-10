@@ -14,5 +14,7 @@ module.exports = {
     'import/no-unresolved': 0,
     'import/prefer-default-export': 0,
     'consistent-return': 0,
+    'react/jsx-fragments': 0,
+    'no-restricted-globals': 0,
   },
 };
