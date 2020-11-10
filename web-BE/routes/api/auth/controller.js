@@ -24,21 +24,21 @@ const authController = {
     const getUserDataUrl = 'https://api.github.com/user';
     const reg = /access_token=(.*)&scope/;
 
-    try { 
+    try {
       const result = await axios.post(getTokenUrl, null, {
-        params: { client_id, client_secret, code }
-      })
+        params: { client_id, client_secret, code },
+      });
 
-      const token = reg.exec(result.data)[1]
+      const token = reg.exec(result.data)[1];
       const { data : userData } = await axios({
         method: 'get',
         url: getUserDataUrl,
-        headers: { Authorization: `token ${token}` }
-      })
+        headers: { Authorization: `token ${token}` },
+      });
 
-      const { login:username, url } = userData
-      const userInfo = { username, social:'github' ,url }
-      const isExistUser = await authController.checkUser(userInfo)
+      const { login: username, url } = userData
+      const userInfo = { username, social:'github', url };
+      const isExistUser = await authController.checkUser(userInfo);
       res.json({ userInfo, isExistUser });
     } 
     catch (error) { console.error(error); }
