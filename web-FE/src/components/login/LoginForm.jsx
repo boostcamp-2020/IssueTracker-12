@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const LoginForm = () => {
   const Input = styled.input`
@@ -7,7 +7,7 @@ const LoginForm = () => {
     padding: 0.5em;
     margin: 0.5em;
     width: 200px;
-    color: ${(props) => props.inputColor || "palevioletred"};
+    color: ${(props) => props.inputColor || 'palevioletred'};
     background: papayawhip;
     border: none;
     border-radius: 3px;

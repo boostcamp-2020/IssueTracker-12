@@ -1,4 +1,4 @@
-import React, { setState } from 'react';
+import { setState } from 'react';
 
 export const showCreateLabel = () => {
   setState({

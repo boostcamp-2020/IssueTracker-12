@@ -1,6 +1,8 @@
-import React, { useEffect, Fragment } from "react";
-import { getUserInfo, saveUser, linkToGetCode, signIn } from "@Api/auth";
-import styled from "styled-components";
+import React, { useEffect, Fragment } from 'react';
+import {
+  getUserInfo, saveUser, linkToGetCode, signIn,
+} from '@Api/auth';
+import styled from 'styled-components';
 
 const GithubLogin = () => {
   const Button = styled.button`
@@ -34,9 +36,9 @@ const GithubLogin = () => {
   });
 
   return (
-    <Fragment>
+    <>
       <Button onClick={linkToGetCode}>Sign in with GitHub</Button>
-    </Fragment>
+    </>
   );
 };
 
