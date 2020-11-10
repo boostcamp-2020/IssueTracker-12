@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment } from "react";
-import { linkToGetCode, getUserInfo, saveUser } from "../../api/auth";
+import { getUserInfo, saveUser, linkToGetCode, signIn } from "../../api/auth";
 import styled from "styled-components";
 
 const GithubLogin = () => {
@@ -21,13 +21,13 @@ const GithubLogin = () => {
     if (reg.test(window.location)) {
       const code = reg.exec(window.location)[1];
       const { userInfo, isExistUser } = await getUserInfo(code);
-      if (isExistUser) {
-        alert("login되었습니다");
-        location.href = "/issue";
-        return;
+      const { user_id: userid, username, social, url } = userInfo;
+      if (!isExistUser) {
+        const userid = await saveUser(username, social);
       }
-      await saveUser(userInfo);
-      alert("회원가입되었습니다");
+      await signIn(username, social);
+      location.href = "/login";
+      return;
     }
   });
 
