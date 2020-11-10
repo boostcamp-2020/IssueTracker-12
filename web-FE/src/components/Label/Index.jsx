@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import LabelMilestoneTag from "../common/LabelMilestoneTag";
+import LabelMilestoneTag from "@Components/commons/LabelMilestoneTag";
 import NewLabelButton from "./NewLabelButton";
 import LabelList from "./LabelList";
 
