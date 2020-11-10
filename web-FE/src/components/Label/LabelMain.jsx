@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import IssueMenu from './IssueMenu';
-import IssueListBoard from './IssueListBoard';
+import LabelMenu from './LabelMenu';
+import LabelListBoard from './LabelListBoard';
 
-const IssueMain = () => (
-  <IssueMainContainer>
-    <IssueMenu />
-    <IssueListBoard />
-  </IssueMainContainer>
+const LabelMain = () => (
+  <MainContainer>
+    <LabelMenu />
+    <LabelListBoard />
+  </MainContainer>
 );
 
 const FlexColumn = `
@@ -19,11 +19,11 @@ const FlexColumnDiv = styled.div`
   ${FlexColumn}
 `;
 
-const IssueMainContainer = styled(FlexColumnDiv)`
+const MainContainer = styled(FlexColumnDiv)`
   ${FlexColumn}
   align-items: center;
   margin-top: 30px;
   padding: 0 30px;
 `;
 
-export default IssueMain;
+export default LabelMain;
