@@ -34,8 +34,8 @@ const authController = {
         headers: { Authorization: `token ${token}` },
       });
 
-      const { login: username, url } = userData;
-      const userInfo = { username, social: "github", url };
+      const { user_id, login: username, url } = userData;
+      const userInfo = { user_id, username, social: "github", url };
       const isExistUser = await authController.checkUser(userInfo);
       res.json({ userInfo, isExistUser });
     } catch (error) {
@@ -58,7 +58,7 @@ const authController = {
         }
         // jwt.sign('token내용', 'JWT secretkey')
         const token = jwt.sign(JSON.stringify(user), process.env.JWT_SECRET);
-        return res.json({ user, token });
+        return res.json({ token });
       });
     })(req, res, next);
   },
