@@ -26,6 +26,7 @@ const GithubLogin = () => {
         const userid = await saveUser(username, social);
       }
       await signIn(username, social);
+      alert("로그인 되었습니다 🙌🏻");
       location.href = "/login";
       return;
     }
