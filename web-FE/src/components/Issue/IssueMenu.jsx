@@ -4,6 +4,7 @@ import Dropdown from '@Components/commons/Dropdown';
 import Searchbar from '@Components/commons/Searchbar';
 import ButtonWithIcon from '@Components/commons/ButtonWithIcon';
 import Button from '@Components/commons/Button';
+import LabelMilestoneTag from '@Components/commons/LabelMilestoneTag';
 import labelIcon from '@Images/label.svg';
 import milestoneIcon from '@Images/milestone.svg';
 import { IssueMenuFilter } from './Filters';
@@ -15,18 +16,7 @@ const IssueMenu = () => {
       <IssueFilterSearchbar 
         className="issue-filter-searchbar"
         />
-      <LabelButton
-        className="label-button"
-        image={labelIcon}
-        name="label"
-        number="3"
-      /> 
-      <MilestoneButton
-        className="milestone-button"
-        image={milestoneIcon}
-        name="milestone"
-        number="3"
-      />
+      <LabelMilestoneTag />
       <NewIssueButton>New Issue</NewIssueButton>
     </FlexRowDiv>
   );

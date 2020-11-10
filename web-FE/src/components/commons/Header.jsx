@@ -3,19 +3,19 @@ import styled from 'styled-components';
 import logoImage from '@Images/logo.svg';
 import {Link} from 'react-router-dom';
 
-const Title = () => {
+const Title = (props) => {
   return (
     <LinkToHome to='/'>
       <LogoImage src={logoImage}/>
-      <TitleText>Issues</TitleText>
+      <TitleText>{props.title}</TitleText>
     </LinkToHome>
   )
 };
 
-const Header = () => {
+const Header = (props) => {
   return (
     <HeaderBackground>
-      <Title/>
+      <Title title={props.page}/>
     </HeaderBackground>
   )
 }

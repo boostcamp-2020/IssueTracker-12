@@ -5,7 +5,7 @@ import IssueStore from '@Stores/IssueStore';
 import UserStore from '@Stores/UserStore';
 import LabelStore from "@Stores/LabelStore";
 import IssueMain from './IssueMain';
-import MilestoneStore from "../../stores/MilestoneStore";
+import MilestoneStore from "@Stores/MilestoneStore";
 
 const IssuePage = () => (
   <UserStore>
@@ -13,7 +13,7 @@ const IssuePage = () => (
       <LabelStore>
         <IssueStore>
           <PageLayout
-            header={<Header />}
+            header={<Header page="Issue"/>}
             main={<IssueMain />}
           />
         </IssueStore>

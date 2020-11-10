@@ -10,6 +10,7 @@ module.exports = {
   },
   ignorePatterns: ['node_modules/'],
   rules: {
-    'react/prop-types': 0
+    'react/prop-types': 0,
+    "object-curly-spacing": "off",
   },
 };
