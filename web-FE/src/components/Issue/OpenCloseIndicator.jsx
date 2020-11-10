@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Icon } from '@Images/exclamation.svg'
 
-const OpenCloseIndicator = () => (
+const OpenCloseIndicator = ({ isOpen }) => (
   <Container>
     <Icon
       width="100%"
       height="100%"
       viewox="0 0 30 30"
-      fill="green"
+      fill={isOpen ? 'green' : 'red'}
     />
   </Container>
 );

@@ -2,17 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import DropdownModal from './DropdownModal';
 
-const Dropdown = ({ className }) => (
-  <details
-    className={className}
-  >
-    <DropdownButton>
-      Filters
-      <DropdownImage/>
-    </DropdownButton>
-    <DropdownModal/>
-  </details>
-);
+const Dropdown = ({ className, title, list }) => {
+
+  return (
+    <details
+      className={className}
+    >
+      <DropdownButton>
+        {title}
+        <DropdownImage />
+      </DropdownButton>
+      <DropdownModal list={list} />
+    </details>
+  );
+} 
 
 const DropdownButton = styled.summary`
   position: relative;
