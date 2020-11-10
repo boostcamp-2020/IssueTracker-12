@@ -9,5 +9,7 @@ module.exports = {
     ecmaVersion: 12,
   },
   ignorePatterns: ['node_modules/'],
-  rules: {},
+  rules: {
+    'react/prop-types': 0
+  },
 };
