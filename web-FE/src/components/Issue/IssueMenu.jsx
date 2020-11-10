@@ -34,7 +34,7 @@ const IssueMenu = () => {
 
 
 const FlexRowDiv = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: row;
   width: 100%;
 `;
@@ -50,18 +50,6 @@ const IssueFilterSearchbar = styled(Searchbar)`
   border-radius: 0 5px 5px 0;
   line-height: 20px;
   margin-right: 20px;
-`;
-
-const LabelButton = styled(ButtonWithIcon)`
-  ${common}
-  border-radius: 5px 0 0 5px;
-  padding-left: 3px;
-`;
-
-const MilestoneButton = styled(ButtonWithIcon)`
-  ${common}
-  border-radius: 0 5px 5px 0;
-  padding-right: 3px;
 `;
 
 const NewIssueButton = styled(Button)`
