@@ -43,6 +43,7 @@ module.exports = {
       "@Images": path.resolve(__dirname, "public/images"),
       "@Api": path.resolve(__dirname, "src/api"),
       "@Stores": path.resolve(__dirname, "src/stores"),
+      "@Service": path.resolve(__dirname, "service"),
     },
   },
   // output: 번들링 된 결과물을 어디다 둘 것인지에 대한 설정이 가능.
