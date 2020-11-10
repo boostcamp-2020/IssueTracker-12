@@ -39,6 +39,8 @@ class IssueListCollectionViewCell: UICollectionViewListCell {
                 self?.milestoneLabel.alpha = 0
             }
         }
+        
+        separatorLayoutGuide.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
     }
     
     private func openLabelConfigure(isOpen: Int) {

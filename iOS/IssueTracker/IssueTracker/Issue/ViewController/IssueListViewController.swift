@@ -13,6 +13,7 @@ class IssueListViewController: UIViewController {
     @IBOutlet weak var issueListCollectionView: UICollectionView!
     
     private var issues = [Issue]()
+    private var isEditMode = false
     
     typealias IssueDataSource = UICollectionViewDiffableDataSource<Section, Issue>
     private lazy var dataSource = createDataSource()
@@ -33,6 +34,7 @@ class IssueListViewController: UIViewController {
         
         issueListCollectionView.collectionViewLayout = createCollectionViewLayout()
         issueListCollectionView.delegate = self
+//        issueListCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         let cellNibName = UINib(nibName: IssueListCollectionViewCell.reuseIdentifier, bundle: nil)
         self.issueListCollectionView.register(cellNibName, forCellWithReuseIdentifier: IssueListCollectionViewCell.reuseIdentifier)
@@ -49,7 +51,7 @@ class IssueListViewController: UIViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IssueListCollectionViewCell.reuseIdentifier, for: indexPath)
                     as? IssueListCollectionViewCell else { return UICollectionViewCell() }
             cell.initIssueCell(issue: issue)
-            
+                cell.accessories = [.multiselect(displayed: .whenEditing, options: .init()) ]
             return cell
         })
         return dataSource
@@ -98,6 +100,15 @@ class IssueListViewController: UIViewController {
                 self.dataSource.apply(snapshot, animatingDifferences: false)
             }
         }
+    }
+    
+    @IBAction func editButtonDidTouch(_ sender: UIBarButtonItem) {
+        
+        isEditMode = !isEditMode
+        issueListCollectionView.isEditing = isEditMode
+        
+        issueListCollectionView.allowsMultipleSelectionDuringEditing = true
+        issueListCollectionView.allowsSelection = true
     }
     
     @IBAction func newIssueButtonDidTouch(_ sender: UIButton) {
