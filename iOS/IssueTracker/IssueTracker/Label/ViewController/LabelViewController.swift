@@ -53,7 +53,7 @@ class LabelViewController: UIViewController {
             let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {(_, _, completion) in
                 NetworkManager.shared.deleteRequest(
                     url: .label,
-                    deleteID: self.labels[indexPath.row].labelId) { (nsDictionary) in
+                    deleteID: self.labels[indexPath.row].labelId) { _ in
                     
                     NotificationCenter.default.post(name: .labelDidChange, object: nil)
                 }

@@ -94,8 +94,5 @@ extension IssueDetailViewController: SendIssueDataDelegate {
     func sendIssueData(issue: Issue) {
         
         self.issue = issue
-//        writerLabel.text = issue.writer
-//        titleLabel.text = issue.title
-//        issueIDLabel.text = "#\(issue.issueId)"
     }
 }

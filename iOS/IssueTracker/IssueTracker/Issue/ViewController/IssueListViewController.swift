@@ -6,21 +6,20 @@
 //
 
 import UIKit
-//import SwipeCellKit
 
 class IssueListViewController: UIViewController {
     
     @IBOutlet weak var issueListSearchBar: UISearchBar!
     @IBOutlet weak var issueListCollectionView: UICollectionView!
     
+    private var issues = [Issue]()
+    
     typealias IssueDataSource = UICollectionViewDiffableDataSource<Section, Issue>
     private lazy var dataSource = createDataSource()
     
-    private var issues = [Issue]()
-    
     override func viewDidLoad() {
-        super.viewDidLoad()
         
+        super.viewDidLoad()
         configure()
     }
     
@@ -61,32 +60,26 @@ class IssueListViewController: UIViewController {
         var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
         configuration.trailingSwipeActionsConfigurationProvider = { [unowned self] (indexPath) in
             
-            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {(_, _, completion) in
-                // issue delete 가 구현이 안되어있음
-//                NetworkManager.shared.deleteRequest(
-//                    url: .issue,
-//                    deleteID: self.issues[indexPath.row].issueId) { (nsDictionary) in
-//
-//                    NotificationCenter.default.post(name: .issueDidChange, object: nil)
-//                }
-//                completion(true)
+            var isOpen = IssueOpen.open
+            if self.issues[indexPath.row].isOpen == IssueOpen.closed.rawValue {
+                isOpen = IssueOpen.closed
+            }
+            let closeAction = UIContextualAction(style: .destructive, title: "\(isOpen.text)") {(_, _, completion) in
+                
+                let object = ["is_open": isOpen.param]
+                NetworkManager.shared.patchRequest(
+                    url: .issue,
+                    updateID: self.issues[indexPath.row].issueId,
+                    object: object, type: .isOpen) { _ in
+                        NotificationCenter.default.post(name: .issueDidChange, object: nil)
+                }
+                completion(true)
             }
             
-            let closeAction = UIContextualAction(style: .destructive, title: "Close") {(_, _, completion) in
-//                NetworkManager.shared.deleteRequest(
-//                    url: .issue,
-//                    deleteID: self.issues[indexPath.row].issueId) { (nsDictionary) in
-//
-//                    NotificationCenter.default.post(name: .issueDidChange, object: nil)
-//                }
-//                completion(true)
-            }
+            closeAction.backgroundColor = UIColor(named: isOpen.color)
+            closeAction.image = UIImage(named: isOpen.image)
             
-            closeAction.backgroundColor = UIColor(named: "closeGreen")
-            closeAction.image = UIImage(named: "closed")?.withTintColor(UIColor.white)
-            deleteAction.image = UIImage(named: "delete")?.withTintColor(UIColor.white)
-            
-            return UISwipeActionsConfiguration(actions: [closeAction, deleteAction])
+            return UISwipeActionsConfiguration(actions: [closeAction])
         }
         
         return UICollectionViewCompositionalLayout.list(using: configuration)
@@ -102,7 +95,7 @@ class IssueListViewController: UIViewController {
                 var snapshot = NSDiffableDataSourceSnapshot<Section, Issue>()
                 snapshot.appendSections([.main])
                 snapshot.appendItems(self.issues)
-                self.dataSource.apply(snapshot)
+                self.dataSource.apply(snapshot, animatingDifferences: false)
             }
         }
     }

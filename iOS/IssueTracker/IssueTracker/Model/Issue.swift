@@ -10,6 +10,34 @@ import Foundation
 enum IssueOpen: Int {
     case open = 1
     case closed = 0
+    
+    var text: String {
+        switch self {
+        case .open:  return "Close"
+        case .closed: return "Open"
+        }
+    }
+        
+    var param: Bool {
+        switch self {
+        case .open:  return false
+        case .closed: return true
+        }
+    }
+    
+    var image: String {
+        switch self {
+        case .open:  return "closed"
+        case .closed: return "open"
+        }
+    }
+    
+    var color: String {
+        switch self {
+        case .open:  return "closeIssueColor"
+        case .closed: return "openIssueColor"
+        }
+    }
 }
 
 struct Issue: Codable, Hashable {

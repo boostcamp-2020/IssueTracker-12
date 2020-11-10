@@ -28,6 +28,9 @@ class IssueListCollectionViewCell: UICollectionViewListCell {
 
         DispatchQueue.main.async { [weak self] in
             self?.titleLabel.text = issue.title
+            if let date = issue.writeTime.split(separator: "T").first?.split(separator: "-") {
+                self?.contentLabel.text = "\(date[0])년 \(date[1])월 \(date[2])일"
+            }
             self?.openLabelConfigure(isOpen: issue.isOpen)
             self?.labelsConfigure(labels: issue.labels)
             if let milestone = issue.milestoneTitle {
