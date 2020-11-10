@@ -7,39 +7,36 @@
 
 import Foundation
 
-protocol filterable {
+protocol Filterable {
     func apply(issues: [Issue]) -> [Issue]
 }
 
-class CloseCriteria: filterable {
-    
+class CloseCriteria: Filterable {
     func apply(issues: [Issue]) -> [Issue] {
         return issues.filter { $0.isOpen == 0 }
     }
 }
 
-class OpenCriteria: filterable {
+class OpenCriteria: Filterable {
     
     func apply(issues: [Issue]) -> [Issue] {
         return issues.filter { $0.isOpen == 1 }
     }
 }
 
-class WriterCriteria: filterable {
+class WriterCriteria: Filterable {
+    let writer: String
     
-    let writer: User
-    
-    init(writer: User) {
+    init(writer: String) {
         self.writer = writer
     }
     
     func apply(issues: [Issue]) -> [Issue] {
-        return issues.filter { $0.writer == writer.userName }
+        return issues.filter { $0.writer == writer }
     }
 }
 
-class AssignedCriteria: filterable {
-    
+class AssignedCriteria: Filterable {
     let assignee: User
     
     init(assignee: User) {
@@ -51,15 +48,14 @@ class AssignedCriteria: filterable {
     }
 }
 
-class CommentCriteria: filterable {
-    
+class CommentCriteria: Filterable {
     func apply(issues: [Issue]) -> [Issue] {
         //로직 추가하기
         return issues
     }
 }
 
-class TitleCriteria: filterable {
+class TitleCriteria: Filterable {
     
     let inputText: String
     
@@ -74,11 +70,10 @@ class TitleCriteria: filterable {
     }
 }
 
-class AndCriteria: filterable {
+class AndCriteria: Filterable {
+    let criterias: [Filterable]
     
-    let criterias: [filterable]
-    
-    init(criterias: [filterable]) {
+    init(criterias: [Filterable]) {
         self.criterias = criterias
     }
     
@@ -87,38 +82,48 @@ class AndCriteria: filterable {
     }
 }
 
-class OrCriteria: filterable {
+class OrCriteria: Filterable {
     
-    let left: filterable
-    let right: filterable
+    let criterias: [Filterable]
     
-    init(left: filterable, right: filterable) {
-        self.left = left
-        self.right = right
+    init(criterias: [Filterable]) {
+        self.criterias = criterias
     }
     
     func apply(issues: [Issue]) -> [Issue] {
         
-        let leftResult = left.apply(issues: issues)
-        let rightResult = right.apply(issues: issues)
-        return Array(Set(leftResult + rightResult)).sorted(by: >)
+        let filterResults = criterias.map { $0.apply(issues: issues) }
+        let result = filterResults.reduce([]) { Array(Set($0 + $1))}
+        return result.sorted(by: <)
     }
 }
 
-class LabelNameCriteria: filterable {
+class LabelCriteria: Filterable {
     
-    let name: String
+    let labelId: Int
     
-    init(name: String) {
-        self.name = name
+    init(labelId: Int) {
+        self.labelId = labelId
     }
     
     func apply(issues: [Issue]) -> [Issue] {
-        return issues.filter { $0.labels.filter{ $0.labelName == name }.count > 0  }
+        return issues.filter { $0.labels.filter { $0.labelId == labelId }.count > 0 }
     }
 }
 
-class EmptyCriteria: filterable {
+class MilestoneCriteria: Filterable {
+    let milestoneId: Int
+    
+    init(milestoneId: Int) {
+        self.milestoneId = milestoneId
+    }
+    
+    func apply(issues: [Issue]) -> [Issue] {
+        return issues.filter { $0.milestoneId == milestoneId }
+    }
+}
+
+class EmptyCriteria: Filterable {
     
     func apply(issues: [Issue]) -> [Issue] {
         return issues

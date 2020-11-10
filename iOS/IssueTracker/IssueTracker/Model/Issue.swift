@@ -47,8 +47,8 @@ struct Issue: Codable, Hashable {
         return lhs.issueId == rhs.issueId
     }
     
-    static func > (lhs: Issue, rhs: Issue) -> Bool {
-        return lhs.issueId > rhs.issueId
+    static func < (lhs: Issue, rhs: Issue) -> Bool {
+        return lhs.issueId < rhs.issueId
     }
     
     func hash(into hasher: inout Hasher) {

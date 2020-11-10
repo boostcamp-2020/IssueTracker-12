@@ -30,6 +30,6 @@ struct UserArray: Codable, Hashable {
     let userArray: [User]
     
     enum CodingKeys: String, CodingKey {
-        case userArray = "userArr"
+        case userArray
     }
 }
