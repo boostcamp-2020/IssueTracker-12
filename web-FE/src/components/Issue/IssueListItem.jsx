@@ -1,20 +1,35 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import OpenCloseIndicator from './OpenCloseIndicator';
 
-const IssueListItem = () => (
-  <FlexRowDiv>
-    <Checkbox>
-      <input type="checkbox" name="check-all"/>
-    </Checkbox>
-    <OpenCloseIndicator />
-    <IssueContent>
-      <IssueTitle to="/">Issue title</IssueTitle>
-      <IssueInfo>#93 opened 1 hour ago by aaa</IssueInfo>
-    </IssueContent>
-  </FlexRowDiv>
-);
+const IssueListItem = (props) => {
+  const { issue } = props;
+
+  const {
+    issue_id: issueId,
+    title,
+    write_time: writeTime,
+    is_open: isOpen,
+    writer,
+  } = issue;
+  const issueInfo = `#${issueId} opened at ${writeTime} by ${writer}`;
+  return (
+    <FlexRowDiv>
+      <Checkbox>
+        <input type="checkbox" name="check-all" />
+      </Checkbox>
+      <OpenCloseIndicator isOpen={isOpen} />
+      <IssueContent>
+        <IssueTitle to="/">{title}</IssueTitle>
+        <IssueInfo>
+          {issueInfo}
+        </IssueInfo>
+      </IssueContent>
+    </FlexRowDiv>
+  );
+};
 
 const FlexRowDiv = styled.div`
   display:flex;
