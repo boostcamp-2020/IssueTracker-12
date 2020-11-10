@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Dropdown from '../commons/Dropdown';
+import { IssueAssigneeFilter, IssueAuthorFilter, IssueLabelFilter, IssueMilestoneFilter } from './Filters';
 
 const IssueListBoard = () => (
   <FlexRowDiv>
@@ -8,10 +9,10 @@ const IssueListBoard = () => (
       <input type="checkbox" name="check-all" />
     </Checkbox>
     <FilterContainer>
-      <IssueFilter className="issue-filter" />
-      <IssueFilter className="issue-filter" />
-      <IssueFilter className="issue-filter" />
-      <IssueFilter className="issue-filter" />
+      <IssueAuthorFilter />
+      <IssueLabelFilter />
+      <IssueMilestoneFilter />
+      <IssueAssigneeFilter />
     </FilterContainer>
   </FlexRowDiv>
 );

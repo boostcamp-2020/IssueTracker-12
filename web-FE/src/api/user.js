@@ -1,12 +1,12 @@
 import axios from 'axios';
 import instance from './instance';
 
-export const getAllLabels = async () => {
-  const url = "/api/label"
+export const getAllUsers = async () => {
+  const url = "/api/user"
   try{
     const result = await instance.get(url);
-    const {labelArray} = result.data;
-    return labelArray;
+    const {userArray} = result.data;
+    return userArray;
   } catch(error){
     console.error(error)
   }

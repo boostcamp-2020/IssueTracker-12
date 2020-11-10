@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import IssueListHeader from './IssueListHeader';
 import IssueListItem from './IssueListItem';
+import { IssueContext } from '@Stores/IssueStore';
 
-const IssueListBoard = () => (
-  <Board>
-    <IssueListHeader />
-    <IssueListItem />
-    <IssueListItem />
-    <IssueListItem />
-    <IssueListItem />
-    <IssueListItem />
-  </Board>
-);
+const IssueListBoard = () => {
+  const {issueState} = useContext(IssueContext);
+  return (
+    <Board>
+      <IssueListHeader />
+      {issueState.map((issue) => {
+        const { issue_id: issueId } = issue;
+        return (<IssueListItem issue={issue} key={issueId} />);
+      })}
+    </Board>
+  );
+}
+
 
 const Board = styled.div`
   display:flex;
