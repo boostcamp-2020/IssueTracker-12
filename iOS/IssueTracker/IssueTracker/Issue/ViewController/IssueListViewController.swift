@@ -11,6 +11,7 @@ class IssueListViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var newIssueButton: UIButton!
+    @IBOutlet weak var issueCloseButton: UIBarButtonItem!
     @IBOutlet weak var issueListSearchBar: UISearchBar!
     @IBOutlet weak var issueListCollectionView: UICollectionView!
     
@@ -35,9 +36,9 @@ class IssueListViewController: UIViewController {
     
     func configure() {
         
+        tabBarController?.tabBar.isHidden = false
         issueListCollectionView.collectionViewLayout = createCollectionViewLayout()
         issueListCollectionView.delegate = self
-//        issueListCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         let cellNibName = UINib(nibName: IssueListCollectionViewCell.reuseIdentifier, bundle: nil)
         self.issueListCollectionView.register(cellNibName, forCellWithReuseIdentifier: IssueListCollectionViewCell.reuseIdentifier)
@@ -71,13 +72,7 @@ class IssueListViewController: UIViewController {
             }
             let closeAction = UIContextualAction(style: .destructive, title: "\(isOpen.text)") {(_, _, completion) in
                 
-                let object = ["is_open": isOpen.param]
-                NetworkManager.shared.patchRequest(
-                    url: .issue,
-                    updateID: self.issues[indexPath.row].issueId,
-                    object: object, type: .isOpen) { _ in
-                        NotificationCenter.default.post(name: .issueDidChange, object: nil)
-                }
+                closeIssue(isOpen: isOpen, indexPath: indexPath)
                 completion(true)
             }
             
@@ -132,10 +127,28 @@ class IssueListViewController: UIViewController {
         }
     }
     
+    @IBAction func issueCloseButtonDidTouch(_ sender: UIBarButtonItem) {
+        
+        issueListCollectionView.indexPathsForSelectedItems?.forEach { indexPath in
+            closeIssue(isOpen: IssueOpen.closed, indexPath: indexPath)
+        }
+    }
+    
     @IBAction func newIssueButtonDidTouch(_ sender: UIButton) {
         if let newVC = self.storyboard?.instantiateViewController(identifier: NewIssueViewController.reuseIdentifier) as? NewIssueViewController {
             self.present(newVC, animated: true, completion: nil)
             newVC.initNewIssueView(isNew: true, issue: nil)
+        }
+    }
+    
+    private func closeIssue(isOpen: IssueOpen, indexPath: IndexPath) {
+        
+        let object = ["is_open": isOpen.param]
+        NetworkManager.shared.patchRequest(
+            url: .issue,
+            updateID: self.issues[indexPath.row].issueId,
+            object: object, type: .isOpen) { _ in
+                NotificationCenter.default.post(name: .issueDidChange, object: nil)
         }
     }
     
@@ -215,36 +228,3 @@ extension IssueListViewController: UICollectionViewDelegate {
         }
     }
 }
-
-//extension IssueListViewController: UICollectionViewDataSource {
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return issues.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if let detailVC = self.storyboard?.instantiateViewController(identifier: IssueDetailViewController.reuseIdentifier) as? IssueDetailViewController {
-//            detailVC.sendIssueData(issue: issues[indexPath.row])
-//            self.navigationController?.pushViewController(detailVC, animated: true)
-//        }
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = issueListCollectionView.dequeueReusableCell(withReuseIdentifier: IssueListCollectionViewCell.reuseIdentifier, for: indexPath) as? IssueListCollectionViewCell else {
-//            return UICollectionViewCell()
-//        }
-//        cell.delegate = self
-//        cell.initIssueCell(issue: issues[indexPath.row])
-//
-//        return cell
-//    }
-//}
-//
-//extension IssueListViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let width = self.view.bounds.width
-//        let height = CGFloat(130)
-//
-//        return CGSize(width: width, height: height)
-//    }
-//}
