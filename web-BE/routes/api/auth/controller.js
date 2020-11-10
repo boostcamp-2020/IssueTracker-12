@@ -43,8 +43,9 @@ const authController = {
     }
   },
 
-  getToken: (req, res) => {
-    passport.authenticate("local", { session: false }, (err, user) => {
+  getToken: (req, res, next) => {
+    const { social } = req.body;
+    passport.authenticate(`${social}Local`, { session: false }, (err, user) => {
       if (err || !user) {
         return res.status(400).json({
           message: "Something is not right",
@@ -56,10 +57,10 @@ const authController = {
           res.send(err);
         }
         // jwt.sign('token내용', 'JWT secretkey')
-        const token = jwt.sign(user.toJSON(), process.env.JWT_SECRET);
+        const token = jwt.sign(JSON.stringify(user), process.env.JWT_SECRET);
         return res.json({ user, token });
       });
-    })(req, res);
+    })(req, res, next);
   },
 };
 
