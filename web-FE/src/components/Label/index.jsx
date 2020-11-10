@@ -1,6 +1,6 @@
 import React from 'react';
-import PageLayout from '@Components/commons/PageLayout';
-import Header from '@Components/commons/Header';
+import PageLayout from '@Common/PageLayout';
+import Header from '@Common/Header';
 import LabelStore from '@Stores/LabelStore';
 import LabelMain from './LabelMain';
 

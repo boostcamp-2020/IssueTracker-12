@@ -1,4 +1,6 @@
 import React from 'react';
+import LabelBadge from '@Common/LabelBadge';
+import Button from '@Common/Button';
 
 const App = () => (
   <div>

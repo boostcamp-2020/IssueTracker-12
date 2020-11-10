@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import LabelBadge from '@Components/commons/LabelBadge';
+import LabelBadge from '@Common/LabelBadge';
 
 const LabelListItem = (props) => {
   const { label } = props;
