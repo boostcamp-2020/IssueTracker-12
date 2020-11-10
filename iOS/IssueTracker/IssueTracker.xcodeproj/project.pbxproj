@@ -49,6 +49,7 @@
 		A927391825490BCB00F22997 /* IssueDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */; };
 		A927392125493B8100F22997 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927392025493B8100F22997 /* UITableViewCell+Extension.swift */; };
 		A927393F2549635D00F22997 /* IssueAttributeFloatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927393E2549635D00F22997 /* IssueAttributeFloatingViewController.swift */; };
+		A9360A2B255A75AB008284BF /* IssueConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9360A2A255A75AB008284BF /* IssueConstants.swift */; };
 		A97882C0254FE19F001633FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882BF254FE19F001633FF /* LoginViewController.swift */; };
 		A97882C7254FED68001633FF /* GithubConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882C6254FED68001633FF /* GithubConstants.swift */; };
 		A97882CB254FEFA6001633FF /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882CA254FEFA6001633FF /* LoginManager.swift */; };
@@ -111,6 +112,7 @@
 		A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A927392025493B8100F22997 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		A927393E2549635D00F22997 /* IssueAttributeFloatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAttributeFloatingViewController.swift; sourceTree = "<group>"; };
+		A9360A2A255A75AB008284BF /* IssueConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueConstants.swift; sourceTree = "<group>"; };
 		A97882BF254FE19F001633FF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A97882C3254FE2D4001633FF /* IssueTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IssueTracker.entitlements; sourceTree = "<group>"; };
 		A97882C6254FED68001633FF /* GithubConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubConstants.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				46ED2BA62546A39C004B6D50 /* View */,
 				46ED2BA72546A3A4004B6D50 /* ViewController */,
+				A9360A2A255A75AB008284BF /* IssueConstants.swift */,
 			);
 			path = Issue;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 			files = (
 				4616CDC72549491400421368 /* UIViewController+Extension.swift in Sources */,
 				46ED2B8D25469876004B6D50 /* IssueListViewController.swift in Sources */,
+				A9360A2B255A75AB008284BF /* IssueConstants.swift in Sources */,
 				46E668CC25482FF700A41CC0 /* UIView+Extension.swift in Sources */,
 				4616CDD32549573200421368 /* Issue.swift in Sources */,
 				46ED2BC72546B096004B6D50 /* IssueListEditViewController.swift in Sources */,

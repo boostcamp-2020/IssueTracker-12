@@ -9,11 +9,14 @@ import UIKit
 
 class IssueListViewController: UIViewController {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var newIssueButton: UIButton!
     @IBOutlet weak var issueListSearchBar: UISearchBar!
     @IBOutlet weak var issueListCollectionView: UICollectionView!
     
     private var issues = [Issue]()
     private var isEditMode = false
+    private var isSelectAll = false
     
     typealias IssueDataSource = UICollectionViewDiffableDataSource<Section, Issue>
     private lazy var dataSource = createDataSource()
@@ -62,9 +65,9 @@ class IssueListViewController: UIViewController {
         var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
         configuration.trailingSwipeActionsConfigurationProvider = { [unowned self] (indexPath) in
             
-            var isOpen = IssueOpen.open
+            var isOpen = IssueOpen.closed
             if self.issues[indexPath.row].isOpen == IssueOpen.closed.rawValue {
-                isOpen = IssueOpen.closed
+                isOpen = IssueOpen.open
             }
             let closeAction = UIContextualAction(style: .destructive, title: "\(isOpen.text)") {(_, _, completion) in
                 
@@ -102,19 +105,79 @@ class IssueListViewController: UIViewController {
         }
     }
     
-    @IBAction func editButtonDidTouch(_ sender: UIBarButtonItem) {
+    @IBAction func rightBarButtonDidTouch(_ sender: UIBarButtonItem) {
         
         isEditMode = !isEditMode
         issueListCollectionView.isEditing = isEditMode
         
-        issueListCollectionView.allowsMultipleSelectionDuringEditing = true
-        issueListCollectionView.allowsSelection = true
+        if isEditMode {
+            setupEditView()
+        } else {
+            setupIssueListView()
+        }
+    }
+    
+    @IBAction func leftBarButtonDidTouch(_ sender: UIBarButtonItem) {
+        
+        if isEditMode {
+            if isSelectAll {
+                deselectAllItems()
+            } else {
+                selectAllItems()
+            }
+        } else {
+            if let filterVC = self.storyboard?.instantiateViewController(identifier: IssueFilterViewController.reuseIdentifier) as? IssueFilterViewController {
+                self.present(filterVC, animated: true, completion: nil)
+            }
+        }
     }
     
     @IBAction func newIssueButtonDidTouch(_ sender: UIButton) {
         if let newVC = self.storyboard?.instantiateViewController(identifier: NewIssueViewController.reuseIdentifier) as? NewIssueViewController {
             self.present(newVC, animated: true, completion: nil)
             newVC.initNewIssueView(isNew: true, issue: nil)
+        }
+    }
+    
+    private func setupIssueListView() {
+        
+        tabBarController?.tabBar.isHidden = false
+        newIssueButton.isHidden = false
+        titleLabel.text = "이슈"
+        navigationItem.rightBarButtonItem?.title = "Edit"
+        navigationItem.leftBarButtonItem?.title = "Filter"
+    }
+    
+    private func setupEditView() {
+        
+        tabBarController?.tabBar.isHidden = true
+        newIssueButton.isHidden = true
+        titleLabel.text = "0개 선택"
+        navigationItem.rightBarButtonItem?.title = "Cancel"
+        navigationItem.leftBarButtonItem?.title = "Select All"
+        issueListCollectionView.allowsMultipleSelectionDuringEditing = true
+        issueListCollectionView.allowsSelection = true
+    }
+    
+    private func selectAllItems() {
+        
+        isSelectAll = true
+        let numberOfItems = issueListCollectionView.numberOfItems(inSection: 0)
+        navigationItem.leftBarButtonItem?.title = "Deselect All"
+        titleLabel.text = "\(numberOfItems)개 선택"
+        for index in 0..<numberOfItems {
+            issueListCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: false, scrollPosition: [])
+        }
+    }
+    
+    private func deselectAllItems() {
+        
+        isSelectAll = false
+        navigationItem.leftBarButtonItem?.title = "Select All"
+        titleLabel.text = "0개 선택"
+        let numberOfItems = issueListCollectionView.numberOfItems(inSection: 0)
+        for index in 0..<numberOfItems {
+            issueListCollectionView.deselectItem(at: IndexPath(item: index, section: 0), animated: false)
         }
     }
     
@@ -127,14 +190,31 @@ extension IssueListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if let detailVC = self.storyboard?.instantiateViewController(identifier: IssueDetailViewController.reuseIdentifier) as? IssueDetailViewController {
-            
-            detailVC.sendIssueData(issue: issues[indexPath.row])
-            self.navigationController?.pushViewController(detailVC, animated: true)
+        if isEditMode {
+            isSelectAll = false
+            if issueListCollectionView.indexPathsForSelectedItems?.count == issueListCollectionView.numberOfItems(inSection: 0) {
+                navigationItem.leftBarButtonItem?.title = "Deselect All"
+                isSelectAll = true
+            }
+            titleLabel.text = "\(self.issueListCollectionView.indexPathsForSelectedItems?.count ?? 0)개 선택"
+        } else {
+            if let detailVC = self.storyboard?.instantiateViewController(identifier: IssueDetailViewController.reuseIdentifier) as? IssueDetailViewController {
+                
+                detailVC.sendIssueData(issue: issues[indexPath.row])
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        if isEditMode {
+            isSelectAll = false
+            navigationItem.leftBarButtonItem?.title = "Select All"
+            titleLabel.text = "\(self.issueListCollectionView.indexPathsForSelectedItems?.count ?? 0)개 선택"
         }
     }
 }
-
 
 //extension IssueListViewController: UICollectionViewDataSource {
 //
