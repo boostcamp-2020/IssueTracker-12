@@ -3,6 +3,6 @@ const authController = require("./controller");
 
 router.get("/oauth", authController.getUserInfo);
 router.post("/", authController.addUser);
-// router.get('/:social/:username', authController.checkUser);
+router.post("/token", authController.getToken);
 
 module.exports = router;
