@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import SwipeCellKit
+//import SwipeCellKit
 
 @IBDesignable
-class IssueListCollectionViewCell: SwipeCollectionViewCell {
+class IssueListCollectionViewCell: UICollectionViewListCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
@@ -17,15 +17,20 @@ class IssueListCollectionViewCell: SwipeCollectionViewCell {
     @IBOutlet weak var milestoneLabel: PaddedLabel!
     @IBOutlet weak var labelScrollView: UIScrollView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.translatesAutoresizingMaskIntoConstraints = false
+    override func updateConfiguration(using state: UICellConfigurationState) {
+        var newBackgroundConfiguration = UIBackgroundConfiguration.listPlainCell()
+        newBackgroundConfiguration.backgroundColor = .systemBackground
+        backgroundConfiguration = newBackgroundConfiguration
+        layoutIfNeeded()
     }
     
     func initIssueCell(issue: Issue) {
 
         DispatchQueue.main.async { [weak self] in
             self?.titleLabel.text = issue.title
+            if let date = issue.writeTime.split(separator: "T").first?.split(separator: "-") {
+                self?.contentLabel.text = "\(date[0])년 \(date[1])월 \(date[2])일"
+            }
             self?.openLabelConfigure(isOpen: issue.isOpen)
             self?.labelsConfigure(labels: issue.labels)
             if let milestone = issue.milestoneTitle {

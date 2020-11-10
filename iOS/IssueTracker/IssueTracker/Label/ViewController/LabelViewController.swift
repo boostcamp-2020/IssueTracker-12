@@ -53,13 +53,12 @@ class LabelViewController: UIViewController {
             let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {(_, _, completion) in
                 NetworkManager.shared.deleteRequest(
                     url: .label,
-                    deleteID: self.labels[indexPath.row].labelId) { (nsDictionary) in
+                    deleteID: self.labels[indexPath.row].labelId) { _ in
                     
                     NotificationCenter.default.post(name: .labelDidChange, object: nil)
                 }
                 completion(true)
             }
-            deleteAction.backgroundColor = .systemPink
             deleteAction.image = UIImage(named: "delete")?.withTintColor(UIColor.white)
             
             return UISwipeActionsConfiguration(actions: [deleteAction])

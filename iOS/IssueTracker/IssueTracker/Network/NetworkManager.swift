@@ -84,6 +84,24 @@ class NetworkManager {
         }
     }
     
+    func patchRequest<T: Encodable>(url: URLs, updateID: Int, object: T, type: PatchType, completion: @escaping (NSDictionary) -> Void) {
+    
+        let alamo = AF.request("\(url.rawValue)/\(updateID)/\(type.rawValue)", method: .patch, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).validate(statusCode: 200..<300)
+        
+//        print(alamo.response)
+//        print(alamo.response.)
+        alamo.responseJSON { response in
+            switch response.result {
+            case .success(let value) :
+                if let nsDictionary = value as? NSDictionary {
+                    completion(nsDictionary)
+                }
+            case .failure(let error) :
+                print(error)
+            }
+        }
+    }
+    
     private func decodeJSON<T: Decodable>(data: Data, type: T.Type) -> T? {
         let jsonDecoder = JSONDecoder()
         guard let decodedData = try? jsonDecoder.decode(T.self, from: data) else { return nil }
