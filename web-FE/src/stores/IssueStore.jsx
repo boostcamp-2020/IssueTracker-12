@@ -12,7 +12,7 @@ const issueReducer = (issueState, {type, data}) => {
     case 'UPDATE':
       return issueState.map((issue) => issue.issue_id === data.issue_id ? data : issue);
     default:
-      return issues;
+      return issueState;
   }
 }
 
