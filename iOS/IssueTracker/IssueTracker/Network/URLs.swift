@@ -12,4 +12,5 @@ enum URLs: String {
     case issue = "http://101.101.217.148:8080/api/issue"
     case label = "http://101.101.217.148:8080/api/label"
     case milestone = "http://101.101.217.148:8080/api/milestone"
+    case user = "http://101.101.217.148:8080/api/user"
 }

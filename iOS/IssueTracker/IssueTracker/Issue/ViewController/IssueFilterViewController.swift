@@ -40,8 +40,10 @@ class IssueFilterViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        reloadWriterFilters()
         reloadLabelFilters()
         reloadMilestoneFilters()
+        reloadAssigneeFilters()
         applySnapshot()
     }
     
@@ -63,9 +65,14 @@ class IssueFilterViewController: UIViewController {
         self.dataSource.apply(snapshot)
     }
     
-//    func reloadWriterFilters() {
-//        NetworkManager.shared.getRequest(url: .user, type: User.self) { result in
-//    }
+    func reloadWriterFilters() {
+        NetworkManager.shared.getRequest(url: .user, type: UserArray.self) { result in
+            guard let userArray = result else { return }
+            self.writerFilters = userArray.userArray.map {
+                Filter(criteria: WriterCriteria(writer: $0.userName), description: $0.userName, isChild: true)
+            }
+        }
+    }
     
     func reloadLabelFilters() {
         NetworkManager.shared.getRequest(url: .label, type: LabelArray.self) { result in
@@ -81,6 +88,14 @@ class IssueFilterViewController: UIViewController {
             guard let milestoneArray = result else { return }
             self.milestonFilters = milestoneArray.milestoneArray.map {
                 Filter(criteria: MilestoneCriteria(milestoneId: $0.milestoneId), description: $0.title, isChild: true)
+            }
+        }
+    }
+    func reloadAssigneeFilters() {
+        NetworkManager.shared.getRequest(url: .user, type: UserArray.self) { result in
+            guard let userArray = result else { return }
+            self.assigneeFilters = userArray.userArray.map {
+                Filter(criteria: AssignedCriteria(assignee: $0), description: $0.userName, isChild: true)
             }
         }
     }
@@ -138,10 +153,11 @@ extension IssueFilterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectedItem = dataSource.itemIdentifier(for: indexPath),
               let cell = tableView.cellForRow(at: indexPath) as? FilterTableViewCell else { return }
-        if !selectedItem.isChild {
+        if !selectedItem.isChild && indexPath.section == 1 {
             switch selectedItem.criteria {
             case is WriterCriteria:
-                break
+                reloadWriterFilters()
+                selectedItem.setChildren(childItems: writerFilters)
             case is LabelCriteria:
                 reloadLabelFilters()
                 selectedItem.setChildren(childItems: labelFilters)
@@ -149,7 +165,8 @@ extension IssueFilterViewController: UITableViewDelegate {
                 reloadMilestoneFilters()
                 selectedItem.setChildren(childItems: milestonFilters)
             case is AssignedCriteria:
-                break
+                reloadAssigneeFilters()
+                selectedItem.setChildren(childItems: assigneeFilters)
             default:
                 break
             }
