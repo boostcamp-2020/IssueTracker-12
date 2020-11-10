@@ -1,29 +1,13 @@
 import React from "react";
-import styled from "styled-components";
-import LabelMilestoneTag from "@Components/commons/LabelMilestoneTag";
-import NewLabelButton from "./NewLabelButton";
-import LabelList from "./LabelList";
+import PageLayout from "@Components/commons/PageLayout";
+import Header from "@Components/commons/Header";
+// import IssueMain from './IssueMain';
+import LabelStore from "@Stores/LabelStore";
 
-const App = () => {
-  const Div = styled.div`
-    border: 1px solid grey;
-    padding: 20px;
-  `;
+const LabelPage = () => (
+  <LabelStore>
+    <PageLayout header={<Header />} />
+  </LabelStore>
+);
 
-  const TagButtons = styled.div`
-    display: flex;
-    justify-content: space-between;
-  `;
-
-  return (
-    <Div>
-      <TagButtons>
-        <LabelMilestoneTag />
-        <NewLabelButton />
-      </TagButtons>
-      <LabelList />
-    </Div>
-  );
-};
-
-export default App;
+export default LabelPage;

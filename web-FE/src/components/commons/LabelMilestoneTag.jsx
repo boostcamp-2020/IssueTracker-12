@@ -5,7 +5,7 @@ import milestoneIcon from "@Images/milestone.svg";
 import ButtonWithIcon from "./ButtonWithIcon";
 
 const App = () => (
-  <>
+  <Div>
     <LabelButton
       className="label-button"
       image={labelIcon}
@@ -18,7 +18,7 @@ const App = () => (
       name="milestone"
       number="3"
     />
-  </>
+  </Div>
 );
 
 const common = `
@@ -37,6 +37,10 @@ const MilestoneButton = styled(ButtonWithIcon)`
   ${common}
   border-radius: 0 5px 5px 0;
   padding-right: 3px;
+`;
+
+const Div = styled.div`
+  display: flex;
 `;
 
 export default App;
