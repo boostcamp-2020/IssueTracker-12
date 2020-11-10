@@ -6,28 +6,32 @@ import ButtonWithIcon from '@Components/commons/ButtonWithIcon';
 import Button from '@Components/commons/Button';
 import labelIcon from '@Images/label.svg';
 import milestoneIcon from '@Images/milestone.svg';
+import { IssueMenuFilter } from './Filters';
 
-const IssueMenu = () => (
-  <FlexRowDiv>
-    <IssueFilter className="issue-filter" />
-    <IssueFilterSearchbar 
-      className="issue-filter-searchbar"
+const IssueMenu = () => {
+  return (
+    <FlexRowDiv>
+      <IssueMenuFilter />
+      <IssueFilterSearchbar 
+        className="issue-filter-searchbar"
+        />
+      <LabelButton
+        className="label-button"
+        image={labelIcon}
+        name="label"
+        number="3"
+      /> 
+      <MilestoneButton
+        className="milestone-button"
+        image={milestoneIcon}
+        name="milestone"
+        number="3"
       />
-    <LabelButton
-      className="label-button"
-      image={labelIcon}
-      name="label"
-      number="3"
-    /> 
-    <MilestoneButton
-      className="milestone-button"
-      image={milestoneIcon}
-      name="milestone"
-      number="3"
-    />
-    <NewIssueButton>New Issue</NewIssueButton>
-  </FlexRowDiv>
-);
+      <NewIssueButton>New Issue</NewIssueButton>
+    </FlexRowDiv>
+  );
+}
+
 
 const FlexRowDiv = styled.div`
   display:flex;
@@ -39,14 +43,6 @@ const common = `
   height: 35px;
   box-sizing: border-box;
   border: 1px solid lightgrey;
-`
-
-const IssueFilter = styled(Dropdown)`
-  ${common}
-  line-height: 25px;
-  padding: 5px 12px 5px 20px;
-  border-radius: 5px 0 0 5px;
-  border-right:none;
 `;
 
 const IssueFilterSearchbar = styled(Searchbar)`
