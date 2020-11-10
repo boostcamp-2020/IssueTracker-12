@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import labelIcon from "@Images/label.svg";
-import milestoneIcon from "@Images/milestone.svg";
-import ButtonWithIcon from "./ButtonWithIcon";
+import React from 'react';
+import styled from 'styled-components';
+import labelIcon from '@Images/label.svg';
+import milestoneIcon from '@Images/milestone.svg';
+import ButtonWithIcon from './ButtonWithIcon';
 
 const App = () => (
   <Div>

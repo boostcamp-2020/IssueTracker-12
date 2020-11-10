@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import LabelMilestoneTag from "@Components/commons/LabelMilestoneTag";
-import Button from "@Components/commons/Button";
+import React from 'react';
+import styled from 'styled-components';
+import LabelMilestoneTag from '@Components/commons/LabelMilestoneTag';
+import Button from '@Components/commons/Button';
 
 const LabelMenu = () => (
   <FlexRowDiv>

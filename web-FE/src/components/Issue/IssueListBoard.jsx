@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { IssueContext } from '@Stores/IssueStore';
 import IssueListHeader from './IssueListHeader';
 import IssueListItem from './IssueListItem';
-import { IssueContext } from '@Stores/IssueStore';
 
 const IssueListBoard = () => {
-  const {issueState} = useContext(IssueContext);
+  const { issueState } = useContext(IssueContext);
   return (
     <Board>
       <IssueListHeader />
@@ -15,8 +15,7 @@ const IssueListBoard = () => {
       })}
     </Board>
   );
-}
-
+};
 
 const Board = styled.div`
   display:flex;
