@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const DropdownModal = () => (
+const DropdownModal = ({list}) => (
   <>
     <DetailsModal>
-      <li>open issues and pull requests</li>
-      <li>Your issues</li>
-      <li>Your requests</li>
+      {
+        list?.map(v => (<li key={v.id}>{v.title}</li>))
+      }
     </DetailsModal>
   </>
 );
 
 const DetailsModal = styled.ul`
   display: flex;
+  width: 300px;
   position: absolute;
   flex-direction: column;
   z-index: 10;
