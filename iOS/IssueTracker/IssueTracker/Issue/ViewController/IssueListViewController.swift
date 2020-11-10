@@ -129,6 +129,8 @@ class IssueListViewController: UIViewController {
     
     @IBAction func issueCloseButtonDidTouch(_ sender: UIBarButtonItem) {
         
+        isSelectAll = false
+        titleLabel.text = "0개 선택"
         issueListCollectionView.indexPathsForSelectedItems?.forEach { indexPath in
             closeIssue(isOpen: IssueOpen.closed, indexPath: indexPath)
         }
