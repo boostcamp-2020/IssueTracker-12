@@ -1,21 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import styled from 'styled-components';
 import DropdownModal from './DropdownModal';
 
 const Dropdown = ({ className, title, list }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef();
+
+  const onDropdownClicked = (event) => {
+    event.preventDefault();
+    setIsOpen(!isOpen);
+  };
+
+  const pageClickEvent = useCallback(({ target }) => {
+    const { current } = dropdownRef;
+    if (!current.contains(target)) {
+      setIsOpen(!isOpen);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
+      window.addEventListener('click', pageClickEvent);
+    }
+
+    return () => {
+      window.removeEventListener('click', pageClickEvent);
+    };
+  }, [isOpen, pageClickEvent]);
 
   return (
     <details
+      ref={dropdownRef}
       className={className}
+      open={isOpen}
     >
-      <DropdownButton>
+      <DropdownButton onClick={onDropdownClicked}>
         {title}
         <DropdownImage />
       </DropdownButton>
       <DropdownModal list={list} />
     </details>
   );
-} 
+};
 
 const DropdownButton = styled.summary`
   position: relative;
