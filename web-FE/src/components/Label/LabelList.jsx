@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getLabels } from "../../api/label";
+import { getLabels } from "@Api/label";
 
 const App = () => {
   useEffect(async () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment } from "react";
-import { linkToGetCode, getUserInfo, saveUser } from "../../api/auth";
+import { getUserInfo, saveUser, linkToGetCode, signIn } from "@Api/auth";
 import styled from "styled-components";
 
 const GithubLogin = () => {
@@ -18,23 +18,25 @@ const GithubLogin = () => {
 
   useEffect(async () => {
     const reg = /.code=(.*)/;
+    const token = localStorage.getItem("token");
     if (reg.test(window.location)) {
       const code = reg.exec(window.location)[1];
       const { userInfo, isExistUser } = await getUserInfo(code);
-      if (isExistUser) {
-        alert("login되었습니다");
-        location.href = "/issue";
-        return;
+      const { user_id: userid, username, social, url } = userInfo;
+      if (!isExistUser) {
+        const userid = await saveUser(username, social);
       }
-      await saveUser(userInfo);
-      alert("회원가입되었습니다");
+      await signIn(username, social);
+      alert("로그인 되었습니다 🙌🏻");
+      location.href = "/issue";
+      return;
     }
   });
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Button onClick={linkToGetCode}>Sign in with GitHub</Button>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
