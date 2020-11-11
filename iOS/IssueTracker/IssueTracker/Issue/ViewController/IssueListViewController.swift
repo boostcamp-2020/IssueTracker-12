@@ -39,11 +39,14 @@ class IssueListViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
         issueListCollectionView.collectionViewLayout = createCollectionViewLayout()
         issueListCollectionView.delegate = self
-
+        issueListSearchBar.delegate = self
+        
         let cellNibName = UINib(nibName: IssueListCollectionViewCell.reuseIdentifier, bundle: nil)
         self.issueListCollectionView.register(cellNibName, forCellWithReuseIdentifier: IssueListCollectionViewCell.reuseIdentifier)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadIssues), name: .issueDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applyFilters), name: .issueFilterDidChange, object: nil)
+        
     }
     
     private func createDataSource() -> IssueDataSource {
@@ -81,23 +84,37 @@ class IssueListViewController: UIViewController {
             
             return UISwipeActionsConfiguration(actions: [closeAction])
         }
-        
         return UICollectionViewCompositionalLayout.list(using: configuration)
+    }
+    
+    private func applySnapshot(issues: [Issue]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Issue>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(issues)
+        self.dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     @objc func reloadIssues() {
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
             NetworkManager.shared.getRequest(url: .issue, type: IssueArray.self) { result in
                 guard let issueArray = result else { return }
-                self.issues = issueArray.issueArray
-                
-                var snapshot = NSDiffableDataSourceSnapshot<Section, Issue>()
-                snapshot.appendSections([.main])
-                snapshot.appendItems(self.issues)
-                self.dataSource.apply(snapshot, animatingDifferences: false)
+                self?.issues = issueArray.issueArray
+                self?.applySnapshot(issues: self?.issues ?? [])
             }
         }
+    }
+    
+    @objc func applyFilters(_ notification: Notification) {
+        guard let mainFilters = notification.userInfo?["mainFilters"] as? [Filterable],
+              let detailFilters = notification.userInfo?["detailFilters"] as? [Filterable] else { return }
+        let mainOrCriteria = OrCriteria(criterias: mainFilters)
+        let detailOrCriteria = OrCriteria(criterias: detailFilters)
+        let totalCriteria = AndCriteria(criterias: [mainOrCriteria, detailOrCriteria])
+        DispatchQueue.main.async { [weak self] in
+            self?.applySnapshot(issues: totalCriteria.apply(issues: self?.issues ?? []))
+        }
+        
     }
     
     @IBAction func rightBarButtonDidTouch(_ sender: UIBarButtonItem) {
@@ -227,6 +244,15 @@ extension IssueListViewController: UICollectionViewDelegate {
             isSelectAll = false
             navigationItem.leftBarButtonItem?.title = "Select All"
             titleLabel.text = "\(self.issueListCollectionView.indexPathsForSelectedItems?.count ?? 0)개 선택"
+        }
+    }
+}
+
+extension IssueListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let filter = TitleCriteria(input: searchText)
+        DispatchQueue.main.async { [weak self] in
+            self?.applySnapshot(issues: filter.apply(issues: self?.issues ?? []))
         }
     }
 }

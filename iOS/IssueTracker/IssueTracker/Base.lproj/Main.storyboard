@@ -1739,7 +1739,7 @@
                             <constraint firstItem="BHZ-rg-SPs" firstAttribute="leading" secondItem="YHN-hx-9Jz" secondAttribute="leading" id="oUB-sL-7Nu"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="레이블" id="wmY-4X-wpX"/>
+                    <tabBarItem key="tabBarItem" title="레이블" image="2.circle.fill" catalog="system" id="wmY-4X-wpX"/>
                     <connections>
                         <outlet property="labelCollectionView" destination="BHZ-rg-SPs" id="ntP-t2-SMK"/>
                     </connections>
@@ -2154,7 +2154,7 @@
                             <constraint firstItem="NRp-TB-chB" firstAttribute="top" secondItem="qvc-F7-sJg" secondAttribute="bottom" id="ynW-es-RHK"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="마일스톤" id="1hn-n9-CzD"/>
+                    <tabBarItem key="tabBarItem" title="마일스톤" image="3.circle.fill" catalog="system" id="1hn-n9-CzD"/>
                     <connections>
                         <outlet property="milestoneCollectionView" destination="NRp-TB-chB" id="Ycb-S1-acZ"/>
                     </connections>
@@ -2167,7 +2167,7 @@
         <scene sceneID="fRL-OT-IWa">
             <objects>
                 <navigationController toolbarHidden="NO" id="V1D-J5-tBx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="이슈" id="d4I-31-uwL"/>
+                    <tabBarItem key="tabBarItem" title="이슈" image="1.circle.fill" catalog="system" id="d4I-31-uwL"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bqj-aY-sUV">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -2395,6 +2395,9 @@
         </designable>
     </designables>
     <resources>
+        <image name="1.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="2.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="3.circle.fill" catalog="system" width="128" height="121"/>
         <image name="cat" width="259" height="194"/>
         <image name="down" width="64" height="64"/>
         <image name="emoticon" width="64" height="64"/>
