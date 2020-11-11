@@ -37,6 +37,7 @@ class IssueDetailViewController: UIViewController, FloatingPanelControllerDelega
         
         guard let attributeVC = storyboard?.instantiateViewController(identifier: IssueAttributeFloatingViewController.reuseIdentifier) as? IssueAttributeFloatingViewController
         else { return }
+        attributeVC.setIssue(issue: issue)
         attributeFloatingPanel.set(contentViewController: attributeVC)
         attributeFloatingPanel.addPanel(toParent: self)
         

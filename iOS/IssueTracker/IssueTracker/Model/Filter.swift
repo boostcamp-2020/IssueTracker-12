@@ -39,19 +39,26 @@ class Filter: Hashable {
 struct MainFilters {
     let contents: [Filter] = [
         Filter(criteria: OpenCriteria(), description: "열린 이슈들"),
-        Filter(criteria: CloseCriteria(), description: "닫힌 이슈들"),
-        Filter(criteria: WriterCriteria(writer: "githubtest"), description: "내가 작성한 이슈들"),
-        Filter(criteria: AssignedCriteria(assignee: User(userName: "me", social: "test")), description: "나한테 할당된 이슈들"),
-        Filter(criteria: CommentCriteria(), description: "내가 댓글을 남긴 이슈들")
+        Filter(criteria: CloseCriteria(), description: "닫힌 이슈들")
+//        Filter(criteria: WriterCriteria(writer: "githubtest"), description: "내가 작성한 이슈들"),
+//        Filter(criteria: AssignedCriteria(assignee: User(userName: "me", social: "test")), description: "나한테 할당된 이슈들"),
+//        Filter(criteria: CommentCriteria(), description: "내가 댓글을 남긴 이슈들")
     ]
 }
 
 struct DetailFilters {
     // 필터들 구현 필요
     let contents: [Filter] = [
-        Filter(criteria: WriterCriteria(writer: "githubtest"), description: "작성자"),
-        Filter(criteria: LabelCriteria(labelId: -1), description: "레이블"),
-        Filter(criteria: MilestoneCriteria(milestoneId: -1), description: "마일스톤"),
-        Filter(criteria: WriterCriteria(writer: "githubtest"), description: "담당자")
+        Filter(criteria: NoneCriteria(type: .writer), description: "작성자"),
+        Filter(criteria: NoneCriteria(type: .label), description: "레이블"),
+        Filter(criteria: NoneCriteria(type: .milestone), description: "마일스톤"),
+        Filter(criteria: NoneCriteria(type: .assignee), description: "담당자")
     ]
+}
+
+enum DetailFilterType {
+    case writer
+    case label
+    case milestone
+    case assignee
 }

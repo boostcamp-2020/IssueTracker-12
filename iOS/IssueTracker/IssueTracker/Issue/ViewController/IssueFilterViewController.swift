@@ -35,7 +35,6 @@ class IssueFilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         filterTableView.delegate = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,49 +52,58 @@ class IssueFilterViewController: UIViewController {
             cell.initCell(filter: filterContent, section: indexPath.section)
             return cell
         }
-        let dataSource = UITableViewDiffableDataSource<Section, Filter>(tableView: filterTableView, cellProvider: cellProvider)
+        let dataSource = FilterDataSource(tableView: filterTableView, cellProvider: cellProvider)
         return dataSource
     }
     
-    func applySnapshot() {
+    private func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Filter>()
         snapshot.appendSections([.main, .detail])
         snapshot.appendItems(mainFilterContents, toSection: .main)
         snapshot.appendItems(detailFilterContents, toSection: .detail)
-        self.dataSource.apply(snapshot)
+        dataSource.apply(snapshot)
     }
     
     func reloadWriterFilters() {
-        NetworkManager.shared.getRequest(url: .user, type: UserArray.self) { result in
-            guard let userArray = result else { return }
-            self.writerFilters = userArray.userArray.map {
-                Filter(criteria: WriterCriteria(writer: $0.userName), description: $0.userName, isChild: true)
+        DispatchQueue.main.async {
+            NetworkManager.shared.getRequest(url: .user, type: UserArray.self) { result in
+                guard let userArray = result else { return }
+                self.writerFilters = userArray.userArray.map {
+                    Filter(criteria: WriterCriteria(writer: $0.userName), description: $0.userName, isChild: true)
+                }
             }
         }
     }
     
     func reloadLabelFilters() {
-        NetworkManager.shared.getRequest(url: .label, type: LabelArray.self) { result in
-            guard let labelArray = result else { return }
-            self.labelFilters = labelArray.labelArray.map {
-                Filter(criteria: LabelCriteria(labelId: $0.labelId), description: $0.labelName, isChild: true)
+        DispatchQueue.main.async {
+            NetworkManager.shared.getRequest(url: .label, type: LabelArray.self) { result in
+                guard let labelArray = result else { return }
+                self.labelFilters = labelArray.labelArray.map {
+                    Filter(criteria: LabelCriteria(labelId: $0.labelId), description: $0.labelName, isChild: true)
+                }
             }
         }
     }
     
     func reloadMilestoneFilters() {
-        NetworkManager.shared.getRequest(url: .milestone, type: MilestoneArray.self) { result in
-            guard let milestoneArray = result else { return }
-            self.milestonFilters = milestoneArray.milestoneArray.map {
-                Filter(criteria: MilestoneCriteria(milestoneId: $0.milestoneId), description: $0.title, isChild: true)
+        DispatchQueue.main.async {
+            NetworkManager.shared.getRequest(url: .milestone, type: MilestoneArray.self) { result in
+                guard let milestoneArray = result else { return }
+                self.milestonFilters = milestoneArray.milestoneArray.map {
+                    Filter(criteria: MilestoneCriteria(milestoneId: $0.milestoneId), description: $0.title, isChild: true)
+                }
             }
         }
     }
+    
     func reloadAssigneeFilters() {
-        NetworkManager.shared.getRequest(url: .user, type: UserArray.self) { result in
-            guard let userArray = result else { return }
-            self.assigneeFilters = userArray.userArray.map {
-                Filter(criteria: AssignedCriteria(assignee: $0), description: $0.userName, isChild: true)
+        DispatchQueue.main.async {
+            NetworkManager.shared.getRequest(url: .user, type: UserArray.self) { result in
+                guard let userArray = result else { return }
+                self.assigneeFilters = userArray.userArray.map {
+                    Filter(criteria: AssigneeCriteria(assignee: $0), description: $0.userName, isChild: true)
+                }
             }
         }
     }
@@ -108,19 +116,24 @@ class IssueFilterViewController: UIViewController {
         var mainFilters = [Filterable]()
         var detailFilters = [Filterable]()
         
-        guard let indexPaths = filterTableView.indexPathsForSelectedRows else {
-            NotificationCenter.default.post(name: .issueFilterDidChange, object: nil, userInfo: ["filters": []])
-            dismiss(animated: true, completion: nil)
-            return
-        }
-        indexPaths.forEach { indexPath in
-            guard let filter = dataSource.itemIdentifier(for: indexPath)?.criteria else { return }
-            if indexPath.section == 0 {
-                mainFilters.append(filter)
-            } else {
-                detailFilters.append(filter)
+        if let indexPaths = filterTableView.indexPathsForSelectedRows {
+            indexPaths.forEach { indexPath in
+                guard let filter = dataSource.itemIdentifier(for: indexPath)?.criteria else { return }
+                if indexPath.section == 0 {
+                    mainFilters.append(filter)
+                } else {
+                    detailFilters.append(filter)
+                }
             }
         }
+        
+        if mainFilters.isEmpty {
+            mainFilters.append(EmptyCriteria())
+        }
+        if detailFilters.isEmpty {
+            detailFilters.append(EmptyCriteria())
+        }
+        
         NotificationCenter.default.post(name: .issueFilterDidChange, object: nil, userInfo: ["mainFilters": mainFilters, "detailFilters": detailFilters])
         dismiss(animated: true, completion: nil)
     }
@@ -153,22 +166,22 @@ extension IssueFilterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectedItem = dataSource.itemIdentifier(for: indexPath),
               let cell = tableView.cellForRow(at: indexPath) as? FilterTableViewCell else { return }
-        if !selectedItem.isChild && indexPath.section == 1 {
-            switch selectedItem.criteria {
-            case is WriterCriteria:
+        
+        if selectedItem.criteria is NoneCriteria {
+            let criteria = selectedItem.criteria as! NoneCriteria
+            switch criteria.type {
+            case .writer:
                 reloadWriterFilters()
                 selectedItem.setChildren(childItems: writerFilters)
-            case is LabelCriteria:
+            case .label:
                 reloadLabelFilters()
                 selectedItem.setChildren(childItems: labelFilters)
-            case is MilestoneCriteria:
+            case .milestone:
                 reloadMilestoneFilters()
                 selectedItem.setChildren(childItems: milestonFilters)
-            case is AssignedCriteria:
+            case .assignee:
                 reloadAssigneeFilters()
                 selectedItem.setChildren(childItems: assigneeFilters)
-            default:
-                break
             }
         }
         

@@ -36,7 +36,7 @@ class WriterCriteria: Filterable {
     }
 }
 
-class AssignedCriteria: Filterable {
+class AssigneeCriteria: Filterable {
     let assignee: User
     
     init(assignee: User) {
@@ -56,7 +56,6 @@ class CommentCriteria: Filterable {
 }
 
 class TitleCriteria: Filterable {
-    
     let inputText: String
     
     init(input: String) {
@@ -127,5 +126,17 @@ class EmptyCriteria: Filterable {
     
     func apply(issues: [Issue]) -> [Issue] {
         return issues
+    }
+}
+
+class NoneCriteria: Filterable {
+    let type: DetailFilterType
+    
+    init(type: DetailFilterType) {
+        self.type = type
+    }
+    
+    func apply(issues: [Issue]) -> [Issue] {
+        return []
     }
 }
