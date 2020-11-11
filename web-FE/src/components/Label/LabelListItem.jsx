@@ -3,14 +3,18 @@ import styled from 'styled-components';
 import LabelBadge from '@Common/LabelBadge';
 
 const LabelListItem = (props) => {
-  const { label } = props;
-
+  const { label, dispatch } = props;
   const {
     // label_id: labelId,
     label_name: labelName,
     description,
     color,
   } = label;
+
+  const onClickDelHandler = () => {
+    dispatch({ type: 'DELETE', data: label });
+  };
+
   return (
     <FlexRowDiv>
       <LabelContent>
@@ -22,7 +26,7 @@ const LabelListItem = (props) => {
         </LeftDiv>
         <RightDiv>
           <P>Edit</P>
-          <P>Delete</P>
+          <P onClick={onClickDelHandler}>Delete</P>
         </RightDiv>
       </LabelContent>
     </FlexRowDiv>
@@ -65,6 +69,7 @@ const P = styled.p`
   width: 70%;
   color: #181818;
   font-size:13px;
+  cursor: pointer;
 `;
 
 const RightDiv = styled.div`
