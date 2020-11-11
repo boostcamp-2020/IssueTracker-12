@@ -1,16 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import IssueMenu from './IssueMenu';
 import IssueListBoard from './IssueListBoard';
 
-const IssueMain = () => {
-  return (
-    <IssueMainContainer>
-      <IssueMenu />
-      <IssueListBoard />
-    </IssueMainContainer>
-  )
-};
+const IssueMain = () => (
+  <IssueMainContainer>
+    <IssueMenu />
+    <IssueListBoard />
+  </IssueMainContainer>
+);
 
 const FlexColumn = `
   display: flex;

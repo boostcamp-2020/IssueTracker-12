@@ -3,7 +3,7 @@ import { getAllLabels } from '@Api/label';
 
 export const LabelContext = React.createContext();
 
-const labelReducer = (labelState, {type, data}) => {
+const labelReducer = (labelState, { type, data }) => {
   switch (type) {
     case 'INIT':
       return data;

@@ -1,12 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Dropdown from '@Components/commons/Dropdown';
 import Searchbar from '@Components/commons/Searchbar';
-import ButtonWithIcon from '@Components/commons/ButtonWithIcon';
 import Button from '@Components/commons/Button';
 import LabelMilestoneTag from '@Components/commons/LabelMilestoneTag';
-import labelIcon from '@Images/label.svg';
-import milestoneIcon from '@Images/milestone.svg';
 import { IssueMenuFilter } from './Filters';
 
 const IssueMenu = () => {

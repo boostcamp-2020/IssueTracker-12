@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ButtonWithIcon = ({image, name, number, className}) => {
-  return (
-    <>
-      <Button className={className}>
-        <Img src={image}/>
-        {name}
-        <NumberIndicator>
-          {number}
-        </NumberIndicator>
-      </Button>
-    </>
-  )
-};
+const ButtonWithIcon = ({
+  image, name, number, className,
+}) => (
+  <>
+    <Button className={className}>
+      <Img src={image} />
+      {name}
+      <NumberIndicator>
+        {number}
+      </NumberIndicator>
+    </Button>
+  </>
+);
 
 const Button = styled.a`
   display: flex;
