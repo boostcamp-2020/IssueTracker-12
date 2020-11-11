@@ -1,17 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { ReactComponent as CheckImage } from '@Images/check.svg';
 
-const DropdownModal = ({list}) => (
+const DropdownModal = ({list, setSelect, selectionList}) => (
   <>
     <DetailsModal>
       {
         list?.map(v => (
-          <Li key={v.id}>{v.title}</Li>
+          <Select
+            key={v.id}
+            checked={!!selectionList?.includes(v.id)}
+            onClick={() => setSelect(v.id)}
+            className="select"
+          >
+            {v.title}
+          </Select>
         ))
       }
     </DetailsModal>
   </>
 );
+
+
+const Select = ({checked, children, onClick}) => (
+  <Li onClick={onClick}>
+    {
+      checked ? (
+        <CheckIcon
+          width="16px"
+          height="16px"
+
+        />
+      ) : null
+    }
+    {children}
+
+  </Li>
+);
+
+const CheckIcon = styled(CheckImage)`
+  top: 0;
+  left: 0;
+`;
 
 const DetailsModal = styled.ul`
   display: flex;
@@ -30,12 +60,14 @@ const DetailsModal = styled.ul`
 
 const Li = styled.li`
   display:flex;
+  position:relative;
   align-items: center;
   width: 100%;
-  height: 30px;
+  height: 40px;
   box-sizing: border-box;
-  padding: 5px 5px;
+  padding: 10px 40px;
   border-bottom: 1px solid lightgrey;
+  cursor:pointer;
 `;
 
 export default DropdownModal;
