@@ -5,7 +5,7 @@ import OpenCloseIndicator from './OpenCloseIndicator';
 import LabelBadge from '@Components/commons/LabelBadge';
 
 const IssueListItem = (props) => {
-  const { issue } = props;
+  const { issue, selected, setSelected } = props;
 
   const {
     issue_id: issueId,
@@ -16,10 +16,18 @@ const IssueListItem = (props) => {
     labels,
   } = issue;
   const issueInfo = `#${issueId} opened at ${writeTime} by ${writer}`;
+  const onCheckBoxChange = (e) => {
+    if (selected[issueId]) {
+      const { [issueId]: id, ...rest } = selected;
+      setSelected(rest);
+      return;
+    }
+    setSelected({ ...selected, [issueId]: issueId });
+  };
   return (
     <ItemContainer>
       <Checkbox>
-        <input type="checkbox" name="check-all" />
+        <input type="checkbox" name="check-all" onChange={onCheckBoxChange}/>
       </Checkbox>
       <OpenCloseIndicator isOpen={isOpen} />
       <IssueContent>
