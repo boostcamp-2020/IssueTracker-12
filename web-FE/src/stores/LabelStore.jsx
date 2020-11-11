@@ -7,6 +7,12 @@ const labelReducer = (labelState, { type, data }) => {
   switch (type) {
     case 'INIT':
       return data;
+    case 'ADD':
+      return [...labelState, data];
+    case 'DELETE':
+      return labelState.filter((label) => label.label_id !== data.label_id);
+    case 'UPDATE':
+      return labelState.map((label) => (label.label_id === data.label_id ? data : label));
     default:
       return labelState;
   }

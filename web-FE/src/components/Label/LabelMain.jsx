@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { DisplayProvider } from '@Stores/newLabelContext';
+
 import LabelMenu from './LabelMenu';
 import LabelListBoard from './LabelListBoard';
 import NewLabelForm from './NewLabelForm';
