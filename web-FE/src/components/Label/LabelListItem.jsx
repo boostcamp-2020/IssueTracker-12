@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import LabelBadge from '@Common/LabelBadge';
-import { EditDisplayConsumer } from '@Stores/EditLabelContext';
+import { EditDisplayConsumer, EditDisplayProvider } from '@Stores/EditLabelContext';
 import EditLabelForm from './EditLabelForm';
 
 const LabelListItem = (props) => {
@@ -18,25 +18,27 @@ const LabelListItem = (props) => {
   };
 
   return (
-    <FlexRowDiv>
-      <LabelContent>
-        <LeftDiv>
-          <LabelBadge name={labelName} color={color} />
-          <Description>
-            {description}
-          </Description>
-        </LeftDiv>
-        <EditDisplayConsumer>
-          {({ actions }) => (
-            <RightDiv>
-              <P onClick={() => { actions.setDisplay('flex'); }}>Edit</P>
-              <P onClick={onClickDelHandler}>Delete</P>
-            </RightDiv>
-          )}
-        </EditDisplayConsumer>
-      </LabelContent>
-      <EditLabelForm />
-    </FlexRowDiv>
+    <EditDisplayProvider>
+      <FlexRowDiv>
+        <LabelContent>
+          <LeftDiv>
+            <LabelBadge name={labelName} color={color} />
+            <Description>
+              {description}
+            </Description>
+          </LeftDiv>
+          <EditDisplayConsumer>
+            {({ actions }) => (
+              <RightDiv>
+                <P onClick={() => { actions.setDisplay('flex'); }}>Edit</P>
+                <P onClick={onClickDelHandler}>Delete</P>
+              </RightDiv>
+            )}
+          </EditDisplayConsumer>
+        </LabelContent>
+        <EditLabelForm />
+      </FlexRowDiv>
+    </EditDisplayProvider>
   );
 };
 
