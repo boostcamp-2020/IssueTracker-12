@@ -1,14 +1,14 @@
 import React, { createContext, useState } from 'react';
 
 export const DisplayContext = createContext({
-  state: { display: 'flex' },
+  state: { display: '' },
   actions: {
     setDisplay: () => {},
   },
 });
 
 export const DisplayProvider = ({ children }) => {
-  const [display, setDisplay] = useState('flex');
+  const [display, setDisplay] = useState('none');
 
   const value = {
     state: { display },

@@ -3,14 +3,12 @@ import styled from 'styled-components';
 import LabelBadge from '@Common/LabelBadge';
 import Button from '@Common/Button';
 import RefreshIcon from '@Images/refresh.svg';
-import { DisplayProvider, DisplayConsumer } from '@Stores/newLabelContext';
-
-const onClickCreateHandler = () => {
-  const MainContainer = document.getElementsByClassName('.main-container');
-  MainContainer.style.display = 'none';
-};
+import { DisplayConsumer } from '@Stores/newLabelContext';
+import { createLabel } from '@Api/label';
 
 const NewLabelForm = () => {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
   const [color, setColor] = useState('#6f849e');
 
   const getRandomColor = () => {
@@ -18,18 +16,39 @@ const NewLabelForm = () => {
     return result;
   };
 
+  const onClickCreateHandler = () => {
+    if (name === '' || color === '') {
+      alert('Label name과 Color 값은 필수 항목입니다');
+      return;
+    }
+    createLabel(name, description, color);
+    setColor('');
+    setDescription('');
+    setName('');
+  };
+
   const onClickColorHandler = () => {
     setColor(getRandomColor());
   };
 
-  const onChangeHandle = (e) => {
-    console.log(e.target.value);
+  const onChangeScriptHandler = (e) => {
+    const setTo = e.target.value;
+    setDescription(setTo);
+  };
+
+  const onChangeNameHandler = (e) => {
+    const setTo = e.target.value;
+    setName(setTo);
+  };
+
+  const onChangeColorHandler = (e) => {
+    const setTo = e.target.value;
+    setColor(setTo);
   };
 
   return (
-    <DisplayProvider>
-      <DisplayConsumer>
-        {
+    <DisplayConsumer>
+      {
           ({ state, actions }) => (
             <MainContainer className="main-container" display={state.display}>
               <BadgeContainer>
@@ -38,30 +57,42 @@ const NewLabelForm = () => {
               <OptionContainer>
                 <Option width="30%">
                   <P>Label name</P>
-                  <Input placeholder="Label name" />
+                  <Input placeholder="Label name" which="input-name" value={name} onChange={onChangeNameHandler} />
                 </Option>
                 <Option width="60%">
                   <P>Description</P>
-                  <Input placeholder="Description (optional)" />
+                  <Input placeholder="Description (optional)" value={description} onChange={onChangeScriptHandler} />
                 </Option>
                 <Option width="20%">
                   <P>Color</P>
                   <ColorButton backgroundColor={color} onClick={onClickColorHandler}>
                     <Img src={RefreshIcon} />
                   </ColorButton>
-                  <Input className="input-color" width="70%" value={color} onChange={onChangeHandle} />
+                  <Input width="70%" value={color} onChange={onChangeColorHandler} />
                 </Option>
                 <Option width="20%">
-                  <CancelButton color="#181818" backgroundColor="#fff" onClick={() => actions.setDisplay('none')}>Cancel</CancelButton>
-                  <CreateButton onClick={onClickCreateHandler}>Create label</CreateButton>
+                  <CancelButton
+                    color="#181818"
+                    backgroundColor="#fff"
+                    onClick={() => {
+                      actions.setDisplay('none');
+                    }}
+                  >
+                    Cancel
+                  </CancelButton>
+                  <CreateButton onClick={() => {
+                    actions.setDisplay('none');
+                    onClickCreateHandler();
+                  }}
+                  >
+                    Create label
+                  </CreateButton>
                 </Option>
               </OptionContainer>
             </MainContainer>
           )
         }
-      </DisplayConsumer>
-    </DisplayProvider>
-
+    </DisplayConsumer>
   );
 };
 const BadgeContainer = styled.div`

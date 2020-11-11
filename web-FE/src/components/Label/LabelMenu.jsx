@@ -2,19 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import LabelMilestoneTag from '@Common/LabelMilestoneTag';
 import Button from '@Common/Button';
-import { DisplayProvider, DisplayConsumer } from '@Stores/newLabelContext';
+import { DisplayConsumer } from '@Stores/newLabelContext';
 
 const LabelMenu = () => (
-  <DisplayProvider>
-    <FlexRowDiv>
-      <LabelMilestoneTag />
-      <DisplayConsumer>
-        {({ actions }) => (
-          <NewLabelButton onClick={() => actions.setDisplay('flex')}>New Label</NewLabelButton>
-        )}
-      </DisplayConsumer>
-    </FlexRowDiv>
-  </DisplayProvider>
+  <DisplayConsumer>
+    {({ actions }) => (
+      <FlexRowDiv>
+        <LabelMilestoneTag />
+        <NewLabelButton onClick={() => { actions.setDisplay('flex'); }}>New Label</NewLabelButton>
+      </FlexRowDiv>
+    )}
+  </DisplayConsumer>
 );
 
 const FlexRowDiv = styled.div`
