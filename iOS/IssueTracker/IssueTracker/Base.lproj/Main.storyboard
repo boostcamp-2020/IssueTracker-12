@@ -14,13 +14,13 @@
         <!--Issue List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="IssueListViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="BYZ-38-t0r" customClass="IssueListViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1PC-Ya-fIy">
-                                <rect key="frame" x="0.0" y="208" width="414" height="605"/>
+                                <rect key="frame" x="0.0" y="208" width="414" height="654"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="1" minimumInteritemSpacing="1" id="PTw-TZ-mdc">
                                     <size key="itemSize" width="385" height="125"/>
@@ -34,13 +34,13 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이슈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yhv-vf-I0v">
-                                        <rect key="frame" x="20" y="20" width="44" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <rect key="frame" x="20" y="20" width="52" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="n0a-cZ-tMf">
-                                        <rect key="frame" x="5" y="60" width="404" height="56"/>
+                                        <rect key="frame" x="5" y="66" width="404" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                 </subviews>
@@ -55,7 +55,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0d-P1-ZHC">
-                                <rect key="frame" x="344" y="748" width="40" height="40"/>
+                                <rect key="frame" x="344" y="797" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="7Ox-e2-0pO"/>
                                     <constraint firstAttribute="width" secondItem="g0d-P1-ZHC" secondAttribute="height" id="BR1-xb-EEm"/>
@@ -82,21 +82,33 @@
                             <constraint firstItem="fM6-hk-p1P" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="wOa-JI-G40"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ZeR-Ee-MJp"/>
+                        <barButtonItem title="선택된 이슈 닫기" id="EDS-jQ-ku8">
+                            <connections>
+                                <action selector="issueCloseButtonDidTouch:" destination="BYZ-38-t0r" id="t6H-4f-1vp"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="qRi-7j-jV0">
                         <barButtonItem key="leftBarButtonItem" title="Filter" id="F7w-yX-yTZ">
                             <connections>
-                                <segue destination="JgQ-ZQ-bvH" kind="presentation" id="2yE-CC-hAr"/>
+                                <action selector="leftBarButtonDidTouch:" destination="BYZ-38-t0r" id="azM-GZ-wp2"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="Hvf-ob-4WR">
                             <connections>
-                                <segue destination="FiQ-sB-i1G" kind="show" id="oIa-vZ-iaZ"/>
+                                <action selector="rightBarButtonDidTouch:" destination="BYZ-38-t0r" id="5BK-U9-qeL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="issueCloseButton" destination="EDS-jQ-ku8" id="vXM-LX-ZAg"/>
                         <outlet property="issueListCollectionView" destination="1PC-Ya-fIy" id="2hf-5V-ama"/>
                         <outlet property="issueListSearchBar" destination="n0a-cZ-tMf" id="9XN-lF-Y2h"/>
+                        <outlet property="newIssueButton" destination="g0d-P1-ZHC" id="a8d-A5-Olv"/>
+                        <outlet property="titleLabel" destination="Yhv-vf-I0v" id="i9r-8R-Zxb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -108,11 +120,11 @@
             <objects>
                 <viewController storyboardIdentifier="IssueFilterViewController" id="JgQ-ZQ-bvH" customClass="IssueFilterViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DZq-Pn-hrN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OwV-Qf-Gl8">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="필터 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaN-MS-dQy">
                                         <rect key="frame" x="20" y="62" width="92" height="30"/>
@@ -157,7 +169,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hPK-CY-tJG">
-                                <rect key="frame" x="0.0" y="100" width="414" height="708"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="FilterTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FilterTableViewCell" id="a9t-Ux-izG" customClass="FilterTableViewCell" customModule="IssueTracker" customModuleProvider="target">
@@ -1876,13 +1888,17 @@
         <!--이슈-->
         <scene sceneID="fRL-OT-IWa">
             <objects>
-                <navigationController id="V1D-J5-tBx" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="V1D-J5-tBx" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="이슈" id="d4I-31-uwL"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bqj-aY-sUV">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="P3T-pt-4j4">
+                        <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="KzC-U6-0CR"/>
                     </connections>
@@ -2087,14 +2103,8 @@
         <designable name="86J-Hv-DQh">
             <size key="intrinsicContentSize" width="48.5" height="17"/>
         </designable>
-        <designable name="Vv9-qf-zsC">
-            <size key="intrinsicContentSize" width="98" height="17"/>
-        </designable>
         <designable name="Xlb-je-POt">
             <size key="intrinsicContentSize" width="31.5" height="14.5"/>
-        </designable>
-        <designable name="g0Z-SK-H5B">
-            <size key="intrinsicContentSize" width="66" height="17"/>
         </designable>
         <designable name="jk2-a9-5hQ">
             <size key="intrinsicContentSize" width="36" height="17"/>
