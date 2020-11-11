@@ -7,7 +7,7 @@ import { DisplayConsumer } from '@Stores/newLabelContext';
 import { createLabel } from '@Api/label';
 
 const NewLabelForm = () => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState('Label Preview');
   const [description, setDescription] = useState('');
   const [color, setColor] = useState('#6f849e');
 
@@ -52,7 +52,7 @@ const NewLabelForm = () => {
           ({ state, actions }) => (
             <MainContainer className="main-container" display={state.display}>
               <BadgeContainer>
-                <LabelBadge name="Label Preview" color="#6783a7" />
+                <LabelBadge name={name} color={color} />
               </BadgeContainer>
               <OptionContainer>
                 <Option width="30%">
