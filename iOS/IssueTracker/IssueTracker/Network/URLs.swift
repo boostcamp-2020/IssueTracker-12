@@ -16,4 +16,5 @@ enum URLs: String {
 
 enum PatchType: String {
     case isOpen = "isopen"
+    case issueTitle = "title"
 }

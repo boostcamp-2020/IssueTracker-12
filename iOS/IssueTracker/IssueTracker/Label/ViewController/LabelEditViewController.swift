@@ -87,11 +87,11 @@ class LabelEditViewController: UIViewController {
         }
     }
     
-    @IBAction func resetButtonDidTouch(_ sender: Any) {
+    @IBAction func resetButtonDidTouch(_ sender: UIButton) {
         initEditView(isNew: isNew, label: self.label)
     }
     
-    @IBAction func randomColorButtonDidTouch(_ sender: Any) {
+    @IBAction func randomColorButtonDidTouch(_ sender: UIButton) {
         setLabelColor(color: nil)
     }
     
@@ -114,22 +114,23 @@ class LabelEditViewController: UIViewController {
     }
     
     private func newLabelSave(label: Label) {
-        //post
-        NetworkManager.shared.postRequest(url: .label, object: label, type: Label.self) { nsDictionary in
-            print(nsDictionary)
+        
+        guard let labelURL = URL(string: URLs.label.rawValue) else { return }
+        NetworkManager.shared.postRequest(url: labelURL, object: label, type: Label.self) { _ in
+
             NotificationCenter.default.post(name: .labelDidChange, object: nil)
         }
     }
     
     private func editLabelSave(label: Label) {
-        //put
-        NetworkManager.shared.putRequest(url: .label, updateID: label.labelId, object: label, type: Label.self) { nsDictionary in
-            print(nsDictionary)
+
+        NetworkManager.shared.putRequest(url: .label, updateID: label.labelId, object: label, type: Label.self) { _ in
+            
             NotificationCenter.default.post(name: .labelDidChange, object: nil)
         }
     }
     
-    @IBAction func closeButtonDidTouch(_ sender: Any) {
+    @IBAction func closeButtonDidTouch(_ sender: UIButton) {
         dismiss(animated: true)
     }
 }

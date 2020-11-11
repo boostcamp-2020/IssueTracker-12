@@ -251,8 +251,8 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새 이슈?#?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ph6-eQ-3bV">
-                                <rect key="frame" x="20" y="106" width="113" height="30"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <rect key="frame" x="20" y="111" width="135.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -263,27 +263,27 @@
                                     <action selector="saveButtonDidTouch:" destination="cdV-7m-8aX" eventType="touchUpInside" id="xQg-91-jJj"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yr4-RA-gER">
-                                <rect key="frame" x="25" y="156" width="364" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yr4-RA-gER">
+                                <rect key="frame" x="25" y="167" width="364" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="joX-zD-bf8">
-                                <rect key="frame" x="25" y="195" width="364" height="2"/>
+                                <rect key="frame" x="25" y="201" width="364" height="2"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="8j5-NB-i3z"/>
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KZr-08-lrr">
-                                <rect key="frame" x="25" y="217" width="364" height="32"/>
+                                <rect key="frame" x="25" y="223" width="364" height="32"/>
                                 <segments>
                                     <segment title="마크다운"/>
                                     <segment title="미리보기"/>
                                 </segments>
                             </segmentedControl>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AvE-13-uzj">
-                                <rect key="frame" x="25" y="268" width="364" height="574"/>
+                                <rect key="frame" x="25" y="274" width="364" height="568"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -308,7 +308,7 @@
                             <constraint firstItem="AvE-13-uzj" firstAttribute="top" secondItem="KZr-08-lrr" secondAttribute="bottom" constant="20" id="TzV-4b-Ubv"/>
                             <constraint firstItem="joX-zD-bf8" firstAttribute="top" secondItem="Yr4-RA-gER" secondAttribute="bottom" constant="5" id="X1P-Ae-x2j"/>
                             <constraint firstItem="rnT-Qh-7g8" firstAttribute="trailing" secondItem="fge-0o-fxK" secondAttribute="trailing" constant="20" id="dwK-km-g0R"/>
-                            <constraint firstItem="Ph6-eQ-3bV" firstAttribute="top" secondItem="yR8-Dh-iYs" secondAttribute="bottom" constant="10" id="dzm-d1-hcg"/>
+                            <constraint firstItem="Ph6-eQ-3bV" firstAttribute="top" secondItem="yR8-Dh-iYs" secondAttribute="bottom" constant="15" id="dzm-d1-hcg"/>
                             <constraint firstItem="rnT-Qh-7g8" firstAttribute="trailing" secondItem="joX-zD-bf8" secondAttribute="trailing" constant="25" id="eQV-7W-nT7"/>
                             <constraint firstItem="rnT-Qh-7g8" firstAttribute="trailing" secondItem="Yr4-RA-gER" secondAttribute="trailing" constant="25" id="et7-A8-BLH"/>
                             <constraint firstItem="Yr4-RA-gER" firstAttribute="top" secondItem="Ph6-eQ-3bV" secondAttribute="bottom" constant="20" id="fBS-AR-WF0"/>
@@ -363,8 +363,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AsH-l3-5U0" userLabel="설명">
-                                        <rect key="frame" x="20" y="60" width="48" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <rect key="frame" x="20" y="60" width="50" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>

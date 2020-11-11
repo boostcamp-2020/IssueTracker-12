@@ -77,17 +77,19 @@ class MilestoneEditViewController: UIViewController {
         }
     }
     
-    @IBAction func resetButtonDidTouch(_ sender: Any) {
+    @IBAction func resetButtonDidTouch(_ sender: UIButton) {
         initEditView(isNew: isNew, milestone: self.milestone)
     }
     
-    @IBAction func saveButtonDidTouch(_ sender: Any) {
+    @IBAction func saveButtonDidTouch(_ sender: UIButton) {
         guard let title = titleTextField.text,
               let dueDate = dueDateTextField.text,
               let content = contentTextField.text else { return }
         
         if !dueDate.isDate() {
-            print("날짜가 올바르지 않습니다.") //toast같은걸 써서 표시?
+            // TO-DO
+            // - toast같은걸 써서 표시?
+            print("날짜가 올바르지 않습니다.")
             return
         }
         
@@ -105,8 +107,10 @@ class MilestoneEditViewController: UIViewController {
     }
     
     private func newMilestoneSave(milestone: Milestone) {
-        NetworkManager.shared.postRequest(url: .milestone, object: milestone, type: Milestone.self) { nsDictionary in
-            print(nsDictionary)
+        
+        guard let milestoneURL = URL(string: URLs.milestone.rawValue) else { return }
+        NetworkManager.shared.postRequest(url: milestoneURL, object: milestone, type: Milestone.self) { _ in
+
             NotificationCenter.default.post(name: .milestoneDidChange, object: nil)
         }
     }
@@ -118,7 +122,7 @@ class MilestoneEditViewController: UIViewController {
         }
     }
     
-    @IBAction func closeButtonDidTouch(_ sender: Any) {
+    @IBAction func closeButtonDidTouch(_ sender: UIButton) {
         dismiss(animated: true)
     }
 }
