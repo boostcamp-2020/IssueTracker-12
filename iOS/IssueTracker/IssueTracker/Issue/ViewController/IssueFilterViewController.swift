@@ -35,7 +35,6 @@ class IssueFilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         filterTableView.delegate = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,36 +65,45 @@ class IssueFilterViewController: UIViewController {
     }
     
     func reloadWriterFilters() {
-        NetworkManager.shared.getRequest(url: .user, type: UserArray.self) { result in
-            guard let userArray = result else { return }
-            self.writerFilters = userArray.userArray.map {
-                Filter(criteria: WriterCriteria(writer: $0.userName), description: $0.userName, isChild: true)
+        DispatchQueue.main.async {
+            NetworkManager.shared.getRequest(url: .user, type: UserArray.self) { result in
+                guard let userArray = result else { return }
+                self.writerFilters = userArray.userArray.map {
+                    Filter(criteria: WriterCriteria(writer: $0.userName), description: $0.userName, isChild: true)
+                }
             }
         }
     }
     
     func reloadLabelFilters() {
-        NetworkManager.shared.getRequest(url: .label, type: LabelArray.self) { result in
-            guard let labelArray = result else { return }
-            self.labelFilters = labelArray.labelArray.map {
-                Filter(criteria: LabelCriteria(labelId: $0.labelId), description: $0.labelName, isChild: true)
+        DispatchQueue.main.async {
+            NetworkManager.shared.getRequest(url: .label, type: LabelArray.self) { result in
+                guard let labelArray = result else { return }
+                self.labelFilters = labelArray.labelArray.map {
+                    Filter(criteria: LabelCriteria(labelId: $0.labelId), description: $0.labelName, isChild: true)
+                }
             }
         }
     }
     
     func reloadMilestoneFilters() {
-        NetworkManager.shared.getRequest(url: .milestone, type: MilestoneArray.self) { result in
-            guard let milestoneArray = result else { return }
-            self.milestonFilters = milestoneArray.milestoneArray.map {
-                Filter(criteria: MilestoneCriteria(milestoneId: $0.milestoneId), description: $0.title, isChild: true)
+        DispatchQueue.main.async {
+            NetworkManager.shared.getRequest(url: .milestone, type: MilestoneArray.self) { result in
+                guard let milestoneArray = result else { return }
+                self.milestonFilters = milestoneArray.milestoneArray.map {
+                    Filter(criteria: MilestoneCriteria(milestoneId: $0.milestoneId), description: $0.title, isChild: true)
+                }
             }
         }
     }
+    
     func reloadAssigneeFilters() {
-        NetworkManager.shared.getRequest(url: .user, type: UserArray.self) { result in
-            guard let userArray = result else { return }
-            self.assigneeFilters = userArray.userArray.map {
-                Filter(criteria: AssignedCriteria(assignee: $0), description: $0.userName, isChild: true)
+        DispatchQueue.main.async {
+            NetworkManager.shared.getRequest(url: .user, type: UserArray.self) { result in
+                guard let userArray = result else { return }
+                self.assigneeFilters = userArray.userArray.map {
+                    Filter(criteria: AssignedCriteria(assignee: $0), description: $0.userName, isChild: true)
+                }
             }
         }
     }

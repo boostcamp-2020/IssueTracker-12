@@ -51,6 +51,14 @@ class IssueAttributeFloatingViewController: UIViewController {
             labelScrollView.contentSize.width = xPosition
         }
     }
+    @IBAction func labelSelectButtonDidTouch(_ sender: Any) {
+        if let selectVC = self.storyboard?.instantiateViewController(identifier: IssueLabelSelectViewController.reuseIdentifier) as? IssueLabelSelectViewController {
+            
+            selectVC.modalPresentationStyle = .currentContext
+            selectVC.issue = self.issue
+            self.present(selectVC, animated: true, completion: nil)
+        }
+    }
 }
 
 extension IssueAttributeFloatingViewController: UICollectionViewDataSource, UICollectionViewDelegate {

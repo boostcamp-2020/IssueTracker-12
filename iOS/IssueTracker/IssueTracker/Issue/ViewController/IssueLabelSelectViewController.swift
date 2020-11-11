@@ -13,22 +13,30 @@ class IssueLabelSelectViewController: UIViewController {
     typealias IssueLabelSelectDataSource = UITableViewDiffableDataSource<Section, Label>
     private var labels = [Label]()
     private lazy var dataSource = createDataSource()
+    var issue: Issue?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         issueLabelSelectTableView.delegate = self
+        applySnapshot()
+        reloadLabels()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        reloadLabels()
-        //applySnapshot()
+    private func initSelection() {
+        print(labels)
+        guard let issue = issue else { return }
+        for (indexPath, label) in labels.enumerated() {
+            if issue.labels.contains(label) {
+                issueLabelSelectTableView.selectRow(at: IndexPath(row: indexPath, section: 0), animated: false, scrollPosition: .none)
+            }
+        }
     }
     
     private func createDataSource() -> IssueLabelSelectDataSource {
         let cellProvider = { (tableView: UITableView, indexPath: IndexPath, labelContent: Label) -> UITableViewCell? in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: IssueLabelSelectTableViewCell.reuseIdentifier, for: indexPath) as? IssueLabelSelectTableViewCell else { return UITableViewCell() }
             cell.labelColorView.backgroundColor = UIColor(hex: self.labels[indexPath.row].color)
+            cell.labelNameLabel.text = self.labels[indexPath.row].labelName
             return cell
         }
         let dataSource = IssueLabelSelectDataSource(tableView: issueLabelSelectTableView, cellProvider: cellProvider)
@@ -38,17 +46,29 @@ class IssueLabelSelectViewController: UIViewController {
     private func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Label>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(labels)
-        dataSource.apply(snapshot)
+        snapshot.appendItems(self.labels)
+        self.dataSource.apply(snapshot)
     }
     
     private func reloadLabels() {
-        NetworkManager.shared.getRequest(url: .label, type: LabelArray.self) { result in
-            guard let labelArray = result else { return }
-            self.labels = labelArray.labelArray
-            self.applySnapshot()
+        DispatchQueue.main.async {
+            NetworkManager.shared.getRequest(url: .label, type: LabelArray.self) { result in
+                guard let labelArray = result else { return }
+                self.labels = labelArray.labelArray
+                self.applySnapshot()
+                self.initSelection()
+            }
         }
     }
+    @IBAction func cancelButtonDidTouch(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func doneButtonDidTouch(_ sender: Any) {
+        //NetworkManager.shared
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     enum Section: Hashable {
         case main
@@ -56,5 +76,5 @@ class IssueLabelSelectViewController: UIViewController {
 }
 
 extension IssueLabelSelectViewController: UITableViewDelegate {
-    
+   
 }

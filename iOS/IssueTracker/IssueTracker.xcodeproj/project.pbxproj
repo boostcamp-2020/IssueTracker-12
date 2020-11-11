@@ -29,7 +29,7 @@
 		464075442553D9010017B131 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461256AC2551318B001051D0 /* URLs.swift */; };
 		466411DE25526F4000BD2904 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466411DD25526F4000BD2904 /* NotificationName.swift */; };
 		46C4903D255A8D2400D57E75 /* AssigneeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4903C255A8D2400D57E75 /* AssigneeCollectionViewCell.swift */; };
-		46E668BA2547F64A00A41CC0 /* IssueListEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668B92547F64A00A41CC0 /* IssueListEditTableViewCell.swift */; };
+		46E61F83255B6C5400877DA8 /* IssueConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9360A2A255A75AB008284BF /* IssueConstants.swift */; };
 		46E668CC25482FF700A41CC0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668CB25482FF700A41CC0 /* UIView+Extension.swift */; };
 		46E668D32548557800A41CC0 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668D22548557800A41CC0 /* PaddedLabel.swift */; };
 		46ED2B8925469876004B6D50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2B8825469876004B6D50 /* AppDelegate.swift */; };
@@ -51,7 +51,6 @@
 		A927391825490BCB00F22997 /* IssueDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */; };
 		A927392125493B8100F22997 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927392025493B8100F22997 /* UITableViewCell+Extension.swift */; };
 		A927393F2549635D00F22997 /* IssueAttributeFloatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927393E2549635D00F22997 /* IssueAttributeFloatingViewController.swift */; };
-		A9360A2B255A75AB008284BF /* IssueConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9360A2A255A75AB008284BF /* IssueConstants.swift */; };
 		A97882C0254FE19F001633FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882BF254FE19F001633FF /* LoginViewController.swift */; };
 		A97882C7254FED68001633FF /* GithubConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882C6254FED68001633FF /* GithubConstants.swift */; };
 		A97882CB254FEFA6001633FF /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882CA254FEFA6001633FF /* LoginManager.swift */; };
@@ -91,7 +90,6 @@
 		464075402553D3DB0017B131 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		466411DD25526F4000BD2904 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		46C4903C255A8D2400D57E75 /* AssigneeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssigneeCollectionViewCell.swift; sourceTree = "<group>"; };
-		46E668B92547F64A00A41CC0 /* IssueListEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListEditTableViewCell.swift; sourceTree = "<group>"; };
 		46E668CB25482FF700A41CC0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		46E668D22548557800A41CC0 /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		46ED2B8525469876004B6D50 /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -555,6 +553,7 @@
 				4616CDD32549573200421368 /* Issue.swift in Sources */,
 				A927391825490BCB00F22997 /* IssueDetailTableViewCell.swift in Sources */,
 				A97882C7254FED68001633FF /* GithubConstants.swift in Sources */,
+				46E61F83255B6C5400877DA8 /* IssueConstants.swift in Sources */,
 				4616CDD72549583600421368 /* Milestone.swift in Sources */,
 				461603C12557A033006D974E /* FilterCriteria.swift in Sources */,
 				4626FFCD254FDF2B00BFE9C0 /* NewIssueViewController.swift in Sources */,
