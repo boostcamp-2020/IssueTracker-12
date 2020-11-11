@@ -5,16 +5,19 @@ import Button from '@Components/commons/Button';
 import LabelMilestoneTag from '@Components/commons/LabelMilestoneTag';
 import { IssueMenuFilter } from './Filters';
 
-const IssueMenu = () => (
-  <FlexRowDiv>
-    <IssueMenuFilter />
-    <IssueFilterSearchbar
-      className="issue-filter-searchbar"
-    />
-    <LabelMilestoneTag />
-    <NewIssueButton>New Issue</NewIssueButton>
-  </FlexRowDiv>
-);
+const IssueMenu = () => {
+  return (
+    <FlexRowDiv>
+      <IssueMenuFilter />
+      <IssueFilterSearchbar 
+        className="issue-filter-searchbar"
+        />
+      <LabelMilestoneTag />
+      <NewIssueButton>New Issue</NewIssueButton>
+    </FlexRowDiv>
+  );
+}
+
 
 const FlexRowDiv = styled.div`
   display: flex;
