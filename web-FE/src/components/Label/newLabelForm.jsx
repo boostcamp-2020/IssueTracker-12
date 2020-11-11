@@ -3,6 +3,12 @@ import styled from 'styled-components';
 import LabelBadge from '@Common/LabelBadge';
 import Button from '@Common/Button';
 import RefreshIcon from '@Images/refresh.svg';
+import { DisplayProvider, DisplayConsumer } from '@Stores/newLabelContext';
+
+const onClickCreateHandler = () => {
+  const MainContainer = document.getElementsByClassName('.main-container');
+  MainContainer.style.display = 'none';
+};
 
 const NewLabelForm = () => {
   const [color, setColor] = useState('#6f849e');
@@ -16,33 +22,46 @@ const NewLabelForm = () => {
     setColor(getRandomColor());
   };
 
+  const onChangeHandle = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
-    <MainContainer>
-      <BadgeContainer>
-        <LabelBadge name="Label Preview" color="#6783a7" />
-      </BadgeContainer>
-      <OptionContainer>
-        <Option width="30%">
-          <P>Label name</P>
-          <Input placeholder="Label name" />
-        </Option>
-        <Option width="60%">
-          <P>Description</P>
-          <Input placeholder="Description (optional)" for="descript" />
-        </Option>
-        <Option width="20%">
-          <P>Color</P>
-          <ColorButton backgroundColor={color} onClick={onClickColorHandler}>
-            <Img src={RefreshIcon} />
-          </ColorButton>
-          <Input className="input-color" width="70%" value={color} onChange="onChangeHandle" />
-        </Option>
-        <Option width="20%">
-          <CancelButton color="#181818" backgroundColor="#fff">Cancel</CancelButton>
-          <CreateButton>Create label</CreateButton>
-        </Option>
-      </OptionContainer>
-    </MainContainer>
+    <DisplayProvider>
+      <DisplayConsumer>
+        {
+          ({ state, actions }) => (
+            <MainContainer className="main-container" display={state.display}>
+              <BadgeContainer>
+                <LabelBadge name="Label Preview" color="#6783a7" />
+              </BadgeContainer>
+              <OptionContainer>
+                <Option width="30%">
+                  <P>Label name</P>
+                  <Input placeholder="Label name" />
+                </Option>
+                <Option width="60%">
+                  <P>Description</P>
+                  <Input placeholder="Description (optional)" />
+                </Option>
+                <Option width="20%">
+                  <P>Color</P>
+                  <ColorButton backgroundColor={color} onClick={onClickColorHandler}>
+                    <Img src={RefreshIcon} />
+                  </ColorButton>
+                  <Input className="input-color" width="70%" value={color} onChange={onChangeHandle} />
+                </Option>
+                <Option width="20%">
+                  <CancelButton color="#181818" backgroundColor="#fff" onClick={() => actions.setDisplay('none')}>Cancel</CancelButton>
+                  <CreateButton onClick={onClickCreateHandler}>Create label</CreateButton>
+                </Option>
+              </OptionContainer>
+            </MainContainer>
+          )
+        }
+      </DisplayConsumer>
+    </DisplayProvider>
+
   );
 };
 const BadgeContainer = styled.div`
@@ -50,7 +69,7 @@ const BadgeContainer = styled.div`
 `;
 
 const MainContainer = styled.div`
-  display: flex;
+  display: ${(props) => props.display};
   flex-direction: column;
   align-items: center;
   border: 1px solid #120342 ; 
