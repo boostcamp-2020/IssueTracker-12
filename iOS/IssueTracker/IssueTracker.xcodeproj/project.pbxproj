@@ -51,6 +51,7 @@
 		A97882C0254FE19F001633FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882BF254FE19F001633FF /* LoginViewController.swift */; };
 		A97882C7254FED68001633FF /* GithubConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882C6254FED68001633FF /* GithubConstants.swift */; };
 		A97882CB254FEFA6001633FF /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882CA254FEFA6001633FF /* LoginManager.swift */; };
+		A98BE921255BDC2A0037A269 /* NewIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98BE920255BDC2A0037A269 /* NewIssue.swift */; };
 		A9FE8AB42553D46600A8002F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE8AB32553D46600A8002F /* User.swift */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,7 @@
 		A97882C3254FE2D4001633FF /* IssueTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IssueTracker.entitlements; sourceTree = "<group>"; };
 		A97882C6254FED68001633FF /* GithubConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubConstants.swift; sourceTree = "<group>"; };
 		A97882CA254FEFA6001633FF /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		A98BE920255BDC2A0037A269 /* NewIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssue.swift; sourceTree = "<group>"; };
 		A9FE8AB32553D46600A8002F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DEE8BF2B28874A5779C504EA /* Pods-IssueTrackerNetworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTrackerNetworkTests.debug.xcconfig"; path = "Target Support Files/Pods-IssueTrackerNetworkTests/Pods-IssueTrackerNetworkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E0821587E5F839215D79D4EE /* Pods-IssueTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTracker.release.xcconfig"; path = "Target Support Files/Pods-IssueTracker/Pods-IssueTracker.release.xcconfig"; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				4616CDD22549573200421368 /* Issue.swift */,
+				A98BE920255BDC2A0037A269 /* NewIssue.swift */,
 				4616CDD62549583600421368 /* Milestone.swift */,
 				4616CDD9254958B100421368 /* Label.swift */,
 				A9FE8AB32553D46600A8002F /* User.swift */,
@@ -545,6 +548,7 @@
 				A927391825490BCB00F22997 /* IssueDetailTableViewCell.swift in Sources */,
 				A97882C7254FED68001633FF /* GithubConstants.swift in Sources */,
 				4616CDD72549583600421368 /* Milestone.swift in Sources */,
+				A98BE921255BDC2A0037A269 /* NewIssue.swift in Sources */,
 				461603C12557A033006D974E /* FilterCriteria.swift in Sources */,
 				4626FFCD254FDF2B00BFE9C0 /* NewIssueViewController.swift in Sources */,
 				461256AD2551318B001051D0 /* URLs.swift in Sources */,

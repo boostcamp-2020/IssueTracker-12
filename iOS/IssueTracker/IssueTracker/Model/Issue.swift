@@ -17,25 +17,20 @@ struct Issue: Codable, Hashable {
     var isOpen: Int
     var writerId: Int
     var writer: String
-    var isAssigned: Int
-    var isMentioned: Int
+    var isAssigned: Int?
+    var isMentioned: Int?
     var labels: [Label]
     var assignee: [User]
     
-    init(title: String, milestoneId: Int?, milestoneTitle: String?, writeTime: String, isOpen: Int,
-         writerId: Int, writer: String, isAssigned: Int, isMentioned: Int, labels: [Label], assignee: [User]) {
+    init(title: String, writer: String) {
         self.issueId = -1
         self.title = title
-        self.milestoneId = milestoneId
-        self.milestoneTitle = milestoneTitle
-        self.writeTime = writeTime
-        self.isOpen = isOpen
-        self.writerId = writerId
+        self.writeTime = "\(Date())"
+        self.isOpen = 1
+        self.writerId = -1
         self.writer = writer
-        self.isAssigned = isAssigned
-        self.isMentioned = isMentioned
-        self.labels = labels
-        self.assignee = assignee
+        self.labels = []
+        self.assignee = []
     }
     
     static func == (lhs: Issue, rhs: Issue) -> Bool {
