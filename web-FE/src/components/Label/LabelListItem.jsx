@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import LabelBadge from '@Common/LabelBadge';
-import { EditDisplayConsumer } from '@Stores/EditLabelContext';
+// import { EditDisplayConsumer } from '@Stores/EditLabelContext';
 import EditLabelForm from './EditLabelForm';
 
 const LabelListItem = (props) => {
@@ -26,14 +26,10 @@ const LabelListItem = (props) => {
             {description}
           </Description>
         </LeftDiv>
-        <EditDisplayConsumer>
-          {({ actions }) => (
-            <RightDiv>
-              <P onClick={() => { actions.setDisplay('flex'); }}>Edit</P>
-              <P onClick={onClickDelHandler}>Delete</P>
-            </RightDiv>
-          )}
-        </EditDisplayConsumer>
+        <RightDiv>
+          <P onClick={() => { actions.setDisplay('flex'); }}>Edit</P>
+          <P onClick={onClickDelHandler}>Delete</P>
+        </RightDiv>
       </LabelContent>
       <EditLabelForm />
     </FlexRowDiv>
