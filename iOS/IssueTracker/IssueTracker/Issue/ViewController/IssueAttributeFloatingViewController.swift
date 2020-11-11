@@ -93,8 +93,6 @@ class IssueAttributeFloatingViewController: UIViewController {
             object: object, type: .isOpen) { _ in
                 NotificationCenter.default.post(name: .issueDidChange, object: nil)
         }
-        // detail 화면에 바뀐것이 noti되어야함
-        dismiss(animated: true, completion: nil)
     }
 }
 

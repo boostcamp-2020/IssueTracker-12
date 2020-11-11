@@ -636,7 +636,7 @@
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fEa-0k-4KG">
                                         <rect key="frame" x="20" y="54" width="334" height="75"/>
-                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="75" id="rnZ-D8-5Qp"/>
                                         </constraints>
@@ -688,7 +688,7 @@
                                         </cells>
                                     </collectionView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="fEa-0k-4KG" secondAttribute="trailing" constant="20" id="6wH-M2-e8A"/>
                                     <constraint firstItem="fEa-0k-4KG" firstAttribute="top" secondItem="08I-Qm-GGD" secondAttribute="bottom" constant="15" id="Vez-li-RSA"/>
@@ -750,7 +750,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="25"/>
                                             </scrollView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="uHk-Dq-rfp" secondAttribute="bottom" id="FFN-Bi-OMx"/>
                                             <constraint firstItem="uHk-Dq-rfp" firstAttribute="top" secondItem="uJ6-Gl-KPU" secondAttribute="top" id="GnP-5r-kfB"/>
@@ -760,7 +760,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.69668703253938702" green="1" blue="0.76108250887399476" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstItem="6K5-eu-nsE" firstAttribute="top" secondItem="MHK-NL-qeq" secondAttribute="top" constant="15" id="58U-WK-X9J"/>
                                     <constraint firstAttribute="trailing" secondItem="uJ6-Gl-KPU" secondAttribute="trailing" constant="20" id="85K-qw-sqs"/>
@@ -830,7 +830,7 @@
                                                 <rect key="frame" x="8" y="43.5" width="342" height="4"/>
                                             </progressView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="65" id="A1o-Bi-zU2"/>
                                             <constraint firstItem="7BH-eX-wYK" firstAttribute="leading" secondItem="K23-vI-8f5" secondAttribute="leading" constant="8" id="Iof-of-Jo8"/>
@@ -841,7 +841,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.73580533894154643" green="0.71277003426818042" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="K23-vI-8f5" secondAttribute="trailing" constant="8" id="IHJ-aE-Cf4"/>
                                     <constraint firstItem="K23-vI-8f5" firstAttribute="leading" secondItem="JoW-CJ-MI5" secondAttribute="leading" constant="8" id="JdT-Vq-dOv"/>
