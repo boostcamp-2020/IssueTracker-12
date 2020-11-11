@@ -2,8 +2,8 @@ const labelModel = require('../../../models/label');
 
 const labelController = {
   create: async (req, res) => {
-    const { label_name : name, description, color } = req.body;
-    const insertId = await labelModel.insert([name, description, color]);
+    const { name, description, color } = req.body;
+    const insertId = await labelModel.insert(name, description, color);
     res.status(200).json({ insertId });
   },
   read: async (req, res) => {

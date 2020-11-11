@@ -2,11 +2,18 @@ const connection = require('../config/db_connection');
 const sql = require('../config/query');
 
 const labelModel = {
-  insert: async (paramArr) => {
+  insert: async (name, description, color) => {
+    console.log("why????", name, description, color);
     try {
-      const res = await connection.query(sql.insertLabel, paramArr);
+      const res = await connection.query(sql.insertLabel, [
+        name,
+        description,
+        color,
+      ]);
       return res[0].insertId;
-    } catch (err) { console.error(err); }
+    } catch (err) {
+      console.error(err);
+    }
   },
   select: async () => {
     try {
