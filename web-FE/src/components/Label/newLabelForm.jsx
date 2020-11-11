@@ -1,39 +1,98 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import LabelBadge from '@Common/LabelBadge';
 import Button from '@Common/Button';
 import RefreshIcon from '@Images/refresh.svg';
+import { DisplayConsumer } from '@Stores/newLabelContext';
+import { createLabel } from '@Api/label';
 
 const NewLabelForm = () => {
-  const labelName = 'Label Preview';
-  const color = '#6783a7';
+  const [name, setName] = useState('Label Preview');
+  const [description, setDescription] = useState('');
+  const [color, setColor] = useState('#6f849e');
+
+  const getRandomColor = () => {
+    const result = `#${Math.round(Math.random() * 0xffffff).toString(16)}`;
+    return result;
+  };
+
+  const onClickCreateHandler = () => {
+    if (name === '' || color === '') {
+      alert('Label name과 Color 값은 필수 항목입니다');
+      return;
+    }
+    createLabel(name, description, color);
+    setColor('');
+    setDescription('');
+    setName('');
+  };
+
+  const onClickColorHandler = () => {
+    setColor(getRandomColor());
+  };
+
+  const onChangeScriptHandler = (e) => {
+    const setTo = e.target.value;
+    setDescription(setTo);
+  };
+
+  const onChangeNameHandler = (e) => {
+    const setTo = e.target.value;
+    setName(setTo);
+  };
+
+  const onChangeColorHandler = (e) => {
+    const setTo = e.target.value;
+    setColor(setTo);
+  };
+
   return (
-    <MainContainer>
-      <BadgeContainer>
-        <LabelBadge name={labelName} color={color} />
-      </BadgeContainer>
-      <OptionContainer>
-        <Option width="30%">
-          <P>Label name</P>
-          <Input placeholder="Label name" />
-        </Option>
-        <Option width="60%">
-          <P>Description</P>
-          <Input placeholder="Description (optional)" for="descript" />
-        </Option>
-        <Option width="20%">
-          <P>Color</P>
-          <ColorButton backgroundColor="#6f849e">
-            <Img src={RefreshIcon} />
-          </ColorButton>
-          <Input defaultValue="#bfd4f2" width="70%" />
-        </Option>
-        <Option width="20%">
-          <CancelButton color="#181818" backgroundColor="#fff">Cancel</CancelButton>
-          <CreateButton>Create label</CreateButton>
-        </Option>
-      </OptionContainer>
-    </MainContainer>
+    <DisplayConsumer>
+      {
+          ({ state, actions }) => (
+            <MainContainer className="main-container" display={state.display}>
+              <BadgeContainer>
+                <LabelBadge name={name} color={color} />
+              </BadgeContainer>
+              <OptionContainer>
+                <Option width="30%">
+                  <P>Label name</P>
+                  <Input placeholder="Label name" which="input-name" value={name} onChange={onChangeNameHandler} />
+                </Option>
+                <Option width="60%">
+                  <P>Description</P>
+                  <Input placeholder="Description (optional)" value={description} onChange={onChangeScriptHandler} />
+                </Option>
+                <Option width="20%">
+                  <P>Color</P>
+                  <ColorButton backgroundColor={color} onClick={onClickColorHandler}>
+                    <Img src={RefreshIcon} />
+                  </ColorButton>
+                  <Input width="70%" value={color} onChange={onChangeColorHandler} />
+                </Option>
+                <Option width="20%">
+                  <CancelButton
+                    color="#181818"
+                    backgroundColor="#fff"
+                    onClick={() => {
+                      actions.setDisplay('none');
+                    }}
+                  >
+                    Cancel
+                  </CancelButton>
+                  <CreateButton onClick={() => {
+                    actions.setDisplay('none');
+                    onClickCreateHandler();
+                  }}
+                  >
+                    Create label
+                  </CreateButton>
+                </Option>
+              </OptionContainer>
+            </MainContainer>
+          )
+        }
+    </DisplayConsumer>
   );
 };
 const BadgeContainer = styled.div`
@@ -41,7 +100,7 @@ const BadgeContainer = styled.div`
 `;
 
 const MainContainer = styled.div`
-  display: flex;
+  display: ${(props) => props.display};
   flex-direction: column;
   align-items: center;
   border: 1px solid #120342 ; 

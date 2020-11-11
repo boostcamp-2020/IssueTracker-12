@@ -4,16 +4,26 @@ import labelIcon from '@Images/label.svg';
 import milestoneIcon from '@Images/milestone.svg';
 import ButtonWithIcon from './ButtonWithIcon';
 
+const goTo = (e) => {
+  const targetButton = e.target.closest('.tag');
+  const isLabelButton = targetButton.classList.contains('label-button');
+  if (isLabelButton) {
+    location.href = '/label';
+    return;
+  }
+  location.href = '/';
+};
+
 const App = () => (
-  <Div>
+  <Div onClick={goTo}>
     <LabelButton
-      className="label-button"
+      className="tag label-button"
       image={labelIcon}
       name="label"
       number="3"
     />
     <MilestoneButton
-      className="milestone-button"
+      className="tag milestone-button"
       image={milestoneIcon}
       name="milestone"
       number="3"
