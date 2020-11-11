@@ -7,7 +7,7 @@ import EditLabelForm from './EditLabelForm';
 const LabelListItem = (props) => {
   const { label, dispatch } = props;
   const {
-    // label_id: labelId,
+    label_id: labelId,
     label_name: labelName,
     description,
     color,
@@ -19,7 +19,7 @@ const LabelListItem = (props) => {
 
   return (
     <EditDisplayProvider>
-      <FlexRowDiv>
+      <FlexRowDiv className="label-div" id={labelId}>
         <LabelContent>
           <LeftDiv>
             <LabelBadge name={labelName} color={color} />

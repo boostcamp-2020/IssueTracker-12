@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-// import * from './style';
 import LabelBadge from '@Common/LabelBadge';
 import Button from '@Common/Button';
 import RefreshIcon from '@Images/refresh.svg';
 import { EditDisplayConsumer } from '@Stores/EditLabelContext';
-// import { updateLabel } from '@Api/label';
+import { LabelContext } from '@Stores/LabelStore';
+import { updateLabel } from '@Api/label';
 
 const LabelInputForm = () => {
-  // const { dispatch } = props;
+  const { dispatch } = useContext(LabelContext);
   const [name, setName] = useState('Label Preview');
   const [description, setDescription] = useState('');
   const [color, setColor] = useState('#6f849e');
@@ -18,16 +18,22 @@ const LabelInputForm = () => {
     return result;
   };
 
-  const onClickEditSaveHandler = () => {
+  const onClickEditSaveHandler = (e) => {
     if (name === '' || color === '') {
       alert('Label name과 Color 값은 필수 항목입니다');
       return;
     }
-    // const label = updateLabel(name, description, color);
+    const labelId = +e.target.closest('.label-div').id;
+    updateLabel(labelId, name, description, color);
     setColor('');
     setDescription('');
     setName('');
-    // dispatch({ type: 'UPDATE', data: label });
+    dispatch({
+      type: 'UPDATE',
+      data: {
+        label_id: labelId, label_name: name, description, color,
+      },
+    });
   };
 
   const onClickColorHandler = () => {
@@ -83,9 +89,9 @@ const LabelInputForm = () => {
                   >
                     Cancel
                   </CancelButton>
-                  <CreateButton onClick={() => {
+                  <CreateButton onClick={(e) => {
                     actions.setDisplay('none');
-                    onClickEditSaveHandler();
+                    onClickEditSaveHandler(e);
                   }}
                   >
                     Save Change
