@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import LabelBadge from '@Common/LabelBadge';
 import Button from '@Common/Button';
 import RefreshIcon from '@Images/refresh.svg';
 
 const NewLabelForm = () => {
-  const labelName = 'Label Preview';
-  const color = '#6783a7';
+  const [color, setColor] = useState('#6f849e');
+
+  const getRandomColor = () => {
+    const result = `#${Math.round(Math.random() * 0xffffff).toString(16)}`;
+    return result;
+  };
+
+  const onClickColorHandler = () => {
+    setColor(getRandomColor());
+  };
+
   return (
     <MainContainer>
       <BadgeContainer>
-        <LabelBadge name={labelName} color={color} />
+        <LabelBadge name="Label Preview" color="#6783a7" />
       </BadgeContainer>
       <OptionContainer>
         <Option width="30%">
@@ -23,10 +32,10 @@ const NewLabelForm = () => {
         </Option>
         <Option width="20%">
           <P>Color</P>
-          <ColorButton backgroundColor="#6f849e">
+          <ColorButton backgroundColor={color} onClick={onClickColorHandler}>
             <Img src={RefreshIcon} />
           </ColorButton>
-          <Input defaultValue="#bfd4f2" width="70%" />
+          <Input className="input-color" width="70%" value={color} onChange="onChangeHandle" />
         </Option>
         <Option width="20%">
           <CancelButton color="#181818" backgroundColor="#fff">Cancel</CancelButton>
