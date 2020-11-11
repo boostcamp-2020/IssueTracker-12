@@ -19,6 +19,7 @@ const filterByMenu = (issueList, selection) => {
   }
   return issueList;
 };
+ 
 
 const filter = (issueList, filterState) => {
   const {
@@ -28,7 +29,11 @@ const filter = (issueList, filterState) => {
     milestoneFilter,
     assigneeFilter,
   } = filterState;
-  return filterByMenu(issueList, menuFilter);
+  return filterByMenu(issueList, menuFilter[0])
+    .filter((issue) => !authorFilter.length || issue.writer_id === authorFilter[0])
+    .filter(issue => !labelFilter.length || labelFilter.some((labelInFilter) => issue.labels.some((label => label.label_id === labelInFilter))))
+    .filter((issue) => !milestoneFilter.length || issue.milestone_id === milestoneFilter[0])
+    .filter((issue) => !assigneeFilter.length || issue.assignee.some((assigneeItem) => assigneeItem.user_id === assigneeFilter[0]));
 };
 
 export default filter;
