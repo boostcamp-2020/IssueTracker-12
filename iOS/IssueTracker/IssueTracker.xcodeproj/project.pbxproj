@@ -26,7 +26,6 @@
 		464075412553D3DB0017B131 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464075402553D3DB0017B131 /* FilterTableViewCell.swift */; };
 		464075442553D9010017B131 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461256AC2551318B001051D0 /* URLs.swift */; };
 		466411DE25526F4000BD2904 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466411DD25526F4000BD2904 /* NotificationName.swift */; };
-		46E668BA2547F64A00A41CC0 /* IssueListEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668B92547F64A00A41CC0 /* IssueListEditTableViewCell.swift */; };
 		46E668CC25482FF700A41CC0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668CB25482FF700A41CC0 /* UIView+Extension.swift */; };
 		46E668D32548557800A41CC0 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668D22548557800A41CC0 /* PaddedLabel.swift */; };
 		46ED2B8925469876004B6D50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2B8825469876004B6D50 /* AppDelegate.swift */; };
@@ -38,7 +37,6 @@
 		46ED2B9F25469A94004B6D50 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 46ED2B9E25469A94004B6D50 /* .swiftlint.yml */; };
 		46ED2BB62546AA00004B6D50 /* IssueListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2BB42546AA00004B6D50 /* IssueListCollectionViewCell.swift */; };
 		46ED2BB72546AA00004B6D50 /* IssueListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46ED2BB52546AA00004B6D50 /* IssueListCollectionViewCell.xib */; };
-		46ED2BC72546B096004B6D50 /* IssueListEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2BC62546B096004B6D50 /* IssueListEditViewController.swift */; };
 		46FC2CB6254A58B4004E9288 /* MilestoneEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC2CB5254A58B4004E9288 /* MilestoneEditViewController.swift */; };
 		46FC2CBF254A74EF004E9288 /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC2CBE254A74EF004E9288 /* LabelViewController.swift */; };
 		46FC2CC5254A789B004E9288 /* LabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC2CC4254A789B004E9288 /* LabelCollectionViewCell.swift */; };
@@ -49,6 +47,7 @@
 		A927391825490BCB00F22997 /* IssueDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */; };
 		A927392125493B8100F22997 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927392025493B8100F22997 /* UITableViewCell+Extension.swift */; };
 		A927393F2549635D00F22997 /* IssueAttributeFloatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927393E2549635D00F22997 /* IssueAttributeFloatingViewController.swift */; };
+		A9360A2B255A75AB008284BF /* IssueConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9360A2A255A75AB008284BF /* IssueConstants.swift */; };
 		A97882C0254FE19F001633FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882BF254FE19F001633FF /* LoginViewController.swift */; };
 		A97882C7254FED68001633FF /* GithubConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882C6254FED68001633FF /* GithubConstants.swift */; };
 		A97882CB254FEFA6001633FF /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882CA254FEFA6001633FF /* LoginManager.swift */; };
@@ -85,7 +84,6 @@
 		464075352553BE090017B131 /* IssueFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterViewController.swift; sourceTree = "<group>"; };
 		464075402553D3DB0017B131 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		466411DD25526F4000BD2904 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
-		46E668B92547F64A00A41CC0 /* IssueListEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListEditTableViewCell.swift; sourceTree = "<group>"; };
 		46E668CB25482FF700A41CC0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		46E668D22548557800A41CC0 /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		46ED2B8525469876004B6D50 /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,7 +97,6 @@
 		46ED2B9E25469A94004B6D50 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		46ED2BB42546AA00004B6D50 /* IssueListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewCell.swift; sourceTree = "<group>"; };
 		46ED2BB52546AA00004B6D50 /* IssueListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueListCollectionViewCell.xib; sourceTree = "<group>"; };
-		46ED2BC62546B096004B6D50 /* IssueListEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListEditViewController.swift; sourceTree = "<group>"; };
 		46FC2CB5254A58B4004E9288 /* MilestoneEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneEditViewController.swift; sourceTree = "<group>"; };
 		46FC2CBE254A74EF004E9288 /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
 		46FC2CC4254A789B004E9288 /* LabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -111,6 +108,7 @@
 		A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A927392025493B8100F22997 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		A927393E2549635D00F22997 /* IssueAttributeFloatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAttributeFloatingViewController.swift; sourceTree = "<group>"; };
+		A9360A2A255A75AB008284BF /* IssueConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueConstants.swift; sourceTree = "<group>"; };
 		A97882BF254FE19F001633FF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A97882C3254FE2D4001633FF /* IssueTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IssueTracker.entitlements; sourceTree = "<group>"; };
 		A97882C6254FED68001633FF /* GithubConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubConstants.swift; sourceTree = "<group>"; };
@@ -198,6 +196,7 @@
 			children = (
 				46ED2BA62546A39C004B6D50 /* View */,
 				46ED2BA72546A3A4004B6D50 /* ViewController */,
+				A9360A2A255A75AB008284BF /* IssueConstants.swift */,
 			);
 			path = Issue;
 			sourceTree = "<group>";
@@ -264,7 +263,6 @@
 				46ED2BB42546AA00004B6D50 /* IssueListCollectionViewCell.swift */,
 				46ED2BB52546AA00004B6D50 /* IssueListCollectionViewCell.xib */,
 				A927391725490BCB00F22997 /* IssueDetailTableViewCell.swift */,
-				46E668B92547F64A00A41CC0 /* IssueListEditTableViewCell.swift */,
 				464075402553D3DB0017B131 /* FilterTableViewCell.swift */,
 			);
 			path = View;
@@ -274,7 +272,6 @@
 			isa = PBXGroup;
 			children = (
 				46ED2B8C25469876004B6D50 /* IssueListViewController.swift */,
-				46ED2BC62546B096004B6D50 /* IssueListEditViewController.swift */,
 				A927391425490BBD00F22997 /* IssueDetailViewController.swift */,
 				A927393E2549635D00F22997 /* IssueAttributeFloatingViewController.swift */,
 				4626FFCC254FDF2B00BFE9C0 /* NewIssueViewController.swift */,
@@ -542,9 +539,9 @@
 			files = (
 				4616CDC72549491400421368 /* UIViewController+Extension.swift in Sources */,
 				46ED2B8D25469876004B6D50 /* IssueListViewController.swift in Sources */,
+				A9360A2B255A75AB008284BF /* IssueConstants.swift in Sources */,
 				46E668CC25482FF700A41CC0 /* UIView+Extension.swift in Sources */,
 				4616CDD32549573200421368 /* Issue.swift in Sources */,
-				46ED2BC72546B096004B6D50 /* IssueListEditViewController.swift in Sources */,
 				A927391825490BCB00F22997 /* IssueDetailTableViewCell.swift in Sources */,
 				A97882C7254FED68001633FF /* GithubConstants.swift in Sources */,
 				4616CDD72549583600421368 /* Milestone.swift in Sources */,
@@ -556,7 +553,6 @@
 				46323BD8254D5B3200C1AAD7 /* String+Extension.swift in Sources */,
 				461256572550FB0B001051D0 /* NetworkManager.swift in Sources */,
 				46FC2CB6254A58B4004E9288 /* MilestoneEditViewController.swift in Sources */,
-				46E668BA2547F64A00A41CC0 /* IssueListEditTableViewCell.swift in Sources */,
 				46FC2CC5254A789B004E9288 /* LabelCollectionViewCell.swift in Sources */,
 				4616CDDA254958B100421368 /* Label.swift in Sources */,
 				464075412553D3DB0017B131 /* FilterTableViewCell.swift in Sources */,

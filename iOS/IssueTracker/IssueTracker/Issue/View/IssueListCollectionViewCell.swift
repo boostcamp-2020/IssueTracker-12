@@ -39,6 +39,8 @@ class IssueListCollectionViewCell: UICollectionViewListCell {
                 self?.milestoneLabel.alpha = 0
             }
         }
+        
+        separatorLayoutGuide.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
     }
     
     private func openLabelConfigure(isOpen: Int) {
@@ -46,17 +48,12 @@ class IssueListCollectionViewCell: UICollectionViewListCell {
         // * TO-DO :
         // - label 크기 따로 변수 선언
         // - 다른 화면에서도 사용할 수 있도록 Extension 빼기
-        var imageName = "openMark"
-        var text = " Open"
-        var textColor = UIColor(named: "openIssueColor")
-        var backgroundColor = UIColor(named: "openIssue Background Color")
+        var openFlag = IssueOpen.open
         if isOpen == IssueOpen.closed.rawValue {
-            imageName = "closeMark"
-            text = " Closed"
-            textColor = UIColor(named: "closeIssueColor")
-            backgroundColor = UIColor(named: "closeIssue Background Color")
+            openFlag = IssueOpen.closed
         }
-        guard let iconImage = UIImage(named: imageName) else { return }
+        
+        guard let iconImage = UIImage(named: openFlag.icon) else { return }
         guard let issueFont = openLabel.font else { return }
         
         let attributedString = NSMutableAttributedString(string: "")
@@ -65,10 +62,10 @@ class IssueListCollectionViewCell: UICollectionViewListCell {
         
         imageAttachment.bounds = CGRect(x: 0, y: issueFont.descender, width: 15, height: 15)
         attributedString.append(NSAttributedString(attachment: imageAttachment))
-        attributedString.append(NSAttributedString(string: text))
+        attributedString.append(NSAttributedString(string: " \(openFlag.labelText)"))
         openLabel.attributedText = attributedString
-        openLabel.textColor = textColor
-        openLabel.backgroundColor = backgroundColor
+        openLabel.textColor = UIColor(named: openFlag.color)
+        openLabel.backgroundColor = UIColor(named: openFlag.backgroundColor)
     }
     
     private func labelsConfigure(labels: [Label]) {
@@ -77,10 +74,12 @@ class IssueListCollectionViewCell: UICollectionViewListCell {
         labels.forEach { label in
             let newLabel = PaddedLabel()
             newLabel.text = label.labelName
+            newLabel.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+            newLabel.textColor = UIColor(hex: label.color)?.textColor
             newLabel.backgroundColor = UIColor(hex: label.color)
             newLabel.textAlignment = .center
             newLabel.paddingWidth = 14
-            newLabel.paddingHeight = 10
+            newLabel.paddingHeight = 8
             newLabel.cornerRadius = 10
             let labelWidth = newLabel.intrinsicContentSize.width
             

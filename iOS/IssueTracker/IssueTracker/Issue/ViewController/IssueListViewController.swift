@@ -9,10 +9,15 @@ import UIKit
 
 class IssueListViewController: UIViewController {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var newIssueButton: UIButton!
+    @IBOutlet weak var issueCloseButton: UIBarButtonItem!
     @IBOutlet weak var issueListSearchBar: UISearchBar!
     @IBOutlet weak var issueListCollectionView: UICollectionView!
     
     private var issues = [Issue]()
+    private var isEditMode = false
+    private var isSelectAll = false
     
     typealias IssueDataSource = UICollectionViewDiffableDataSource<Section, Issue>
     private lazy var dataSource = createDataSource()
@@ -31,6 +36,7 @@ class IssueListViewController: UIViewController {
     
     func configure() {
         
+        tabBarController?.tabBar.isHidden = false
         issueListCollectionView.collectionViewLayout = createCollectionViewLayout()
         issueListCollectionView.delegate = self
 
@@ -49,7 +55,7 @@ class IssueListViewController: UIViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IssueListCollectionViewCell.reuseIdentifier, for: indexPath)
                     as? IssueListCollectionViewCell else { return UICollectionViewCell() }
             cell.initIssueCell(issue: issue)
-            
+                cell.accessories = [.multiselect(displayed: .whenEditing, options: .init()) ]
             return cell
         })
         return dataSource
@@ -60,19 +66,13 @@ class IssueListViewController: UIViewController {
         var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
         configuration.trailingSwipeActionsConfigurationProvider = { [unowned self] (indexPath) in
             
-            var isOpen = IssueOpen.open
+            var isOpen = IssueOpen.closed
             if self.issues[indexPath.row].isOpen == IssueOpen.closed.rawValue {
-                isOpen = IssueOpen.closed
+                isOpen = IssueOpen.open
             }
             let closeAction = UIContextualAction(style: .destructive, title: "\(isOpen.text)") {(_, _, completion) in
                 
-                let object = ["is_open": isOpen.param]
-                NetworkManager.shared.patchRequest(
-                    url: .issue,
-                    updateID: self.issues[indexPath.row].issueId,
-                    object: object, type: .isOpen) { _ in
-                        NotificationCenter.default.post(name: .issueDidChange, object: nil)
-                }
+                closeIssue(isOpen: isOpen, indexPath: indexPath)
                 completion(true)
             }
             
@@ -100,10 +100,99 @@ class IssueListViewController: UIViewController {
         }
     }
     
+    @IBAction func rightBarButtonDidTouch(_ sender: UIBarButtonItem) {
+        
+        isEditMode = !isEditMode
+        issueListCollectionView.isEditing = isEditMode
+        
+        if isEditMode {
+            setupEditView()
+        } else {
+            setupIssueListView()
+        }
+    }
+    
+    @IBAction func leftBarButtonDidTouch(_ sender: UIBarButtonItem) {
+        
+        if isEditMode {
+            if isSelectAll {
+                deselectAllItems()
+            } else {
+                selectAllItems()
+            }
+        } else {
+            if let filterVC = self.storyboard?.instantiateViewController(identifier: IssueFilterViewController.reuseIdentifier) as? IssueFilterViewController {
+                self.present(filterVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    @IBAction func issueCloseButtonDidTouch(_ sender: UIBarButtonItem) {
+        
+        isSelectAll = false
+        titleLabel.text = "0개 선택"
+        issueListCollectionView.indexPathsForSelectedItems?.forEach { indexPath in
+            closeIssue(isOpen: IssueOpen.closed, indexPath: indexPath)
+        }
+    }
+    
     @IBAction func newIssueButtonDidTouch(_ sender: UIButton) {
         if let newVC = self.storyboard?.instantiateViewController(identifier: NewIssueViewController.reuseIdentifier) as? NewIssueViewController {
             self.present(newVC, animated: true, completion: nil)
             newVC.initNewIssueView(isNew: true, issue: nil)
+        }
+    }
+    
+    private func closeIssue(isOpen: IssueOpen, indexPath: IndexPath) {
+        
+        let object = ["is_open": isOpen.param]
+        NetworkManager.shared.patchRequest(
+            url: .issue,
+            updateID: self.issues[indexPath.row].issueId,
+            object: object, type: .isOpen) { _ in
+                NotificationCenter.default.post(name: .issueDidChange, object: nil)
+        }
+    }
+    
+    private func setupIssueListView() {
+        
+        tabBarController?.tabBar.isHidden = false
+        newIssueButton.isHidden = false
+        titleLabel.text = "이슈"
+        navigationItem.rightBarButtonItem?.title = "Edit"
+        navigationItem.leftBarButtonItem?.title = "Filter"
+    }
+    
+    private func setupEditView() {
+        
+        tabBarController?.tabBar.isHidden = true
+        newIssueButton.isHidden = true
+        titleLabel.text = "0개 선택"
+        navigationItem.rightBarButtonItem?.title = "Cancel"
+        navigationItem.leftBarButtonItem?.title = "Select All"
+        issueListCollectionView.allowsMultipleSelectionDuringEditing = true
+        issueListCollectionView.allowsSelection = true
+    }
+    
+    private func selectAllItems() {
+        
+        isSelectAll = true
+        let numberOfItems = issueListCollectionView.numberOfItems(inSection: 0)
+        navigationItem.leftBarButtonItem?.title = "Deselect All"
+        titleLabel.text = "\(numberOfItems)개 선택"
+        for index in 0..<numberOfItems {
+            issueListCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: false, scrollPosition: [])
+        }
+    }
+    
+    private func deselectAllItems() {
+        
+        isSelectAll = false
+        navigationItem.leftBarButtonItem?.title = "Select All"
+        titleLabel.text = "0개 선택"
+        let numberOfItems = issueListCollectionView.numberOfItems(inSection: 0)
+        for index in 0..<numberOfItems {
+            issueListCollectionView.deselectItem(at: IndexPath(item: index, section: 0), animated: false)
         }
     }
     
@@ -116,44 +205,28 @@ extension IssueListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if let detailVC = self.storyboard?.instantiateViewController(identifier: IssueDetailViewController.reuseIdentifier) as? IssueDetailViewController {
-            
-            detailVC.sendIssueData(issue: issues[indexPath.row])
-            self.navigationController?.pushViewController(detailVC, animated: true)
+        if isEditMode {
+            isSelectAll = false
+            if issueListCollectionView.indexPathsForSelectedItems?.count == issueListCollectionView.numberOfItems(inSection: 0) {
+                navigationItem.leftBarButtonItem?.title = "Deselect All"
+                isSelectAll = true
+            }
+            titleLabel.text = "\(self.issueListCollectionView.indexPathsForSelectedItems?.count ?? 0)개 선택"
+        } else {
+            if let detailVC = self.storyboard?.instantiateViewController(identifier: IssueDetailViewController.reuseIdentifier) as? IssueDetailViewController {
+                
+                detailVC.sendIssueData(issue: issues[indexPath.row])
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        if isEditMode {
+            isSelectAll = false
+            navigationItem.leftBarButtonItem?.title = "Select All"
+            titleLabel.text = "\(self.issueListCollectionView.indexPathsForSelectedItems?.count ?? 0)개 선택"
         }
     }
 }
-
-
-//extension IssueListViewController: UICollectionViewDataSource {
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return issues.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if let detailVC = self.storyboard?.instantiateViewController(identifier: IssueDetailViewController.reuseIdentifier) as? IssueDetailViewController {
-//            detailVC.sendIssueData(issue: issues[indexPath.row])
-//            self.navigationController?.pushViewController(detailVC, animated: true)
-//        }
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = issueListCollectionView.dequeueReusableCell(withReuseIdentifier: IssueListCollectionViewCell.reuseIdentifier, for: indexPath) as? IssueListCollectionViewCell else {
-//            return UICollectionViewCell()
-//        }
-//        cell.delegate = self
-//        cell.initIssueCell(issue: issues[indexPath.row])
-//
-//        return cell
-//    }
-//}
-//
-//extension IssueListViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let width = self.view.bounds.width
-//        let height = CGFloat(130)
-//
-//        return CGSize(width: width, height: height)
-//    }
-//}
