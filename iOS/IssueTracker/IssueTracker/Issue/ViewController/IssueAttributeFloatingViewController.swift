@@ -12,6 +12,8 @@ class IssueAttributeFloatingViewController: UIViewController {
     @IBOutlet weak var labelScrollView: UIScrollView!
     @IBOutlet weak var assigneeCollectionView: UICollectionView!
     @IBOutlet weak var milestionTitleLabel: PaddedLabel!
+    @IBOutlet weak var closeIssueButton: UIButton!
+    
     private var issue: Issue?
     
     override func viewDidLoad() {
@@ -29,6 +31,10 @@ class IssueAttributeFloatingViewController: UIViewController {
                 self?.milestionTitleLabel.text = milestoneTitle
             }
             self?.labelsConfigure(labels: issue.labels)
+            if issue.isOpen == 0 {
+                self?.closeIssueButton.setTitle("Open Issue", for: .normal)
+                self?.closeIssueButton.setTitleColor(UIColor.green, for: .normal)
+            }
         }
     }
     
@@ -51,6 +57,14 @@ class IssueAttributeFloatingViewController: UIViewController {
             labelScrollView.contentSize.width = xPosition
         }
     }
+    @IBAction func assigneeSelectButtondidTouch(_ sender: Any) {
+        if let selectVC = self.storyboard?.instantiateViewController(identifier: IssueAssigneeSelectViewController.reuseIdentifier) as? IssueAssigneeSelectViewController {
+            
+            selectVC.modalPresentationStyle = .currentContext
+            selectVC.issue = self.issue
+            self.present(selectVC, animated: true, completion: nil)
+        }
+    }
     @IBAction func labelSelectButtonDidTouch(_ sender: Any) {
         if let selectVC = self.storyboard?.instantiateViewController(identifier: IssueLabelSelectViewController.reuseIdentifier) as? IssueLabelSelectViewController {
             
@@ -58,6 +72,29 @@ class IssueAttributeFloatingViewController: UIViewController {
             selectVC.issue = self.issue
             self.present(selectVC, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func milestoneSelectButtonDidTouch(_ sender: Any) {
+        if let selectVC = self.storyboard?.instantiateViewController(identifier: IssueMilestoneSelectViewController.reuseIdentifier) as? IssueMilestoneSelectViewController {
+            
+            selectVC.modalPresentationStyle = .currentContext
+            selectVC.issue = self.issue
+            self.present(selectVC, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func closeIssueButtonDidTouch(_ sender: Any) {
+        guard let issue = issue else { return }
+        let isOpen = (issue.isOpen != 0)
+        let object = ["is_open": !isOpen]
+        NetworkManager.shared.patchRequest(
+            url: .issue,
+            updateID: issue.issueId,
+            object: object, type: .isOpen) { _ in
+                NotificationCenter.default.post(name: .issueDidChange, object: nil)
+        }
+        // detail 화면에 바뀐것이 noti되어야함
+        dismiss(animated: true, completion: nil)
     }
 }
 

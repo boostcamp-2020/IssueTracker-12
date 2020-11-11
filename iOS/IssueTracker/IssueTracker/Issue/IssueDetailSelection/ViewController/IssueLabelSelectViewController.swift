@@ -23,7 +23,6 @@ class IssueLabelSelectViewController: UIViewController {
     }
     
     private func initSelection() {
-        print(labels)
         guard let issue = issue else { return }
         for (indexPath, label) in labels.enumerated() {
             if issue.labels.contains(label) {
@@ -66,9 +65,9 @@ class IssueLabelSelectViewController: UIViewController {
     
     @IBAction func doneButtonDidTouch(_ sender: Any) {
         //NetworkManager.shared
+        //TO-DO: 바뀐 내용을 detail화면에 적용해야됨
         dismiss(animated: true, completion: nil)
     }
-    
     
     enum Section: Hashable {
         case main
