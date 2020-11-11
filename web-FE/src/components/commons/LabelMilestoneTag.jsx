@@ -25,14 +25,14 @@ const App = () => {
         className="tag label-button"
         image={labelIcon}
         name="label"
-        number={milestoneState.length}
+        number={labelState.length}
         to="/label"
       />
       <MilestoneButton
         className="tag milestone-button"
         image={milestoneIcon}
         name="milestone"
-        number={labelState.length}
+        number={milestoneState.length}
         to="/milestone"
       />
     </Div>
