@@ -11,7 +11,7 @@ const LabelListBoard = () => {
       <LabelListHeader />
       {labelState.map((label) => {
         const { label_id: labelId } = label;
-        return (<LabelListItem label={label} key={labelId} dispatch={dispatch}/>);
+        return (<LabelListItem label={label} key={labelId} dispatch={dispatch} />);
       })}
     </Board>
   );

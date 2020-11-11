@@ -1,17 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { DisplayProvider } from '@Stores/newLabelContext';
+import { EditDisplayProvider } from '@Stores/EditLabelContext';
 import LabelMenu from './LabelMenu';
 import LabelListBoard from './LabelListBoard';
 import NewLabelForm from './NewLabelForm';
 
 const LabelMain = () => (
   <DisplayProvider>
-    <MainContainer>
-      <LabelMenu />
-      <NewLabelForm />
-      <LabelListBoard />
-    </MainContainer>
+    <EditDisplayProvider>
+      <MainContainer>
+        <LabelMenu />
+        <NewLabelForm />
+        <LabelListBoard />
+      </MainContainer>
+    </EditDisplayProvider>
   </DisplayProvider>
 );
 
