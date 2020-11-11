@@ -37,16 +37,16 @@ class NetworkManager {
         }
     }
     
-    func postRequest<T: Encodable>(url: URLs, object: T, type: T.Type, completion: @escaping (NSDictionary) -> Void) {
+    func postRequest<T: Encodable>(url: URL, object: T, type: T.Type, completion: @escaping (ResponseData?) -> Void) {
         
-        let alamo = AF.request(url.rawValue, method: .post, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).validate(statusCode: 200..<300)
+        let alamo = AF.request(url, method: .post, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).validate(statusCode: 200..<300)
         
         alamo.responseJSON { response in
             switch response.result {
-            case .success(let value) :
-                if let nsDictionary = value as? NSDictionary {
-                    completion(nsDictionary)
-                }
+            case .success :
+                guard let data = response.data else { return }
+                let result = self.decodeJSON(data: data, type: ResponseData.self)
+                completion(result)
             case .failure(let error) :
                 print(error)
             }

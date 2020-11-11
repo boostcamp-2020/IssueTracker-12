@@ -52,6 +52,8 @@
 		A97882C7254FED68001633FF /* GithubConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882C6254FED68001633FF /* GithubConstants.swift */; };
 		A97882CB254FEFA6001633FF /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97882CA254FEFA6001633FF /* LoginManager.swift */; };
 		A98BE921255BDC2A0037A269 /* NewIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98BE920255BDC2A0037A269 /* NewIssue.swift */; };
+		A98BE927255C089D0037A269 /* ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98BE926255C089D0037A269 /* ResponseData.swift */; };
+		A98BE92B255C13A60037A269 /* NewComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98BE92A255C13A60037A269 /* NewComment.swift */; };
 		A9FE8AB42553D46600A8002F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE8AB32553D46600A8002F /* User.swift */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +117,8 @@
 		A97882C6254FED68001633FF /* GithubConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubConstants.swift; sourceTree = "<group>"; };
 		A97882CA254FEFA6001633FF /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		A98BE920255BDC2A0037A269 /* NewIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIssue.swift; sourceTree = "<group>"; };
+		A98BE926255C089D0037A269 /* ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseData.swift; sourceTree = "<group>"; };
+		A98BE92A255C13A60037A269 /* NewComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewComment.swift; sourceTree = "<group>"; };
 		A9FE8AB32553D46600A8002F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DEE8BF2B28874A5779C504EA /* Pods-IssueTrackerNetworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTrackerNetworkTests.debug.xcconfig"; path = "Target Support Files/Pods-IssueTrackerNetworkTests/Pods-IssueTrackerNetworkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E0821587E5F839215D79D4EE /* Pods-IssueTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IssueTracker.release.xcconfig"; path = "Target Support Files/Pods-IssueTracker/Pods-IssueTracker.release.xcconfig"; sourceTree = "<group>"; };
@@ -251,11 +255,13 @@
 			children = (
 				4616CDD22549573200421368 /* Issue.swift */,
 				A98BE920255BDC2A0037A269 /* NewIssue.swift */,
+				A98BE92A255C13A60037A269 /* NewComment.swift */,
 				4616CDD62549583600421368 /* Milestone.swift */,
 				4616CDD9254958B100421368 /* Label.swift */,
 				A9FE8AB32553D46600A8002F /* User.swift */,
 				461603C02557A033006D974E /* FilterCriteria.swift */,
 				461603C42557A83D006D974E /* Filter.swift */,
+				A98BE926255C089D0037A269 /* ResponseData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -570,12 +576,14 @@
 				464075362553BE090017B131 /* IssueFilterViewController.swift in Sources */,
 				466411DE25526F4000BD2904 /* NotificationName.swift in Sources */,
 				46E668D32548557800A41CC0 /* PaddedLabel.swift in Sources */,
+				A98BE92B255C13A60037A269 /* NewComment.swift in Sources */,
 				46ED2B8B25469876004B6D50 /* SceneDelegate.swift in Sources */,
 				4616CDEB2549977D00421368 /* MilestoneCollectionViewCell.swift in Sources */,
 				A927391525490BBD00F22997 /* IssueDetailViewController.swift in Sources */,
 				461603C52557A83D006D974E /* Filter.swift in Sources */,
 				A97882C0254FE19F001633FF /* LoginViewController.swift in Sources */,
 				A9FE8AB42553D46600A8002F /* User.swift in Sources */,
+				A98BE927255C089D0037A269 /* ResponseData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

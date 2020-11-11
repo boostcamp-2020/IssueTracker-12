@@ -81,7 +81,13 @@ class NewIssueViewController: UIViewController {
               let contents = issueContentTextView.text else { return }
         
         if isNew {
-            newIssueSave(issue: NewIssue(title: title, writer: "githubtest"))
+            let date = Date()
+            // TO-DO
+            // - 토큰을 통해 저장된 user 정보를 가져와서 사용해야 함
+            // - 현재는 임의 값을 넣어둠
+            let issue = NewIssue(title: title, writer: "githubtest", date: date)
+            let comment = NewComment(writerID: 1, contents: contents, isIssueContent: true, date: date)
+            newIssueSave(issue: issue, comment: comment)
         } else {
             editIssueSave(title: title, contents: contents)
         }
@@ -89,11 +95,18 @@ class NewIssueViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func newIssueSave(issue: NewIssue) {
+    private func newIssueSave(issue: NewIssue, comment: NewComment) {
         
-        NetworkManager.shared.postRequest(url: .issue, object: issue, type: NewIssue.self) { _ in
+        guard let issueURL = URL(string: URLs.issue.rawValue) else { return }
+        NetworkManager.shared.postRequest(url: issueURL, object: issue, type: NewIssue.self) { result in
+            guard let response = result else { return }
+            let issueId = response.insertId
             
-            NotificationCenter.default.post(name: .issueDidChange, object: nil)
+            guard let commentURL = URL(string: "\(URLs.issue.rawValue)/\(issueId)/comment") else { return }
+            NetworkManager.shared.postRequest(url: commentURL, object: comment, type: NewComment.self) { _ in
+                
+                NotificationCenter.default.post(name: .issueDidChange, object: nil)
+            }
         }
     }
     

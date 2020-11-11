@@ -114,9 +114,10 @@ class LabelEditViewController: UIViewController {
     }
     
     private func newLabelSave(label: Label) {
-        //post
-        NetworkManager.shared.postRequest(url: .label, object: label, type: Label.self) { nsDictionary in
-            print(nsDictionary)
+        
+        guard let labelURL = URL(string: URLs.label.rawValue) else { return }
+        NetworkManager.shared.postRequest(url: labelURL, object: label, type: Label.self) { _ in
+
             NotificationCenter.default.post(name: .labelDidChange, object: nil)
         }
     }

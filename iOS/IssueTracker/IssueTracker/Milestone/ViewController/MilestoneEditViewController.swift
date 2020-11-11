@@ -105,8 +105,10 @@ class MilestoneEditViewController: UIViewController {
     }
     
     private func newMilestoneSave(milestone: Milestone) {
-        NetworkManager.shared.postRequest(url: .milestone, object: milestone, type: Milestone.self) { nsDictionary in
-            print(nsDictionary)
+        
+        guard let milestoneURL = URL(string: URLs.milestone.rawValue) else { return }
+        NetworkManager.shared.postRequest(url: milestoneURL, object: milestone, type: Milestone.self) { _ in
+
             NotificationCenter.default.post(name: .milestoneDidChange, object: nil)
         }
     }
