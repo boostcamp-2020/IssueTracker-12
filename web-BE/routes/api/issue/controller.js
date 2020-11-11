@@ -7,9 +7,9 @@ const issueController = {
     const {
       writer,
       title,
-      milestone,
+      milestone_id: milestone,
       write_time: writeTime,
-      label: labelArr,
+      labels: labelArr,
     } = req.body;
     try {
       const insertId = await issueModel.insert({
