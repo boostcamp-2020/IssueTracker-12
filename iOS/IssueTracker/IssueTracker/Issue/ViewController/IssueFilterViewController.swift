@@ -102,7 +102,7 @@ class IssueFilterViewController: UIViewController {
             NetworkManager.shared.getRequest(url: .user, type: UserArray.self) { result in
                 guard let userArray = result else { return }
                 self.assigneeFilters = userArray.userArray.map {
-                    Filter(criteria: AssignedCriteria(assignee: $0), description: $0.userName, isChild: true)
+                    Filter(criteria: AssigneeCriteria(assignee: $0), description: $0.userName, isChild: true)
                 }
             }
         }
@@ -116,19 +116,24 @@ class IssueFilterViewController: UIViewController {
         var mainFilters = [Filterable]()
         var detailFilters = [Filterable]()
         
-        guard let indexPaths = filterTableView.indexPathsForSelectedRows else {
-            NotificationCenter.default.post(name: .issueFilterDidChange, object: nil, userInfo: ["filters": []])
-            dismiss(animated: true, completion: nil)
-            return
-        }
-        indexPaths.forEach { indexPath in
-            guard let filter = dataSource.itemIdentifier(for: indexPath)?.criteria else { return }
-            if indexPath.section == 0 {
-                mainFilters.append(filter)
-            } else {
-                detailFilters.append(filter)
+        if let indexPaths = filterTableView.indexPathsForSelectedRows {
+            indexPaths.forEach { indexPath in
+                guard let filter = dataSource.itemIdentifier(for: indexPath)?.criteria else { return }
+                if indexPath.section == 0 {
+                    mainFilters.append(filter)
+                } else {
+                    detailFilters.append(filter)
+                }
             }
         }
+        
+        if mainFilters.isEmpty {
+            mainFilters.append(EmptyCriteria())
+        }
+        if detailFilters.isEmpty {
+            detailFilters.append(EmptyCriteria())
+        }
+        
         NotificationCenter.default.post(name: .issueFilterDidChange, object: nil, userInfo: ["mainFilters": mainFilters, "detailFilters": detailFilters])
         dismiss(animated: true, completion: nil)
     }
@@ -161,22 +166,22 @@ extension IssueFilterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectedItem = dataSource.itemIdentifier(for: indexPath),
               let cell = tableView.cellForRow(at: indexPath) as? FilterTableViewCell else { return }
-        if !selectedItem.isChild && indexPath.section == 1 {
-            switch selectedItem.criteria {
-            case is WriterCriteria:
+        
+        if selectedItem.criteria is NoneCriteria {
+            let criteria = selectedItem.criteria as! NoneCriteria
+            switch criteria.type {
+            case .writer:
                 reloadWriterFilters()
                 selectedItem.setChildren(childItems: writerFilters)
-            case is LabelCriteria:
+            case .label:
                 reloadLabelFilters()
                 selectedItem.setChildren(childItems: labelFilters)
-            case is MilestoneCriteria:
+            case .milestone:
                 reloadMilestoneFilters()
                 selectedItem.setChildren(childItems: milestonFilters)
-            case is AssignedCriteria:
+            case .assignee:
                 reloadAssigneeFilters()
                 selectedItem.setChildren(childItems: assigneeFilters)
-            default:
-                break
             }
         }
         
