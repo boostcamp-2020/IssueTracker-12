@@ -3,13 +3,19 @@ import styled from 'styled-components';
 import { IssueContext } from '@Stores/IssueStore';
 import IssueListHeader from './IssueListHeader';
 import IssueListItem from './IssueListItem';
+import { IssueContext } from '@Stores/IssueStore';
+import { IssueFilterContext } from '@Stores/IssueFilterStore';
+import filter from '@Service/issue/filter';
 
 const IssueListBoard = () => {
-  const { issueState } = useContext(IssueContext);
+  const {issueState} = useContext(IssueContext);
+  const {filterState} = useContext(IssueFilterContext);
+  const filteredIssues = filter(issueState, filterState);
+  console.log(filteredIssues);
   return (
     <Board>
       <IssueListHeader />
-      {issueState.map((issue) => {
+      {filteredIssues.map((issue) => {
         const { issue_id: issueId } = issue;
         return (<IssueListItem issue={issue} key={issueId} />);
       })}
