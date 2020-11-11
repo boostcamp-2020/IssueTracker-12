@@ -1,11 +1,9 @@
-import jwt from 'jsonwebtoken';
-
-const jwtSecret = process.env.JWT_SECRET;
+import jwt_decode from 'jwt-decode';
 
 export const getLoginUserInfo = () => {
   const token = localStorage.getItem('token');
 
-  const user = jwt.verify(token, jwtSecret);
+  const user = jwt_decode(token);
   console.log(user);
   return user;
 };
