@@ -11,6 +11,7 @@ class IssueAttributeFloatingViewController: UIViewController {
 
     @IBOutlet weak var labelScrollView: UIScrollView!
     @IBOutlet weak var assigneeCollectionView: UICollectionView!
+    @IBOutlet weak var milestionTitleLabel: PaddedLabel!
     private var issue: Issue?
     
     override func viewDidLoad() {
@@ -23,25 +24,13 @@ class IssueAttributeFloatingViewController: UIViewController {
         self.issue = issue
         DispatchQueue.main.async { [weak self] in
             guard let issue = issue else { return }
-            //self?.assigneeConfigure(assignees: issue.assignee)
+            
+            if let milestoneTitle = issue.milestoneTitle {
+                self?.milestionTitleLabel.text = milestoneTitle
+            }
             self?.labelsConfigure(labels: issue.labels)
         }
     }
-    
-//    private func assigneeConfigure(assignees: [User]) {
-//        var xPosition: CGFloat = 0
-//        assignees.forEach { assignee in
-//            let newAssignee = AssigneeView()
-//            newAssignee.nameLabel.text = assignee.userName
-//            newAssignee.profileImageView.image = UIImage(named: "cat")
-//
-//            let assigneeWidth = newAssignee.intrinsicContentSize.width
-//            newAssignee.frame = CGRect(x: xPosition, y: 0, width: assigneeWidth, height: 75)
-//            xPosition += (assigneeWidth + 5)
-//            assigneeScrollView.addSubview(newAssignee)
-//            assigneeScrollView.contentSize.width = xPosition
-//        }
-//    }
     
     private func labelsConfigure(labels: [Label]) {
         var xPosition: CGFloat = 0
@@ -88,7 +77,6 @@ extension IssueAttributeFloatingViewController: UICollectionViewDelegateFlowLayo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 75, height: 75)

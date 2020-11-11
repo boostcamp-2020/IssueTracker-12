@@ -53,16 +53,16 @@ class IssueFilterViewController: UIViewController {
             cell.initCell(filter: filterContent, section: indexPath.section)
             return cell
         }
-        let dataSource = UITableViewDiffableDataSource<Section, Filter>(tableView: filterTableView, cellProvider: cellProvider)
+        let dataSource = FilterDataSource(tableView: filterTableView, cellProvider: cellProvider)
         return dataSource
     }
     
-    func applySnapshot() {
+    private func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Filter>()
         snapshot.appendSections([.main, .detail])
         snapshot.appendItems(mainFilterContents, toSection: .main)
         snapshot.appendItems(detailFilterContents, toSection: .detail)
-        self.dataSource.apply(snapshot)
+        dataSource.apply(snapshot)
     }
     
     func reloadWriterFilters() {
