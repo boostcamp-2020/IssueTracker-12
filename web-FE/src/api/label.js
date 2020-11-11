@@ -10,3 +10,13 @@ export const getAllLabels = async () => {
     console.error(error);
   }
 };
+
+export const createLabel = async (name, description, color) => {
+  const url = '/api/label';
+  const body = { name, description, color };
+  try {
+    await instance.post(url, body);
+  } catch (error) {
+    console.error(error);
+  }
+};
