@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import labelIcon from '@Images/label.svg';
 import milestoneIcon from '@Images/milestone.svg';
 import ButtonWithIcon from './ButtonWithIcon';
+import {MilestoneContext} from '@Stores/MilestoneStore';
+import {LabelContext} from '@Stores/LabelStore';
 
 const goTo = (e) => {
   const targetButton = e.target.closest('.tag');
@@ -14,39 +16,44 @@ const goTo = (e) => {
   location.href = '/';
 };
 
-const App = () => (
-  <Div onClick={goTo}>
-    <LabelButton
-      className="tag label-button"
-      image={labelIcon}
-      name="label"
-      number="3"
-    />
-    <MilestoneButton
-      className="tag milestone-button"
-      image={milestoneIcon}
-      name="milestone"
-      number="3"
-    />
-  </Div>
-);
+const App = () => {
+  const {milestoneState} = useContext(MilestoneContext);
+  const {labelState} = useContext(LabelContext);
+  return (
+    <Div onClick={goTo}>
+      <LabelButton
+        className="tag label-button"
+        image={labelIcon}
+        name="label"
+        number={milestoneState.length}
+        to="/label"
+      />
+      <MilestoneButton
+        className="tag milestone-button"
+        image={milestoneIcon}
+        name="milestone"
+        number={labelState.length}
+        to="/milestone"
+      />
+    </Div>
+  );
+}
 
 const common = `
   height: 35px;
   box-sizing: border-box;
   border: 1px solid lightgrey;
+  padding: 0 10px;
 `;
 
 const LabelButton = styled(ButtonWithIcon)`
   ${common}
   border-radius: 5px 0 0 5px;
-  padding-left: 3px;
 `;
 
 const MilestoneButton = styled(ButtonWithIcon)`
   ${common}
   border-radius: 0 5px 5px 0;
-  padding-right: 3px;
 `;
 
 const Div = styled.div`
