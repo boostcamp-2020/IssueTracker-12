@@ -51,8 +51,8 @@ class MilestoneViewController: UIViewController {
             let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {(_, _, completion) in
                 NetworkManager.shared.deleteRequest(
                     url: .milestone,
-                    deleteID: self.milestones[indexPath.row].milestoneId) { (nsDictionary) in
-                    print(nsDictionary)
+                    deleteID: self.milestones[indexPath.row].milestoneId) { _ in
+                    
                     NotificationCenter.default.post(name: .milestoneDidChange, object: nil)
                 }
                 completion(true)
@@ -77,7 +77,8 @@ class MilestoneViewController: UIViewController {
         }
     }
     
-    @IBAction func addButtonDidTouch(_ sender: Any) {
+    @IBAction func addButtonDidTouch(_ sender: UIButton) {
+        
         if let editVC = self.storyboard?.instantiateViewController(identifier: MilestoneEditViewController.reuseIdentifier)
             as? MilestoneEditViewController {
             editVC.modalPresentationStyle = .overFullScreen
@@ -92,6 +93,7 @@ class MilestoneViewController: UIViewController {
 }
 
 extension MilestoneViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let editVC = self.storyboard?.instantiateViewController(identifier: MilestoneEditViewController.reuseIdentifier)
             as? MilestoneEditViewController {

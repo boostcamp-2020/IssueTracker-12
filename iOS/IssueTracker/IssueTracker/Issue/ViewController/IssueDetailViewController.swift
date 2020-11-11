@@ -48,10 +48,6 @@ class IssueDetailViewController: UIViewController, FloatingPanelControllerDelega
         
     }
     
-//    func updateIssueData(title: String, contents: String) {
-//        titleLabel.text = title
-//    }
-    
     private func setIssueData() {
         
         if let issue = issue {
