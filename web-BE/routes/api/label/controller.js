@@ -1,4 +1,4 @@
-const labelModel = require('../../../models/label');
+const labelModel = require("../../../models/label");
 
 const labelController = {
   create: async (req, res) => {
@@ -11,13 +11,13 @@ const labelController = {
     res.status(200).json({ labelArray: labelArr });
   },
   update: (req, res) => {
-    const { label_name : name, description, color } = req.body;
+    const { label_name: name, description, color } = req.body;
     labelModel.update([name, description, color, +req.params.labelid]);
-    res.status(200).json({ message: 'update the label successfully' });
+    res.status(200).json({ message: "update the label successfully" });
   },
   delete: (req, res) => {
     labelModel.delete(req.params.labelid);
-    res.status(200).json({ message: 'delete the label successfully' });
+    res.status(200).json({ message: "delete the label successfully" });
   },
 };
 
