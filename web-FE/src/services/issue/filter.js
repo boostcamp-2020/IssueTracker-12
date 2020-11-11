@@ -1,4 +1,4 @@
-import { getLoginUserInfo } from '@Service/auth';
+import { getLoginUserInfo } from '@Services/auth';
 
 const filterByMenu = (issueList, selection) => {
   if (selection === 1) {
