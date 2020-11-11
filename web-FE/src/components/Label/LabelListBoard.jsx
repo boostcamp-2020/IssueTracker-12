@@ -5,13 +5,13 @@ import LabelListHeader from './LabelListHeader';
 import LabelListItem from './LabelListItem';
 
 const LabelListBoard = () => {
-  const { labelState } = useContext(LabelContext);
+  const { labelState, dispatch } = useContext(LabelContext);
   return (
     <Board>
       <LabelListHeader />
       {labelState.map((label) => {
         const { label_id: labelId } = label;
-        return (<LabelListItem label={label} key={labelId} />);
+        return (<LabelListItem label={label} key={labelId} dispatch={dispatch} />);
       })}
     </Board>
   );

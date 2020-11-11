@@ -1,39 +1,53 @@
 import React from 'react';
 import styled from 'styled-components';
 import LabelBadge from '@Common/LabelBadge';
+import { EditDisplayConsumer, EditDisplayProvider } from '@Stores/EditLabelContext';
+import EditLabelForm from './EditLabelForm';
 
 const LabelListItem = (props) => {
-  const { label } = props;
-
+  const { label, dispatch } = props;
   const {
-    // label_id: labelId,
+    label_id: labelId,
     label_name: labelName,
     description,
     color,
   } = label;
+
+  const onClickDelHandler = () => {
+    dispatch({ type: 'DELETE', data: label });
+  };
+
   return (
-    <FlexRowDiv>
-      <LabelContent>
-        <LeftDiv>
-          <LabelBadge name={labelName} color={color} />
-          <Description>
-            {description}
-          </Description>
-        </LeftDiv>
-        <RightDiv>
-          <P>Edit</P>
-          <P>Delete</P>
-        </RightDiv>
-      </LabelContent>
-    </FlexRowDiv>
+    <EditDisplayProvider>
+      <FlexRowDiv className="label-div" id={labelId}>
+        <LabelContent>
+          <LeftDiv>
+            <LabelBadge name={labelName} color={color} />
+            <Description>
+              {description}
+            </Description>
+          </LeftDiv>
+          <EditDisplayConsumer>
+            {({ actions }) => (
+              <RightDiv>
+                <P onClick={() => { actions.setDisplay('flex'); }}>Edit</P>
+                <P onClick={onClickDelHandler}>Delete</P>
+              </RightDiv>
+            )}
+          </EditDisplayConsumer>
+        </LabelContent>
+        <EditLabelForm />
+      </FlexRowDiv>
+    </EditDisplayProvider>
   );
 };
 
 const FlexRowDiv = styled.div`
-  display:flex;
+  display: ${(props) => props.display};
   flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  height: 50px;
+  height: fit-content;
   border-right: 1px solid #e1e4e8;
   border-left: 1px solid #e1e4e8;
   border-bottom: 1px solid #e1e4e8;
@@ -42,6 +56,7 @@ const FlexRowDiv = styled.div`
 
 const LabelContent = styled.div`
   display: flex;
+  width: 95%;
   justify-content: space-between;
   padding: 8px 15px;
   flex: 1;
@@ -65,6 +80,7 @@ const P = styled.p`
   width: 70%;
   color: #181818;
   font-size:13px;
+  cursor: pointer;
 `;
 
 const RightDiv = styled.div`
