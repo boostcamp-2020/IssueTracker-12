@@ -162,17 +162,18 @@ class IssueListViewController: UIViewController {
     @IBAction func newIssueButtonDidTouch(_ sender: UIButton) {
         if let newVC = self.storyboard?.instantiateViewController(identifier: NewIssueViewController.reuseIdentifier) as? NewIssueViewController {
             self.present(newVC, animated: true, completion: nil)
-            newVC.initNewIssueView(isNew: true, issue: nil)
+            newVC.initNewIssueView(isNew: true, issue: nil, comment: nil)
         }
     }
     
     private func closeIssue(isOpen: IssueOpen, indexPath: IndexPath) {
         guard let issue = dataSource.itemIdentifier(for: indexPath) else { return }
         let object = ["is_open": isOpen.param]
+        guard let isOpenURL = URL(string: "\(URLs.issue.rawValue)/\(issue.issueId)/isopen") else { return }
         NetworkManager.shared.patchRequest(
-            url: .issue,
+            url: isOpenURL,
             updateID: issue.issueId,
-            object: object, type: .isOpen) { _ in
+            object: object) { _ in
                 NotificationCenter.default.post(name: .issueDidChange, object: nil)
         }
     }
