@@ -27,6 +27,7 @@ const authController = {
         params: { client_id, client_secret, code },
       });
 
+      console.log(result.data);
       const token = reg.exec(result.data)[1];
       const { data: userData } = await axios({
         method: "get",
