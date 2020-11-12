@@ -17,8 +17,10 @@ module.exports = {
   selectIssuesFromMilestone: `SELECT is_open FROM Issue LEFT JOIN Milestone ON Issue.milestone_id = Milestone.milestone_id 
     WHERE Issue.milestone_id IN (SELECT Milestone.milestone_id FROM Milestone) and Milestone.milestone_id=?;`,
   // user
+  selectAllUser: "SELECT user_id, username, social FROM User",
+  insertUser: "INSERT INTO User (username,social) VALUES (?,?)",
   selectUser:
-    'SELECT user_id, username, social FROM User WHERE username=? and social=?',
+    "SELECT user_id, username, social FROM User WHERE username=? and social=?",
   // issue
   insertIssue:
     'INSERT INTO Issue '
