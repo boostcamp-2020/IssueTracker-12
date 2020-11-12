@@ -14,13 +14,13 @@ const FlexRowDiv = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  width: 100%;
+  width: 95%;
   margin-top: 30px;
+  margin-left: 30px;
 `;
 
 const NewMilestoneButton = styled(Button)`
   line-height: 25px;
-  margin-left: 20px;
 `;
 
 export default MilestoneMenu;
