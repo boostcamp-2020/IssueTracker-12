@@ -12,10 +12,12 @@ class NetworkManager {
     
     public static let shared = NetworkManager()
     
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdpdGh1YnRlc3QiLCJzb2NpYWwiOiJnaXRodWIiLCJpYXQiOjE2MDQ1NDAwMjN9.6-w6o538wNQ6OLxiB5lqtO-gaSwpQBdgBRdS-YkFgG4"
-    let headers: HTTPHeaders
-    
-    private init() {
+    private var token: String?
+    private var headers: HTTPHeaders?
+       
+    func updateHeader() {
+        
+        guard let token = UserDefaults.standard.object(forKey: "token") as? String else { return }
         headers = [
             "Authorization": "Bearer \(token)"
         ]

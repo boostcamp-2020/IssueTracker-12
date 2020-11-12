@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let didLogin = UserDefaults.standard.object(forKey: "didLogin") as? Bool, didLogin {
+            NetworkManager.shared.updateHeader()
             openMainView()
         }
 
