@@ -50,6 +50,7 @@ const authController = {
 
       const { user_id, login: username, url } = userData;
       const userInfo = { user_id, username, social: "github", url };
+      console.log(userInfo);
       const { isExistUser } = await authController.checkUser(userInfo);
       res.json({ userInfo, isExistUser });
     } catch (error) {
