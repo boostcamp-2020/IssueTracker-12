@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from '@Common/Button';
 
-const InputDiv = ({addNewIssue}) => {
+const InputDiv = ({ addNewIssue, setTitle, setContent }) => {
   const [onWrite, setWrite] = useState('true');
   const [onPreview, setPreview] = useState('false');
 
@@ -17,15 +17,24 @@ const InputDiv = ({addNewIssue}) => {
     setPreview('true');
   };
 
+  const onTitleChange = ({target}) => {
+    const { value } = target;
+    setTitle(value);
+  };
+  const onContentChange = ({target}) => {
+    const { value } = target;
+    setContent(value);
+  }
+
   return (
     <MainContainer>
-      <Title placeholder="Title" />
+      <Title placeholder="Title" onChange={onTitleChange} />
       <Header>
         <P onClick={selectTab} select={onWrite}>Write</P>
         <P onClick={selectTab} select={onPreview}>Preview</P>
       </Header>
       <CommentContainer>
-        <TextArea placeholder="Leave a comment" />
+        <TextArea placeholder="Leave a comment" onChange={onContentChange} />
       </CommentContainer>
       <SubmitButton onClick={ addNewIssue }> Submit new issue </SubmitButton>
     </MainContainer>
