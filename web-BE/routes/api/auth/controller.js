@@ -18,7 +18,7 @@ const authController = {
   },
 
   getUserInfoByUsername: async (req, res, next) => {
-    const { username, social } = req.body;
+    const { username, social } = req.params;
     try {
       const { isExistUser, userId } = await authController.checkUser({
         username,
