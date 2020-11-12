@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import LabelBadge from '@Common/LabelBadge';
 import Button from '@Common/Button';
 import RefreshIcon from '@Images/refresh.svg';
-import { DisplayConsumer } from '@Stores/newLabelContext';
+import { DisplayConsumer } from '@Stores/NewLabelContext';
 import { LabelContext } from '@Stores/LabelStore';
 import { createLabel } from '@Api/label';
 
