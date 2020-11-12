@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import LabelMilestoneTag from '@Common/LabelMilestoneTag';
 import Button from '@Common/Button';
-import { DisplayConsumer } from '@Stores/newLabelContext';
+import { DisplayConsumer } from '@Stores/NewLabelContext';
 
 const LabelMenu = () => (
   <DisplayConsumer>
