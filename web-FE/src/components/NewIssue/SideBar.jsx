@@ -4,12 +4,28 @@ import AddAssigneeSideBar from './AddAssigneeSideBar';
 import AddLabelSideBar from './AddLabelSideBar';
 import AddMilestoneSideBar from './AddMilestoneSideBar';
 
-const SideBar = () => {
+const SideBar = ({
+  selectedAssignees,
+  setSelectedAssignees,
+  selectedLabels,
+  setSelectedLabels,
+  selectedMilestone,
+  setSelectedMilestone,
+}) => {
   return (
     <Div>
-      <AddAssigneeSideBar />
-      <AddLabelSideBar />
-      <AddMilestoneSideBar />
+      <AddAssigneeSideBar
+        selectedAssignees={selectedAssignees}
+        setSelectedAssignees={setSelectedAssignees}
+      />
+      <AddLabelSideBar
+        selectedLabels={selectedLabels}
+        setSelectedLabels={setSelectedLabels}
+      />
+      <AddMilestoneSideBar
+        selectedMilestone={selectedMilestone}
+        setSelectedMilestone={setSelectedMilestone}
+      />
     </Div>
   )
 };
