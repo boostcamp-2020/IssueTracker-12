@@ -45,7 +45,7 @@ const Item = styled.div`
 `;
 
 const Div = styled.div`
-  width: 280px;
+  width: 100%;
   min-height: 60px;
   padding: 20px;
   border-bottom: 1px solid lightgrey;

@@ -39,6 +39,7 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 10px;
   width: 70%;
   height: 400px;
   border-radius: 5px;
@@ -47,8 +48,8 @@ const MainContainer = styled.div`
 
 const Title = styled.input`
   width: 93%;
-  height: 30px;
-  margin: 5px;
+  height: 32px;
+  margin: 10px 5px 0 5px;
   border-radius: 5px;
   ${border}
   background-color: #f6f8fa;
