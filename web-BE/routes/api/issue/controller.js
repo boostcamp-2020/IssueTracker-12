@@ -33,6 +33,17 @@ const issueController = {
       next(error);
     }
   },
+  readById: async (req, res, next) => {
+    const { issueId } = req.params;
+    const { user_id: userId } = req.user;
+    try {
+      const issue = await issueModel.selectById(userId, issueId);
+      console.log("?", issue);
+      res.status(200).json({ issue });
+    } catch (error) {
+      next(error);
+    }
+  },
   updateTitle: async (req, res, next) => {
     const { issueId } = req.params;
     const { title } = req.body;

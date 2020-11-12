@@ -1,13 +1,12 @@
 const router = require("express").Router();
 const commentRouter = require("./comment");
-const aIssueRouter = require("./aIssue");
 const issueController = require("./controller");
 
 router.use("/:issueId/comment", commentRouter);
-router.use("/aIssue", aIssueRouter);
 
 router.post("/", issueController.create);
 router.get("/", issueController.read);
+router.use("/:issueId", issueController.readById);
 router.patch("/:issueId/title", issueController.updateTitle);
 router.post("/:issueId/milestone/:milestoneId", issueController.addMilestone);
 router.delete("/:issueId/milestone/", issueController.deleteMilestone);
