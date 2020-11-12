@@ -65,7 +65,16 @@ class IssueAssigneeSelectViewController: UIViewController {
     }
     
     @IBAction func doneButtonDidTouch(_ sender: Any) {
-    // api 구현 후 구현
+        guard let issue = issue else { return }
+        var selectedAssigneesId = [Int]()
+        if let indexPaths =  issueAssigneeSelectTableView.indexPathsForSelectedRows {
+            selectedAssigneesId = indexPaths.map { self.assignees[$0.row].userId }
+        }
+        let object = ["assigneeArr": selectedAssigneesId]
+        
+        NetworkManager.shared.patchRequest2(url: .issue, updateID: issue.issueId, object: object, type: .assignee) { result in
+            print(result)
+        }
         dismiss(animated: true, completion: nil)
     }
     

@@ -104,8 +104,22 @@ class NetworkManager {
     
         let alamo = AF.request("\(url.rawValue)/\(updateID)/\(type.rawValue)", method: .patch, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).validate(statusCode: 200..<300)
         
-//        print(alamo.response)
-//        print(alamo.response.)
+        alamo.responseJSON { response in
+            switch response.result {
+            case .success(let value) :
+                if let nsDictionary = value as? NSDictionary {
+                    completion(nsDictionary)
+                }
+            case .failure(let error) :
+                print(error)
+            }
+        }
+    }
+    
+    func patchRequest2<T: Encodable>(url: URLs, updateID: Int, object: T, type: PatchType, completion: @escaping (NSDictionary) -> Void) {
+    
+        let alamo = AF.request("\(url.rawValue)/\(updateID)/\(type.rawValue)", method: .put, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).validate(statusCode: 200..<300)
+        
         alamo.responseJSON { response in
             switch response.result {
             case .success(let value) :

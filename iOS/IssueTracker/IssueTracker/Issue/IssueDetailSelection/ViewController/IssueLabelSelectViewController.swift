@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class IssueLabelSelectViewController: UIViewController {
     
@@ -64,7 +65,16 @@ class IssueLabelSelectViewController: UIViewController {
     }
     
     @IBAction func doneButtonDidTouch(_ sender: Any) {
-        //NetworkManager.shared
+        guard let issue = issue else { return }
+        var selectedLabelsId = [Int]()
+        if let indexPaths =  issueLabelSelectTableView.indexPathsForSelectedRows {
+            selectedLabelsId = indexPaths.map { self.labels[$0.row].labelId }
+        }
+        let object = ["labelArr": selectedLabelsId]
+        
+        NetworkManager.shared.patchRequest2(url: .issue, updateID: issue.issueId, object: object, type: .label) { result in
+            print(result)
+        }
         //TO-DO: 바뀐 내용을 detail화면에 적용해야됨
         dismiss(animated: true, completion: nil)
     }

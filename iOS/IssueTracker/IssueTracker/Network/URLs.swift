@@ -20,4 +20,7 @@ enum URLs: String {
 enum PatchType: String {
     case isOpen = "isopen"
     case issueTitle = "title"
+    case label = "label"
+    case assignee = "assignee"
+    case milestone = "milestone"
 }
