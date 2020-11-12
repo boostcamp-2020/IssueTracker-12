@@ -34,6 +34,11 @@ class IssueListViewController: UIViewController {
         reloadIssues()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     func configure() {
         
         tabBarController?.tabBar.isHidden = false

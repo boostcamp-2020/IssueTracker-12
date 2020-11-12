@@ -36,7 +36,10 @@ class IssueAttributeFloatingViewController: UIViewController {
             self?.assigneeCollectionView.reloadData()
             if issue.isOpen == 0 {
                 self?.closeIssueButton.setTitle("Open Issue", for: .normal)
-                self?.closeIssueButton.setTitleColor(UIColor.green, for: .normal)
+                self?.closeIssueButton.setTitleColor(UIColor(named: "openIssueColor"), for: .normal)
+            } else {
+                self?.closeIssueButton.setTitle("Close Issue", for: .normal)
+                self?.closeIssueButton.setTitleColor(UIColor(named: "closeIssueColor"), for: .normal)
             }
         }
     }
@@ -76,7 +79,7 @@ class IssueAttributeFloatingViewController: UIViewController {
         getIssueData(issueId: issueId)
     }
     
-    @IBAction func assigneeSelectButtondidTouch(_ sender: Any) {
+    @IBAction func assigneeSelectButtondidTouch(_ sender: UIButton) {
         if let selectVC = self.storyboard?.instantiateViewController(identifier: IssueAssigneeSelectViewController.reuseIdentifier) as? IssueAssigneeSelectViewController {
             
             selectVC.modalPresentationStyle = .currentContext
@@ -84,7 +87,7 @@ class IssueAttributeFloatingViewController: UIViewController {
             self.present(selectVC, animated: true, completion: nil)
         }
     }
-    @IBAction func labelSelectButtonDidTouch(_ sender: Any) {
+    @IBAction func labelSelectButtonDidTouch(_ sender: UIButton) {
         if let selectVC = self.storyboard?.instantiateViewController(identifier: IssueLabelSelectViewController.reuseIdentifier) as? IssueLabelSelectViewController {
             
             selectVC.modalPresentationStyle = .currentContext
@@ -93,7 +96,7 @@ class IssueAttributeFloatingViewController: UIViewController {
         }
     }
     
-    @IBAction func milestoneSelectButtonDidTouch(_ sender: Any) {
+    @IBAction func milestoneSelectButtonDidTouch(_ sender: UIButton) {
         if let selectVC = self.storyboard?.instantiateViewController(identifier: IssueMilestoneSelectViewController.reuseIdentifier) as? IssueMilestoneSelectViewController {
             
             selectVC.modalPresentationStyle = .currentContext
@@ -102,7 +105,7 @@ class IssueAttributeFloatingViewController: UIViewController {
         }
     }
     
-    @IBAction func closeIssueButtonDidTouch(_ sender: Any) {
+    @IBAction func closeIssueButtonDidTouch(_ sender: UIButton) {
         guard let issue = issue else { return }
         let isOpen = (issue.isOpen != 0)
         let object = ["is_open": !isOpen]
@@ -114,7 +117,7 @@ class IssueAttributeFloatingViewController: UIViewController {
         }
     }
     
-    @IBAction func addCommentButtonDidTouch(_ sender: Any) {
+    @IBAction func addCommentButtonDidTouch(_ sender: UIButton) {
         guard let issueId = issue?.issueId else { return }
         if let selectVC = self.storyboard?.instantiateViewController(identifier: CommentViewController.reuseIdentifier) as? CommentViewController {
             

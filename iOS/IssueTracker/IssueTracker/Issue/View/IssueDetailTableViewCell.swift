@@ -28,6 +28,10 @@ class IssueDetailTableViewCell: UITableViewCell {
     func setupView(comment: Comment) {
         
         commentTextView.attributedText = MarkdownParser().parse(comment.contents)
+        nameLabel.text = comment.userName
+        if let date = comment.writeTime.split(separator: "T").first?.split(separator: "-") {
+            dateLabel.text = "\(date[0])년 \(date[1])월 \(date[2])일"
+        }
         
         let width = commentTextView.frame.width
         let newSize = commentTextView.sizeThatFits(CGSize(width: width, height: .infinity))
@@ -37,5 +41,4 @@ class IssueDetailTableViewCell: UITableViewCell {
             }
         }
     }
-
 }

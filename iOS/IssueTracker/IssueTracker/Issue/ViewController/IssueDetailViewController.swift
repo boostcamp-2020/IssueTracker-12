@@ -30,6 +30,11 @@ class IssueDetailViewController: UIViewController, FloatingPanelControllerDelega
         configure()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
+    
     private func configure() {
         commentTableView.delegate = self
         commentTableView.dataSource = self
@@ -40,12 +45,25 @@ class IssueDetailViewController: UIViewController, FloatingPanelControllerDelega
     private func initFloatingPanel(issueId: Int) {
         let attributeFloatingPanel = FloatingPanelController()
         attributeFloatingPanel.delegate = self
+        attributeFloatingPanel.layout = MyFloatingPanelLayout()
         
         guard let attributeVC = storyboard?.instantiateViewController(identifier: IssueAttributeFloatingViewController.reuseIdentifier) as? IssueAttributeFloatingViewController
         else { return }
         attributeVC.getIssueData(issueId: issueId)
         attributeFloatingPanel.set(contentViewController: attributeVC)
         attributeFloatingPanel.addPanel(toParent: self)
+    }
+    
+    class MyFloatingPanelLayout: FloatingPanelLayout {
+        let position: FloatingPanelPosition = .bottom
+        let initialState: FloatingPanelState = .tip
+        var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
+            return [
+                .full: FloatingPanelLayoutAnchor(absoluteInset: 16.0, edge: .top, referenceGuide: .safeArea),
+                .half: FloatingPanelLayoutAnchor(fractionalInset: 0.5, edge: .bottom, referenceGuide: .safeArea),
+                .tip: FloatingPanelLayoutAnchor(absoluteInset: 90.0, edge: .bottom, referenceGuide: .safeArea)
+            ]
+        }
     }
     
     private func initCommentTableView(issueId: Int) {
@@ -59,12 +77,38 @@ class IssueDetailViewController: UIViewController, FloatingPanelControllerDelega
         }
     }
     
-    private func setIssueData() {
-        if let issue = issue {
+    private func setIssueData(issue: Issue) {
+//        if let issue = issue {
             writerLabel.text = issue.writer
             titleLabel.text = issue.title
             issueIDLabel.text = "#\(issue.issueId)"
+            openLabelConfigure(isOpen: issue.isOpen)
+//        }
+    }
+    
+    private func openLabelConfigure(isOpen: Int) {
+        
+        // * TO-DO :
+        // - label 크기 따로 변수 선언
+        // - 다른 화면에서도 사용할 수 있도록 Extension 빼기
+        var openFlag = IssueOpen.open
+        if isOpen == IssueOpen.closed.rawValue {
+            openFlag = IssueOpen.closed
         }
+        
+        guard let iconImage = UIImage(named: openFlag.icon) else { return }
+        guard let issueFont = openLabel.font else { return }
+        
+        let attributedString = NSMutableAttributedString(string: "")
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = iconImage
+        
+        imageAttachment.bounds = CGRect(x: 0, y: issueFont.descender, width: 15, height: 15)
+        attributedString.append(NSAttributedString(attachment: imageAttachment))
+        attributedString.append(NSAttributedString(string: " \(openFlag.labelText)"))
+        openLabel.attributedText = attributedString
+        openLabel.textColor = UIColor(named: openFlag.color)
+        openLabel.backgroundColor = UIColor(named: openFlag.backgroundColor)
     }
     
     @objc func reloadIssueData() {
@@ -78,7 +122,7 @@ class IssueDetailViewController: UIViewController, FloatingPanelControllerDelega
             NetworkManager.shared.getRequest(url: .issue, urlAdd: "/\(issueId)", type: OneIssue.self) { result in
                 guard let issue = result?.issue else { return }
                 self.issue = issue
-                self.setIssueData()
+                self.setIssueData(issue: issue)
                 
             }
         }
