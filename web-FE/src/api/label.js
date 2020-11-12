@@ -15,7 +15,9 @@ export const createLabel = async (name, description, color) => {
   const url = '/api/label';
   const body = { name, description, color };
   try {
-    await instance.post(url, body);
+    const response = await instance.post(url, body);
+    const insertedLabelId = response.data;
+    return insertedLabelId;
   } catch (error) {
     console.error(error);
   }
@@ -26,6 +28,15 @@ export const updateLabel = async (id, name, description, color) => {
   const body = { label_name: name, description, color };
   try {
     await instance.put(url, body);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteLabel = async (labelId) => {
+  const url = `/api/label/${labelId}`;
+  try {
+    await instance.delete(url);
   } catch (error) {
     console.error(error);
   }

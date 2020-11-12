@@ -3,7 +3,6 @@ const sql = require("../config/query");
 
 const labelModel = {
   insert: async (name, description, color) => {
-    console.log("why????", name, description, color);
     try {
       const res = await connection.query(sql.insertLabel, [
         name,
