@@ -6,8 +6,8 @@ const baseURL = 'http://101.101.217.148:8080';
 
 export const saveUser = async (username, social) => {
   const apiurl = `${baseURL}/api/auth`;
-  const { insertUserId } = await axios.post(apiurl, { username, social });
-  return insertUserId;
+  const { insertId } = await axios.post(apiurl, { username, social });
+  return insertId;
 };
 
 export const getUserInfo = async (code) => {

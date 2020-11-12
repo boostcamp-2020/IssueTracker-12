@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import LabelBadge from '@Common/LabelBadge';
 import { EditDisplayConsumer, EditDisplayProvider } from '@Stores/EditLabelContext';
+import { deleteLabel } from '@Api/label';
 import EditLabelForm from './EditLabelForm';
 
 const LabelListItem = (props) => {
@@ -15,6 +16,7 @@ const LabelListItem = (props) => {
 
   const onClickDelHandler = () => {
     dispatch({ type: 'DELETE', data: label });
+    deleteLabel(labelId);
   };
 
   return (

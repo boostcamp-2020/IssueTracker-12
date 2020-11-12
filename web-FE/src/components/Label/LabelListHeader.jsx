@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { LabelContext } from '@Stores/LabelStore';
 
-const LabelListHeader = () => (
-  <FlexRowDiv>
-    <P>8 Labels</P>
-  </FlexRowDiv>
-);
+const LabelListHeader = () => {
+  const { labelState } = useContext(LabelContext);
+  return (
+    <FlexRowDiv>
+      <P>
+        {labelState.length}
+        Labels
+      </P>
+    </FlexRowDiv>
+  );
+};
 
 const FlexRowDiv = styled.div`
   display:flex;
