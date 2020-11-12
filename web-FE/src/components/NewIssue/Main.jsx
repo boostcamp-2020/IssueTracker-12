@@ -32,9 +32,7 @@ const NewIssueMain = () => {
 
   return (
     <MainContainer>
-      <ImgDiv>
-        <Img />
-      </ImgDiv>
+      <Img src='https://i.imgur.com/oPR4BiX.jpeg'/>
       <InputDiv addNewIssue={addNewIssue} />
       <Info>
         <SideBar 
@@ -53,26 +51,21 @@ const NewIssueMain = () => {
 
 const MainContainer = styled.div`
   display: flex;
-  /* flex-direction: column; */
   margin-top: 20px;
   align-items: flex-start;
   padding: 0 30px;
 `;
 
-const ImgDiv = styled.div`
-  width: 10%;
-  border: 1px solid #181818;
-`;
-
 const Img = styled.img`
+  align-self: flex-start;
   width: 45px;
   height: 45px;
-  border: 1px solid #181818;
+  border-radius: 50%;
 `;
 
 const Info = styled.div`
   width: 30%;
-  
+  height: 400px;
 `;
 
 export default NewIssueMain;
