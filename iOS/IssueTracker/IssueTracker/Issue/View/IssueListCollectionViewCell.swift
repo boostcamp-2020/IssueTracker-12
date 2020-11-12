@@ -70,6 +70,10 @@ class IssueListCollectionViewCell: UICollectionViewListCell {
     
     private func labelsConfigure(labels: [Label]) {
         
+        labelScrollView.subviews.forEach {
+            $0.removeFromSuperview()
+        }
+        
         var xPosition: CGFloat = 0
         labels.forEach { label in
             let newLabel = PaddedLabel()
