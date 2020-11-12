@@ -20,4 +20,4 @@ export const updateIsOpen = (issueIdList, isOpen) => {
   } catch (error) {
     console.error(error);
   }
-}
+};
