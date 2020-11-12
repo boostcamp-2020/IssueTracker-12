@@ -82,11 +82,11 @@ class NewIssueViewController: UIViewController {
         
         if isNew {
             let date = Date()
-            // TO-DO
-            // - 토큰을 통해 저장된 user 정보를 가져와서 사용해야 함
-            // - 현재는 임의 값을 넣어둠
-            let issue = NewIssue(title: title, writer: "githubtest", date: date)
-            let comment = NewComment(writerID: 1, contents: contents, isIssueContent: true, date: date)
+            
+            guard let writer = UserDefaults.standard.object(forKey: "userName") as? String,
+                  let writerId = UserDefaults.standard.object(forKey: "userID") as? Int else { return }
+            let issue = NewIssue(title: title, writer: writer, date: date)
+            let comment = NewComment(writerID: writerId, contents: contents, isIssueContent: true, date: date)
             newIssueSave(issue: issue, comment: comment)
         } else {
             editIssueSave(title: title, contents: contents)
