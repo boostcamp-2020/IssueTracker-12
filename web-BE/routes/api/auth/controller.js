@@ -39,6 +39,7 @@ const authController = {
       const isExistUser = await authController.checkUser(userInfo);
       res.json({ userInfo, isExistUser });
     } catch (error) {
+      console.error(error);
       next(error);
     }
   },
