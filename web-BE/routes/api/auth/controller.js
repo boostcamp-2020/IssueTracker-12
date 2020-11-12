@@ -11,6 +11,8 @@ const authController = {
   },
 
   checkUser: async ({ username, social }) => {
+    console.log(username, social);
+
     const user = await authModel.select(username, social);
     return { isExistUser: user.length == 0 ? false : true, userId: user };
   },
