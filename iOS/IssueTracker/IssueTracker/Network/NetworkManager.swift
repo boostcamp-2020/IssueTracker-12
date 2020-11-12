@@ -9,15 +9,38 @@ import Foundation
 import Alamofire
 
 class NetworkManager {
+    
     public static let shared = NetworkManager()
-    func getRequest<T: Decodable>(url: URLs, type: T.Type, completion: @escaping (T?) -> Void) {
+    
+    private var token: String?
+    private var headers: HTTPHeaders?
+       
+    func updateHeader() {
         
-        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdpdGh1YnRlc3QiLCJzb2NpYWwiOiJnaXRodWIiLCJpYXQiOjE2MDQ1NDAwMjN9.6-w6o538wNQ6OLxiB5lqtO-gaSwpQBdgBRdS-YkFgG4"
-        let headers: HTTPHeaders = [
+        guard let token = UserDefaults.standard.object(forKey: "token") as? String else { return }
+        headers = [
             "Authorization": "Bearer \(token)"
         ]
+    }
+    
+    func loginRequest<T: Encodable>(url: URLs, type: T.Type, object: T, completion: @escaping (LoginResponse?) -> Void) {
         
-        let alamo = AF.request(url.rawValue, method: .get, parameters: nil, headers: headers).validate(statusCode: 200..<300)
+        let alamo = AF.request(url.rawValue, method: .get, parameters: object).validate(statusCode: 200..<300)
+
+        alamo.responseJSON { response in
+            switch response.result {
+            case .success :
+                guard let data = response.data else { return }
+                let result = self.decodeJSON(data: data, type: LoginResponse.self)
+                completion(result)
+            case .failure(let error) :
+                print(error)
+            }
+        }
+    }
+    
+    func getRequest<T: Decodable>(url: URLs, urlAdd: String = "", type: T.Type, completion: @escaping (T?) -> Void) {
+        let alamo = AF.request("\(url.rawValue)\(urlAdd)", method: .get, parameters: nil, headers: headers).validate(statusCode: 200..<300)
         
         alamo.responseJSON { response in
             switch response.result {
@@ -31,16 +54,16 @@ class NetworkManager {
         }
     }
     
-    func postRequest<T: Encodable>(url: URLs, object: T, type: T.Type, completion: @escaping (NSDictionary) -> Void) {
+    func postRequest<T: Encodable>(url: URL, object: T, type: T.Type, completion: @escaping (ResponseData?) -> Void) {
         
-        let alamo = AF.request(url.rawValue, method: .post, parameters: object, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300)
+        let alamo = AF.request(url, method: .post, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).validate(statusCode: 200..<300)
         
         alamo.responseJSON { response in
             switch response.result {
-            case .success(let value) :
-                if let nsDictionary = value as? NSDictionary {
-                    completion(nsDictionary)
-                }
+            case .success :
+                guard let data = response.data else { return }
+                let result = self.decodeJSON(data: data, type: ResponseData.self)
+                completion(result)
             case .failure(let error) :
                 print(error)
             }
@@ -48,7 +71,7 @@ class NetworkManager {
     }
     
     func deleteRequest(url: URLs, deleteID: Int, completion: @escaping (NSDictionary) -> Void) {
-        let alamo = AF.request("\(url.rawValue)/\(deleteID)", method: .delete, parameters: nil).validate(statusCode: 200..<300)
+        let alamo = AF.request("\(url.rawValue)/\(deleteID)", method: .delete, parameters: nil, headers: headers).validate(statusCode: 200..<300)
         
         alamo.responseJSON { response in
             switch response.result {
@@ -63,7 +86,7 @@ class NetworkManager {
     }
     
     func putRequest<T: Encodable>(url: URLs, updateID: Int, object: T, type: T.Type, completion: @escaping (NSDictionary) -> Void) {
-        let alamo = AF.request("\(url.rawValue)/\(updateID)", method: .put, parameters: object, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300)
+        let alamo = AF.request("\(url.rawValue)/\(updateID)", method: .put, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).validate(statusCode: 200..<300)
         
         alamo.responseJSON { response in
             switch response.result {
@@ -75,6 +98,38 @@ class NetworkManager {
                 print(error)
             }
             
+        }
+    }
+    
+    func patchRequest<T: Encodable>(url: URLs, updateID: Int, object: T, type: PatchType, completion: @escaping (NSDictionary) -> Void) {
+    
+        let alamo = AF.request("\(url.rawValue)/\(updateID)/\(type.rawValue)", method: .patch, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).validate(statusCode: 200..<300)
+        
+        alamo.responseJSON { response in
+            switch response.result {
+            case .success(let value) :
+                if let nsDictionary = value as? NSDictionary {
+                    completion(nsDictionary)
+                }
+            case .failure(let error) :
+                print(error)
+            }
+        }
+    }
+    
+    func patchRequest2<T: Encodable>(url: URLs, updateID: Int, object: T, type: PatchType, completion: @escaping (NSDictionary) -> Void) {
+    
+        let alamo = AF.request("\(url.rawValue)/\(updateID)/\(type.rawValue)", method: .put, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).validate(statusCode: 200..<300)
+        
+        alamo.responseJSON { response in
+            switch response.result {
+            case .success(let value) :
+                if let nsDictionary = value as? NSDictionary {
+                    completion(nsDictionary)
+                }
+            case .failure(let error) :
+                print(error)
+            }
         }
     }
     

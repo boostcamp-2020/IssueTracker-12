@@ -15,8 +15,9 @@ class NewIssueViewController: UIViewController {
     @IBOutlet weak var issueContentTextView: UITextView!
     @IBOutlet weak var markdownSegmentedControl: UISegmentedControl!
     
-    private var tempString: String = ""
+    private var issue: Issue?
     private var isNew: Bool = true
+    private var tempString: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class NewIssueViewController: UIViewController {
     }
     
     @objc func markdownSegmentedControlValueChanged(segment: UISegmentedControl) {
-        let parser = MarkdownParser(font: UIFont.systemFont(ofSize: 18))
+        let parser = MarkdownParser(font: UIFont.systemFont(ofSize: 17))
         
         switch segment.selectedSegmentIndex {
         case 0:
@@ -41,12 +42,16 @@ class NewIssueViewController: UIViewController {
     }
     
     // issue 내용으로 초기화
-    func initNewIssueView(isNew: Bool, issue: String?) {
+    func initNewIssueView(isNew: Bool, issue: Issue?) {
         self.isNew = isNew
         if isNew {
             issueNumberLabel.text = "새 이슈"
         } else {
-            // 이슈 내용으로 초기화
+            self.issue = issue
+            DispatchQueue.main.async { [weak self] in
+                self?.issueNumberLabel.text = "#\(issue!.issueId)"
+                self?.titleTextField.text = issue?.title
+            }
         }
     }
     
@@ -66,12 +71,56 @@ class NewIssueViewController: UIViewController {
         markdownSegmentedControl.addTarget(self, action: #selector(markdownSegmentedControlValueChanged), for: .valueChanged)
     }
     
-    @IBAction func cancelButtonDidTouch(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+    @IBAction func cancelButtonDidTouch(_ sender: UIButton) {
+        dismiss(animated: true)
     }
     
-    @IBAction func saveButtonDidTouch(_ sender: Any) {
+    @IBAction func saveButtonDidTouch(_ sender: UIButton) {
     
+        guard let title = titleTextField.text,
+              let contents = issueContentTextView.text else { return }
+        
+        if isNew {
+            let date = Date()
+            
+            guard let writer = UserDefaults.standard.object(forKey: "userName") as? String,
+                  let writerId = UserDefaults.standard.object(forKey: "userID") as? Int else { return }
+            let issue = NewIssue(title: title, writer: writer, date: date)
+            let comment = NewComment(writerID: writerId, contents: contents, isIssueContent: true, date: date)
+            newIssueSave(issue: issue, comment: comment)
+        } else {
+            editIssueSave(title: title, contents: contents)
+        }
+        
+        dismiss(animated: true)
+    }
+    
+    private func newIssueSave(issue: NewIssue, comment: NewComment) {
+        
+        guard let issueURL = URL(string: URLs.issue.rawValue) else { return }
+        NetworkManager.shared.postRequest(url: issueURL, object: issue, type: NewIssue.self) { result in
+            guard let response = result else { return }
+            let issueId = response.insertId
+            
+            guard let commentURL = URL(string: "\(URLs.issue.rawValue)/\(issueId)/comment") else { return }
+            NetworkManager.shared.postRequest(url: commentURL, object: comment, type: NewComment.self) { _ in
+                
+                NotificationCenter.default.post(name: .issueDidChange, object: nil)
+            }
+        }
+    }
+    
+    private func editIssueSave(title: String, contents: String) {
+        
+        let object = ["title": title]
+        guard let issueId = issue?.issueId else { return }
+        NetworkManager.shared.patchRequest(
+            url: .issue,
+            updateID: issueId,
+            object: object, type: .issueTitle) { _ in
+                NotificationCenter.default.post(name: .issueDidChange, object: nil)
+        }
+        
     }
 }
 
