@@ -32,6 +32,17 @@ const milestoneModel = {
       console.error(err);
     }
   },
+  selectIssuesFromMilestone: async (milestoneid) => {
+    try {
+      const res = await connection.query(
+        sql.selectIssuesFromMilestone,
+        milestoneid,
+      );
+      return res[0];
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 
 module.exports = milestoneModel;
