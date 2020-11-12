@@ -7,7 +7,7 @@ const authController = {
   addUser: async (req, res) => {
     const { username, social } = req.body;
     const insertUserId = await authModel.insert(username, social);
-    res.status(200).json({ insertUserId });
+    res.status(200).json({ insertId: insertUserId });
   },
 
   checkUser: async ({ username, social, url }) => {
@@ -16,7 +16,7 @@ const authController = {
     return true;
   },
 
-  getUserInfo: async (req, res, next) => {
+  getUserInfo: async (req, res) => {
     const { code, client_id, client_secret } = req.query;
     const getTokenUrl = `https://github.com/login/oauth/access_token`;
     const getUserDataUrl = "https://api.github.com/user";
@@ -27,7 +27,6 @@ const authController = {
         params: { client_id, client_secret, code },
       });
 
-      console.log(result.data);
       const token = reg.exec(result.data)[1];
       const { data: userData } = await axios({
         method: "get",
@@ -40,7 +39,6 @@ const authController = {
       const isExistUser = await authController.checkUser(userInfo);
       res.json({ userInfo, isExistUser });
     } catch (error) {
-      console.error(error);
       next(error);
     }
   },
