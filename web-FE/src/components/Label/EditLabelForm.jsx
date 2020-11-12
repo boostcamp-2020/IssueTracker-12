@@ -7,11 +7,11 @@ import { EditDisplayConsumer } from '@Stores/EditLabelContext';
 import { LabelContext } from '@Stores/LabelStore';
 import { updateLabel } from '@Api/label';
 
-const LabelInputForm = () => {
+const EditLabelForm = ({ dName, dScript, dColor }) => {
   const { dispatch } = useContext(LabelContext);
-  const [name, setName] = useState('Label Preview');
-  const [description, setDescription] = useState('');
-  const [color, setColor] = useState('#6f849e');
+  const [name, setName] = useState(dName);
+  const [description, setDescription] = useState(dScript);
+  const [color, setColor] = useState(dColor);
 
   const getRandomColor = () => {
     const result = `#${Math.round(Math.random() * 0xffffff).toString(16)}`;
@@ -177,4 +177,4 @@ const CreateButton = styled(Button)`
   padding: 0 10px;
 `;
 
-export default LabelInputForm;
+export default EditLabelForm;

@@ -22,7 +22,7 @@ const LabelStore = ({ children }) => {
   const [labelState, dispatch] = useReducer(labelReducer, []);
   const setInitState = async () => {
     const initState = await getAllLabels();
-    dispatch({ type: 'INIT', data: initState.reverse() });
+    dispatch({ type: 'INIT', data: initState });
   };
   useEffect(() => {
     setInitState();
