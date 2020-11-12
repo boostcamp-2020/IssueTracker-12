@@ -37,17 +37,18 @@ class LoginManager {
         let object = ["username": userName,
                       "social": "apple"]
         
-        let alamo = AF.request(URLs.appleUserCheck.rawValue, method: .get, parameters: object).validate(statusCode: 200..<300)
+        let alamo = AF.request(URLs.appleUserCheck.rawValue, method: .post, parameters: object, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300)
+
         alamo.responseJSON { response in
             switch response.result {
             case .success(let value):
-                
                 guard let dic = value as? NSDictionary,
                       let isExistUser = dic["isExistUser"] as? Bool else { return }
                 
                 var userInfo = UserInfo(social: "apple", url: nil, userName: userName, userId: nil)
-                if let user = dic["userId"] as? NSDictionary,
-                   let userId = user["user_id"] as? Int {
+                
+                if let user = dic["userId"] as? [NSDictionary],
+                   let userId = user[0]["user_id"] as? Int {
                     userInfo.userId = userId
                 }
                 let loginResponse = LoginResponse(isExistUser: isExistUser, userInfo: userInfo)
@@ -62,7 +63,7 @@ class LoginManager {
     func requestLogin(user: LoginResponse) {
         
         var userInfo = user.userInfo
-        if userInfo.userId == nil || !user.isExistUser {
+        if !user.isExistUser {
             let object = ["username": userInfo.userName,
                           "social": userInfo.social]
             let alamo = AF.request(URLs.userSave.rawValue, method: .post, parameters: object, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300)
@@ -71,10 +72,10 @@ class LoginManager {
                 case .success(let value):
                     guard let dic = value as? NSDictionary,
                           let userId = dic["insertId"]! as? Int else { return }
-                    
+
                     userInfo.userId = userId
                     self.requestSignIn(user: userInfo)
-                    
+
                 case .failure(let error):
                     print(error)
                 }
