@@ -3,7 +3,7 @@ const authController = require("./controller");
 const passport = require("passport");
 
 router.get("/oauth", authController.getUserInfo);
-router.get("/check", authController.getUserInfoByUsername);
+router.post("/check", authController.getUserInfoByUsername);
 router.post("/", authController.addUser);
 router.post("/token", authController.getToken);
 router.get(
