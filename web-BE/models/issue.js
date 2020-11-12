@@ -88,7 +88,9 @@ const issueModel = {
     await connection.beginTransaction();
     try {
       await connection.query(sql.deleteIssueMilestone, [milestoneId]);
-      if (milestoneId) await connection.query(sql.insertIssueMilestone, [milestoneId, issueId]);
+      await connection.query(sql.insertIssueMilestone, [milestoneId, issueId]);
+
+      await connection.commit();
     } catch (err) {
       console.error(err);
       connection.rollback();
