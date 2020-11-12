@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const LabelBadge = (props) => {
-  const { name, color } = props;
+  const { name, color, margin } = props;
   return (
-    <Badge backgroundColor={color}>{name}</Badge>
+    <Badge backgroundColor={color} margin={margin}>{name}</Badge>
   );
 };
 
@@ -21,6 +21,7 @@ const Badge = styled.div`
   -webkit-appearance: none;
   height:20px;
   align-items:center;
+  ${(props) => `margin:${props.margin};`}
 `;
 
 export default LabelBadge;

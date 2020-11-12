@@ -1,4 +1,4 @@
-const router = require('express').Router();
+const router = require('express').Router({ mergeParams: true });
 const milestoneController = require('./controller');
 
 router.post('/', milestoneController.create);
