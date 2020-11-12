@@ -24,24 +24,48 @@ class LoginManager {
     
     func requestAccessToken(with code: String) {
         
-        let parameters = ["client_id": GithubConstants.clientID,
-                          "client_secret": GithubConstants.clientSecret,
-                          "code": code]
-        let headers: HTTPHeaders = ["Accept": "application/json"]
-        AF.request(GithubConstants.tokenURL, method: .post, parameters: parameters, headers: headers).responseJSON { response in
+        let oAuth = OAuth(code: code, clientId: GithubConstants.clientID, clientSecret: GithubConstants.clientSecret)
+        NetworkManager.shared.loginRequest(url: .login, type: OAuth.self, object: oAuth) { result in
+            guard let user = result else { return }
+            print(user)
             
-            switch response.result {
-            case let .success(json):
-                if let dic = json as? [String: String] {
-                    let accessToken = dic["access_token"] ?? ""
-                    print("Github login Success")
-                    // KeychainSwift().set(AccesToken, forKey: "accessToken")
+            if !user.isExistUser {
+                let object = ["username": user.userInfo.userName,
+                              "social": user.userInfo.social]
+                let alamo = AF.request(URLs.userSave.rawValue, method: .post, parameters: object, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300)
+                alamo.responseJSON { response in
+                    switch response.result {
+                    case .success(let value):
+                        print(value)
+                        guard let dic = value as? NSDictionary else { return }
+                        let userInfo = UserInfo(social: user.userInfo.social, url: user.userInfo.url, userName: user.userInfo.userName, userId: dic["insertId"]! as! Int)
+                        self.requestSignIn(user: userInfo)
+                    case .failure(let error):
+                        print(error)
+                    }
                 }
-            case let .failure(error):
+            } else {
+                self.requestSignIn(user: user.userInfo)
+            }
+        }
+    }
+    
+    func requestSignIn(user: UserInfo) {
+        let object = ["username": user.userName,
+                      "social": user.social,
+                      "password": "NoAnswer"]
+        
+        let alamo = AF.request(URLs.signIn.rawValue, method: .post, parameters: object, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300)
+        
+        alamo.responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                guard let dic = value as? NSDictionary else { return }
+                print(dic["token"])
+                // UserDefault에 저장
+            case .failure(let error):
                 print(error)
             }
         }
-        
     }
-    
 }

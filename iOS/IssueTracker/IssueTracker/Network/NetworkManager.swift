@@ -21,6 +21,22 @@ class NetworkManager {
         ]
     }
     
+    func loginRequest<T: Encodable>(url: URLs, type: T.Type, object: T, completion: @escaping (LoginResponse?) -> Void) {
+        
+        let alamo = AF.request(url.rawValue, method: .get, parameters: object).validate(statusCode: 200..<300)
+
+        alamo.responseJSON { response in
+            switch response.result {
+            case .success :
+                guard let data = response.data else { return }
+                let result = self.decodeJSON(data: data, type: LoginResponse.self)
+                completion(result)
+            case .failure(let error) :
+                print(error)
+            }
+        }
+    }
+    
     func getRequest<T: Decodable>(url: URLs, type: T.Type, completion: @escaping (T?) -> Void) {
         
         let alamo = AF.request(url.rawValue, method: .get, parameters: nil, headers: headers).validate(statusCode: 200..<300)
