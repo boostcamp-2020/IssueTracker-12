@@ -5,9 +5,7 @@ import SideBar from './SideBar';
 
 const NewIssueMain = () => (
   <MainContainer>
-    <ImgDiv>
-      <Img />
-    </ImgDiv>
+    <Img src='https://i.imgur.com/oPR4BiX.jpeg'/>
     <InputDiv />
     <Info>
       <SideBar />
@@ -22,16 +20,11 @@ const MainContainer = styled.div`
   padding: 0 30px;
 `;
 
-const ImgDiv = styled.div`
-  align-self: flex-start;
-  width: 60px;
-  border: 1px solid #181818;
-`;
-
 const Img = styled.img`
+  align-self: flex-start;
   width: 45px;
   height: 45px;
-  border: 1px solid #181818;
+  border-radius: 50%;
 `;
 
 const Info = styled.div`
