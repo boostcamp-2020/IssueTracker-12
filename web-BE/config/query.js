@@ -14,32 +14,17 @@ module.exports = {
   updateMilestone:
     "UPDATE Milestone SET title=?, due_date=?, content=? WHERE milestone_id=?;",
   deleteMilestone: "DELETE FROM Milestone WHERE issue_id=?;",
+  selectIssuesFromMilestone: `SELECT is_open FROM Issue LEFT JOIN Milestone ON Issue.milestone_id = Milestone.milestone_id 
+  WHERE Issue.milestone_id IN (SELECT Milestone.milestone_id FROM Milestone) and Milestone.milestone_id=?;`,
   // user
-  selectUser:
-    "SELECT user_id, username, social FROM User WHERE username=? and social=?",
+  selectUser: "SELECT user_id FROM User WHERE username=? and social=?;",
   selectAllUser: "SELECT user_id, username, social FROM User",
   insertUser: "INSERT INTO User (username,social) VALUES (?,?)",
-  selectUser:
-    "SELECT user_id, username, social FROM User WHERE username=? and social=?",
   // issue
   insertIssue:
     "INSERT INTO Issue " +
     "(writer_id, write_time, title, milestone_id) " +
     "VALUES((SELECT user_id from User WHERE username=?), ?, ?, ?)",
-  selectSingleIssue: `SELECT 
-      Issue.issue_id,
-      Issue.title,
-      Milestone.milestone_id,
-      Milestone.title as milestone_title,
-      Issue.write_time,
-      Issue.is_open,
-      User.user_id as writer_id,
-      User.username as writer,
-    FROM Issue
-    LEFT JOIN Milestone ON Milestone.milestone_id = Issue.milestone_id
-    JOIN User ON Issue.writer_id = User.user_id`,
-  // left JOIN (SELECT issue_id, COUNT(user_id) as assign_count FROM Assignee WHERE user_id=? group by issue_id) as User_Assign ON Issue.issue_id = User_Assign.issue_id
-  // left JOIN (SELECT issue_id, COUNT(writer_id) as comment_count FROM Comment WHERE writer_id=? group by issue_id) as User_Write ON Issue.issue_id = User_Write.issue_id;`,
   selectIssue: `SELECT
       Issue.issue_id,
       Issue.title,

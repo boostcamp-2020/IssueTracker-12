@@ -11,7 +11,7 @@ const issueModel = {
     try {
       const [res] = await connection.query(sql.insertIssue, issueTableData);
       const { insertId: issueId } = res;
-      await issueLabelModel.insert(issueId, labelArr);
+      if (labelArr) await issueLabelModel.insert(issueId, labelArr);
       await connection.commit();
       return issueId;
     } catch (err) {
@@ -88,7 +88,9 @@ const issueModel = {
     await connection.beginTransaction();
     try {
       await connection.query(sql.deleteIssueMilestone, [milestoneId]);
-      if (milestoneId) await connection.query(sql.insertIssueMilestone, [milestoneId, issueId]);
+      await connection.query(sql.insertIssueMilestone, [milestoneId, issueId]);
+
+      await connection.commit();
     } catch (err) {
       console.error(err);
       connection.rollback();
