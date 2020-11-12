@@ -1,13 +1,11 @@
-const createError = require('http-errors');
-const connection = require('../config/db_connection');
-const sql = require('../config/query');
-const assigneeModel = require('./assignee');
-const issueLabelModel = require('./issue_label');
+const createError = require("http-errors");
+const connection = require("../config/db_connection");
+const sql = require("../config/query");
+const assigneeModel = require("./assignee");
+const issueLabelModel = require("./issue_label");
 
 const issueModel = {
-  insert: async ({
-    writer, title, milestone, writeTime, labelArr,
-  }) => {
+  insert: async ({ writer, title, milestone, writeTime, labelArr }) => {
     const issueTableData = [writer, writeTime, title, milestone];
     await connection.beginTransaction();
     try {
@@ -19,24 +17,48 @@ const issueModel = {
     } catch (err) {
       console.error(err);
       connection.rollback();
-      // TODO: 에러처리 어떻게 할까
       throw createError(500);
     }
   },
   select: async (userId) => {
     try {
-      const [issueArr] = await connection.query(sql.selectIssue, [userId, userId]);
+      const [issueArr] = await connection.query(sql.selectIssue, [
+        userId,
+        userId,
+      ]);
       const labelsOfIssue = await Promise.all(
-        issueArr.map((issue) => issueLabelModel.select(issue.issue_id)),
+        issueArr.map((issue) => issueLabelModel.select(issue.issue_id))
       );
       const assigneeOfIssue = await Promise.all(
-        issueArr.map((issue) => assigneeModel.select(issue.issue_id)),
+        issueArr.map((issue) => assigneeModel.select(issue.issue_id))
       );
       const issueWithLabels = issueArr.map((issue, i) => ({
         ...issue,
         labels: labelsOfIssue[i],
-        assignee: assigneeOfIssue[i]
+        assignee: assigneeOfIssue[i],
       }));
+      return issueWithLabels;
+    } catch (err) {
+      console.error(err);
+      throw createError(500);
+    }
+  },
+  selectById: async (issueId) => {
+    console.log(issueId, "!!!????");
+    try {
+      const issue = await connection.query(sql.selectIssue, [issueId]);
+      console.log(issue, "????");
+      const labelsOfIssue = await Promise.all(
+        issueLabelModel.select(issue.issue_id)
+      );
+      const assigneeOfIssue = await Promise.all(
+        assigneeModel.select(issue.issue_id)
+      );
+      const issueWithLabels = {
+        ...issue,
+        labels: labelsOfIssue,
+        assignee: assigneeOfIssue,
+      };
       return issueWithLabels;
     } catch (err) {
       console.error(err);
