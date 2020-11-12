@@ -74,8 +74,8 @@ class IssueLabelSelectViewController: UIViewController {
         
         NetworkManager.shared.patchRequest2(url: .issue, updateID: issue.issueId, object: object, type: .label) { result in
             print(result)
+            NotificationCenter.default.post(name: .issueDidChange, object: nil)
         }
-        //TO-DO: 바뀐 내용을 detail화면에 적용해야됨
         dismiss(animated: true, completion: nil)
     }
     

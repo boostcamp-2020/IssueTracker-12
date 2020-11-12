@@ -75,6 +75,7 @@ class IssueMilestoneSelectViewController: UIViewController {
         
         NetworkManager.shared.patchRequest2(url: .issue, updateID: issue.issueId, object: object, type: .milestone) { result in
             print(result)
+            NotificationCenter.default.post(name: .issueDidChange, object: nil)
         }
         dismiss(animated: true, completion: nil)
     }

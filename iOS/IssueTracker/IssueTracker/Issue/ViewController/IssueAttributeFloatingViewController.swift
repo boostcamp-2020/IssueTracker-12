@@ -20,17 +20,18 @@ class IssueAttributeFloatingViewController: UIViewController {
         super.viewDidLoad()
         assigneeCollectionView.dataSource = self
         assigneeCollectionView.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadIssueData), name: .issueDidChange, object: nil)
     }
     
-    func setIssue(issue: Issue?) {
-        self.issue = issue
+    private func reloadView() {
         DispatchQueue.main.async { [weak self] in
-            guard let issue = issue else { return }
+            guard let issue = self?.issue else { return }
             
             if let milestoneTitle = issue.milestoneTitle {
                 self?.milestionTitleLabel.text = milestoneTitle
             }
             self?.labelsConfigure(labels: issue.labels)
+            self?.assigneeCollectionView.reloadData()
             if issue.isOpen == 0 {
                 self?.closeIssueButton.setTitle("Open Issue", for: .normal)
                 self?.closeIssueButton.setTitleColor(UIColor.green, for: .normal)
@@ -57,6 +58,22 @@ class IssueAttributeFloatingViewController: UIViewController {
             labelScrollView.contentSize.width = xPosition
         }
     }
+    
+    func getIssueData(issueId: Int) {
+        DispatchQueue.main.async {
+            NetworkManager.shared.getRequest(url: .issue, urlAdd: "/\(issueId)", type: OneIssue.self) { result in
+                guard let issue = result?.issue else { return }
+                self.issue = issue
+                self.reloadView()
+            }
+        }
+    }
+    
+    @objc func reloadIssueData() {
+        guard let issueId = issue?.issueId else { return }
+        getIssueData(issueId: issueId)
+    }
+    
     @IBAction func assigneeSelectButtondidTouch(_ sender: Any) {
         if let selectVC = self.storyboard?.instantiateViewController(identifier: IssueAssigneeSelectViewController.reuseIdentifier) as? IssueAssigneeSelectViewController {
             

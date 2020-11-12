@@ -37,9 +37,8 @@ class NetworkManager {
         }
     }
     
-    func getRequest<T: Decodable>(url: URLs, type: T.Type, completion: @escaping (T?) -> Void) {
-        
-        let alamo = AF.request(url.rawValue, method: .get, parameters: nil, headers: headers).validate(statusCode: 200..<300)
+    func getRequest<T: Decodable>(url: URLs, urlAdd: String = "", type: T.Type, completion: @escaping (T?) -> Void) {
+        let alamo = AF.request("\(url.rawValue)\(urlAdd)", method: .get, parameters: nil, headers: headers).validate(statusCode: 200..<300)
         
         alamo.responseJSON { response in
             switch response.result {

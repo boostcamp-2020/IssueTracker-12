@@ -15,6 +15,7 @@ enum URLs: String {
     case login = "http://101.101.217.148:8080/api/auth/oauth"
     case userSave = "http://101.101.217.148:8080/api/auth"
     case signIn = "http://101.101.217.148:8080/api/auth/token"
+    case appleUserCheck = "http://101.101.217.148:8080/api/auth/check"
 }
 
 enum PatchType: String {

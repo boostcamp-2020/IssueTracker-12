@@ -74,6 +74,7 @@ class IssueAssigneeSelectViewController: UIViewController {
         
         NetworkManager.shared.patchRequest2(url: .issue, updateID: issue.issueId, object: object, type: .assignee) { result in
             print(result)
+            NotificationCenter.default.post(name: .issueDidChange, object: nil)
         }
         dismiss(animated: true, completion: nil)
     }

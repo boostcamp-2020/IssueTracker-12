@@ -42,11 +42,11 @@ struct LoginResponse: Codable, Hashable {
 
 struct UserInfo: Codable, Hashable {
     let social: String
-    let url: String
+    let url: String?
     let userName: String
-    let userId: Int?
+    var userId: Int?
     
-    init(social: String, url: String, userName: String, userId: Int?) {
+    init(social: String, url: String?, userName: String, userId: Int?) {
         self.social = social
         self.url = url
         self.userName = userName

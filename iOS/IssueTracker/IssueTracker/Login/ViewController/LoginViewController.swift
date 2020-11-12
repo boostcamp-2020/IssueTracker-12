@@ -76,7 +76,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             let userIdentifier = appleIDCredential.user
             let fullName = appleIDCredential.fullName
             let email = appleIDCredential.email
-            
+            LoginManager.shared.requestAppleUserExist(identifier: userIdentifier)
+        
         case let passwordCredential as ASPasswordCredential:
             let userName = passwordCredential.user
             let password = passwordCredential.password

@@ -232,7 +232,7 @@ extension IssueListViewController: UICollectionViewDelegate {
         } else {
             if let detailVC = self.storyboard?.instantiateViewController(identifier: IssueDetailViewController.reuseIdentifier) as? IssueDetailViewController {
                 
-                detailVC.sendIssueData(issue: issues[indexPath.row])
+                detailVC.sendIssueId(issueId: issues[indexPath.row].issueId)
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }
         }
