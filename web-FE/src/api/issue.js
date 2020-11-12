@@ -1,4 +1,6 @@
 import instance from './instance';
+import { getLoginUserInfo } from '@Services/auth';
+import dateFormat from 'dateformat';
 
 export const getAllIssues = async () => {
   const issueUrl = '/api/issue';
@@ -21,3 +23,40 @@ export const updateIsOpen = (issueIdList, isOpen) => {
     console.error(error);
   }
 }
+
+export const addIssue = async ({ title, milestoneId, labelArr, assigneeArr, content }) => {
+  const addIssueurl = '/api/issue';
+  const writer = getLoginUserInfo();
+  const writeTime = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
+  console.log(writer.username, title, milestoneId, writeTime, labelArr);
+  try {
+    const { data: {insertId: issueId} } = await instance.post(addIssueurl, {
+      writer: writer.username,
+      title,
+      milestone_id: milestoneId,
+      labels: labelArr,
+      write_time: writeTime
+    });
+    const addCommenturl = `/api/issue/${issueId}/comment`;
+    const { data: {insertId: commentId} } = await instance.post(addCommenturl, {
+      writer_id: writer.user_id,
+      content,
+      write_time: writeTime,
+      is_issue_content: true,
+    });
+    return issueId;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getIssueById = async (issueId) => {
+  const url = `/api/issue/${issueId}`;
+  try {
+    const result = await instance.get(url);
+    const { issue } = result.data;
+    return issue;
+  } catch (error) {
+    console.error(error);
+  }
+};
