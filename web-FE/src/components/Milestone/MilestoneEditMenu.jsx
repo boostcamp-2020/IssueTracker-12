@@ -13,7 +13,7 @@ const MilestoneEditMenus = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 45%;
+  width: 30%;
 `;
 
 const EditMilestone = styled.span`
