@@ -109,10 +109,11 @@ class IssueAttributeFloatingViewController: UIViewController {
         guard let issue = issue else { return }
         let isOpen = (issue.isOpen != 0)
         let object = ["is_open": !isOpen]
+        guard let isOpenURL = URL(string: "\(URLs.issue.rawValue)/\(issue.issueId)/isopen") else { return }
         NetworkManager.shared.patchRequest(
-            url: .issue,
+            url: isOpenURL,
             updateID: issue.issueId,
-            object: object, type: .isOpen) { _ in
+            object: object) { _ in
                 NotificationCenter.default.post(name: .issueDidChange, object: nil)
         }
     }
@@ -121,7 +122,6 @@ class IssueAttributeFloatingViewController: UIViewController {
         guard let issueId = issue?.issueId else { return }
         if let selectVC = self.storyboard?.instantiateViewController(identifier: CommentViewController.reuseIdentifier) as? CommentViewController {
             
-            //selectVC.modalPresentationStyle = 
             selectVC.setIssueId(issueId: issueId)
             self.present(selectVC, animated: true, completion: nil)
         }

@@ -101,9 +101,9 @@ class NetworkManager {
         }
     }
     
-    func patchRequest<T: Encodable>(url: URLs, updateID: Int, object: T, type: PatchType, completion: @escaping (NSDictionary) -> Void) {
+    func patchRequest<T: Encodable>(url: URL, updateID: Int, object: T, completion: @escaping (NSDictionary) -> Void) {
     
-        let alamo = AF.request("\(url.rawValue)/\(updateID)/\(type.rawValue)", method: .patch, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).validate(statusCode: 200..<300)
+        let alamo = AF.request(url, method: .patch, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).validate(statusCode: 200..<300)
         
         alamo.responseJSON { response in
             switch response.result {

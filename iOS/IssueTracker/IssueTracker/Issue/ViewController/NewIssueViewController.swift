@@ -16,6 +16,7 @@ class NewIssueViewController: UIViewController {
     @IBOutlet weak var markdownSegmentedControl: UISegmentedControl!
     
     private var issue: Issue?
+    private var comment: Comment?
     private var isNew: Bool = true
     private var tempString: String = ""
     
@@ -42,15 +43,17 @@ class NewIssueViewController: UIViewController {
     }
     
     // issue 내용으로 초기화
-    func initNewIssueView(isNew: Bool, issue: Issue?) {
+    func initNewIssueView(isNew: Bool, issue: Issue?, comment: Comment?) {
         self.isNew = isNew
         if isNew {
             issueNumberLabel.text = "새 이슈"
         } else {
             self.issue = issue
+            self.comment = comment
             DispatchQueue.main.async { [weak self] in
                 self?.issueNumberLabel.text = "#\(issue!.issueId)"
                 self?.titleTextField.text = issue?.title
+                self?.issueContentTextView.text = comment?.contents
             }
         }
     }
@@ -114,10 +117,20 @@ class NewIssueViewController: UIViewController {
         
         let object = ["title": title]
         guard let issueId = issue?.issueId else { return }
+        guard let issueURL = URL(string: "\(URLs.issue.rawValue)/\(issueId)/title") else { return }
         NetworkManager.shared.patchRequest(
-            url: .issue,
+            url: issueURL,
             updateID: issueId,
-            object: object, type: .issueTitle) { _ in
+            object: object) { _ in
+                NotificationCenter.default.post(name: .issueDidChange, object: nil)
+        }
+        
+        let commentObject = ["content": contents]
+        guard let commentURL = URL(string: "\(URLs.issue.rawValue)/\(issueId)/comment/1") else { return }
+        NetworkManager.shared.patchRequest(
+            url: commentURL,
+            updateID: issueId,
+            object: commentObject) { _ in
                 NotificationCenter.default.post(name: .issueDidChange, object: nil)
         }
         
@@ -128,8 +141,10 @@ class NewIssueViewController: UIViewController {
 extension NewIssueViewController: UITextViewDelegate {
     //textView 편집이 시작될 때
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+        if isNew, textView.textColor == UIColor.lightGray {
             textView.text = nil
+            textView.textColor = .black
+        } else if !isNew {
             textView.textColor = .black
         }
     }
