@@ -84,6 +84,17 @@ const issueModel = {
       throw createError(500);
     }
   },
+  updateMilestone: async (issueId, milestoneId) => {
+    await connection.beginTransaction();
+    try {
+      await connection.query(sql.deleteIssueMilestone, [milestoneId]);
+      if (milestoneId) await connection.query(sql.insertIssueMilestone, [milestoneId, issueId]);
+    } catch (err) {
+      console.error(err);
+      connection.rollback();
+      throw createError(500);
+    }
+  },
   updateIsOpen: async (issueId, isOpen) => {
     try {
       await connection.query(sql.updateIssueIsOpen, [isOpen, issueId]);
