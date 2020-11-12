@@ -13,7 +13,7 @@ export const getAllLabels = async () => {
 
 export const createLabel = async (name, description, color) => {
   const url = '/api/label';
-  const body = { name, description, color };
+  const body = { label_name: name, description, color };
   try {
     const response = await instance.post(url, body);
     const insertedLabelId = response.data;

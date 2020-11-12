@@ -31,7 +31,7 @@ const labelModel = {
   },
   delete: async (labelid) => {
     try {
-      connection.query(sql.deleteLabel, labelid);
+      await connection.query(sql.deleteLabel, +labelid);
     } catch (err) {
       console.error(err);
     }
