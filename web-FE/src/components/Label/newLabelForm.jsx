@@ -31,9 +31,9 @@ const NewLabelForm = () => {
       },
     });
 
-    setColor('');
+    setColor(getRandomColor());
     setDescription('');
-    setName('');
+    setName('Label Preview');
   };
 
   const onClickColorHandler = () => {

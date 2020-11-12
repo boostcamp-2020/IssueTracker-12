@@ -38,7 +38,7 @@ const LabelListItem = (props) => {
             )}
           </EditDisplayConsumer>
         </LabelContent>
-        <EditLabelForm />
+        <EditLabelForm dName={labelName} dColor={color} dScript={description} />
       </FlexRowDiv>
     </EditDisplayProvider>
   );

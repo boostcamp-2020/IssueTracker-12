@@ -6,17 +6,31 @@ import Login from '@Components/Login';
 import Label from '@Components/Label';
 import Milestone from '@Components/Milestone';
 import IssueListPage from '@Components/Issue';
+import NewIssue from '@Components/NewIssue';
+import UserStore from '@Stores/UserStore';
+import LabelStore from '@Stores/LabelStore';
+import MilestoneStore from '@Stores/MilestoneStore';
+import IssueStore from '@Stores/IssueStore';
 
 const App = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route path='/login' component={Login} />
-      <Route path='/label' component={Label} />
-      <Route path='/milestone' component={Milestone} />
-      <Route exact path='/issue' component={IssueListPage} />
-      <Route path='/' component={Home} />
-    </Switch>
-  </BrowserRouter>
+  <UserStore>
+    <MilestoneStore>
+      <LabelStore>
+        <IssueStore>
+          <BrowserRouter>
+            <Switch>
+              <Route path='/login' component={Login} />
+              <Route path='/label' component={Label} />
+              <Route path='/milestone' component={Milestone} />
+              <Route exact path='/issue' component={IssueListPage} />
+              <Route exact path='/newIssue' component={NewIssue} />
+              <Route path='/' component={Home} />
+            </Switch>
+          </BrowserRouter>
+        </IssueStore>
+      </LabelStore>
+    </MilestoneStore>
+  </UserStore>
 );
 
 export default App;

@@ -2,7 +2,13 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import styled from 'styled-components';
 import DropdownModal from './DropdownModal';
 
-const Dropdown = ({ className, title, list, setSelect, selectionList }) => {
+const Dropdown = ({ 
+  className,
+  title,
+  list,
+  setSelect,
+  selectionList,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef();
 
@@ -50,7 +56,8 @@ const Dropdown = ({ className, title, list, setSelect, selectionList }) => {
 const DropdownButton = styled.summary`
   position: relative;
   cursor: pointer;
-
+  font-size: 15px;
+  color: #353535;
   &::-webkit-details-marker {
     display: none;
   }
