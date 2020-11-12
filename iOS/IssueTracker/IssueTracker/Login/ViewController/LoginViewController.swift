@@ -15,6 +15,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let didLogin = UserDefaults.standard.object(forKey: "didLogin") as? Bool, didLogin {
+            openMainView()
+        }
 
         setupProviderLoginView()
     }
@@ -22,6 +25,7 @@ class LoginViewController: UIViewController {
     func setupProviderLoginView() {
         
         githubIDButton.addTarget(self, action: #selector(handleAuthorizationGithubIDButtonPress), for: .touchUpInside)
+        NotificationCenter.default.addObserver(self, selector: #selector(successLogin), name: .loginDidSuccess, object: nil)
         
         let appleIDButton = ASAuthorizationAppleIDButton()
         appleIDButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
@@ -34,6 +38,10 @@ class LoginViewController: UIViewController {
         LoginManager.shared.requestCode()
     }
     
+    @objc func successLogin() {
+        openMainView()
+    }
+    
     @objc
     func handleAuthorizationAppleIDButtonPress() {
       
@@ -44,6 +52,17 @@ class LoginViewController: UIViewController {
         controller.delegate = self
         controller.presentationContextProvider = self
         controller.performRequests()
+    }
+    
+    private func openMainView() {
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+            guard let tabBarController = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
+                    as? UITabBarController else { return }
+
+            self.view.window?.rootViewController = tabBarController
+        }
     }
 }
 
