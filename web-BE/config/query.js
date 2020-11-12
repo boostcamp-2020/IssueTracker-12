@@ -14,6 +14,8 @@ module.exports = {
   updateMilestone:
     "UPDATE Milestone SET title=?, due_date=?, content=? WHERE milestone_id=?;",
   deleteMilestone: "DELETE FROM Milestone WHERE issue_id=?;",
+  selectIssuesFromMilestone: `SELECT is_open FROM Issue LEFT JOIN Milestone ON Issue.milestone_id = Milestone.milestone_id 
+  WHERE Issue.milestone_id IN (SELECT Milestone.milestone_id FROM Milestone) and Milestone.milestone_id=?;`,
   // user
   selectUser: "SELECT user_id FROM User WHERE username=? and social=?;",
   selectAllUser: "SELECT user_id, username, social FROM User",

@@ -17,7 +17,7 @@ const milestoneController = {
       for (let i = 0; i < milestoneArr.length; i++) {
         const milestoneid = milestoneArr[i].milestone_id;
         const issueInfo = await milestoneController.selectIssuesFromMilestone(
-          milestoneid,
+          milestoneid
         );
         milestoneArr[i].issueInfo = issueInfo;
       }
@@ -52,14 +52,14 @@ const milestoneController = {
     const result = await milestoneModel.selectIssuesFromMilestone(milestoneid);
     const totalIssue = result.length;
     let openedIssue = 0;
-    console.log(test);
     for (let i = 0; i < totalIssue; i++) {
       if (result[i].is_open === 1) {
         openedIssue++;
       }
     }
     const closedIssue = totalIssue - openedIssue;
-    const completed = totalIssue === 0 ? 0 : Math.round((closedIssue / totalIssue) * 100);
+    const completed =
+      totalIssue === 0 ? 0 : Math.round((closedIssue / totalIssue) * 100);
     const issueInfo = {
       openedIssue,
       closedIssue: totalIssue - openedIssue,

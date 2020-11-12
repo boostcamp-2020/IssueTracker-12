@@ -36,7 +36,7 @@ const milestoneModel = {
     try {
       const res = await connection.query(
         sql.selectIssuesFromMilestone,
-        milestoneid,
+        milestoneid
       );
       return res[0];
     } catch (err) {

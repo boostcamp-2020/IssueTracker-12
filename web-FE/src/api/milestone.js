@@ -1,7 +1,7 @@
-import instance from "./instance";
+import instance from './instance';
 
 export const getAllMilestones = async () => {
-  const url = "/api/milestone";
+  const url = '/api/milestone';
   try {
     const result = await instance.get(url);
     const { milestoneArray } = result.data;
