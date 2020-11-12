@@ -6,18 +6,20 @@ import LabelMilestoneTag from '@Components/commons/LabelMilestoneTag';
 import { IssueMenuFilter } from './Filters';
 
 const IssueMenu = () => {
+  const goToNewIssue = () => {
+    location.href = '/newIssue';
+  };
   return (
     <FlexRowDiv>
       <IssueMenuFilter />
-      <IssueFilterSearchbar 
+      <IssueFilterSearchbar
         className="issue-filter-searchbar"
-        />
+      />
       <LabelMilestoneTag />
-      <NewIssueButton>New Issue</NewIssueButton>
+      <NewIssueButton onClick={goToNewIssue}>New Issue</NewIssueButton>
     </FlexRowDiv>
   );
-}
-
+};
 
 const FlexRowDiv = styled.div`
   display: flex;
