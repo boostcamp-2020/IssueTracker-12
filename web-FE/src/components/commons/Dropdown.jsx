@@ -2,7 +2,13 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import styled from 'styled-components';
 import DropdownModal from './DropdownModal';
 
-const Dropdown = ({ className, title, list, setSelect, selectionList }) => {
+const Dropdown = ({ 
+  className,
+  title,
+  list,
+  setSelect,
+  selectionList,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef();
 
