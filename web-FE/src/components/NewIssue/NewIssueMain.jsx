@@ -1,15 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import SideBar from './SideBar';
 
 const NewIssueMain = () => (
   <MainContainer>
-    <Div>
-      <Img />
-    </Div>
-    <Div />
-    <Div>
+    <SideBar />
 
-    </Div>
   </MainContainer>
 
 );
