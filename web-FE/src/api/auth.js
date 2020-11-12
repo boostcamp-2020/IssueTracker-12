@@ -13,9 +13,11 @@ export const saveUser = async (username, social) => {
 export const getUserInfo = async (code) => {
   const apiurl = `${baseURL}/api/auth/oauth`;
   try {
-    const result = await axios.get(
-      `${apiurl}?code=${code}&client_id=${clientId}&client_secret=${clientSecret}`,
-    );
+    const result = await axios.post(apiurl, {
+      code,
+      client_id: clientId,
+      client_secret: clientSecret
+    });
     const { userInfo, isExistUser } = result.data;
     return { userInfo, isExistUser };
   } catch (error) {
