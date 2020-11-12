@@ -3,8 +3,9 @@ import styled from 'styled-components';
 
 import { createEditor } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
+import Button from '@Components/commons/Button';
 
-const InputDiv = () => {
+const InputDiv = ({addNewIssue}) => {
   const editor = useMemo(() => withReact(createEditor()), []);
 
   const [value, setValue] = useState([
@@ -27,6 +28,7 @@ const InputDiv = () => {
           <Editable />
         </Slate>
       </CommentContainer>
+      <Button onClick={ addNewIssue }>Submit new issue</Button>
     </MainContainer>
   );
 };
