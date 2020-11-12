@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { IssueContext } from '@Stores/IssueStore';
 import IssueListHeader from './IssueListHeader';
@@ -7,16 +7,24 @@ import { IssueFilterContext } from '@Stores/IssueFilterStore';
 import filter from '@Services/issue/filter';
 
 const IssueListBoard = () => {
-  const {issueState} = useContext(IssueContext);
+  const {issueState, dispatch} = useContext(IssueContext);
   const {filterState} = useContext(IssueFilterContext);
+  const [selected, setSelected] = useState({});
   const filteredIssues = filter(issueState, filterState);
-  console.log(filteredIssues);
+  console.log(selected);
   return (
     <Board>
-      <IssueListHeader />
+      <IssueListHeader selected={selected} action={dispatch}/>
       {filteredIssues.map((issue) => {
         const { issue_id: issueId } = issue;
-        return (<IssueListItem issue={issue} key={issueId} />);
+        return (
+          <IssueListItem
+            issue={issue}
+            key={issueId}
+            selected={selected}
+            setSelected={setSelected} 
+          />
+        );
       })}
     </Board>
   );
