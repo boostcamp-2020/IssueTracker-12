@@ -7,9 +7,9 @@ const issueController = {
     const {
       writer,
       title,
-      milestone,
+      milestone_id: milestone,
       write_time: writeTime,
-      label: labelArr,
+      labels: labelArr,
     } = req.body;
     try {
       const insertId = await issueModel.insert({
@@ -34,7 +34,7 @@ const issueController = {
     const { title } = req.body;
     try {
       await issueModel.updateTitle(issueId, title);
-      res.sendStatus(200);
+      res.status(200).json({ message: 'sucess' });
     } catch (error) {
       next(error);
     }
@@ -43,7 +43,7 @@ const issueController = {
     const { issueId, milestoneId } = req.params;
     try {
       await issueModel.insertMilestone(issueId, milestoneId);
-      res.sendStatus(200);
+      res.status(200).json({ message: 'sucess' });
     } catch (error) {
       next(error);
     }
@@ -52,7 +52,7 @@ const issueController = {
     const { issueId } = req.params;
     try {
       await issueModel.deleteMilestone(issueId);
-      res.sendStatus(200);
+      res.status(200).json({ message: 'sucess' });
     } catch (error) {
       next(error);
     }
@@ -61,7 +61,7 @@ const issueController = {
     const { issueId, labelId } = req.params;
     try {
       await issueLabelModel.insert(issueId, [labelId]);
-      res.sendStatus(200);
+      res.status(200).json({ message: 'sucess' });
     } catch (error) {
       next(error);
     }
@@ -70,17 +70,17 @@ const issueController = {
     const { issueId, labelId } = req.params;
     try {
       await issueLabelModel.delete(issueId, labelId);
-      res.sendStatus(200);
+      res.status(200).json({ message: 'sucess' });
     } catch (error) {
       next(error);
     }
   },
   updateIsOpen: async (req, res, next) => {
     const { issueId } = req.params;
-    const { isopen: isOpen } = req.body;
+    const { is_open: isOpen } = req.body;
     try {
       await issueModel.updateIsOpen(issueId, isOpen);
-      res.sendStatus(200);
+      res.status(200).json({ message: 'sucess' });
     } catch (error) {
       next(error);
     }
@@ -89,7 +89,7 @@ const issueController = {
     const { issueId, userId } = req.params;
     try {
       await assigneeModel.insert(issueId, userId);
-      res.sendStatus(200);
+      res.status(200).json({ message: 'sucess' });
     } catch (error) {
       next(error);
     }
@@ -98,7 +98,7 @@ const issueController = {
     const { issueId, userId } = req.params;
     try {
       await assigneeModel.delete(issueId, userId);
-      res.sendStatus(200);
+      res.status(200).json({ message: 'sucess' });
     } catch (error) {
       next(error);
     }

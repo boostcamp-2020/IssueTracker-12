@@ -3,6 +3,7 @@ const sql = require('../config/query');
 
 const issueLabelModel = {
   insert: async (issueId, labelArr) => {
+    if (!labelArr) return;
     const issueLabelData = labelArr.reduce((acc, curr) => [...acc, [issueId, curr]], []);
     await connection.query(sql.insertIssueLabel, [issueLabelData]);
   },

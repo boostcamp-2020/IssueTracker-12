@@ -35,7 +35,7 @@ const issueModel = {
       const issueWithLabels = issueArr.map((issue, i) => ({
         ...issue,
         labels: labelsOfIssue[i],
-        assignee: assigneeOfIssue[i],
+        assignee: assigneeOfIssue[i]
       }));
       return issueWithLabels;
     } catch (err) {
@@ -62,6 +62,14 @@ const issueModel = {
   deleteMilestone: async (issueId) => {
     try {
       await connection.query(sql.deleteIssueMilestone, [issueId]);
+    } catch (err) {
+      console.error(err);
+      throw createError(500);
+    }
+  },
+  updateIsOpen: async (issueId, isOpen) => {
+    try {
+      await connection.query(sql.updateIssueIsOpen, [isOpen, issueId]);
     } catch (err) {
       console.error(err);
       throw createError(500);

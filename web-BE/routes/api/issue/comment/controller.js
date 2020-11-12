@@ -5,7 +5,7 @@ const commentController = {
   create: async (req, res, next) => {
     const { issueId } = req.params;
     const {
-      writer,
+      writer_id: writer,
       content,
       write_teme: writeTime,
       is_issue_content: isIssueContent,
