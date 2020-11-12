@@ -11,24 +11,22 @@ const SideBar = ({
   setSelectedLabels,
   selectedMilestone,
   setSelectedMilestone,
-}) => {
-  return (
-    <Div>
-      <AddAssigneeSideBar
-        selectedAssignees={selectedAssignees}
-        setSelectedAssignees={setSelectedAssignees}
-      />
-      <AddLabelSideBar
-        selectedLabels={selectedLabels}
-        setSelectedLabels={setSelectedLabels}
-      />
-      <AddMilestoneSideBar
-        selectedMilestone={selectedMilestone}
-        setSelectedMilestone={setSelectedMilestone}
-      />
-    </Div>
-  )
-};
+}) => (
+  <Div>
+    <AddAssigneeSideBar
+      selectedAssignees={selectedAssignees}
+      setSelectedAssignees={setSelectedAssignees}
+    />
+    <AddLabelSideBar
+      selectedLabels={selectedLabels}
+      setSelectedLabels={setSelectedLabels}
+    />
+    <AddMilestoneSideBar
+      selectedMilestone={selectedMilestone}
+      setSelectedMilestone={setSelectedMilestone}
+    />
+  </Div>
+);
 
 const Div = styled.div`
   display: flex;

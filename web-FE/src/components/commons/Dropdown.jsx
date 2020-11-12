@@ -56,7 +56,8 @@ const Dropdown = ({
 const DropdownButton = styled.summary`
   position: relative;
   cursor: pointer;
-
+  font-size: 15px;
+  color: #353535;
   &::-webkit-details-marker {
     display: none;
   }

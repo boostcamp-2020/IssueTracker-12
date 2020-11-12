@@ -22,6 +22,7 @@ const AddLabelSideBar = ({
         <GearIcon
           width="16px"
           height="16px"
+          fill="#727272"
         />
       </FlexColumn>
       <Item>
@@ -55,16 +56,17 @@ const FlexColumn = styled.div`
 const Item = styled.div`
   display: flex;
   flex-wrap: wrap;
-  padding: 10px 10px;
+  padding: 0;
   width: 100%;
   box-sizing:border-box;
-  font-size: 14px;
+  font-size: 12px;
+  color: #5c5c5c;
 `;
 
 const Div = styled.div`
   width: 100%;
-  min-height: 60px;
-  padding: 20px;
+  min-height: 80px;
+  padding: 10px;
   border-bottom: 1px solid lightgrey;
   box-sizing:border-box;
 `;

@@ -45,7 +45,7 @@ const CheckIcon = styled(CheckImage)`
 
 const DetailsModal = styled.ul`
   display: flex;
-  width: 300px;
+  width: 200px;
   max-height: 600px;
   position: absolute;
   flex-direction: column;
@@ -53,8 +53,8 @@ const DetailsModal = styled.ul`
   list-style-type : none;
   padding: 0;
   background-color: white;
-  box-shadow: grey 0px 0px 4px 0px;
-  border-radius: 5px;
+  box-shadow: #e6e6e6 0px 0px 4px 0px;
+  border-radius: 3px;
 }
 `;
 
@@ -65,8 +65,10 @@ const Li = styled.li`
   width: 100%;
   height: 40px;
   box-sizing: border-box;
-  padding: 10px 40px;
-  border-bottom: 1px solid lightgrey;
+  padding: 10px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 12px;
+  color: #333333;
   cursor:pointer;
 `;
 
