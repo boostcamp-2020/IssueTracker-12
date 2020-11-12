@@ -1,11 +1,11 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import OpenCloseIndicator from './OpenCloseIndicator';
+import LabelBadge from '@Components/commons/LabelBadge';
 
 const IssueListItem = (props) => {
-  const { issue } = props;
+  const { issue, selected, setSelected } = props;
 
   const {
     issue_id: issueId,
@@ -13,21 +13,42 @@ const IssueListItem = (props) => {
     write_time: writeTime,
     is_open: isOpen,
     writer,
+    labels,
   } = issue;
   const issueInfo = `#${issueId} opened at ${writeTime} by ${writer}`;
+  const onCheckBoxChange = (e) => {
+    if (selected[issueId]) {
+      const { [issueId]: id, ...rest } = selected;
+      setSelected(rest);
+      return;
+    }
+    setSelected({ ...selected, [issueId]: issueId });
+  };
   return (
-    <FlexRowDiv>
+    <ItemContainer>
       <Checkbox>
-        <input type="checkbox" name="check-all" />
+        <input type="checkbox" name="check-all" onChange={onCheckBoxChange}/>
       </Checkbox>
       <OpenCloseIndicator isOpen={isOpen} />
       <IssueContent>
-        <IssueTitle to="/">{title}</IssueTitle>
+        <FlexRowDiv>
+          <IssueTitle to="/">{title}</IssueTitle>
+          <>
+            {labels.map((label) => (
+              <LabelBadge
+                key={label.label_id}
+                color={label.color}
+                name={label.label_name}
+                margin="0 0 0 10px"
+              />
+            ))}
+          </>
+        </FlexRowDiv>
         <IssueInfo>
           {issueInfo}
         </IssueInfo>
       </IssueContent>
-    </FlexRowDiv>
+    </ItemContainer>
   );
 };
 
@@ -35,6 +56,10 @@ const FlexRowDiv = styled.div`
   display:flex;
   flex-direction: row;
   align-items: center;
+  
+`;
+
+const ItemContainer = styled(FlexRowDiv)`
   height: 50px;
   border-right: 1px solid #e1e4e8;
   border-left: 1px solid #e1e4e8;
