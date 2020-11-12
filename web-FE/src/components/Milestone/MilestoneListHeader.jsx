@@ -12,6 +12,7 @@ const FlexRowDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 95%;
   height: 50px;
   background-color: #ececec;
   border-radius: 10px 10px 0 0;
