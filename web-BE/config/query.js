@@ -13,7 +13,7 @@ module.exports = {
     'SELECT milestone_id,title,date_format(due_date,"%Y-%m-%d") AS due_date,content FROM Milestone;',
   updateMilestone:
     "UPDATE Milestone SET title=?, due_date=?, content=? WHERE milestone_id=?;",
-  deleteMilestone: "DELETE FROM Milestone WHERE milestone_id=?;",
+  deleteMilestone: "DELETE FROM Milestone WHERE issue_id=?;",
   // user
   selectUser:
     "SELECT user_id, username, social FROM User WHERE username=? and social=?",
@@ -80,12 +80,15 @@ module.exports = {
   // issue_label
   insertIssueLabel: "INSERT INTO Issue_Label (issue_id, label_id) VALUES ?",
   deleteIssueLabel: "DELETE FROM Issue_Label WHERE issue_id=? and label_id=?",
+  bulkDeleteIssueLabel: "DELETE FROM Issue_Label WHERE issue_id=?",
   selectIssueLabel:
     "select Label.label_id, Label.name as label_name, Label.description, Label.color from Issue_Label " +
     "join Label on Issue_Label.label_id = Label.label_id WHERE Issue_Label.issue_id = ?",
   // Assignee
   insertAssignee: "INSERT INTO Assignee(issue_id, user_id) VALUES (?, ?)",
+  bulkInsertAssignee: "INSERT INTO Assignee(issue_id, user_id) VALUES ?",
   deleteAssignee: "DELETE FROM Assignee WHERE issue_id=? and user_id=?",
+  deleteAllAssignee: "DELETE FROM Assignee WHERE issue_id=?",
   selectAssignee:
     "SELECT User.user_id, User.username, User.social from Assignee " +
     "JOIN User ON Assignee.user_id = User.user_id WHERE Assignee.issue_id=?",

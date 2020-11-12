@@ -7,7 +7,7 @@ const authController = {
   addUser: async (req, res) => {
     const { username, social } = req.body;
     const insertUserId = await authModel.insert(username, social);
-    res.status(200).json({ insertUserId });
+    res.status(200).json({ insertId: insertUserId });
   },
 
   checkUser: async ({ username, social, url }) => {
