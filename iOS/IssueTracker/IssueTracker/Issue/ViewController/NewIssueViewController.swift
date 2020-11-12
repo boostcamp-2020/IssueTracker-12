@@ -26,7 +26,7 @@ class NewIssueViewController: UIViewController {
     }
     
     @objc func markdownSegmentedControlValueChanged(segment: UISegmentedControl) {
-        let parser = MarkdownParser(font: UIFont.systemFont(ofSize: 18))
+        let parser = MarkdownParser(font: UIFont.systemFont(ofSize: 17))
         
         switch segment.selectedSegmentIndex {
         case 0:

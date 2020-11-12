@@ -13,6 +13,7 @@ class IssueAttributeFloatingViewController: UIViewController {
     @IBOutlet weak var assigneeCollectionView: UICollectionView!
     @IBOutlet weak var milestionTitleLabel: PaddedLabel!
     @IBOutlet weak var closeIssueButton: UIButton!
+    @IBOutlet weak var milestoneProgressView: UIProgressView!
     
     private var issue: Issue?
     
@@ -29,6 +30,7 @@ class IssueAttributeFloatingViewController: UIViewController {
             
             if let milestoneTitle = issue.milestoneTitle {
                 self?.milestionTitleLabel.text = milestoneTitle
+                
             }
             self?.labelsConfigure(labels: issue.labels)
             self?.assigneeCollectionView.reloadData()
@@ -109,6 +111,16 @@ class IssueAttributeFloatingViewController: UIViewController {
             updateID: issue.issueId,
             object: object, type: .isOpen) { _ in
                 NotificationCenter.default.post(name: .issueDidChange, object: nil)
+        }
+    }
+    
+    @IBAction func addCommentButtonDidTouch(_ sender: Any) {
+        guard let issueId = issue?.issueId else { return }
+        if let selectVC = self.storyboard?.instantiateViewController(identifier: CommentViewController.reuseIdentifier) as? CommentViewController {
+            
+            //selectVC.modalPresentationStyle = 
+            selectVC.setIssueId(issueId: issueId)
+            self.present(selectVC, animated: true, completion: nil)
         }
     }
 }

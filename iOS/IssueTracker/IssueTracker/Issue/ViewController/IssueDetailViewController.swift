@@ -70,6 +70,7 @@ class IssueDetailViewController: UIViewController, FloatingPanelControllerDelega
     @objc func reloadIssueData() {
         guard let issueId = issue?.issueId else { return }
         getIssueData(issueId: issueId)
+        initCommentTableView(issueId: issueId)
     }
     
     private func getIssueData(issueId: Int) {
@@ -78,6 +79,7 @@ class IssueDetailViewController: UIViewController, FloatingPanelControllerDelega
                 guard let issue = result?.issue else { return }
                 self.issue = issue
                 self.setIssueData()
+                
             }
         }
     }

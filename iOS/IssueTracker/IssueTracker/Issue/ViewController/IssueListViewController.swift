@@ -68,9 +68,9 @@ class IssueListViewController: UIViewController {
         
         var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
         configuration.trailingSwipeActionsConfigurationProvider = { [unowned self] (indexPath) in
-            
             var isOpen = IssueOpen.closed
-            if self.issues[indexPath.row].isOpen == IssueOpen.closed.rawValue {
+            
+            if dataSource.itemIdentifier(for: indexPath)?.isOpen == IssueOpen.closed.rawValue {
                 isOpen = IssueOpen.open
             }
             let closeAction = UIContextualAction(style: .destructive, title: "\(isOpen.text)") {(_, _, completion) in
@@ -101,6 +101,7 @@ class IssueListViewController: UIViewController {
                 guard let issueArray = result else { return }
                 self?.issues = issueArray.issueArray
                 self?.applySnapshot(issues: self?.issues ?? [])
+                
             }
         }
     }
@@ -161,11 +162,11 @@ class IssueListViewController: UIViewController {
     }
     
     private func closeIssue(isOpen: IssueOpen, indexPath: IndexPath) {
-        
+        guard let issue = dataSource.itemIdentifier(for: indexPath) else { return }
         let object = ["is_open": isOpen.param]
         NetworkManager.shared.patchRequest(
             url: .issue,
-            updateID: self.issues[indexPath.row].issueId,
+            updateID: issue.issueId,
             object: object, type: .isOpen) { _ in
                 NotificationCenter.default.post(name: .issueDidChange, object: nil)
         }
@@ -221,7 +222,7 @@ class IssueListViewController: UIViewController {
 extension IssueListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        guard let issue = dataSource.itemIdentifier(for: indexPath) else { return }
         if isEditMode {
             isSelectAll = false
             if issueListCollectionView.indexPathsForSelectedItems?.count == issueListCollectionView.numberOfItems(inSection: 0) {
@@ -232,7 +233,7 @@ extension IssueListViewController: UICollectionViewDelegate {
         } else {
             if let detailVC = self.storyboard?.instantiateViewController(identifier: IssueDetailViewController.reuseIdentifier) as? IssueDetailViewController {
                 
-                detailVC.sendIssueId(issueId: issues[indexPath.row].issueId)
+                detailVC.sendIssueId(issueId: issue.issueId)
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }
         }
