@@ -5,7 +5,7 @@ const commentController = {
   create: async (req, res, next) => {
     const { issueId } = req.params;
     const {
-      writer,
+      writer_id: writer,
       content,
       write_teme: writeTime,
       is_issue_content: isIssueContent,
@@ -23,7 +23,7 @@ const commentController = {
     try {
       const { issueId } = req.params;
       const commentArr = await commentModel.select(issueId);
-      res.status(200).json({commentArr});
+      res.status(200).json({ commentArr });
     } catch (err) {
       console.error(err);
       next(createError(500));
