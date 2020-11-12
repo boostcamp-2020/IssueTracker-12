@@ -12,6 +12,9 @@ enum URLs: String {
     case label = "http://101.101.217.148:8080/api/label"
     case milestone = "http://101.101.217.148:8080/api/milestone"
     case user = "http://101.101.217.148:8080/api/user"
+    case login = "http://101.101.217.148:8080/api/auth/oauth"
+    case userSave = "http://101.101.217.148:8080/api/auth"
+    case signIn = "http://101.101.217.148:8080/api/auth/token"
 }
 
 enum PatchType: String {

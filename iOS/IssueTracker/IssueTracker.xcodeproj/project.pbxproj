@@ -28,6 +28,7 @@
 		464075412553D3DB0017B131 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464075402553D3DB0017B131 /* FilterTableViewCell.swift */; };
 		464075442553D9010017B131 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461256AC2551318B001051D0 /* URLs.swift */; };
 		466411DE25526F4000BD2904 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466411DD25526F4000BD2904 /* NotificationName.swift */; };
+		4674211B255CD3E600C52A66 /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4674211A255CD3E600C52A66 /* OAuth.swift */; };
 		46C4903D255A8D2400D57E75 /* AssigneeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4903C255A8D2400D57E75 /* AssigneeCollectionViewCell.swift */; };
 		46E61F83255B6C5400877DA8 /* IssueConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9360A2A255A75AB008284BF /* IssueConstants.swift */; };
 		46E61F8C255BB1CB00877DA8 /* IssueAssigneeSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E61F8B255BB1CB00877DA8 /* IssueAssigneeSelectViewController.swift */; };
@@ -96,6 +97,7 @@
 		464075352553BE090017B131 /* IssueFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueFilterViewController.swift; sourceTree = "<group>"; };
 		464075402553D3DB0017B131 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		466411DD25526F4000BD2904 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
+		4674211A255CD3E600C52A66 /* OAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
 		46C4903C255A8D2400D57E75 /* AssigneeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssigneeCollectionViewCell.swift; sourceTree = "<group>"; };
 		46E61F8B255BB1CB00877DA8 /* IssueAssigneeSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAssigneeSelectViewController.swift; sourceTree = "<group>"; };
 		46E61F8F255BB27500877DA8 /* IssueAssigneeSelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueAssigneeSelectTableViewCell.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				461603C02557A033006D974E /* FilterCriteria.swift */,
 				461603C42557A83D006D974E /* Filter.swift */,
 				A98BE926255C089D0037A269 /* ResponseData.swift */,
+				4674211A255CD3E600C52A66 /* OAuth.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				466411DE25526F4000BD2904 /* NotificationName.swift in Sources */,
 				46E668D32548557800A41CC0 /* PaddedLabel.swift in Sources */,
 				A98BE92B255C13A60037A269 /* NewComment.swift in Sources */,
+				4674211B255CD3E600C52A66 /* OAuth.swift in Sources */,
 				46ED2B8B25469876004B6D50 /* SceneDelegate.swift in Sources */,
 				4616CDEB2549977D00421368 /* MilestoneCollectionViewCell.swift in Sources */,
 				A927391525490BBD00F22997 /* IssueDetailViewController.swift in Sources */,
