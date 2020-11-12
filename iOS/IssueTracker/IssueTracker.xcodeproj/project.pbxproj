@@ -37,6 +37,7 @@
 		46E61FA0255BC24500877DA8 /* IssueMilestoneSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E61F9F255BC24500877DA8 /* IssueMilestoneSelectViewController.swift */; };
 		46E668CC25482FF700A41CC0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668CB25482FF700A41CC0 /* UIView+Extension.swift */; };
 		46E668D32548557800A41CC0 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E668D22548557800A41CC0 /* PaddedLabel.swift */; };
+		46E6E2F0255D340B00203D7D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E6E2EF255D340A00203D7D /* Comment.swift */; };
 		46ED2B8925469876004B6D50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2B8825469876004B6D50 /* AppDelegate.swift */; };
 		46ED2B8B25469876004B6D50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2B8A25469876004B6D50 /* SceneDelegate.swift */; };
 		46ED2B8D25469876004B6D50 /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ED2B8C25469876004B6D50 /* IssueListViewController.swift */; };
@@ -105,6 +106,7 @@
 		46E61F9F255BC24500877DA8 /* IssueMilestoneSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueMilestoneSelectViewController.swift; sourceTree = "<group>"; };
 		46E668CB25482FF700A41CC0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		46E668D22548557800A41CC0 /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
+		46E6E2EF255D340A00203D7D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		46ED2B8525469876004B6D50 /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46ED2B8825469876004B6D50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46ED2B8A25469876004B6D50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				4616CDD22549573200421368 /* Issue.swift */,
 				A98BE920255BDC2A0037A269 /* NewIssue.swift */,
 				A98BE92A255C13A60037A269 /* NewComment.swift */,
+				46E6E2EF255D340A00203D7D /* Comment.swift */,
 				4616CDD62549583600421368 /* Milestone.swift */,
 				4616CDD9254958B100421368 /* Label.swift */,
 				A9FE8AB32553D46600A8002F /* User.swift */,
@@ -595,6 +598,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4616CDC72549491400421368 /* UIViewController+Extension.swift in Sources */,
+				46E6E2F0255D340B00203D7D /* Comment.swift in Sources */,
 				46E61F8C255BB1CB00877DA8 /* IssueAssigneeSelectViewController.swift in Sources */,
 				46ED2B8D25469876004B6D50 /* IssueListViewController.swift in Sources */,
 				46369BAD255AEC150056FB2E /* IssueLabelSelectTableViewCell.swift in Sources */,

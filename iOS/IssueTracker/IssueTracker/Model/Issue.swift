@@ -68,3 +68,11 @@ struct IssueArray: Codable, Hashable {
         case issueArray = "issueArr"
     }
 }
+
+struct OneIssue: Codable, Hashable {
+    let issue: Issue
+    
+    enum CodingKeys: String, CodingKey {
+        case issue
+    }
+}

@@ -10,7 +10,7 @@ import FloatingPanel
 
 protocol SendIssueDataDelegate {
     
-    func sendIssueData(issue: Issue)
+    func sendIssueId(issueId: Int)
 }
 
 class IssueDetailViewController: UIViewController, FloatingPanelControllerDelegate {
@@ -23,38 +23,60 @@ class IssueDetailViewController: UIViewController, FloatingPanelControllerDelega
     @IBOutlet weak var commentTableView: UITableView!
     
     private var issue: Issue?
+    private var comments = [Comment]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configure()
     }
     
     private func configure() {
-        
+        commentTableView.delegate = self
+        commentTableView.dataSource = self
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonDidTouch))
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadIssueData), name: .issueDidChange, object: nil)
+    }
+    
+    private func initFloatingPanel(issueId: Int) {
         let attributeFloatingPanel = FloatingPanelController()
         attributeFloatingPanel.delegate = self
         
         guard let attributeVC = storyboard?.instantiateViewController(identifier: IssueAttributeFloatingViewController.reuseIdentifier) as? IssueAttributeFloatingViewController
         else { return }
-        attributeVC.setIssue(issue: issue)
+        attributeVC.getIssueData(issueId: issueId)
         attributeFloatingPanel.set(contentViewController: attributeVC)
         attributeFloatingPanel.addPanel(toParent: self)
-        
-        commentTableView.delegate = self
-        commentTableView.dataSource = self
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonDidTouch))
-        
-        setIssueData()
-        
+    }
+    
+    private func initCommentTableView(issueId: Int) {
+        DispatchQueue.main.async {
+            NetworkManager.shared.getRequest(url: .issue, urlAdd: "/\(issueId)/comment", type: CommentArray.self) { result in
+                print(result)
+                
+            }
+        }
     }
     
     private func setIssueData() {
-        
         if let issue = issue {
             writerLabel.text = issue.writer
             titleLabel.text = issue.title
             issueIDLabel.text = "#\(issue.issueId)"
+        }
+    }
+    
+    @objc func reloadIssueData() {
+        guard let issueId = issue?.issueId else { return }
+        getIssueData(issueId: issueId)
+    }
+    
+    private func getIssueData(issueId: Int) {
+        DispatchQueue.main.async {
+            NetworkManager.shared.getRequest(url: .issue, urlAdd: "/\(issueId)", type: OneIssue.self) { result in
+                guard let issue = result?.issue else { return }
+                self.issue = issue
+                self.setIssueData()
+            }
         }
     }
     
@@ -92,8 +114,9 @@ extension IssueDetailViewController: UITableViewDelegate {
 
 extension IssueDetailViewController: SendIssueDataDelegate {
     
-    func sendIssueData(issue: Issue) {
-        
-        self.issue = issue
+    func sendIssueId(issueId: Int) {
+        getIssueData(issueId: issueId)
+        initFloatingPanel(issueId: issueId)
+        initCommentTableView(issueId: issueId)
     }
 }

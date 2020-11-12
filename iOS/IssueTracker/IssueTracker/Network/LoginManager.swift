@@ -49,6 +49,51 @@ class LoginManager {
         }
     }
     
+    func requestAppleUserExist(identifier: String) {
+        guard let userName = identifier.components(separatedBy: ["."]).first else { return }
+        let object = ["username": userName,
+                      "social": "apple"]
+        let alamo = AF.request(URLs.appleUserCheck.rawValue, method: .get, parameters: object).validate(statusCode: 200..<300)
+        alamo.responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                print(value)
+                guard let dic = value as? NSDictionary,
+                      let isExistUser = dic["isExistUser"] as? Bool else { return }
+                
+                var userInfo = UserInfo(social: "apple", url: nil, userName: userName, userId: nil)
+                if let user = dic["userId"] as? NSDictionary,
+                   let userId = user["user_id"] as? Int {
+                    userInfo.userId = userId
+                }
+                let loginResponse = LoginResponse(isExistUser: isExistUser, userInfo: userInfo)
+                self.requestLogin(user: loginResponse)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func requestLogin(user: LoginResponse) {
+            if user.userInfo.userId == nil || !user.isExistUser {
+                let object = ["username": user.userInfo.userName,
+                              "social": user.userInfo.social]
+                let alamo = AF.request(URLs.userSave.rawValue, method: .post, parameters: object, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300)
+                alamo.responseJSON { response in
+                    switch response.result {
+                    case .success(let value):
+                        guard let dic = value as? NSDictionary else { return }
+                        let userInfo = UserInfo(social: user.userInfo.social, url: user.userInfo.url, userName: user.userInfo.userName, userId: dic["insertId"]! as? Int)
+                        self.requestSignIn(user: userInfo)
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            } else {
+                self.requestSignIn(user: user.userInfo)
+            }
+        }
+    
     func requestSignIn(user: UserInfo) {
         let object = ["username": user.userName,
                       "social": user.social,
