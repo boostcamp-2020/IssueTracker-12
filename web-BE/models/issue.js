@@ -43,17 +43,12 @@ const issueModel = {
       throw createError(500);
     }
   },
-  selectById: async (issueId) => {
-    console.log(issueId, "!!!????");
+  selectById: async (userId, issueId) => {
     try {
-      const issue = await connection.query(sql.selectIssue, [issueId]);
-      console.log(issue, "????");
-      const labelsOfIssue = await Promise.all(
-        issueLabelModel.select(issue.issue_id)
-      );
-      const assigneeOfIssue = await Promise.all(
-        assigneeModel.select(issue.issue_id)
-      );
+      const [[issue]] = await connection.query(sql.selectIssueById, [userId, userId, issueId]);
+      const labelsOfIssue = await issueLabelModel.select(issue.issue_id);
+      const assigneeOfIssue = await assigneeModel.select(issue.issue_id);
+
       const issueWithLabels = {
         ...issue,
         labels: labelsOfIssue,
