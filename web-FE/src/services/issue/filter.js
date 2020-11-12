@@ -6,7 +6,7 @@ const filterByMenu = (issueList, selection) => {
   }
   if (selection === 2) {
     const user = getLoginUserInfo();
-    return issueList.filter((issue) => issue.writer_id === user.user_id);
+    return issueList.filter((issue) => issue.writer_id === user);
   }
   if (selection === 3) {
     return issueList.filter((issue) => issue.is_assigned);
