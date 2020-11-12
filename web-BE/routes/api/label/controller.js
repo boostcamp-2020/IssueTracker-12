@@ -11,8 +11,8 @@ const labelController = {
     res.status(200).json({ labelArray: labelArr });
   },
   update: (req, res) => {
-    const { name: label_name, description, color } = req.body;
-    labelModel.update([name, description, color, +req.params.labelid]);
+    const { label_name, description, color } = req.body;
+    labelModel.update(label_name, description, color, +req.params.labelid);
     res.status(200).json({ message: "update the label successfully" });
   },
   delete: (req, res) => {

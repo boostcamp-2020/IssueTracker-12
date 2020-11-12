@@ -22,9 +22,14 @@ const labelModel = {
       console.error(err);
     }
   },
-  update: async (paramArr) => {
+  update: async (label_name, description, color, labelid) => {
     try {
-      connection.query(sql.updateLabel, paramArr);
+      connection.query(sql.updateLabel, [
+        label_name,
+        description,
+        color,
+        labelid,
+      ]);
     } catch (err) {
       console.error(err);
     }
