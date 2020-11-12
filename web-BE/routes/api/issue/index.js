@@ -10,7 +10,7 @@ router.get("/:issueId", issueController.readById);
 router.patch("/:issueId/title", issueController.updateTitle);
 router.post("/:issueId/milestone/:milestoneId", issueController.addMilestone);
 router.delete("/:issueId/milestone", issueController.deleteMilestone);
-router.put("/:issueId/milestone", issueController.deleteMilestone);
+router.put("/:issueId/milestone", issueController.updateMilestone);
 router.put("/:issueId/label", issueController.updateAllIssueLabel);
 router.post("/:issueId/label/:labelId", issueController.addLabel);
 router.delete("/:issueId/label/:labelId", issueController.deleteLabel);
