@@ -18,7 +18,7 @@ const NewIssueMain = () => {
   const addNewIssue = async (e) => {
     e.preventDefault();
     const newIssueId = await addIssue({
-      title: 'title',
+      title,
       milestoneId: selectedMilestone[0] ? selectedMilestone[0] : null,
       labelArr: selectedLabels,
       assigneeArr: selectedAssignees,
@@ -28,12 +28,17 @@ const NewIssueMain = () => {
     const newIssue = await getIssueById(newIssueId);
 
     dispatch({type: 'ADD', data: newIssue});
+    window.location = '/issue';
   }
 
   return (
     <MainContainer>
       <Img src='https://i.imgur.com/oPR4BiX.jpeg'/>
-      <InputDiv addNewIssue={addNewIssue} />
+      <InputDiv
+        addNewIssue={addNewIssue}
+        setTitle={setTitle}
+        setContent={setContent}
+      />
       <Info>
         <SideBar 
           selectedAssignees={selectedAssignees}
