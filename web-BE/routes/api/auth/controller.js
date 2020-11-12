@@ -49,10 +49,10 @@ const authController = {
       });
 
       const { user_id, login: username, url } = userData;
-      const userInfo = { user_id, username, social: "github", url };
-      console.log(userInfo);
-      const { isExistUser } = await authController.checkUser(userInfo);
-      res.json({ userInfo, isExistUser });
+      const userInfo = { username, social: "github" };
+      const { isExistUser, userId } = await authController.checkUser(userInfo);
+      console.log({ userInfo: {...userInfo, user_id: userId[0].user_id}, isExistUser });
+      res.json({ userInfo: {...userInfo, user_id: userId[0].user_id}, isExistUser });
     } catch (error) {
       next(error);
     }
