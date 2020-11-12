@@ -6,6 +6,7 @@ import Login from '@Components/Login';
 import Label from '@Components/Label';
 import Milestone from '@Components/Milestone';
 import IssueListPage from '@Components/Issue';
+import NewIssue from '@Components/NewIssue';
 
 const App = () => (
   <BrowserRouter>
@@ -14,6 +15,7 @@ const App = () => (
       <Route path='/label' component={Label} />
       <Route path='/milestone' component={Milestone} />
       <Route exact path='/issue' component={IssueListPage} />
+      <Route exact path='/newIssue' component={NewIssue} />
       <Route path='/' component={Home} />
     </Switch>
   </BrowserRouter>
