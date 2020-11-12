@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { MilestoneContext } from '@Stores/MilestoneStore';
 import MilestoneListHeader from './MilestoneListHeader';
 import MilestoneListItem from './MilestoneListItem';
-
 const MilestoneListBoard = () => {
   const { milestoneState } = useContext(MilestoneContext);
 
@@ -21,7 +20,7 @@ const MilestoneListBoard = () => {
 const Board = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 30px 40px 0 40px;
+  margin: 30px 40px 0 30px;
   align-items: stretch;
   width: 100%;
 `;
