@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import LabelBadge from '@Common/LabelBadge';
 import Button from '@Common/Button';
 import RefreshIcon from '@Images/refresh.svg';
 import { DisplayConsumer } from '@Stores/newLabelContext';
+import { LabelContext } from '@Stores/LabelStore';
 import { createLabel } from '@Api/label';
 
 const NewLabelForm = () => {
+  const { dispatch } = useContext(LabelContext);
   const [name, setName] = useState('Label Preview');
   const [description, setDescription] = useState('');
   const [color, setColor] = useState('#6f849e');
@@ -21,7 +23,14 @@ const NewLabelForm = () => {
       alert('Label name과 Color 값은 필수 항목입니다');
       return;
     }
-    createLabel(name, description, color);
+    const labelId = createLabel(name, description, color);
+    dispatch({
+      type: 'ADD',
+      data: {
+        label_id: labelId, label_name: name, description, color,
+      },
+    });
+
     setColor('');
     setDescription('');
     setName('');

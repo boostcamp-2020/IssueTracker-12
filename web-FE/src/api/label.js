@@ -15,7 +15,9 @@ export const createLabel = async (name, description, color) => {
   const url = '/api/label';
   const body = { name, description, color };
   try {
-    await instance.post(url, body);
+    const response = await instance.post(url, body);
+    const insertedLabelId = response.data;
+    return insertedLabelId;
   } catch (error) {
     console.error(error);
   }
