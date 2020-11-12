@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import labelIcon from '@Images/label.svg';
 import milestoneIcon from '@Images/milestone.svg';
+import { MilestoneContext } from '@Stores/MilestoneStore';
+import { LabelContext } from '@Stores/LabelStore';
 import ButtonWithIcon from './ButtonWithIcon';
-import {MilestoneContext} from '@Stores/MilestoneStore';
-import {LabelContext} from '@Stores/LabelStore';
 
 const goTo = (e) => {
   const targetButton = e.target.closest('.tag');
@@ -13,12 +13,12 @@ const goTo = (e) => {
     location.href = '/label';
     return;
   }
-  location.href = '/';
+  location.href = '/milestone';
 };
 
 const App = () => {
-  const {milestoneState} = useContext(MilestoneContext);
-  const {labelState} = useContext(LabelContext);
+  const { milestoneState } = useContext(MilestoneContext);
+  const { labelState } = useContext(LabelContext);
   return (
     <Div onClick={goTo}>
       <LabelButton
@@ -37,7 +37,7 @@ const App = () => {
       />
     </Div>
   );
-}
+};
 
 const common = `
   height: 35px;
