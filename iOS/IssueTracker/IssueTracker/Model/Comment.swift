@@ -14,19 +14,16 @@ struct Comment: Codable, Hashable {
     var userName: String
     var contents: String
     var writeTime: String
-    var isIssueContent: Bool
+    var isIssueContent: Int
     
-    init(commentID: Int, writerID: Int, issueID: Int, userName: String, contents: String, isIssueContent: Bool, date: Date) {
+    init(commentID: Int, writerID: Int, issueID: Int, userName: String, contents: String, writeTime: String, isIssueContent: Int) {
         
         self.commentID = commentID
         self.writerID = writerID
         self.issueID = issueID
         self.userName = userName
         self.contents = contents
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-        self.writeTime = dateFormatter.string(from: date)
+        self.writeTime = writeTime
         self.isIssueContent = isIssueContent
     }
     
@@ -48,5 +45,3 @@ struct CommentArray: Codable, Hashable {
         case commentArray = "commentArr"
     }
 }
-
-

@@ -103,7 +103,7 @@ extension IssueDetailViewController: UITableViewDataSource {
                     return UITableViewCell()
                 }
         
-        cell.setupView()
+        cell.setupView(comment: comments[indexPath.row])
         return cell
     }
 }
