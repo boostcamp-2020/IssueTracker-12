@@ -1478,8 +1478,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fl5-BJ-gAa">
-                                        <rect key="frame" x="88" y="8" width="258" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fl5-BJ-gAa">
+                                        <rect key="frame" x="88" y="16" width="258" height="18.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="258" id="nIY-jy-a2F"/>
                                         </constraints>
@@ -1510,8 +1510,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nFa-6m-TH1">
-                                        <rect key="frame" x="88" y="8" width="258" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nFa-6m-TH1">
+                                        <rect key="frame" x="88" y="16" width="258" height="18.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="258" id="FRI-qH-bZO"/>
                                         </constraints>
@@ -1599,7 +1599,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="H5i-fL-W9c">
             <objects>
-                <tabBarController id="asS-31-yla" sceneMemberID="viewController">
+                <tabBarController restorationIdentifier="UITabBarController" storyboardIdentifier="UITabBarController" id="asS-31-yla" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ghk-3v-dUc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

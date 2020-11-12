@@ -29,16 +29,15 @@ class LoginManager {
             guard let user = result else { return }
             print(user)
             
-            if !user.isExistUser {
+            if user.userInfo.userId == nil || !user.isExistUser {
                 let object = ["username": user.userInfo.userName,
                               "social": user.userInfo.social]
                 let alamo = AF.request(URLs.userSave.rawValue, method: .post, parameters: object, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300)
                 alamo.responseJSON { response in
                     switch response.result {
                     case .success(let value):
-                        print(value)
                         guard let dic = value as? NSDictionary else { return }
-                        let userInfo = UserInfo(social: user.userInfo.social, url: user.userInfo.url, userName: user.userInfo.userName, userId: dic["insertId"]! as! Int)
+                        let userInfo = UserInfo(social: user.userInfo.social, url: user.userInfo.url, userName: user.userInfo.userName, userId: dic["insertId"]! as? Int)
                         self.requestSignIn(user: userInfo)
                     case .failure(let error):
                         print(error)
@@ -61,11 +60,20 @@ class LoginManager {
             switch response.result {
             case .success(let value):
                 guard let dic = value as? NSDictionary else { return }
-                print(dic["token"])
-                // UserDefault에 저장
+                guard let token = dic["token"] as? String else { return }
+                self.saveUserData(user: user, token: token)
             case .failure(let error):
                 print(error)
             }
         }
+    }
+    
+    func saveUserData(user: UserInfo, token: String) {
+        UserDefaults.standard.set(true, forKey: "didLogin")
+        UserDefaults.standard.set(user.userId, forKey: "userID")
+        UserDefaults.standard.set(user.userName, forKey: "userName")
+        UserDefaults.standard.set(token, forKey: "token")
+        
+        NotificationCenter.default.post(name: .loginDidSuccess, object: nil)
     }
 }
