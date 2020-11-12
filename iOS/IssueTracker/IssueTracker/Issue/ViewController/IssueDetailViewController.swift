@@ -51,8 +51,10 @@ class IssueDetailViewController: UIViewController, FloatingPanelControllerDelega
     private func initCommentTableView(issueId: Int) {
         DispatchQueue.main.async {
             NetworkManager.shared.getRequest(url: .issue, urlAdd: "/\(issueId)/comment", type: CommentArray.self) { result in
-                print(result)
-                
+                guard let comments = result?.commentArray else { return }
+                self.comments = comments
+                print(comments)
+                self.commentTableView.reloadData()
             }
         }
     }
@@ -94,7 +96,7 @@ extension IssueDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 3
+        return comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -103,7 +105,7 @@ extension IssueDetailViewController: UITableViewDataSource {
                     return UITableViewCell()
                 }
         
-        cell.setupView()
+        cell.setupView(comment: comments[indexPath.row])
         return cell
     }
 }
