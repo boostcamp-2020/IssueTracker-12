@@ -30,3 +30,12 @@ export const updateLabel = async (id, name, description, color) => {
     console.error(error);
   }
 };
+
+export const deleteLabel = async (labelId) => {
+  const url = `/api/label/${labelId}`;
+  try {
+    await instance.delete(url);
+  } catch (error) {
+    console.error(error);
+  }
+};
