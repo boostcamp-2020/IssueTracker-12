@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const MilestoneListHeader = () => (
-  <FlexRowDiv>
-    <P>2 Open</P>
-    <P>0 Closed</P>
-  </FlexRowDiv>
-);
+const MilestoneListHeader = (props) => {
+  const { open, close } = props;
+  return (
+    <FlexRowDiv>
+      <P>{open} Open</P>
+      <P>{close} Closed</P>
+    </FlexRowDiv>
+  );
+};
 
 const FlexRowDiv = styled.div`
   display: flex;
