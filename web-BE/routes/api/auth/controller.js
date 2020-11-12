@@ -16,7 +16,7 @@ const authController = {
     return true;
   },
 
-  getUserInfo: async (req, res) => {
+  getUserInfo: async (req, res, next) => {
     const { code, client_id, client_secret } = req.query;
     const getTokenUrl = `https://github.com/login/oauth/access_token`;
     const getUserDataUrl = "https://api.github.com/user";
