@@ -24,17 +24,19 @@ const AddLabelSideBar = () => {
       </FlexColumn>
       <Item>
         {
-          labels.map((labelId) => {
-            const label = getLabelObjectById(labelId);
-            return (
-              <LabelBadge
-                key={labelId}
-                name={label.label_name}
-                color={label.color}
-                margin="0 5px 5px 0"
-              />
-            );
-          })
+          labels.length !== 0
+            ? labels.map((labelId) => {
+              const label = getLabelObjectById(labelId);
+              return (
+                <LabelBadge
+                  key={labelId}
+                  name={label.label_name}
+                  color={label.color}
+                  margin="0 5px 5px 0"
+                />
+              );
+            })
+            : ('No label')
         }
       </Item>
     </Div>

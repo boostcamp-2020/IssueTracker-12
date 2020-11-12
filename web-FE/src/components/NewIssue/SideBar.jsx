@@ -6,12 +6,18 @@ import AddMilestoneSideBar from './AddMilestoneSideBar';
 
 const SideBar = () => {
   return (
-    <>
+    <Div>
       <AddAssigneeSideBar />
       <AddLabelSideBar />
       <AddMilestoneSideBar />
-    </>
+    </Div>
   )
 };
+
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export default SideBar;

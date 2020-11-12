@@ -9,8 +9,10 @@ const NewIssueMain = () => (
       <Img />
     </ImgDiv>
     <InputDiv />
-    <Info />
-    <SideBar />
+    <Info>
+      <SideBar />
+
+    </Info>
   </MainContainer>
 );
 
@@ -34,8 +36,10 @@ const Img = styled.img`
 `;
 
 const Info = styled.div`
+  margin:auto;
   width: 30%;
   height: 400px;
   border: 1px solid #181818;
 `;
+
 export default NewIssueMain;

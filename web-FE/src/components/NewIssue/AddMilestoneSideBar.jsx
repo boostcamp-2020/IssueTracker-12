@@ -7,7 +7,6 @@ import MilestoneSelector from './MilestoneSelector';
 const AddMilestoneSideBar = () => {
   const [selected, setSelected] = useState([]);
   const { milestoneState } = useContext(MilestoneContext);
-  console.log(milestoneState);
   const getMilestoneObjectById = (milestoneId) => milestoneState.find((milestone) => milestone.milestone_id === milestoneId);
   return (
     <Div>
@@ -22,7 +21,13 @@ const AddMilestoneSideBar = () => {
           height="16px"
         />
       </FlexColumn>
-      <Item>{getMilestoneObjectById(selected[0])?.title}</Item>
+      <Item>
+        {
+          selected.length !== 0
+            ? getMilestoneObjectById(selected[0])?.title
+            : 'No milestone'
+        }
+      </Item>
     </Div>
   )
 }

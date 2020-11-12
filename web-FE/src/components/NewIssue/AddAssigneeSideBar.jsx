@@ -22,7 +22,9 @@ const AddAssigneeSideBar = () => {
         />
       </FlexColumn>
       {
-        assginess.map((assginee) => (<Item key={assginee}>{getUsername(assginee)}</Item>))
+        assginess.length !== 0
+          ? assginess.map((assginee) => (<Item key={assginee}>{getUsername(assginee)}</Item>))
+          : (<Item>No one</Item>)
       }
     </Div>
   )
