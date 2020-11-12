@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import LabelBadge from '@Common/LabelBadge';
 import Button from '@Common/Button';
 import RefreshIcon from '@Images/refresh.svg';
-import { DisplayConsumer } from '@Stores/newLabelContext';
-import { createLabel } from '@Api/label';
+import { EditDisplayConsumer } from '@Stores/EditLabelContext';
+import { LabelContext } from '@Stores/LabelStore';
+import { updateLabel } from '@Api/label';
 
-const NewLabelForm = () => {
+const LabelInputForm = () => {
+  const { dispatch } = useContext(LabelContext);
   const [name, setName] = useState('Label Preview');
   const [description, setDescription] = useState('');
   const [color, setColor] = useState('#6f849e');
@@ -16,15 +18,22 @@ const NewLabelForm = () => {
     return result;
   };
 
-  const onClickCreateHandler = () => {
+  const onClickEditSaveHandler = (e) => {
     if (name === '' || color === '') {
       alert('Label name과 Color 값은 필수 항목입니다');
       return;
     }
-    createLabel(name, description, color);
+    const labelId = +e.target.closest('.label-div').id;
+    updateLabel(labelId, name, description, color);
     setColor('');
     setDescription('');
     setName('');
+    dispatch({
+      type: 'UPDATE',
+      data: {
+        label_id: labelId, label_name: name, description, color,
+      },
+    });
   };
 
   const onClickColorHandler = () => {
@@ -47,7 +56,7 @@ const NewLabelForm = () => {
   };
 
   return (
-    <DisplayConsumer>
+    <EditDisplayConsumer>
       {
           ({ state, actions }) => (
             <MainContainer className="main-container" display={state.display}>
@@ -80,21 +89,22 @@ const NewLabelForm = () => {
                   >
                     Cancel
                   </CancelButton>
-                  <CreateButton onClick={() => {
+                  <CreateButton onClick={(e) => {
                     actions.setDisplay('none');
-                    onClickCreateHandler();
+                    onClickEditSaveHandler(e);
                   }}
                   >
-                    Create label
+                    Save Change
                   </CreateButton>
                 </Option>
               </OptionContainer>
             </MainContainer>
           )
         }
-    </DisplayConsumer>
+    </EditDisplayConsumer>
   );
 };
+
 const BadgeContainer = styled.div`
   margin: 10px 0 0 15px;
 `;
@@ -103,13 +113,10 @@ const MainContainer = styled.div`
   display: ${(props) => props.display};
   flex-direction: column;
   align-items: center;
-  border: 1px solid #120342 ; 
-  margin: 30px 40px 0 40px;
   align-items: flex-start;
-  width: 100%;
-  background-color: #ececec;
-  border-radius: 5px;
-  border: 1px solid #e1e4e8;
+  width: 98%;
+  border: 0;
+  border-top: 1px solid #e1e4e8;
 `;
 
 const OptionContainer = styled.div`
@@ -170,4 +177,4 @@ const CreateButton = styled(Button)`
   padding: 0 10px;
 `;
 
-export default NewLabelForm;
+export default LabelInputForm;

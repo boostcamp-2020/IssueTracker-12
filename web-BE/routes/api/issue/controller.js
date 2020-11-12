@@ -7,9 +7,9 @@ const issueController = {
     const {
       writer,
       title,
-      milestone,
+      milestone_id: milestone,
       write_time: writeTime,
-      label: labelArr,
+      labels: labelArr,
     } = req.body;
     try {
       const insertId = await issueModel.insert({
@@ -22,9 +22,9 @@ const issueController = {
   },
   read: async (req, res, next) => {
     try {
-      const {user_id: userId} = req.user;
+      const { user_id: userId } = req.user;
       const issueArr = await issueModel.select(userId);
-      res.status(200).json({issueArr});
+      res.status(200).json({ issueArr });
     } catch (error) {
       next(error);
     }

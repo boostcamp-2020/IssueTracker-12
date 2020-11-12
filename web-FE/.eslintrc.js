@@ -16,5 +16,6 @@ module.exports = {
     'consistent-return': 0,
     'react/jsx-fragments': 0,
     'no-restricted-globals': 0,
+    'no-alert': 0,
   },
 };
