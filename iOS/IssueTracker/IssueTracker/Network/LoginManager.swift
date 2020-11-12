@@ -93,6 +93,7 @@ class LoginManager {
         let alamo = AF.request(URLs.signIn.rawValue, method: .post, parameters: object, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300)
         
         alamo.responseJSON { response in
+            print(response)
             switch response.result {
             case .success(let value):
                 guard let dic = value as? NSDictionary else { return }
