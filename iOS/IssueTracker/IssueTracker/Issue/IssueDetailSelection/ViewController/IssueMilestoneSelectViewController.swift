@@ -66,7 +66,16 @@ class IssueMilestoneSelectViewController: UIViewController {
     }
     
     @IBAction func doneButtonDidTouch(_ sender: Any) {
-        //추후 구현
+        guard let issue = issue else { return }
+        var selectedMilestoneId: Int?
+        if let indexPath =  issueMilestoneSelectTableView.indexPathForSelectedRow {
+            selectedMilestoneId = milestones[indexPath.row].milestoneId
+        }
+        let object = ["milestone_id": selectedMilestoneId]
+        
+        NetworkManager.shared.patchRequest2(url: .issue, updateID: issue.issueId, object: object, type: .milestone) { result in
+            print(result)
+        }
         dismiss(animated: true, completion: nil)
     }
     
