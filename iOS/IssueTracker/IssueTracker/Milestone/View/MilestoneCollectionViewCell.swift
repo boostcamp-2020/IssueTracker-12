@@ -25,12 +25,15 @@ class MilestoneCollectionViewCell: UICollectionViewListCell {
     }
     
     func initMilestoneCell(milestone: Milestone) {
-        
         DispatchQueue.main.async { [weak self] in
             self?.titleLabel.text = milestone.title
             let dueDate = milestone.dueDate.split(separator: "-")
             self?.dueDateLabel.text = "\(dueDate[0])년 \(dueDate[1])월 \(dueDate[2])일까지"
             self?.contentLabel.text = milestone.content
+            guard let info = milestone.issueInfo else { return }
+            self?.openLabel.text = "\(info.openedIssue) open"
+            self?.closedLabel.text = "\(info.closedIssue) closed"
+            self?.rateLabel.text = "\(info.completed)"
         }
     }
 }
