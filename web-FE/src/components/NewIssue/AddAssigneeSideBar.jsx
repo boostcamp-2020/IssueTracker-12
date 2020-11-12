@@ -4,16 +4,18 @@ import { ReactComponent as GearIcon } from '@Images/gear.svg';
 import { UserContext } from '@Stores/UserStore';
 import AssigneeSelector from './AssigneeSelector';
 
-const AddAssigneeSideBar = () => {
-  const [assginess, setAssignees] = useState([]);
+const AddAssigneeSideBar = ({
+  selectedAssignees,
+  setSelectedAssignees
+}) => {
   const { userState } = useContext(UserContext);
   const getUsername = (userId) => userState.find((user) => user.user_id === userId).username;
   return (
     <Div>
       <FlexColumn>
         <AssigneeSelector
-          selected={assginess}
-          setSelected={setAssignees}
+          selected={selectedAssignees}
+          setSelected={setSelectedAssignees}
           userState={userState}
         />
         <GearIcon
@@ -22,8 +24,8 @@ const AddAssigneeSideBar = () => {
         />
       </FlexColumn>
       {
-        assginess.length !== 0
-          ? assginess.map((assginee) => (<Item key={assginee}>{getUsername(assginee)}</Item>))
+        selectedAssignees.length !== 0
+          ? selectedAssignees.map((assginee) => (<Item key={assginee}>{getUsername(assginee)}</Item>))
           : (<Item>No one</Item>)
       }
     </Div>

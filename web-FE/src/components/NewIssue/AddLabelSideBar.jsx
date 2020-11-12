@@ -5,16 +5,18 @@ import { LabelContext } from '@Stores/LabelStore';
 import LabelSelector from './LabelSelector';
 import LabelBadge from '@Components/commons/LabelBadge';
 
-const AddLabelSideBar = () => {
-  const [labels, setLabels] = useState([]);
+const AddLabelSideBar = ({
+  selectedLabels,
+  setSelectedLabels
+}) => {
   const { labelState } = useContext(LabelContext);
   const getLabelObjectById = (labelId) => labelState.find((label) => label.label_id === labelId);
   return (
     <Div>
       <FlexColumn>
         <LabelSelector
-          selected={labels}
-          setSelected={setLabels}
+          selected={selectedLabels}
+          setSelected={setSelectedLabels}
           labelState={labelState}
         />
         <GearIcon
@@ -24,8 +26,8 @@ const AddLabelSideBar = () => {
       </FlexColumn>
       <Item>
         {
-          labels.length !== 0
-            ? labels.map((labelId) => {
+          selectedLabels.length !== 0
+            ? selectedLabels.map((labelId) => {
               const label = getLabelObjectById(labelId);
               return (
                 <LabelBadge

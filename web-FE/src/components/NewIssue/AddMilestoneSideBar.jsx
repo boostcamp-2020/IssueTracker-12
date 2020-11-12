@@ -4,16 +4,18 @@ import { ReactComponent as GearIcon } from '@Images/gear.svg';
 import { MilestoneContext } from '@Stores/MilestoneStore';
 import MilestoneSelector from './MilestoneSelector';
 
-const AddMilestoneSideBar = () => {
-  const [selected, setSelected] = useState([]);
+const AddMilestoneSideBar = ({
+  selectedMilestone,
+  setSelectedMilestone,
+}) => {
   const { milestoneState } = useContext(MilestoneContext);
   const getMilestoneObjectById = (milestoneId) => milestoneState.find((milestone) => milestone.milestone_id === milestoneId);
   return (
     <Div>
       <FlexColumn>
         <MilestoneSelector
-          selected={selected}
-          setSelected={setSelected}
+          selected={selectedMilestone}
+          setSelected={setSelectedMilestone}
           milestoneState={milestoneState}
         />
         <GearIcon
@@ -23,8 +25,8 @@ const AddMilestoneSideBar = () => {
       </FlexColumn>
       <Item>
         {
-          selected.length !== 0
-            ? getMilestoneObjectById(selected[0])?.title
+          selectedMilestone.length !== 0
+            ? getMilestoneObjectById(selectedMilestone[0])?.title
             : 'No milestone'
         }
       </Item>
