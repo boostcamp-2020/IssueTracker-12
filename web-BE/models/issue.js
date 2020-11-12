@@ -11,7 +11,7 @@ const issueModel = {
     try {
       const [res] = await connection.query(sql.insertIssue, issueTableData);
       const { insertId: issueId } = res;
-      if (labelArr.length) await issueLabelModel.insert(issueId, labelArr);
+      if (labelArr?.length) await issueLabelModel.insert(issueId, labelArr);
       await connection.commit();
       return issueId;
     } catch (err) {
