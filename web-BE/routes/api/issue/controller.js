@@ -58,7 +58,7 @@ const issueController = {
     const { issueId, milestoneId } = req.params;
     try {
       await issueModel.insertMilestone(issueId, milestoneId);
-      res.status(200).json({ message: "sucess" });
+      res.status(200).json({ message: "success" });
     } catch (error) {
       next(error);
     }
@@ -67,6 +67,16 @@ const issueController = {
     const { issueId } = req.params;
     try {
       await issueModel.deleteMilestone(issueId);
+      res.status(200).json({ message: "success" });
+    } catch (error) {
+      next(error);
+    }
+  },
+  updateMilestone: async (req, res, next) => {
+    const { issueId } = req.params;
+    const { milestone_id: milestoneId } = req.body;
+    try {
+      await issueModel.updateMilestone(issueId, milestoneId);
       res.status(200).json({ message: "sucess" });
     } catch (error) {
       next(error);
@@ -86,6 +96,16 @@ const issueController = {
     try {
       await issueLabelModel.delete(issueId, labelId);
       res.status(200).json({ message: "sucess" });
+    } catch (error) {
+      next(error);
+    }
+  },
+  updateAllIssueLabel: async (req, res, next) => {
+    const { issueId } = req.params;
+    const { labelArr } = req.body;
+    try {
+      await issueLabelModel.update(issueId, labelArr);
+      res.status(200).json({ message: "success" });
     } catch (error) {
       next(error);
     }
@@ -118,11 +138,21 @@ const issueController = {
       next(error);
     }
   },
+  updateAllAssignee: async (req, res, next) => {
+    const { issueId } = req.params;
+    const { assigneeArr } = req.body;
+    try {
+      await assigneeModel.update(issueId, assigneeArr);
+      res.status(200).json({ message: "success" });
+    } catch (error) {
+      next(error);
+    }
+  },
   readAssignee: async (req, res, next) => {
     const { issueId } = req.params;
     try {
       const assignee = await assigneeModel.select(issueId);
-      res.status(200).json({ assgineeArr: assignee });
+      res.status(200).json({ assigneeArr: assignee });
     } catch (error) {
       next(error);
     }
