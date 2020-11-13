@@ -6,22 +6,28 @@
 //
 
 import UIKit
-import SwipeCellKit
 
-class LabelCollectionViewCell: SwipeCollectionViewCell {
+class LabelCollectionViewCell: UICollectionViewListCell {
     
     @IBOutlet weak var nameLabel: PaddedLabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.translatesAutoresizingMaskIntoConstraints = false
+    override func updateConfiguration(using state: UICellConfigurationState) {
+        var newBackgroundConfiguration = UIBackgroundConfiguration.listPlainCell()
+        newBackgroundConfiguration.backgroundColor = .systemBackground
+        backgroundConfiguration = newBackgroundConfiguration
+        layoutIfNeeded()
     }
     
     func initLabelCell(label: Label) {
+        
         DispatchQueue.main.async { [weak self] in
+            
+            let backgroundColor = UIColor(hex: label.color)
             self?.nameLabel.text = label.labelName
-            self?.nameLabel.backgroundColor = UIColor(hex: label.color)
+            self?.nameLabel.backgroundColor = backgroundColor
+            self?.nameLabel.textColor = backgroundColor?.textColor
+            
             self?.descriptionLabel.text = label.description
         }
     }
