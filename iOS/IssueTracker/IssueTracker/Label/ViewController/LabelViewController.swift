@@ -6,13 +6,14 @@
 //
 
 import UIKit
-import SwipeCellKit
 
 class LabelViewController: UIViewController {
     
     @IBOutlet weak var labelCollectionView: UICollectionView!
     
+    typealias LabelDataSource = UICollectionViewDiffableDataSource<Section, Label>
     private var labels = [Label]()
+    private lazy var dataSource = createDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,77 +26,88 @@ class LabelViewController: UIViewController {
     }
     
     private func configure() {
+        labelCollectionView.collectionViewLayout = createCollectionViewLayout()
         labelCollectionView.delegate = self
-        labelCollectionView.dataSource = self
         NotificationCenter.default.addObserver(self, selector: #selector(reloadLabels), name: .labelDidChange, object: nil)
     }
     
+    private func createDataSource() -> LabelDataSource {
+        let dataSource = LabelDataSource(
+            collectionView: labelCollectionView,
+            cellProvider: { (collectionView, indexPath, label) -> UICollectionViewCell? in
+                
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LabelCollectionViewCell.reuseIdentifier, for: indexPath)
+                    as? LabelCollectionViewCell else { return UICollectionViewCell() }
+            cell.initLabelCell(label: label)
+            
+            return cell
+        })
+        return dataSource
+    }
+    
+    private func createCollectionViewLayout() -> UICollectionViewLayout {
+        
+        var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
+        configuration.trailingSwipeActionsConfigurationProvider = { [unowned self] (indexPath) in
+            
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {(_, _, completion) in
+                NetworkManager.shared.deleteRequest(
+                    url: .label,
+                    deleteID: self.labels[indexPath.row].labelId) { _ in
+                    
+                    NotificationCenter.default.post(name: .labelDidChange, object: nil)
+                }
+                completion(true)
+            }
+            deleteAction.image = UIImage(named: "delete")?.withTintColor(UIColor.white)
+            
+            return UISwipeActionsConfiguration(actions: [deleteAction])
+        }
+        
+        return UICollectionViewCompositionalLayout.list(using: configuration)
+    }
+    
     @objc func reloadLabels() {
+        
         DispatchQueue.main.async {
             NetworkManager.shared.getRequest(url: .label, type: LabelArray.self) { result in
                 guard let labelArray = result else { return }
                 self.labels = labelArray.labelArray
-                self.labelCollectionView.reloadData()
+                var snapshot = NSDiffableDataSourceSnapshot<Section, Label>()
+                snapshot.appendSections([.main])
+                snapshot.appendItems(self.labels)
+                self.dataSource.apply(snapshot)
             }
         }
     }
     
-    @IBAction func addButtonDidTouch(_ sender: Any) {
+    @IBAction func addButtonDidTouch(_ sender: UIButton) {
+        
         if let editVC = self.storyboard?.instantiateViewController(identifier: LabelEditViewController.reuseIdentifier) as? LabelEditViewController {
+            
             editVC.modalPresentationStyle = .overFullScreen
             editVC.modalTransitionStyle = .crossDissolve
             editVC.initEditView(isNew: true, label: nil)
             self.present(editVC, animated: true, completion: nil)
         }
     }
+    
+    enum Section: Hashable {
+        case main
+    }
 }
 
-extension LabelViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return labels.count
-    }
+extension LabelViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let editVC = self.storyboard?.instantiateViewController(identifier: LabelEditViewController.reuseIdentifier) as? LabelEditViewController {
+        
+        if let editVC = self.storyboard?.instantiateViewController(identifier: LabelEditViewController.reuseIdentifier)
+            as? LabelEditViewController {
+            
             editVC.modalPresentationStyle = .overFullScreen
             editVC.modalTransitionStyle = .crossDissolve
             self.present(editVC, animated: true, completion: nil)
             editVC.initEditView(isNew: false, label: labels[indexPath.row])
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = labelCollectionView.dequeueReusableCell(withReuseIdentifier: LabelCollectionViewCell.reuseIdentifier, for: indexPath) as? LabelCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        cell.delegate = self
-        cell.initLabelCell(label: labels[indexPath.row])
-        
-        return cell
-    }
-}
-
-extension LabelViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = self.view.bounds.width - (5 * 2)
-        let height = CGFloat(100)
-        
-        return CGSize(width: width, height: height)
-    }
-}
-
-extension LabelViewController: SwipeCollectionViewCellDelegate {
-    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-        
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { (_, indexPath) in
-            NetworkManager.shared.deleteRequest(url: .label, deleteID: self.labels[indexPath.row].labelId) { nsDictionary in
-                print(nsDictionary)
-                NotificationCenter.default.post(name: .labelDidChange, object: nil)
-            }
-        }
-        
-        deleteAction.image = UIImage(named: "delete")?.withTintColor(UIColor.white)
-        return [deleteAction]
     }
 }

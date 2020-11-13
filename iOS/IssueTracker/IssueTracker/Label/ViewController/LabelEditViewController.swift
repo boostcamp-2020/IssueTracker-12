@@ -20,7 +20,31 @@ class LabelEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configure()
+    }
+    
+    private func configure() {
         colorTextField.addTarget(self, action: #selector(setColorFromTextField), for: .editingChanged)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height / 2
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func initEditView(isNew: Bool, label: Label?) {
@@ -57,16 +81,17 @@ class LabelEditViewController: UIViewController {
         }
         DispatchQueue.main.async { [weak self] in
             self?.labelPreviewLabel.backgroundColor = labelColor
+            self?.labelPreviewLabel.textColor = labelColor.textColor
             self?.randomColorButton.backgroundColor = labelColor
             self?.colorTextField.text = labelColor.toHexString()
         }
     }
     
-    @IBAction func resetButtonDidTouch(_ sender: Any) {
+    @IBAction func resetButtonDidTouch(_ sender: UIButton) {
         initEditView(isNew: isNew, label: self.label)
     }
     
-    @IBAction func randomColorButtonDidTouch(_ sender: Any) {
+    @IBAction func randomColorButtonDidTouch(_ sender: UIButton) {
         setLabelColor(color: nil)
     }
     
@@ -89,22 +114,23 @@ class LabelEditViewController: UIViewController {
     }
     
     private func newLabelSave(label: Label) {
-        //post
-        NetworkManager.shared.postRequest(url: .label, object: label, type: Label.self) { nsDictionary in
-            print(nsDictionary)
+        
+        guard let labelURL = URL(string: URLs.label.rawValue) else { return }
+        NetworkManager.shared.postRequest(url: labelURL, object: label, type: Label.self) { _ in
+
             NotificationCenter.default.post(name: .labelDidChange, object: nil)
         }
     }
     
     private func editLabelSave(label: Label) {
-        //put
-        NetworkManager.shared.putRequest(url: .label, updateID: label.labelId, object: label, type: Label.self) { nsDictionary in
-            print(nsDictionary)
+
+        NetworkManager.shared.putRequest(url: .label, updateID: label.labelId, object: label, type: Label.self) { _ in
+            
             NotificationCenter.default.post(name: .labelDidChange, object: nil)
         }
     }
     
-    @IBAction func closeButtonDidTouch(_ sender: Any) {
+    @IBAction func closeButtonDidTouch(_ sender: UIButton) {
         dismiss(animated: true)
     }
 }

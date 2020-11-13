@@ -19,8 +19,31 @@ class MilestoneEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configure()
+    }
+    
+    private func configure() {
         dueDateTextField.addTarget(self, action: #selector(dateValidation), for: .editingChanged)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height / 2
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func initEditView(isNew: Bool, milestone: Milestone?) {
@@ -54,17 +77,19 @@ class MilestoneEditViewController: UIViewController {
         }
     }
     
-    @IBAction func resetButtonDidTouch(_ sender: Any) {
+    @IBAction func resetButtonDidTouch(_ sender: UIButton) {
         initEditView(isNew: isNew, milestone: self.milestone)
     }
     
-    @IBAction func saveButtonDidTouch(_ sender: Any) {
+    @IBAction func saveButtonDidTouch(_ sender: UIButton) {
         guard let title = titleTextField.text,
               let dueDate = dueDateTextField.text,
               let content = contentTextField.text else { return }
         
         if !dueDate.isDate() {
-            print("날짜가 올바르지 않습니다.") //toast같은걸 써서 표시?
+            // TO-DO
+            // - toast같은걸 써서 표시?
+            print("날짜가 올바르지 않습니다.")
             return
         }
         
@@ -82,8 +107,10 @@ class MilestoneEditViewController: UIViewController {
     }
     
     private func newMilestoneSave(milestone: Milestone) {
-        NetworkManager.shared.postRequest(url: .milestone, object: milestone, type: Milestone.self) { nsDictionary in
-            print(nsDictionary)
+        
+        guard let milestoneURL = URL(string: URLs.milestone.rawValue) else { return }
+        NetworkManager.shared.postRequest(url: milestoneURL, object: milestone, type: Milestone.self) { _ in
+
             NotificationCenter.default.post(name: .milestoneDidChange, object: nil)
         }
     }
@@ -95,7 +122,7 @@ class MilestoneEditViewController: UIViewController {
         }
     }
     
-    @IBAction func closeButtonDidTouch(_ sender: Any) {
+    @IBAction func closeButtonDidTouch(_ sender: UIButton) {
         dismiss(animated: true)
     }
 }
