@@ -13,4 +13,3 @@ xib를 재활용 하고 싶었으나 constraint가 잘 안되서 그냥 storyboa
 
 ### paddedLabel 구현
 ![스크린샷 2020-10-27 오후 10 37 45](https://user-images.githubusercontent.com/33716159/97309240-1b341280-18a5-11eb-87df-dfa9f125e8da.png)
-
