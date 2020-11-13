@@ -1,20 +1,50 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import Dropdown from '../commons/Dropdown';
+import ActionDropdown from '@Components/Issue/ActionDropdown';
+import { IssueAssigneeFilter, IssueAuthorFilter, IssueLabelFilter, IssueMilestoneFilter } from './Filters';
 
-const IssueListBoard = () => (
-  <FlexRowDiv>
-    <Checkbox>
-      <input type="checkbox" name="check-all" />
-    </Checkbox>
-    <FilterContainer>
-      <IssueFilter className="issue-filter" />
-      <IssueFilter className="issue-filter" />
-      <IssueFilter className="issue-filter" />
-      <IssueFilter className="issue-filter" />
-    </FilterContainer>
-  </FlexRowDiv>
-);
+const IssueListBoard = ({ selected, action }) => {
+  const selectedNum = Object.keys(selected).length;
+  return (
+    <FlexRowDiv>
+      <Checkbox>
+        <input type="checkbox" name="check-all" />
+      </Checkbox>
+      {
+        selectedNum ?
+          (
+            <>
+              <SelectedIndicator>
+                {selectedNum}
+                {' '}
+                selected
+              </SelectedIndicator>
+              <FilterContainer>
+                <ActionDropdown
+                  className="action-dropdown"
+                  action={action}
+                  selected={selected}
+                />
+              </FilterContainer>
+            </>
+          )
+          : (
+            <FilterContainer>
+              <IssueAuthorFilter />
+              <IssueLabelFilter />
+              <IssueMilestoneFilter />
+              <IssueAssigneeFilter />
+            </FilterContainer>
+          )
+      }
+    </FlexRowDiv>
+  );
+}
+
+const SelectedIndicator = styled.span`
+    color: grey;
+    margin-left: 20px;
+`;
 
 const FlexRowDiv = styled.div`
   display:flex;
@@ -35,10 +65,6 @@ const FilterContainer = styled.div`
 const Checkbox = styled.label`
   display: block;
   padding: 8px 0 8px 16px;
-`;
-
-const IssueFilter = styled(Dropdown)`
-  margin-right: 30px;
 `;
 
 export default IssueListBoard;

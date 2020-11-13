@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const Button = styled.a`
   display: inline-block;
-  color: ${props => props.bacgroundColor || '#fff'};
-  background-color: ${props => props.bacgroundColor || '#2ea44f'};
+  color: ${(props) => props.color || '#fff'};
+  background-color: ${(props) => props.backgroundColor || '#2ea44f'};
   padding: 5px 16px;
   font-size: 14px;
   font-weight: 800;

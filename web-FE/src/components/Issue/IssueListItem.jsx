@@ -2,24 +2,64 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import OpenCloseIndicator from './OpenCloseIndicator';
+import LabelBadge from '@Components/commons/LabelBadge';
 
-const IssueListItem = () => (
-  <FlexRowDiv>
-    <Checkbox>
-      <input type="checkbox" name="check-all"/>
-    </Checkbox>
-    <OpenCloseIndicator />
-    <IssueContent>
-      <IssueTitle to="/">Issue title</IssueTitle>
-      <IssueInfo>#93 opened 1 hour ago by aaa</IssueInfo>
-    </IssueContent>
-  </FlexRowDiv>
-);
+const IssueListItem = (props) => {
+  const { issue, selected, setSelected } = props;
+
+  const {
+    issue_id: issueId,
+    title,
+    write_time: writeTime,
+    is_open: isOpen,
+    writer,
+    labels,
+  } = issue;
+  const issueInfo = `#${issueId} opened at ${writeTime} by ${writer}`;
+  const onCheckBoxChange = (e) => {
+    if (selected[issueId]) {
+      const { [issueId]: id, ...rest } = selected;
+      setSelected(rest);
+      return;
+    }
+    setSelected({ ...selected, [issueId]: issueId });
+  };
+  return (
+    <ItemContainer>
+      <Checkbox>
+        <input type="checkbox" name="check-all" onChange={onCheckBoxChange}/>
+      </Checkbox>
+      <OpenCloseIndicator isOpen={isOpen} />
+      <IssueContent>
+        <FlexRowDiv>
+          <IssueTitle to="/">{title}</IssueTitle>
+          <>
+            {labels.map((label) => (
+              <LabelBadge
+                key={label.label_id}
+                color={label.color}
+                name={label.label_name}
+                margin="0 0 0 10px"
+              />
+            ))}
+          </>
+        </FlexRowDiv>
+        <IssueInfo>
+          {issueInfo}
+        </IssueInfo>
+      </IssueContent>
+    </ItemContainer>
+  );
+};
 
 const FlexRowDiv = styled.div`
   display:flex;
   flex-direction: row;
   align-items: center;
+  
+`;
+
+const ItemContainer = styled(FlexRowDiv)`
   height: 50px;
   border-right: 1px solid #e1e4e8;
   border-left: 1px solid #e1e4e8;

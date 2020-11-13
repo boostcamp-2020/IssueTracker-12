@@ -1,19 +1,23 @@
-const issueModel = require('../../../models/issue');
-const issueLabelModel = require('../../../models/issue_label');
-const assigneeModel = require('../../../models/assignee');
+const issueModel = require("../../../models/issue");
+const issueLabelModel = require("../../../models/issue_label");
+const assigneeModel = require("../../../models/assignee");
 
 const issueController = {
   create: async (req, res, next) => {
     const {
       writer,
       title,
-      milestone,
+      milestone_id: milestone,
       write_time: writeTime,
-      label: labelArr,
+      labels: labelArr,
     } = req.body;
     try {
       const insertId = await issueModel.insert({
-        writer, title, milestone, writeTime, labelArr,
+        writer,
+        title,
+        milestone,
+        writeTime,
+        labelArr,
       });
       res.status(200).json({ insertId });
     } catch (error) {
@@ -22,9 +26,20 @@ const issueController = {
   },
   read: async (req, res, next) => {
     try {
-      const {user_id: userId} = req.user;
+      const { user_id: userId } = req.user;
       const issueArr = await issueModel.select(userId);
-      res.status(200).json({issueArr});
+      res.status(200).json({ issueArr });
+    } catch (error) {
+      next(error);
+    }
+  },
+  readById: async (req, res, next) => {
+    const { issueId } = req.params;
+    const { user_id: userId } = req.user;
+    try {
+      const issue = await issueModel.selectById(userId, issueId);
+      console.log("?", issue);
+      res.status(200).json({ issue });
     } catch (error) {
       next(error);
     }
@@ -34,7 +49,7 @@ const issueController = {
     const { title } = req.body;
     try {
       await issueModel.updateTitle(issueId, title);
-      res.status(200).json({ message: 'sucess' });
+      res.status(200).json({ message: "sucess" });
     } catch (error) {
       next(error);
     }
@@ -43,7 +58,7 @@ const issueController = {
     const { issueId, milestoneId } = req.params;
     try {
       await issueModel.insertMilestone(issueId, milestoneId);
-      res.status(200).json({ message: 'sucess' });
+      res.status(200).json({ message: "success" });
     } catch (error) {
       next(error);
     }
@@ -52,7 +67,17 @@ const issueController = {
     const { issueId } = req.params;
     try {
       await issueModel.deleteMilestone(issueId);
-      res.status(200).json({ message: 'sucess' });
+      res.status(200).json({ message: "success" });
+    } catch (error) {
+      next(error);
+    }
+  },
+  updateMilestone: async (req, res, next) => {
+    const { issueId } = req.params;
+    const { milestone_id: milestoneId } = req.body;
+    try {
+      await issueModel.updateMilestone(issueId, milestoneId);
+      res.status(200).json({ message: "sucess" });
     } catch (error) {
       next(error);
     }
@@ -61,7 +86,7 @@ const issueController = {
     const { issueId, labelId } = req.params;
     try {
       await issueLabelModel.insert(issueId, [labelId]);
-      res.status(200).json({ message: 'sucess' });
+      res.status(200).json({ message: "sucess" });
     } catch (error) {
       next(error);
     }
@@ -70,7 +95,17 @@ const issueController = {
     const { issueId, labelId } = req.params;
     try {
       await issueLabelModel.delete(issueId, labelId);
-      res.status(200).json({ message: 'sucess' });
+      res.status(200).json({ message: "sucess" });
+    } catch (error) {
+      next(error);
+    }
+  },
+  updateAllIssueLabel: async (req, res, next) => {
+    const { issueId } = req.params;
+    const { labelArr } = req.body;
+    try {
+      await issueLabelModel.update(issueId, labelArr);
+      res.status(200).json({ message: "success" });
     } catch (error) {
       next(error);
     }
@@ -80,7 +115,7 @@ const issueController = {
     const { is_open: isOpen } = req.body;
     try {
       await issueModel.updateIsOpen(issueId, isOpen);
-      res.status(200).json({ message: 'sucess' });
+      res.status(200).json({ message: "sucess" });
     } catch (error) {
       next(error);
     }
@@ -89,7 +124,7 @@ const issueController = {
     const { issueId, userId } = req.params;
     try {
       await assigneeModel.insert(issueId, userId);
-      res.status(200).json({ message: 'sucess' });
+      res.status(200).json({ message: "sucess" });
     } catch (error) {
       next(error);
     }
@@ -98,7 +133,17 @@ const issueController = {
     const { issueId, userId } = req.params;
     try {
       await assigneeModel.delete(issueId, userId);
-      res.status(200).json({ message: 'sucess' });
+      res.status(200).json({ message: "sucess" });
+    } catch (error) {
+      next(error);
+    }
+  },
+  updateAllAssignee: async (req, res, next) => {
+    const { issueId } = req.params;
+    const { assigneeArr } = req.body;
+    try {
+      await assigneeModel.update(issueId, assigneeArr);
+      res.status(200).json({ message: "success" });
     } catch (error) {
       next(error);
     }
@@ -107,7 +152,7 @@ const issueController = {
     const { issueId } = req.params;
     try {
       const assignee = await assigneeModel.select(issueId);
-      res.status(200).json({ assgineeArr: assignee });
+      res.status(200).json({ assigneeArr: assignee });
     } catch (error) {
       next(error);
     }

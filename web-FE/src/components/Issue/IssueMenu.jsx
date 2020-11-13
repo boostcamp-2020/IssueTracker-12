@@ -1,36 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
-import Dropdown from '@Components/commons/Dropdown';
 import Searchbar from '@Components/commons/Searchbar';
-import ButtonWithIcon from '@Components/commons/ButtonWithIcon';
 import Button from '@Components/commons/Button';
-import labelIcon from '@Images/label.svg';
-import milestoneIcon from '@Images/milestone.svg';
+import LabelMilestoneTag from '@Components/commons/LabelMilestoneTag';
+import { IssueMenuFilter } from './Filters';
 
-const IssueMenu = () => (
-  <FlexRowDiv>
-    <IssueFilter className="issue-filter" />
-    <IssueFilterSearchbar 
-      className="issue-filter-searchbar"
+const IssueMenu = () => {
+  const goToNewIssue = () => {
+    location.href = '/newIssue';
+  };
+  return (
+    <FlexRowDiv>
+      <IssueMenuFilter />
+      <IssueFilterSearchbar
+        className="issue-filter-searchbar"
       />
-    <LabelButton
-      className="label-button"
-      image={labelIcon}
-      name="label"
-      number="3"
-    /> 
-    <MilestoneButton
-      className="milestone-button"
-      image={milestoneIcon}
-      name="milestone"
-      number="3"
-    />
-    <NewIssueButton>New Issue</NewIssueButton>
-  </FlexRowDiv>
-);
+      <LabelMilestoneTag />
+      <NewIssueButton onClick={goToNewIssue}>New Issue</NewIssueButton>
+    </FlexRowDiv>
+  );
+};
 
 const FlexRowDiv = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: row;
   width: 100%;
 `;
@@ -39,14 +31,6 @@ const common = `
   height: 35px;
   box-sizing: border-box;
   border: 1px solid lightgrey;
-`
-
-const IssueFilter = styled(Dropdown)`
-  ${common}
-  line-height: 25px;
-  padding: 5px 12px 5px 20px;
-  border-radius: 5px 0 0 5px;
-  border-right:none;
 `;
 
 const IssueFilterSearchbar = styled(Searchbar)`
@@ -54,18 +38,6 @@ const IssueFilterSearchbar = styled(Searchbar)`
   border-radius: 0 5px 5px 0;
   line-height: 20px;
   margin-right: 20px;
-`;
-
-const LabelButton = styled(ButtonWithIcon)`
-  ${common}
-  border-radius: 5px 0 0 5px;
-  padding-left: 3px;
-`;
-
-const MilestoneButton = styled(ButtonWithIcon)`
-  ${common}
-  border-radius: 0 5px 5px 0;
-  padding-right: 3px;
 `;
 
 const NewIssueButton = styled(Button)`
