@@ -9,8 +9,24 @@ import Foundation
 import UIKit
 
 extension UIColor {
+    
+    var redValue: CGFloat { return CIColor(color: self).red }
+    var greenValue: CGFloat { return CIColor(color: self).green }
+    var blueValue: CGFloat { return CIColor(color: self).blue }
+    var alphaValue: CGFloat { return CIColor(color: self).alpha }
+    
+    var textColor: UIColor {
+        let luminance = self.redValue * 0.299 + self.greenValue * 0.587 + self.blueValue * 0.114
+        if luminance < 0.5 {
+            return .white
+        } else {
+            return .black
+        }
+    }
+    
     //HexString to UIColor
     public convenience init?(hex: String) {
+        
         let red: CGFloat
         let green: CGFloat
         let blue: CGFloat

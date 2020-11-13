@@ -10,4 +10,6 @@ extension Notification.Name {
     static let issueDidChange = Notification.Name("issueDidChange")
     static let labelDidChange = Notification.Name("labelDidChange")
     static let milestoneDidChange = Notification.Name("milestoneDidChange")
+    static let issueFilterDidChange = Notification.Name("issueFilterDidChange")
+    static let loginDidSuccess = Notification.Name("loginDidSuccess")
 }
