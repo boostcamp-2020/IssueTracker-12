@@ -23,7 +23,6 @@ class NewIssueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        
     }
     
     @objc func markdownSegmentedControlValueChanged(segment: UISegmentedControl) {
@@ -126,14 +125,14 @@ class NewIssueViewController: UIViewController {
         }
         
         let commentObject = ["content": contents]
-        guard let commentURL = URL(string: "\(URLs.issue.rawValue)/\(issueId)/comment/1") else { return }
+        guard let commentId = comment?.commentID else { return }
+        guard let commentURL = URL(string: "\(URLs.issue.rawValue)/\(issueId)/comment/\(commentId)") else { return }
         NetworkManager.shared.patchRequest(
             url: commentURL,
             updateID: issueId,
             object: commentObject) { _ in
                 NotificationCenter.default.post(name: .issueDidChange, object: nil)
         }
-        
     }
 }
 
