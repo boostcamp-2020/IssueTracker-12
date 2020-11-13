@@ -39,8 +39,9 @@
 ### 📍 [DataBase](https://github.com/boostcamp-2020/IssueTracker-12/wiki/DB-ERD,--CRUD-API-%EA%B3%84%ED%9A%8D)
 
 ## 배포
-[IssueTracker Web](http://issuetracker.n-e.kr)
-[IssueTracker iOS](https://kr.object.ncloudstorage.com/issuetracker12-jin/Download.html)
+> 우리의 피땀눈물
+- [IssueTracker Web](http://issuetracker.n-e.kr)
+- [IssueTracker iOS](https://kr.object.ncloudstorage.com/issuetracker12-jin/Download.html)
 
 ## 프로젝트 소개
 Github의 issue 탭과 비슷한 기능을 하는 issue tracker를 만드는 프로젝트입니다.
