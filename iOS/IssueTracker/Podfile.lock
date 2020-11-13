@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (5.3.0)
+  - FloatingPanel (2.0.1)
+  - MarkdownKit (1.6)
+  - SwiftLint (0.40.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - FloatingPanel
+  - MarkdownKit
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - FloatingPanel
+    - MarkdownKit
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  Alamofire: 2c792affbdc2f18016e08fdbcacd60aebe1ba593
+  FloatingPanel: 579a5ac0154f923a9d7302c4f13dbc0268511c92
+  MarkdownKit: 6aa4aee263c7efae3de570cded0767f85c38fc78
+  SwiftLint: bbfed21bf4451dcbd0f5cdbee44a18e06cf91b12
+
+PODFILE CHECKSUM: a6f549f95644ae10d56630f796e81884287ba7b3
+
+COCOAPODS: 1.9.3
