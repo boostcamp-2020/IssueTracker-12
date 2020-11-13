@@ -15,6 +15,10 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let didLogin = UserDefaults.standard.object(forKey: "didLogin") as? Bool, didLogin {
+            NetworkManager.shared.updateHeader()
+            openMainView()
+        }
 
         setupProviderLoginView()
     }
@@ -22,6 +26,7 @@ class LoginViewController: UIViewController {
     func setupProviderLoginView() {
         
         githubIDButton.addTarget(self, action: #selector(handleAuthorizationGithubIDButtonPress), for: .touchUpInside)
+        NotificationCenter.default.addObserver(self, selector: #selector(successLogin), name: .loginDidSuccess, object: nil)
         
         let appleIDButton = ASAuthorizationAppleIDButton()
         appleIDButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
@@ -32,6 +37,10 @@ class LoginViewController: UIViewController {
     func handleAuthorizationGithubIDButtonPress() {
       
         LoginManager.shared.requestCode()
+    }
+    
+    @objc func successLogin() {
+        openMainView()
     }
     
     @objc
@@ -45,6 +54,17 @@ class LoginViewController: UIViewController {
         controller.presentationContextProvider = self
         controller.performRequests()
     }
+    
+    private func openMainView() {
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+            guard let tabBarController = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
+                    as? UITabBarController else { return }
+
+            self.view.window?.rootViewController = tabBarController
+        }
+    }
 }
 
 extension LoginViewController: ASAuthorizationControllerDelegate {
@@ -57,7 +77,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             let userIdentifier = appleIDCredential.user
             let fullName = appleIDCredential.fullName
             let email = appleIDCredential.email
-            
+            LoginManager.shared.requestAppleUserExist(identifier: userIdentifier)
+        
         case let passwordCredential as ASPasswordCredential:
             let userName = passwordCredential.user
             let password = passwordCredential.password

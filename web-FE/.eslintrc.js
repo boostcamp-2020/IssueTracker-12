@@ -9,5 +9,13 @@ module.exports = {
     ecmaVersion: 12,
   },
   ignorePatterns: ['node_modules/'],
-  rules: {},
+  rules: {
+    'react/prop-types': 0,
+    'import/no-unresolved': 0,
+    'import/prefer-default-export': 0,
+    'consistent-return': 0,
+    'react/jsx-fragments': 0,
+    'no-restricted-globals': 0,
+    'no-alert': 0,
+  },
 };

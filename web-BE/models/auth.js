@@ -6,12 +6,14 @@ const authModel = {
     try {
       const res = await connection.query(sql.insertUser, [username, social]);
       return res[0].insertId;
-    } catch (err) { console.error(err); }
+    } catch (err) {
+      console.error(err);
+    }
   },
   select: async (username, social) => {
     try {
       const [res] = await connection.query(sql.selectUser, [username, social]);
-      return res[0];
+      return res;
     } catch (err) {
       console.error(err);
     }

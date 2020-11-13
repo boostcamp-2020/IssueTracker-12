@@ -1,6 +1,8 @@
-import React, { useEffect, Fragment } from "react";
-import { getUserInfo, saveUser, linkToGetCode, signIn } from "@Api/auth";
-import styled from "styled-components";
+import React, { useEffect, Fragment } from 'react';
+import {
+  getUserInfo, saveUser, linkToGetCode, signIn,
+} from '@Api/auth';
+import styled from 'styled-components';
 
 const GithubLogin = () => {
   const Button = styled.button`
@@ -28,15 +30,17 @@ const GithubLogin = () => {
       }
       await signIn(username, social);
       alert("로그인 되었습니다 🙌🏻");
+      localStorage.setItem('username', username);
+      // alert(JSON.stringify(userInfo));
       location.href = "/issue";
       return;
     }
   });
 
   return (
-    <Fragment>
+    <>
       <Button onClick={linkToGetCode}>Sign in with GitHub</Button>
-    </Fragment>
+    </>
   );
 };
 
