@@ -1,0 +1,6 @@
+module Pods_IssueTrackerNetworkTests {
+  umbrella header "Pods-IssueTrackerNetworkTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

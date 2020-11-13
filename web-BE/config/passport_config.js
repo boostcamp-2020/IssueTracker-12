@@ -1,11 +1,29 @@
-const passport = require('passport');
-const passportJWT = require('passport-jwt');
+const passport = require("passport");
+const passportJWT = require("passport-jwt");
 
 const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
-const userModel = require('../models/auth');
+const LocalStrategy = require("passport-local").Strategy;
+const userModel = require("../models/auth");
 
-require('dotenv').config();
+require("dotenv").config();
+
+const passportLocalConfig = {
+  usernameField: "username",
+  passwordField: "password",
+  session: false,
+};
+
+const passportVerify = (social) => async (username, password, done) => {
+  const user = await userModel.select(username, social);
+  if (!user) {
+    return done(null, false);
+  }
+  return done(null, user);
+};
+
+const passportGithubVerify = passportVerify("github");
+const passportAppleVerify = passportVerify("apple");
 
 const jwtConfig = {
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
@@ -20,8 +38,18 @@ const jwtVerify = async (jwtPayload, done) => {
   return done(null, user);
 };
 
+const passportGithubStrategy = new LocalStrategy(
+  passportLocalConfig,
+  passportGithubVerify
+);
+const passportAppleStrategy = new LocalStrategy(
+  passportLocalConfig,
+  passportAppleVerify
+);
 const jwtStrategy = new JWTStrategy(jwtConfig, jwtVerify);
 
 module.exports = () => {
-  passport.use('jwt', jwtStrategy);
+  passport.use("githubLocal", passportGithubStrategy);
+  passport.use("appleLocal", passportAppleStrategy);
+  passport.use("jwt", jwtStrategy);
 };
