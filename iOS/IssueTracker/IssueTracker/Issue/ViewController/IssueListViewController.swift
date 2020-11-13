@@ -23,9 +23,9 @@ class IssueListViewController: UIViewController {
     private lazy var dataSource = createDataSource()
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         configure()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +48,10 @@ class IssueListViewController: UIViewController {
         
         let cellNibName = UINib(nibName: IssueListCollectionViewCell.reuseIdentifier, bundle: nil)
         self.issueListCollectionView.register(cellNibName, forCellWithReuseIdentifier: IssueListCollectionViewCell.reuseIdentifier)
+        
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadIssues), name: .issueDidChange, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applyFilters), name: .issueFilterDidChange, object: nil)
